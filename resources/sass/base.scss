@@ -1,0 +1,287 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import "editor";
+@import "multiselect";
+
+body {
+    padding-bottom: 80px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+svg.icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+svg.preloader {
+    width: 4rem;
+    height: 4rem;
+}
+
+.logo{
+    font-family: "Merriweather",Times New Roman,sans-serif;
+}
+
+#pageHeader {
+    margin-bottom: 50px;
+    border-bottom: solid 1px #efefef;
+
+    .nav {
+        a {
+            color: $secondary;
+
+            &.active, &:hover {
+                color: $body-color;
+            }
+        }
+    }
+
+    .avatar{
+        width: 29px;
+        border-radius: 100%;
+    }
+
+    .dropdown button{
+        border: none;
+        background: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+
+        &:focus{
+            outline:none;
+        }
+    }
+
+    .dropdown-item:active{
+        background: none;
+        color:inherit;
+    }
+}
+
+.card {
+    box-shadow: none;
+    border: none;
+
+    .bottom-radius {
+        border-bottom-left-radius: $card-border-radius;
+        border-bottom-right-radius: $card-border-radius;
+    }
+
+    .table {
+        td {
+            padding: 1rem 1.25rem;
+            vertical-align: middle !important;
+        }
+
+        &.penultimate-column-right {
+            th:nth-last-child(2), td:nth-last-child(2) {
+                text-align: right;
+            }
+        }
+
+        th.table-fit, td.table-fit {
+            width: 1%;
+            white-space: nowrap;
+        }
+    }
+}
+
+.regular-link {
+    color: $body-color;
+
+    &:hover {
+        color: $body-color;
+        text-decoration: none;
+    }
+}
+
+.text-body-color {
+    color: $body-color;
+}
+
+.fill-text-color {
+    fill: $body-color;
+}
+
+.fill-danger {
+    fill: $danger;
+}
+
+.fill-secondary {
+    fill: $secondary;
+}
+
+.fill-warning {
+    fill: $warning;
+}
+
+.fill-info {
+    fill: $info;
+}
+
+.fill-success {
+    fill: $success;
+}
+
+.fill-primary {
+    fill: $primary;
+}
+
+button:hover {
+    .fill-primary, .fill-secondary {
+        fill: #fff;
+    }
+}
+
+button.btn-link:hover{
+    .fill-primary, .fill-secondary {
+        fill: $body-color;
+    }
+}
+
+.btn-outline-primary.active {
+    .fill-primary, .fill-secondary {
+        fill: $body-bg;
+    }
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus {
+    box-shadow: none !important;
+}
+
+.control-action {
+    svg {
+        fill: $control-action-icon-color;
+        width: 1.2rem;
+        height: 1.2rem;
+
+        &:hover {
+            fill: $primary;
+        }
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    -ms-animation: spin 2s linear infinite;
+    -o-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.modal {
+    .modal-content {
+        box-shadow: 0 3px 19px #e3e2e2;
+        border: none;
+    }
+}
+
+.inline-form-control {
+    border: 0;
+    padding: 0;
+    width: 100%;
+    background: #fff;
+}
+
+select.inline-form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0px;
+}
+
+.inline-form-control:focus {
+    outline: 0;
+}
+
+.inline-form-control-label {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.formErrorsList {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    color: $danger;
+}
+
+
+#editorContainer{
+    .ql-container{
+        font-family: "Merriweather",Times New Roman,sans-serif;
+        font-size: 1.1em;
+        line-height: 1.9;
+    }
+
+    .editor-title{
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 2.6rem;
+        border:none;
+        width: 100%;
+        resize: none;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+[contenteditable]:focus{
+    outline: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: $body-color;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+}

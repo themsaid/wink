@@ -1,0 +1,68 @@
+.multiselect {
+    position: relative;
+    z-index: 99;
+
+    &.active {
+        background: #fafafa;
+    }
+
+    &.active .multiselect_options {
+        border: solid 1px #ddd;
+        padding-top: 6px;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .badge {
+        font-size: 0.9em;
+        cursor: pointer;
+    }
+
+    .badge:hover {
+        background: $danger;
+    }
+
+    input {
+        border: none;
+        background: transparent;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .multiselect_dropdown {
+        position: absolute;
+        margin-top: -1px;
+        padding-top: 10px;
+        width: 100%;
+        border-bottom: solid 1px #ddd;
+        border-left: solid 1px #ddd;
+        border-right: solid 1px #ddd;
+    }
+
+    &.active .multiselect_dropdown {
+        background: #fafafa;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        cursor: pointer;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin: 0;
+
+        &:hover{
+            background: $gray-300;
+        }
+    }
+
+    li.selected {
+        background: $gray-300;
+    }
+}

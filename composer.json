@@ -1,0 +1,33 @@
+{
+    "name": "writingink/wink",
+    "description": "Wink Publishing Framework.",
+    "keywords": ["framework", "laravel", "blog"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohamed Said",
+            "email": "mohamed@laravel.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "laravel/framework": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wink\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wink\\WinkServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
