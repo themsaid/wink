@@ -32,7 +32,7 @@ Head to `yourproject.test/wink` and use the provided email and password to log i
 
 Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
 
-```
+```php
 public function index()
 {
     $posts = WinkPost::with('tags')
@@ -49,7 +49,7 @@ public function index()
 
 You can configure your routes in any way you want:
 
-```
+```php
 Route::get('/', 'BlogController@index');
 // OR
 Route::get('/blog', 'BlogController@index');
