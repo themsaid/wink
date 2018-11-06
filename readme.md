@@ -1,9 +1,8 @@
-# THIS IS WIP
-
-
 ## Introduction
 
 Wink is a modern publishing platform carefully designed to only include what matters, its only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
+
+<img src="https://themsaid.com/storage/wink/images/PaKOXK0bck5IrbVohbC6zQGxZr4CG31enOUt5n80.png">
 
 ## Installation
 
@@ -21,7 +20,7 @@ Once Composer is done, run the following command.
 php artisan wink:install
 ```
 
-Check `config/wink.php` and configure the database connection wink is going to be using, after that go run:
+Check `config/wink.php` and configure the database connection wink is going to be using. Then run:
 
 ```
 php artisan wink:migrate
@@ -31,7 +30,37 @@ Head to `yourproject.test/wink` and use the provided email and password to log i
 
 ## Themes
 
-Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your client-facing interface.
+Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
+
+```
+public function index()
+{
+    $posts = WinkPost::with('tags')
+        ->where('published', true)
+        ->where('publish_date', '<=', now()->toDateTimeString())
+        ->orderBy('publish_date', 'DESC')
+        ->simplePaginate(12);
+
+    return view('blog.index', [
+        'posts' => $posts
+    ]);
+}
+```
+
+You can configure your routes in any way you want:
+
+```
+Route::get('/', 'BlogController@index');
+// OR
+Route::get('/blog', 'BlogController@index');
+// OR
+Route::domain('blog.mywebsite.com')->get('/', 'BlogController@index');
+
+// And for showing a post
+Route::get('/{tag}/{slug}', 'BlogController@post');
+// OR
+Route::get('/{year}/{month}/{slug}', 'BlogController@post');
+```
 
 ## Road map
 
@@ -39,7 +68,7 @@ Wink is still under heavy development, I decided to ship it in this early stage 
 
 Here's the plan for what's coming:
 
-- [ ] Design a better logo.
+- [ ] Create an initial theme that people can use right away.
 - [ ] Add text search inside listings.
 - [ ] Filter posts by status, scheduling, tags, and authors.
 - [ ] Adding image galleries to posts and blocks.
@@ -48,6 +77,7 @@ Here's the plan for what's coming:
 - [ ] Link social accounts and automatic post on new published content.
 - [ ] Optimize image uploads and allow cropping.
 - [ ] Built-in database backups.
+- [ ] Design a better logo.
 - [ ] Optimize CSS. Move to Tailwind?
 
 And here are some ideas I'm still not sure about:
