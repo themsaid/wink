@@ -71,8 +71,8 @@ Here's the plan for what's coming:
 - [ ] Create an initial theme that people can use right away.
 - [ ] Add text search inside listings.
 - [ ] Filter posts by status, scheduling, tags, and authors.
-- [ ] Adding image galleries to posts and blocks.
-- [ ] Attach meta data to posts and blocks.
+- [ ] Adding image galleries to posts and pages.
+- [ ] Attach meta data to posts and pages.
 - [ ] Customize Twitter/Facebook cards and SEO meta data.
 - [ ] Link social accounts and automatic post on new published content.
 - [ ] Optimize image uploads and allow cropping.
