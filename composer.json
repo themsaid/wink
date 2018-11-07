@@ -11,7 +11,17 @@
     ],
     "require": {
         "php": "^7.1",
-        "laravel/framework": "~5.7"
+        "illuminate/support": "~5.7",
+        "laravel/framework": "~5.7",
+        "mockery/mockery": "^1.2",
+        "orchestra/database": "^3.6",
+        "orchestra/testbench": "^3.7",
+        "phpunit/phpunit": "^7.4"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wink\\Tests\\": "tests/"
+      }
     },
     "autoload": {
         "psr-4": {
