@@ -132,7 +132,7 @@ class WinkAuthor extends Model implements Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'http://i.pravatar.cc/100';
+        return $value ?: 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
     }
 
     /**
