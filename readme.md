@@ -80,6 +80,7 @@ Here's the plan for what's coming:
 - [ ] Design a better logo.
 - [ ] Optimize CSS. Move to Tailwind?
 - [ ] Dark mode.
+- [ ] Add tests.
 
 And here are some ideas I'm still not sure about:
 
