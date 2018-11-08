@@ -32,12 +32,12 @@ class WinkServiceProvider extends ServiceProvider
      */
     private function registerRoutes()
     {
-        $prefix = config('wink.route_prefix');
+        $path = config('wink.path');
 
         Route::namespace('Wink\Http\Controllers')
             ->middleware('web')
             ->as('wink.')
-            ->prefix($prefix)
+            ->prefix($path)
             ->group(function () {
                 Route::get('/login', 'LoginController@showLoginForm')->name('auth.login');
                 Route::post('/login', 'LoginController@login')->name('auth.attempt');
@@ -50,7 +50,7 @@ class WinkServiceProvider extends ServiceProvider
         Route::namespace('Wink\Http\Controllers')
             ->middleware(['web', Authenticate::class])
             ->as('wink.')
-            ->prefix($prefix)
+            ->prefix($path)
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
             });

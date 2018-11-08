@@ -13,7 +13,7 @@ class Wink
     {
         return [
             'unsplash_key' => config('services.unsplash.key'),
-            'route_prefix' => config('wink.route_prefix'),
+            'path' => config('wink.path'),
             'author' => auth('wink')->check() ? auth('wink')->user()->only('name', 'avatar', 'id') : null,
         ];
     }

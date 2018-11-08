@@ -76754,7 +76754,7 @@ window.Popper = __webpack_require__("./node_modules/popper.js/dist/esm/popper.js
 var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
     routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */],
     mode: 'history',
-    base: '/' + Wink.route_prefix
+    base: '/' + Wink.path
 });
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('alert', __webpack_require__("./resources/js/components/Alert.vue"));
@@ -76893,7 +76893,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         http: function http() {
             var instance = __WEBPACK_IMPORTED_MODULE_1_axios___default.a.create();
 
-            instance.defaults.baseURL = '/' + Wink.route_prefix;
+            instance.defaults.baseURL = '/' + Wink.path;
 
             instance.interceptors.response.use(function (response) {
                 return response;

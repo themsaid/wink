@@ -25,12 +25,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Wink Route Prefix
+    | Wink Path
     |--------------------------------------------------------------------------
-    | This is the prefix used for all Wink routes. By default, you can access
-    | the Wink administration at "/wink/". However, you can change that to
-    | anything you want.
+    |
+    | This is the URI prefix where Wink will be accessible from. Feel free to
+    | change this path to anything you like.
+    |
     */
 
-    'route_prefix' => env('WINK_ROUTE_PREFIX', 'wink'),
+    'path' => env('WINK_PATH', 'wink'),
 ];

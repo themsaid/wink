@@ -64,7 +64,7 @@ export default {
         http(){
             let instance = axios.create();
 
-            instance.defaults.baseURL = '/' + Wink.route_prefix;
+            instance.defaults.baseURL = '/' + Wink.path;
 
             instance.interceptors.response.use(
                 response => response,
