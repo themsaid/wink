@@ -70,7 +70,7 @@
 
             this.loadResources();
 
-            this.http().get('/wink/api/posts/' + this.id).then(response => {
+            this.http().get('/api/posts/' + this.id).then(response => {
                 this.entry = _.cloneDeep(response.data.entry);
 
                 this.fillForm(response.data.entry);
@@ -144,11 +144,11 @@
              * Load the resources needed for the screen.
              */
             loadResources(){
-                this.http().get('/wink/api/tags').then(response => {
+                this.http().get('/api/tags').then(response => {
                     this.tags = response.data.entries;
                 });
 
-                this.http().get('/wink/api/team').then(response => {
+                this.http().get('/api/team').then(response => {
                     this.authors = response.data.entries;
 
                     if (!this.form.author_id && this.authors) {
@@ -216,7 +216,7 @@
                 this.alertConfirm("Are you sure you want to delete this post?", () => {
                     $('#postSettingsModal').modal('hide');
 
-                    this.http().delete('/wink/api/posts/' + this.id, this.form).then(response => {
+                    this.http().delete('/api/posts/' + this.id, this.form).then(response => {
                         this.$router.push({name: 'posts'})
                     })
                 });
@@ -261,7 +261,7 @@
                 this.form.slug = this.form.slug || 'draft-' + this.form.id;
                 this.form.title = this.form.title || 'Draft';
 
-                this.http().post('/wink/api/posts/' + this.id, this.form).then(response => {
+                this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
 
                     if (this.id == 'new') {

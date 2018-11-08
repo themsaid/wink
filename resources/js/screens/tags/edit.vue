@@ -24,7 +24,7 @@
         mounted() {
             document.title = "Tag — Wink.";
 
-            this.http().get('/wink/api/tags/' + this.id).then(response => {
+            this.http().get('/api/tags/' + this.id).then(response => {
                 this.entry = response.data.entry;
 
                 this.form.id = response.data.entry.id;
@@ -64,7 +64,7 @@
              */
             deleteTag(){
                 this.alertConfirm("Are you sure you want to delete this tag?", () => {
-                    this.http().delete('/wink/api/tags/' + this.id, this.form).then(response => {
+                    this.http().delete('/api/tags/' + this.id, this.form).then(response => {
                         this.$router.push({name: 'tags'})
                     })
                 });
@@ -78,7 +78,7 @@
                 this.form.working = true;
                 this.form.errors = [];
 
-                this.http().post('/wink/api/tags/' + this.id, this.form).then(response => {
+                this.http().post('/api/tags/' + this.id, this.form).then(response => {
                     this.form.working = false;
 
                     this.notifySuccess('Saved!', 2000);

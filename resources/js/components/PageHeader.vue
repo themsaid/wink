@@ -26,10 +26,10 @@
 
                         <div class="dropdown ml-3">
                             <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img :src="Config.author.avatar" class="avatar" :title="Config.author.name">
+                                <img :src="Wink.author.avatar" class="avatar" :title="Wink.author.name">
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <router-link :to="{name:'team-edit', params:{id: Config.author.id}}" class="dropdown-item">
+                                <router-link :to="{name:'team-edit', params:{id: Wink.author.id}}" class="dropdown-item">
                                     Profile
                                 </router-link>
                                 <div class="dropdown-divider"></div>

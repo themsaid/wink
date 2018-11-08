@@ -27,7 +27,7 @@
 
         methods: {
             loadEntries(){
-                this.http().get('/wink/api/tags?paginate=50').then(response => {
+                this.http().get('/api/tags?paginate=50').then(response => {
                     this.entries = response.data.entries.data;
 
                     this.hasMoreEntries = !!response.data.entries.next_page_url;

@@ -27,7 +27,7 @@
 
         methods: {
             loadEntries(){
-                this.http().get('/wink/api/team?paginate=50').then(response => {
+                this.http().get('/api/team?paginate=50').then(response => {
                     this.entries = response.data.entries.data;
 
                     this.hasMoreEntries = !!response.data.entries.next_page_url;
@@ -105,7 +105,7 @@
                                     </h5>
 
                                     <small class="text-muted">
-                                        <small class="badge badge-primary" v-if="Config.author.id == entry.id">You</small>
+                                        <small class="badge badge-primary" v-if="Wink.author.id == entry.id">You</small>
                                         {{entry.email}}
                                     </small>
                                 </td>
