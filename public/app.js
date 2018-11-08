@@ -3001,6 +3001,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+var PLACEHOLDER_TITLE = 'Draft';
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         'featured-image-uploader': __WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader___default.a
@@ -3023,7 +3024,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             form: {
                 id: '',
-                title: 'Post Title',
+                title: PLACEHOLDER_TITLE,
                 slug: '',
                 excerpt: '',
                 tags: [],
@@ -3123,6 +3124,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.form.author_id = data.author_id || '';
                 this.form.featured_image = data.featured_image;
                 this.form.featured_image_caption = data.featured_image_caption;
+            } else {
+
+                this.form.slug = 'draft-' + data.id;
             }
 
             if (!this.form.published) {
@@ -3195,6 +3199,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Open the publishing modal.
          */
         publishingModal: function publishingModal() {
+            if (this.form.title.startsWith(PLACEHOLDER_TITLE)) {
+                this.alertError('You need to specify a better post title before publishing', 2000);
+                return;
+            }
+
+            if (this.form.slug.startsWith('draft-')) {
+                this.alertError('A friendly slug is required to publish a post', 2000);
+                return;
+            }
+
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#publishingModal').modal('show');
         },
 
@@ -3239,6 +3253,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Publish the post.
          */
         publishPost: function publishPost() {
+
             this.form.published = true;
 
             this.save();
@@ -3273,7 +3288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.status = 'Saving...';
 
             this.form.slug = this.form.slug || 'draft-' + this.form.id;
-            this.form.title = this.form.title || 'Draft';
+            this.form.title = this.form.title || PLACEHOLDER_TITLE;
 
             this.http().post('/api/posts/' + this.id, this.form).then(function (response) {
                 _this7.status = '';
@@ -9716,7 +9731,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

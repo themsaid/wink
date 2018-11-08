@@ -2,6 +2,7 @@
     import $ from 'jquery';
     import FeaturedImageUploader from './FeaturedImageUploader';
 
+    const PLACEHOLDER_TITLE = 'Draft';
     export default {
         components: {
             'featured-image-uploader': FeaturedImageUploader
@@ -25,7 +26,7 @@
 
                 form: {
                     id: '',
-                    title: 'Post Title',
+                    title: PLACEHOLDER_TITLE,
                     slug: '',
                     excerpt: '',
                     tags: [],
@@ -122,6 +123,8 @@
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
+                } else {
+                    this.form.slug = 'draft-'+data.id;
                 }
 
                 if (!this.form.published) {
@@ -188,6 +191,16 @@
              * Open the publishing modal.
              */
             publishingModal(){
+                if (this.form.title.startsWith(PLACEHOLDER_TITLE)) {
+                    this.alertError('You need to specify a better post title before publishing', 2000);
+                    return;
+                }
+
+                if (this.form.slug.startsWith('draft-')) {
+                    this.alertError('A friendly slug is required to publish a post', 2000);
+                    return;
+                }
+
                 $('#publishingModal').modal('show');
             },
 
@@ -259,7 +272,7 @@
                 this.status = 'Saving...';
 
                 this.form.slug = this.form.slug || 'draft-' + this.form.id;
-                this.form.title = this.form.title || 'Draft';
+                this.form.title = this.form.title || PLACEHOLDER_TITLE;
 
                 this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
