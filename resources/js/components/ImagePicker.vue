@@ -99,7 +99,7 @@
 
 <template>
     <div class="imagePicker">
-        <input type="file" class="d-none" :id="'imageUpload'+_uid" v-on:change="uploadSelectedImage">
+        <input type="file" class="d-none" :id="'imageUpload'+_uid" accept="image/*" v-on:change="uploadSelectedImage">
 
         <p class="mb-0">
             Please <label :for="'imageUpload'+_uid" class="uploadLabel">upload</label> an image

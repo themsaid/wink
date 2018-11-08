@@ -60304,7 +60304,11 @@ var render = function() {
                       _c("div", { staticClass: "col" }, [
                         _c("input", {
                           staticClass: "d-none",
-                          attrs: { type: "file", id: "author_avatar" },
+                          attrs: {
+                            type: "file",
+                            id: "author_avatar",
+                            accept: "image/*"
+                          },
                           on: { change: _vm.uploadSelectedImage }
                         }),
                         _vm._v(" "),
@@ -61504,7 +61508,7 @@ var render = function() {
   return _c("div", { staticClass: "imagePicker" }, [
     _c("input", {
       staticClass: "d-none",
-      attrs: { type: "file", id: "imageUpload" + _vm._uid },
+      attrs: { type: "file", id: "imageUpload" + _vm._uid, accept: "image/*" },
       on: { change: _vm.uploadSelectedImage }
     }),
     _vm._v(" "),

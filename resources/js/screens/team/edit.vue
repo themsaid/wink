@@ -237,7 +237,7 @@
                                     <img v-if="!uploading" :src="form.avatar" class="w-100">
                                 </div>
                                 <div class="col">
-                                    <input type="file" class="d-none" id="author_avatar" v-on:change="uploadSelectedImage">
+                                    <input type="file" class="d-none" id="author_avatar" accept="image/*" v-on:change="uploadSelectedImage">
                                     <label for="author_avatar" class="uploadLabel">Upload an avatar</label>
                                 </div>
                             </div>
