@@ -22,4 +22,15 @@ return [
     */
 
     'storage_disk' => env('WINK_STORAGE_DISK', 'local'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Wink Route Prefix
+    |--------------------------------------------------------------------------
+    | This is the prefix used for all Wink routes. By default, you can access
+    | the Wink administration at "/wink/". However, you can change that to
+    | anything you want.
+    */
+
+    'route_prefix' => env('WINK_ROUTE_PREFIX', 'wink'),
 ];
