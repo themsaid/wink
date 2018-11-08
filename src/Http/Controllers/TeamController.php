@@ -79,6 +79,12 @@ class TeamController
             $entry->password = bcrypt(request('password'));
         }
 
+        // if the user changes his email and the user has a gravatar we reset the avatar to be calculated again
+        if (request('email') !== $entry->email && str_contains($entry->avatar, 'gravatar')) {
+            unset($data['avatar']);
+            $entry->avatar = null;
+        }
+
         $entry->fill($data);
 
         $entry->save();
