@@ -399,7 +399,7 @@
                                             Your post doesn't seem to have a friendly title.
                                         </div>
 
-                                        <div class="mb-2" v-if="form.slug.startsWith('draft-')">
+                                        <div class="mb-2" v-if="!form.slug || form.slug.startsWith('draft-')">
                                             Your post doesn't seem to have a friendly slug.
                                         </div>
                                     </div>

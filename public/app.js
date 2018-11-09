@@ -60855,7 +60855,7 @@ var render = function() {
                                 ])
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.form.slug.startsWith("draft-")
+                            !_vm.form.slug || _vm.form.slug.startsWith("draft-")
                               ? _c("div", { staticClass: "mb-2" }, [
                                   _vm._v(
                                     "\n                                        Your post doesn't seem to have a friendly slug.\n                                    "
