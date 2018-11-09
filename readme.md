@@ -92,6 +92,10 @@ And here are some ideas I'm still not sure about:
 - [ ] Multi-lingual content
 
 
+## Contributing
+
+Check our [contribution guide](CONTRIBUTING.md).
+
 ## License
 
 Wink is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

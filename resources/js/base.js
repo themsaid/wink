@@ -5,7 +5,7 @@ import {Bus} from './bus.js';
 
 export default {
     computed: {
-        Config(){
+        Wink(){
             return Wink;
         }
     },
@@ -63,6 +63,8 @@ export default {
          */
         http(){
             let instance = axios.create();
+
+            instance.defaults.baseURL = '/' + Wink.path;
 
             instance.interceptors.response.use(
                 response => response,

@@ -37,7 +37,7 @@
 
         methods: {
             getImagesFromUnsplash(page = 1){
-                if (!this.Config.unsplash_key) {
+                if (!Wink.unsplash_key) {
                     return this.alertError('Please configure your Unsplash API Key.');
                 }
 
@@ -45,7 +45,7 @@
 
                 this.searchingUnsplash = true;
 
-                this.http().get('https://api.unsplash.com/search/photos?client_id=' + Wink.unsplash_key +
+                axios.get('https://api.unsplash.com/search/photos?client_id=' + Wink.unsplash_key +
                     '&orientation=landscape&per_page=19' +
                     '&query=' + this.unsplashSearchTerm +
                     '&page=' + page
@@ -72,7 +72,7 @@
 
                 this.$emit('uploading');
 
-                this.http().post('/wink/api/uploads', formData, {
+                this.http().post('/api/uploads', formData, {
                     onUploadProgress: progressEvent => {
                         this.$emit('progressing', {progress: Math.round((progressEvent.loaded * 100) / progressEvent.total)});
                     }
@@ -99,13 +99,13 @@
 
 <template>
     <div class="imagePicker">
-        <input type="file" class="d-none" :id="'imageUpload'+_uid" v-on:change="uploadSelectedImage">
+        <input type="file" class="d-none" :id="'imageUpload'+_uid" accept="image/*" v-on:change="uploadSelectedImage">
 
         <p class="mb-0">
             Please <label :for="'imageUpload'+_uid" class="uploadLabel">upload</label> an image
-            <span v-if="Config.unsplash_key">or</span>
+            <span v-if="Wink.unsplash_key">or</span>
             <input type="text" class="searchInput p-0"
-                   v-if="Config.unsplash_key"
+                   v-if="Wink.unsplash_key"
                    v-model="unsplashSearchTerm"
                    placeholder="search Unsplash">
         </p>

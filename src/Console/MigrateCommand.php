@@ -39,7 +39,7 @@ class MigrateCommand extends Command
 
         if ($initialMigration) {
             WinkAuthor::create([
-                'id' => Str::uuid(),
+                'id' => (string) Str::uuid(),
                 'name' => 'Regina Phalange',
                 'slug' => 'regina-phalange',
                 'bio' => 'This is me.',
