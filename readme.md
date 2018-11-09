@@ -1,4 +1,3 @@
-<p align="center"><img src="https://wink.themsaid.com/images/wink-small-logo.png"></p>
 <p align="center">A modern Laravel-based publishing platform carefully designed to only include what matters.</p>
 
 <p align="center">
