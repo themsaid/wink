@@ -22,7 +22,7 @@ Route::delete('/api/team/{id}', 'TeamController@delete')->name('team.delete');
 
 
 // Blog Image Uploads
-Route::post('/api/uploads', 'ImageUploadsController@upload')->name('upload');
+Route::post('/api/uploads', 'ImageUploadsController@upload')->name('images.store');
 
 
 // Blog Pages...
