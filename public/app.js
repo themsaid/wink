@@ -3001,7 +3001,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var PLACEHOLDER_TITLE = 'Draft';
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         'featured-image-uploader': __WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader___default.a
@@ -3024,7 +3023,7 @@ var PLACEHOLDER_TITLE = 'Draft';
 
             form: {
                 id: '',
-                title: PLACEHOLDER_TITLE,
+                title: 'Draft',
                 slug: '',
                 excerpt: '',
                 tags: [],
@@ -3124,9 +3123,6 @@ var PLACEHOLDER_TITLE = 'Draft';
                 this.form.author_id = data.author_id || '';
                 this.form.featured_image = data.featured_image;
                 this.form.featured_image_caption = data.featured_image_caption;
-            } else {
-
-                this.form.slug = 'draft-' + data.id;
             }
 
             if (!this.form.published) {
@@ -3199,16 +3195,6 @@ var PLACEHOLDER_TITLE = 'Draft';
          * Open the publishing modal.
          */
         publishingModal: function publishingModal() {
-            if (this.form.title.startsWith(PLACEHOLDER_TITLE)) {
-                this.alertError('You need to specify a better post title before publishing', 2000);
-                return;
-            }
-
-            if (this.form.slug.startsWith('draft-')) {
-                this.alertError('A friendly slug is required to publish a post', 2000);
-                return;
-            }
-
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#publishingModal').modal('show');
         },
 
@@ -3253,7 +3239,6 @@ var PLACEHOLDER_TITLE = 'Draft';
          * Publish the post.
          */
         publishPost: function publishPost() {
-
             this.form.published = true;
 
             this.save();
@@ -3288,7 +3273,7 @@ var PLACEHOLDER_TITLE = 'Draft';
             this.status = 'Saving...';
 
             this.form.slug = this.form.slug || 'draft-' + this.form.id;
-            this.form.title = this.form.title || PLACEHOLDER_TITLE;
+            this.form.title = this.form.title || 'Draft';
 
             this.http().post('/api/posts/' + this.id, this.form).then(function (response) {
                 _this7.status = '';
@@ -9731,7 +9716,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60861,6 +60846,24 @@ var render = function() {
                     [
                       _c("div", { staticClass: "modal-content" }, [
                         _c("div", { staticClass: "modal-body" }, [
+                          _c("div", { staticClass: "text-danger mb-4" }, [
+                            _vm.form.title == "Draft"
+                              ? _c("div", { staticClass: "mb-2" }, [
+                                  _vm._v(
+                                    "\n                                        Your post doesn't seem to have a friendly title.\n                                    "
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.form.slug.startsWith("draft-")
+                              ? _c("div", { staticClass: "mb-2" }, [
+                                  _vm._v(
+                                    "\n                                        Your post doesn't seem to have a friendly slug.\n                                    "
+                                  )
+                                ])
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
                           _c(
                             "div",
                             { staticClass: "form-group pb-3" },

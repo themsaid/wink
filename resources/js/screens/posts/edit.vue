@@ -2,7 +2,6 @@
     import $ from 'jquery';
     import FeaturedImageUploader from './FeaturedImageUploader';
 
-    const PLACEHOLDER_TITLE = 'Draft';
     export default {
         components: {
             'featured-image-uploader': FeaturedImageUploader
@@ -26,7 +25,7 @@
 
                 form: {
                     id: '',
-                    title: PLACEHOLDER_TITLE,
+                    title: 'Draft',
                     slug: '',
                     excerpt: '',
                     tags: [],
@@ -96,12 +95,12 @@
         methods: {
             registerSaveKeyboardShortcut(){
                 $(document).keydown(event => {
-                        if ((event.ctrlKey || event.metaKey) && event.which == 83) {
-                            event.preventDefault();
+                            if ((event.ctrlKey || event.metaKey) && event.which == 83) {
+                                event.preventDefault();
 
-                            this.save();
+                                this.save();
+                            }
                         }
-                    }
                 );
             },
 
@@ -123,8 +122,6 @@
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
-                } else {
-                    this.form.slug = 'draft-'+data.id;
                 }
 
                 if (!this.form.published) {
@@ -191,16 +188,6 @@
              * Open the publishing modal.
              */
             publishingModal(){
-                if (this.form.title.startsWith(PLACEHOLDER_TITLE)) {
-                    this.alertError('You need to specify a better post title before publishing', 2000);
-                    return;
-                }
-
-                if (this.form.slug.startsWith('draft-')) {
-                    this.alertError('A friendly slug is required to publish a post', 2000);
-                    return;
-                }
-
                 $('#publishingModal').modal('show');
             },
 
@@ -272,7 +259,7 @@
                 this.status = 'Saving...';
 
                 this.form.slug = this.form.slug || 'draft-' + this.form.id;
-                this.form.title = this.form.title || PLACEHOLDER_TITLE;
+                this.form.title = this.form.title || 'Draft';
 
                 this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
@@ -341,9 +328,9 @@
 
                             <div id="editorContainer">
                                 <textarea-autosize
-                                    placeholder="Type something here..."
-                                    class="editor-title"
-                                    v-model="form.title"
+                                        placeholder="Type something here..."
+                                        class="editor-title"
+                                        v-model="form.title"
                                 ></textarea-autosize>
 
                                 <editor :post-id="id" v-model="form.body"></editor>
@@ -407,6 +394,16 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
+                                    <div class="text-danger mb-4">
+                                        <div class="mb-2" v-if="form.title == 'Draft'">
+                                            Your post doesn't seem to have a friendly title.
+                                        </div>
+
+                                        <div class="mb-2" v-if="form.slug.startsWith('draft-')">
+                                            Your post doesn't seem to have a friendly slug.
+                                        </div>
+                                    </div>
+
                                     <div class="form-group pb-3">
                                         <label class="inline-form-control-label">Publish Date (M/D/Y H:M)</label>
                                         <date-time-picker v-model="form.publish_date"></date-time-picker>
