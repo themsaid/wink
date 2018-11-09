@@ -1,11 +1,3 @@
-<p align="center">A modern Laravel-based publishing platform carefully designed to only include what matters.</p>
-
-<p align="center">
-<a href="https://packagist.org/packages/writingink/wink"><img src="https://poser.pugx.org/writingink/wink/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/writingink/wink"><img src="https://poser.pugx.org/writingink/wink/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/writingink/wink"><img src="https://poser.pugx.org/writingink/wink/license.svg" alt="License"></a>
-</p>
-
 ## Introduction
 
 Wink's only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
