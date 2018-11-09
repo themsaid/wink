@@ -25,7 +25,7 @@
 
                 form: {
                     id: '',
-                    title: 'Post Title',
+                    title: 'Draft',
                     slug: '',
                     excerpt: '',
                     tags: [],
@@ -95,12 +95,12 @@
         methods: {
             registerSaveKeyboardShortcut(){
                 $(document).keydown(event => {
-                        if ((event.ctrlKey || event.metaKey) && event.which == 83) {
-                            event.preventDefault();
+                            if ((event.ctrlKey || event.metaKey) && event.which == 83) {
+                                event.preventDefault();
 
-                            this.save();
+                                this.save();
+                            }
                         }
-                    }
                 );
             },
 
@@ -328,9 +328,9 @@
 
                             <div id="editorContainer">
                                 <textarea-autosize
-                                    placeholder="Type something here..."
-                                    class="editor-title"
-                                    v-model="form.title"
+                                        placeholder="Type something here..."
+                                        class="editor-title"
+                                        v-model="form.title"
                                 ></textarea-autosize>
 
                                 <editor :post-id="id" v-model="form.body"></editor>
@@ -394,6 +394,16 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
+                                    <div class="text-danger mb-4">
+                                        <div class="mb-2" v-if="form.title == 'Draft'">
+                                            Your post doesn't seem to have a friendly title.
+                                        </div>
+
+                                        <div class="mb-2" v-if="!form.slug || form.slug.startsWith('draft-')">
+                                            Your post doesn't seem to have a friendly slug.
+                                        </div>
+                                    </div>
+
                                     <div class="form-group pb-3">
                                         <label class="inline-form-control-label">Publish Date (M/D/Y H:M)</label>
                                         <date-time-picker v-model="form.publish_date"></date-time-picker>
