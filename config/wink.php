@@ -11,7 +11,7 @@ return [
     | to anything you want.
     */
 
-    'database_connection' => env('WINK_DB_CONNECTION', 'wink'),
+    'database_connection' => env('DB_CONNECTION', 'wink'),
 
     /*
     |--------------------------------------------------------------------------
