@@ -4,6 +4,7 @@ namespace Wink\Tests\Integration;
 
 use Wink\WinkPost;
 use Wink\Tests\TestCase;
+use Wink\WinkPage;
 
 class WinkPostTest extends TestCase
 {
@@ -21,16 +22,47 @@ class WinkPostTest extends TestCase
     {
         $user = $this->signIn();
 
-        $data = [
-            'author_id'    => $user->id,
+        $winkPostData = $this->winkPostData(['author_id' => $user->id]);
+
+        // the id should be `new` in order to create new post.
+        // otherwise will be considered as updating the post.
+        $this->json('POST', route('wink.posts.store', 'new'), $winkPostData)->assertStatus(200);
+
+        $this->assertDatabaseHas('wink_posts', $winkPostData);
+    }
+
+    /** @test */
+    public function auth_users_can_edit_an_existing_post()
+    {
+        $user = $this->signIn();
+
+        $winkPostData = $this->winkPostData(['author_id' => $user->id]);
+
+        // When a user hit edit post that not exist => throw 404
+        $this->json('POST', route('wink.posts.store', 'not-exist-post-id'), $winkPostData)->assertStatus(404);
+
+        // however, if we have a post
+        $oldPost = factory(WinkPost::class)->create();
+
+        //the user now can edit it usign its id.
+        $this->json('POST', route('wink.posts.store', $oldPost->id), $winkPostData)->assertStatus(200);
+
+        $this->assertDatabaseHas('wink_posts', $winkPostData);
+    }
+    
+    /**
+     * create dummy data
+     *
+     * @return array
+     */
+    protected function winkPostData($data)
+    {
+        return array_merge([
+            'author_id'    => 1,
             'title'        => 'my amazing post ;p',
             'slug'         => 'post-slug',
             'publish_date' => date(now()),
             'published'    => false,
-        ];
-
-        $this->json('POST', route('wink.posts.store', 'new'), $data)->assertStatus(200);
-
-        $this->assertDatabaseHas('wink_posts', $data);
+        ], $data);
     }
 }
