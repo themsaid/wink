@@ -6,6 +6,13 @@ use Wink\WinkPost;
 
 trait IsAuthor
 {
+    public static function bootIsAuthor()
+    {
+        static::deleting(function ($model) {
+            return $model->posts()->count() === 0;
+        });
+    }
+
     /**
      * The posts.
      *
