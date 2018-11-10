@@ -3,7 +3,6 @@
 namespace Wink;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Author;
 
 class WinkPost extends Model
 {
