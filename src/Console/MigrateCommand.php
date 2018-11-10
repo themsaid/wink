@@ -30,14 +30,16 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
-        $initialMigration = ! Schema::connection(config('wink.database_connection'))->hasTable('wink_posts');
+        $shouldCreateNewAuthor =
+            ! Schema::connection(config('wink.database_connection'))->hasTable('wink_authors') ||
+            ! WinkAuthor::count();
 
         $this->call('migrate', [
             '--database' => config('wink.database_connection'),
             '--path' => 'vendor/writingink/wink/src/Migrations',
         ]);
 
-        if ($initialMigration) {
+        if ($shouldCreateNewAuthor) {
             WinkAuthor::create([
                 'id' => (string) Str::uuid(),
                 'name' => 'Regina Phalange',
