@@ -20,7 +20,7 @@ Once Composer is done, run the following command.
 php artisan wink:install
 ```
 
-Check `config/wink.php` and configure the database connection wink is going to be using. Then run:
+Check `config/wink.php` and **configure the database connection** wink is going to be using. Then instead of running `php artisan migrate`, run:
 
 ```
 php artisan wink:migrate
