@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTables extends Migration
+class CreateWinkTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,6 +13,11 @@ class CreateTables extends Migration
      */
     public function up()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->text('bio')->nullable();
+            $table->string('avatar')->nullable();
+        });
+
         Schema::create('wink_tags', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
@@ -40,18 +45,6 @@ class CreateTables extends Migration
             $table->string('featured_image')->nullable();
             $table->string('featured_image_caption');
             $table->string('author_id')->index();
-            $table->timestamps();
-        });
-
-        Schema::create('wink_authors', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('slug')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->text('bio');
-            $table->string('avatar')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
 
