@@ -20,6 +20,7 @@ trait IsAuthor
      * Get the authors's avatar.
      *
      * @param  string $value
+     *
      * @return string
      */
     public function getAvatarAttribute($value)

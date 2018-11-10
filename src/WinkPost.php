@@ -3,6 +3,7 @@
 namespace Wink;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Author;
 
 class WinkPost extends Model
 {
@@ -47,7 +48,7 @@ class WinkPost extends Model
      * @var array
      */
     public $dates = [
-        'publish_date'
+        'publish_date',
     ];
 
     /**
