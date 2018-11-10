@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^7.1",
+        "doctrine/dbal": "^2.8",
         "laravel/framework": "~5.7"
     },
     "autoload": {
