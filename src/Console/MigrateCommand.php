@@ -40,19 +40,26 @@ class MigrateCommand extends Command
         ]);
 
         if ($shouldCreateNewAuthor) {
+            $this->comment(PHP_EOL.'<info>Admin user account</info>');
+            $email      = $this->ask('Email');
+            $password   = $this->secret('Password');
+            $firstName  = $this->ask('First name');
+            $lastName   = $this->ask('Last name');
+            $fullName   = $firstName . '' . $lastName;
+
             WinkAuthor::create([
-                'id' => (string) Str::uuid(),
-                'name' => 'Regina Phalange',
-                'slug' => 'regina-phalange',
-                'bio' => 'This is me.',
-                'email' => 'admin@mail.com',
-                'password' => bcrypt($password = str_random()),
+                'id'        => (string) Str::uuid(),
+                'name'      => $fullName,
+                'slug'      => str_slug($fullName),
+                'bio'       => 'Hello there :) ',
+                'email'     => $email,
+                'password'  => bcrypt($password),
             ]);
 
             $this->line('');
             $this->line('');
             $this->line('Wink is ready for use. Enjoy!');
-            $this->line('You may log in using <info>admin@mail.com</info> and password: <info>'.$password.'</info>');
+            $this->line('You may log in using <info>'. $email .'</info> and your password');
         }
     }
 }
