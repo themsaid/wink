@@ -2,8 +2,8 @@
 
 namespace Wink;
 
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
-use Wink\Http\Middleware\Authenticate;
 use Illuminate\Support\ServiceProvider;
 
 class WinkServiceProvider extends ServiceProvider
@@ -16,8 +16,6 @@ class WinkServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
-        $this->registerMigrations();
-        $this->registerAuthGuard();
         $this->registerPublishing();
 
         $this->loadViewsFrom(
@@ -32,58 +30,13 @@ class WinkServiceProvider extends ServiceProvider
      */
     private function registerRoutes()
     {
-        $path = config('wink.path');
-
-        Route::namespace('Wink\Http\Controllers')
-            ->middleware('web')
-            ->as('wink.')
-            ->prefix($path)
-            ->group(function () {
-                Route::get('/login', 'LoginController@showLoginForm')->name('auth.login');
-                Route::post('/login', 'LoginController@login')->name('auth.attempt');
-
-                Route::get('/password/forgot', 'ForgotPasswordController@showResetRequestForm')->name('password.forgot');
-                Route::post('/password/forgot', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-                Route::get('/password/reset/{token}', 'ForgotPasswordController@showNewPassword')->name('password.reset');
-            });
-
         Route::namespace('Wink\Http\Controllers')
             ->middleware(['web', Authenticate::class])
             ->as('wink.')
-            ->prefix($path)
+            ->prefix(config('wink.path'))
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
             });
-    }
-
-    /**
-     * Register the package's migrations.
-     *
-     * @return void
-     */
-    private function registerMigrations()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->loadMigrationsFrom(__DIR__.'/Migrations');
-        }
-    }
-
-    /**
-     * Register the package's authentication guard.
-     *
-     * @return void
-     */
-    private function registerAuthGuard()
-    {
-        $this->app['config']->set('auth.providers.wink_authors', [
-            'driver' => 'eloquent',
-            'model' => WinkAuthor::class,
-        ]);
-
-        $this->app['config']->set('auth.guards.wink', [
-            'driver' => 'session',
-            'provider' => 'wink_authors',
-        ]);
     }
 
     /**
@@ -94,6 +47,8 @@ class WinkServiceProvider extends ServiceProvider
     private function registerPublishing()
     {
         if ($this->app->runningInConsole()) {
+            $timestamp = date('Y_m_d_His');
+
             $this->publishes([
                 __DIR__.'/../public' => public_path('vendor/wink'),
             ], 'wink-assets');
@@ -101,6 +56,10 @@ class WinkServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/wink.php' => config_path('wink.php'),
             ], 'wink-config');
+
+            $this->publishes([
+                __DIR__ . '/../database/migrations/create_wink_tables.php.stub' => database_path("migrations/{$timestamp}_create_wink_tables.php"),
+            ], 'wink-migrations');
         }
     }
 
@@ -117,7 +76,6 @@ class WinkServiceProvider extends ServiceProvider
 
         $this->commands([
             Console\InstallCommand::class,
-            Console\MigrateCommand::class,
         ]);
     }
 }

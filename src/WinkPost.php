@@ -3,6 +3,7 @@
 namespace Wink;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Author;
 
 class WinkPost extends Model
 {
@@ -67,7 +68,7 @@ class WinkPost extends Model
      */
     public function author()
     {
-        return $this->belongsTo(WinkAuthor::class, 'author_id');
+        return $this->belongsTo(Author::class, 'user_id');
     }
 
     /**

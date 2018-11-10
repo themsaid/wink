@@ -33,7 +33,7 @@ Route::delete('/api/pages/{id}', 'PagesController@delete')->name('pages.delete')
 
 
 // Logout Route...
-Route::get('/logout', 'LoginController@logout')->name('logout');
+Route::get('/logout', 'LogoutController')->name('logout');
 
 
 // Catch-all Route...
