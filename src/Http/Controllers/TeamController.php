@@ -2,12 +2,18 @@
 
 namespace Wink\Http\Controllers;
 
-use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class TeamController
 {
+    protected $author;
+
+    public function __construct()
+    {
+        $this->author = app(config('wink.author_model'));
+    }
+
     /**
      * Return posts.
      *
@@ -15,7 +21,7 @@ class TeamController
      */
     public function index()
     {
-        $entries = WinkAuthor::withCount('posts')->orderBy('created_at', 'DESC');
+        $entries = $this->author->withCount('posts')->orderBy('created_at', 'DESC');
 
         if (request('paginate')) {
             $entries = $entries->paginate(request('paginate'));
@@ -38,13 +44,13 @@ class TeamController
     {
         if ($id == 'new') {
             return response()->json([
-                'entry' => WinkAuthor::make([
+                'entry' => app(config('wink.author_model'), [
                     'id' => Str::uuid()
                 ])
             ]);
         }
 
-        $entry = WinkAuthor::findOrFail($id);
+        $entry = $this->author->findOrFail($id);
 
         return response()->json([
             'entry' => $entry
@@ -69,11 +75,11 @@ class TeamController
 
         validator($data, [
             'name' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'slug')->ignore(request('id')),
-            'email' => 'required|email|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'email')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('wink.author_table'), 'slug')->ignore(request('id')),
+            'email' => 'required|email|'.Rule::unique(config('wink.author_table'), 'email')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
+        $entry = $id !== 'new' ? $this->author->findOrFail($id) : app(config('wink.author_model'), ['id' => request('id')]);
 
         if (request('password')) {
             $entry->password = bcrypt(request('password'));
@@ -102,13 +108,13 @@ class TeamController
      */
     public function delete($id)
     {
-        $entry = WinkAuthor::findOrFail($id);
+        $entry = $this->author->findOrFail($id);
 
         if ($entry->posts()->count()) {
             return response()->json(['message' => 'Please remove the author\'s posts first.'], 402);
         }
 
-        if ($entry->id == auth('wink')->user()->id) {
+        if ($entry->id == auth()->user()->id) {
             return response()->json(['message' => 'You cannot delete yourself.'], 402);
         }
 
