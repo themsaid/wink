@@ -3,7 +3,6 @@
 namespace Wink;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Author;
 
 class WinkPost extends Model
 {
@@ -54,7 +53,7 @@ class WinkPost extends Model
     /**
      * The tags the post belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags()
     {
@@ -64,20 +63,10 @@ class WinkPost extends Model
     /**
      * The post author.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function author()
     {
-        return $this->belongsTo(Author::class, 'user_id');
-    }
-
-    /**
-     * Get the current connection name for the model.
-     *
-     * @return string
-     */
-    public function getConnectionName()
-    {
-        return config('wink.database_connection');
+        return $this->belongsTo(config('wink.author_model'), 'author_id');
     }
 }
