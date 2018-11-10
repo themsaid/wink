@@ -65,9 +65,12 @@ class CreateWinkTables extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['slug', 'bio', 'avatar']);
+        });
+
         Schema::dropIfExists('wink_tags');
         Schema::dropIfExists('wink_posts_tags');
-        Schema::dropIfExists('wink_authors');
         Schema::dropIfExists('wink_posts');
         Schema::dropIfExists('wink_pages');
     }
