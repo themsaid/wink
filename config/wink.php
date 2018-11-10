@@ -22,4 +22,16 @@ return [
     */
 
     'storage_disk' => env('WINK_STORAGE_DISK', 'local'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Wink Path
+    |--------------------------------------------------------------------------
+    |
+    | This is the URI prefix where Wink will be accessible from. Feel free to
+    | change this path to anything you like.
+    |
+    */
+
+    'path' => env('WINK_PATH', 'wink'),
 ];

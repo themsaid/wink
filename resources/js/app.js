@@ -15,7 +15,7 @@ window.Popper = require('popper.js').default;
 const router = new VueRouter({
     routes: Routes,
     mode: 'history',
-    base: '/wink',
+    base: '/' + Wink.path,
 });
 
 Vue.component('alert', require('./components/Alert.vue'));

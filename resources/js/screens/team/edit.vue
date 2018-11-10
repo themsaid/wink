@@ -62,7 +62,7 @@
             loadEntry(){
                 this.ready = false;
 
-                this.http().get('/wink/api/team/' + this.id).then(response => {
+                this.http().get('/api/team/' + this.id).then(response => {
                     this.entry = response.data.entry;
 
                     this.form.id = response.data.entry.id;
@@ -89,7 +89,7 @@
                 this.form.working = true;
                 this.form.errors = [];
 
-                this.http().post('/wink/api/team/' + this.id, this.form).then(response => {
+                this.http().post('/api/team/' + this.id, this.form).then(response => {
                     this.form.working = false;
 
                     this.notifySuccess('Saved!', 2000);
@@ -109,7 +109,7 @@
 
             deleteAuthor(){
                 this.alertConfirm("Are you sure you want to delete this author?", () => {
-                    this.http().delete('/wink/api/team/' + this.id).then(response => {
+                    this.http().delete('/api/team/' + this.id).then(response => {
                         this.$router.push({name: 'team'})
                     }).catch(error => {
                         this.alertError(error.response.data.message);
@@ -129,7 +129,7 @@
 
                 this.uploading = true;
 
-                this.http().post('/wink/api/uploads', formData, {
+                this.http().post('/api/uploads', formData, {
                     onUploadProgress: progressEvent => {
                         this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     }
@@ -176,9 +176,9 @@
                         </div>
 
                         <div v-if="ready && entry">
-                            <h2 class="mb-5" v-if="id != 'new' && Config.author.id != entry.id">Edit Author</h2>
-                            <h2 class="mb-5" v-if="id == 'new' && Config.author.id != entry.id">New Author</h2>
-                            <h2 class="mb-5" v-if="Config.author.id == entry.id">Your Profile</h2>
+                            <h2 class="mb-5" v-if="id != 'new' && Wink.author.id != entry.id">Edit Author</h2>
+                            <h2 class="mb-5" v-if="id == 'new' && Wink.author.id != entry.id">New Author</h2>
+                            <h2 class="mb-5" v-if="Wink.author.id == entry.id">Your Profile</h2>
 
                             <div class="form-group border-bottom pb-3">
                                 <label for="name" class="inline-form-control-label">Name</label>
@@ -237,7 +237,7 @@
                                     <img v-if="!uploading" :src="form.avatar" class="w-100">
                                 </div>
                                 <div class="col">
-                                    <input type="file" class="d-none" id="author_avatar" v-on:change="uploadSelectedImage">
+                                    <input type="file" class="d-none" id="author_avatar" accept="image/*" v-on:change="uploadSelectedImage">
                                     <label for="author_avatar" class="uploadLabel">Upload an avatar</label>
                                 </div>
                             </div>

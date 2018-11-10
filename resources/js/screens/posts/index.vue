@@ -27,7 +27,7 @@
 
         methods: {
             loadEntries(){
-                this.http().get('/wink/api/posts').then(response => {
+                this.http().get('/api/posts').then(response => {
                     this.entries = response.data.entries.data;
 
                     this.hasMoreEntries = !!response.data.entries.next_page_url;

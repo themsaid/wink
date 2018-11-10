@@ -25,7 +25,7 @@
 
                 form: {
                     id: '',
-                    title: 'Post Title',
+                    title: 'Draft',
                     slug: '',
                     excerpt: '',
                     tags: [],
@@ -70,7 +70,7 @@
 
             this.loadResources();
 
-            this.http().get('/wink/api/posts/' + this.id).then(response => {
+            this.http().get('/api/posts/' + this.id).then(response => {
                 this.entry = _.cloneDeep(response.data.entry);
 
                 this.fillForm(response.data.entry);
@@ -95,12 +95,12 @@
         methods: {
             registerSaveKeyboardShortcut(){
                 $(document).keydown(event => {
-                        if ((event.ctrlKey || event.metaKey) && event.which == 83) {
-                            event.preventDefault();
+                            if ((event.ctrlKey || event.metaKey) && event.which == 83) {
+                                event.preventDefault();
 
-                            this.save();
+                                this.save();
+                            }
                         }
-                    }
                 );
             },
 
@@ -144,11 +144,11 @@
              * Load the resources needed for the screen.
              */
             loadResources(){
-                this.http().get('/wink/api/tags').then(response => {
+                this.http().get('/api/tags').then(response => {
                     this.tags = response.data.entries;
                 });
 
-                this.http().get('/wink/api/team').then(response => {
+                this.http().get('/api/team').then(response => {
                     this.authors = response.data.entries;
 
                     if (!this.form.author_id && this.authors) {
@@ -216,7 +216,7 @@
                 this.alertConfirm("Are you sure you want to delete this post?", () => {
                     $('#postSettingsModal').modal('hide');
 
-                    this.http().delete('/wink/api/posts/' + this.id, this.form).then(response => {
+                    this.http().delete('/api/posts/' + this.id, this.form).then(response => {
                         this.$router.push({name: 'posts'})
                     })
                 });
@@ -261,7 +261,7 @@
                 this.form.slug = this.form.slug || 'draft-' + this.form.id;
                 this.form.title = this.form.title || 'Draft';
 
-                this.http().post('/wink/api/posts/' + this.id, this.form).then(response => {
+                this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
 
                     if (this.id == 'new') {
@@ -328,9 +328,9 @@
 
                             <div id="editorContainer">
                                 <textarea-autosize
-                                    placeholder="Type something here..."
-                                    class="editor-title"
-                                    v-model="form.title"
+                                        placeholder="Type something here..."
+                                        class="editor-title"
+                                        v-model="form.title"
                                 ></textarea-autosize>
 
                                 <editor :post-id="id" v-model="form.body"></editor>
@@ -394,6 +394,16 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
+                                    <div class="text-danger mb-4">
+                                        <div class="mb-2" v-if="form.title == 'Draft'">
+                                            Your post doesn't seem to have a friendly title.
+                                        </div>
+
+                                        <div class="mb-2" v-if="!form.slug || form.slug.startsWith('draft-')">
+                                            Your post doesn't seem to have a friendly slug.
+                                        </div>
+                                    </div>
+
                                     <div class="form-group pb-3">
                                         <label class="inline-form-control-label">Publish Date (M/D/Y H:M)</label>
                                         <date-time-picker v-model="form.publish_date"></date-time-picker>

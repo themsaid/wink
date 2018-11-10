@@ -1,6 +1,6 @@
 ## Introduction
 
-Wink is a modern publishing platform carefully designed to only include what matters, its only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
+Wink's only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
 
 <img src="https://themsaid.com/storage/wink/images/PaKOXK0bck5IrbVohbC6zQGxZr4CG31enOUt5n80.png">
 
@@ -91,6 +91,10 @@ And here are some ideas I'm still not sure about:
 - [ ] Localization
 - [ ] Multi-lingual content
 
+
+## Contributing
+
+Check our [contribution guide](CONTRIBUTING.md).
 
 ## License
 

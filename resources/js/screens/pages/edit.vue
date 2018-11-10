@@ -49,7 +49,7 @@
         mounted() {
             document.title = "Edit Page — Wink.";
 
-            this.http().get('/wink/api/pages/' + this.id).then(response => {
+            this.http().get('/api/pages/' + this.id).then(response => {
                 this.entry = _.cloneDeep(response.data.entry);
 
                 this.fillForm(response.data.entry);
@@ -124,7 +124,7 @@
                 this.alertConfirm("Are you sure you want to delete this page?", () => {
                     $('#pageSettingsModal').modal('hide');
 
-                    this.http().delete('/wink/api/pages/' + this.id, this.form).then(response => {
+                    this.http().delete('/api/pages/' + this.id, this.form).then(response => {
                         this.$router.push({name: 'pages'})
                     })
                 });
@@ -138,7 +138,7 @@
                 this.errors = [];
                 this.status = 'Saving...';
 
-                this.http().post('/wink/api/pages/' + this.id, this.form).then(response => {
+                this.http().post('/api/pages/' + this.id, this.form).then(response => {
                     this.status = '';
 
                     if (this.id == 'new') {
