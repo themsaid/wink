@@ -108,14 +108,14 @@ class TeamController
      */
     public function delete($id)
     {
-        $entry = $this->author->findOrFail($id);
-
-        if ($entry->posts()->count()) {
-            return response()->json(['message' => 'Please remove the author\'s posts first.'], 402);
-        }
+        $entry = $this->author->withCount('posts')->findOrFail($id);
 
         if ($entry->id == auth()->user()->id) {
             return response()->json(['message' => 'You cannot delete yourself.'], 402);
+        }
+
+        if ($entry->posts_count > 0) {
+            return response()->json(['message' => 'Please remove the author\'s posts first.'], 402);
         }
 
         $entry->delete();
