@@ -11,8 +11,9 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "~5.7",
-        "laravel/framework": "~5.7",
+        "illuminate/support": "~5.7"
+    },
+    "require-dev": {
         "mockery/mockery": "^1.2",
         "orchestra/database": "^3.6",
         "orchestra/testbench": "^3.7",
