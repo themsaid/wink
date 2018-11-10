@@ -58532,6 +58532,37 @@ var render = function() {
                                     1
                                   ),
                                   _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    {
+                                      staticClass: "mb-1",
+                                      staticStyle: { "font-style": "italic" }
+                                    },
+                                    [
+                                      _c(
+                                        "router-link",
+                                        {
+                                          staticClass:
+                                            "regular-link text-muted",
+                                          attrs: {
+                                            to: {
+                                              name: "post-edit",
+                                              params: { id: entry.id }
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(entry.slug) +
+                                              "\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
                                   _c("p", { staticClass: "mb-1" }, [
                                     _vm._v(
                                       _vm._s(
