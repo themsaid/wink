@@ -5,7 +5,7 @@
             hideLogoOnSmallScreens(){
                 return this.$slots['left-side']
             }
-        },
+        }
     }
 </script>
 
