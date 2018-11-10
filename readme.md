@@ -14,19 +14,21 @@ To install Wink, require it via Composer:
 composer require writingink/wink
 ```
 
-Once Composer is done, run the following command:
+If you haven't already, you'll need to run the command that scaffolds the base Laravel authentication logic and assets:
+
+```
+php artisan make:auth
+```
+
+When it's done, run the Wink install command:
 
 ```
 php artisan wink:install
 ```
 
-Check `config/wink.php` and **configure the database connection** wink is going to be using. Then instead of running `php artisan migrate`, run:
+Finally run `php artisan migrate` to migrate your database and head to `yourproject.test/register` to register an account.
 
-```
-php artisan wink:migrate
-```
-
-Head to `yourproject.test/wink` and use the provided email and password to log in.
+After logging in, go to `yourproject.test/wink` to access Wink's admin panel.
 
 ## Themes
 
