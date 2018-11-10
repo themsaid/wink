@@ -2,7 +2,6 @@
 
 namespace Wink\Http\Controllers;
 
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class TeamController
@@ -42,11 +41,9 @@ class TeamController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
-                'entry' => app(config('wink.author_model'), [
-                    'id' => Str::uuid()
-                ])
+                'entry' => app(config('wink.author_model'))
             ]);
         }
 
