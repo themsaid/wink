@@ -2,19 +2,13 @@
 
 namespace Wink\Tests;
 
+use Wink\WinkAuthor;
 use Wink\WinkServiceProvider;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use DatabaseTransactions;
-
-    /**
-     * The user the request is currently authenticated as.
-     *
-     * @var mixed
-     */
-    protected $authenticatedAs;
 
     /**
      * @return void
@@ -52,5 +46,20 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+    }
+
+    /**
+     * @param $user
+     * @return $this
+     */
+    protected function signIn($user = null)
+    {
+        if(! $user) {
+            $user = factory(WinkAuthor::class)->create();
+        }
+        
+        $this->actingAs($user, 'wink');
+        
+        return $user;
     }
 }
