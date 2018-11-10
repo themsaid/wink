@@ -4,7 +4,7 @@ namespace Wink;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WinkPost extends Model
+class WinkMeta extends Model
 {
     /**
      * The attributes that aren't mass assignable.
@@ -18,7 +18,7 @@ class WinkPost extends Model
      *
      * @var string
      */
-    protected $table = 'wink_posts';
+    protected $table = 'wink_posts_meta';
 
     /**
      * The primary key for the model.
@@ -42,42 +42,13 @@ class WinkPost extends Model
     public $incrementing = false;
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    public $dates = [
-        'publish_date'
-    ];
-
-    /**
-     * The tags the post belongs to.
+     * The post this meta belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tags()
+    public function post()
     {
-        return $this->belongsToMany(WinkTag::class, 'wink_posts_tags', 'post_id', 'tag_id');
-    }
-
-    /**
-     * The meta that this post has.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function meta()
-    {
-        return $this->hasMany(WinkMeta::class, 'wink_post_id');
-    }
-
-    /**
-     * The post author.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function author()
-    {
-        return $this->belongsTo(WinkAuthor::class, 'author_id');
+        return $this->belongsTo(WinkPost::class, 'wink_post_id', 'id');
     }
 
     /**

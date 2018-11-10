@@ -3,9 +3,12 @@
 namespace Wink\Http\Controllers;
 
 use Wink\WinkTag;
+use Wink\WinkMeta;
 use Wink\WinkPost;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Wink\Http\Resources\WinkPostCollection;
+use Wink\Http\Resources\WinkPost as WinkPostResource;
 
 class PostsController
 {
@@ -18,11 +21,11 @@ class PostsController
     {
         $entries = WinkPost::orderBy('publish_date', 'DESC')
             ->orderBy('created_at', 'DESC')
-            ->with('tags')
+            ->with(['tags', 'meta'])
             ->paginate(30);
 
         return response()->json([
-            'entries' => $entries
+            'entries' => new WinkPostCollection($entries)
         ]);
     }
 
@@ -40,10 +43,10 @@ class PostsController
             ]);
         }
 
-        $entry = WinkPost::with('tags')->findOrFail($id);
+        $entry = WinkPost::with(['tags', 'meta'])->findOrFail($id);
 
         return response()->json([
-            'entry' => $entry,
+            'entry' => new WinkPostResource($entry),
         ]);
     }
 
@@ -80,6 +83,8 @@ class PostsController
 
         $entry->save();
 
+        $this->saveMeta(request('meta', []), $entry);
+
         $entry->tags()->sync(
             $this->collectTags(request('tags'))
         );
@@ -113,6 +118,48 @@ class PostsController
             return (string) $tag->id;
         })->toArray();
     }
+
+
+    /**
+     * Save meta fields. We need this rather than a straight sync() call as the meta
+     * data comes back from the frontend in a nice key->value format, but for flexibility
+     * in the database, we are storing in a more generic meta table format.
+     *
+     * @param array    $meta
+     * @param WinkPost $post
+     *
+     * @return \Wink\WinkPost
+     */
+    private function saveMeta(array $meta, WinkPost $post)
+    {
+        if (empty($meta)) {
+            return $post;
+        }
+
+        if (array_get($meta, 'opengraph_image', false)) {
+            // Special case for opengraph image, get width & height to avoid the facebook
+            // "first share" problem (https://developers.facebook.com/docs/sharing/best-practices#precaching)
+            list($width, $height) = getimagesize(url($meta['opengraph_image']));
+            $meta['opengraph_image_height'] = $height;
+            $meta['opengraph_image_width'] = $width;
+        }
+
+        foreach ($meta as $key => $value) {
+            $post->meta()->save(
+                WinkMeta::updateOrCreate([
+                    'wink_post_id' => $post->id,
+                    'key' => $key
+                ],
+                [
+                    'key' => $key,
+                    'value' => $value
+                ])
+            );
+        }
+
+        return $post;
+    }
+
 
     /**
      * Return a single post.

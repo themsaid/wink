@@ -122,3 +122,71 @@
     left: 0;
     font-style: normal;
 }
+
+.modal {
+    .modal-content {
+        .modal-body {
+            &.settings {
+                .explainer-subtext {
+                    font-style: italic;
+                    margin-bottom: .5rem;
+                    font-size: .75rem;
+                }
+
+                .accordion {
+                    .card {
+                        .card-header {
+                            padding-left: 0;
+                            padding-right: 0.5rem;
+                            i {
+                                border: solid grey;
+                                border-width: 3px 0 0 3px;
+                                display: inline-block;
+                                float: right;
+                                margin-top: 7px;
+                                padding: 3px;
+                                transform: rotate(-135deg);
+                            }
+                            &.collapsed {
+                                i {
+                                    transform: rotate(135deg);
+                                }
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+
+                            .network-icon {
+                                height: 20px;
+                            }
+                        }
+
+                        .card-body {
+                            .social-image-holder {
+                                align-items: center;
+                                background: #f8f9fa;
+                                border: 1px solid grey;
+                                display: flex;
+                                float: right;
+                                height: 75px;
+                                margin-left: 10px;
+                                padding: 2px;
+                                width: 100px;
+
+                                a {
+                                    margin: auto;
+
+                                    img {
+                                        max-height: 71px;
+                                        max-width: 96px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

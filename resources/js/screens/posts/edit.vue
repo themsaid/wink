@@ -34,7 +34,16 @@
                     featured_image_caption: '',
                     body: '',
                     published: false,
-                    publish_date: ''
+                    publish_date: '',
+                    meta: {
+                        meta_description: '',
+                        opengraph_title: '',
+                        opengraph_description: '',
+                        opengraph_image: '',
+                        twitter_title: '',
+                        twitter_description: '',
+                        twitter_image: ''
+                    }
                 }
             };
         },
@@ -122,6 +131,15 @@
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
+                    this.form.meta = {
+                        meta_description: data.meta.meta_description || '',
+                        opengraph_title: data.meta.opengraph_title || '',
+                        opengraph_description: data.meta.opengraph_description || '',
+                        opengraph_image: data.meta.opengraph_image || '',
+                        twitter_title: data.meta.twitter_title || '',
+                        twitter_description: data.meta.twitter_description || '',
+                        twitter_image: data.meta.twitter_image || ''
+                    }
                 }
 
                 if (!this.form.published) {
@@ -207,7 +225,6 @@
                 this.form.featured_image = url;
                 this.form.featured_image_caption = caption;
             },
-
 
             /**
              * Delete the post.
@@ -342,48 +359,88 @@
                     <div class="modal" id="postSettingsModal" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="form-group border-bottom pb-3">
-                                        <label for="slug" class="inline-form-control-label">Slug</label>
-                                        <input type="text" class="inline-form-control text-body-color"
-                                               v-model="form.slug"
-                                               placeholder="Give me a slug"
-                                               id="slug">
+                                <div class="modal-body settings">
+                                    <nav>
+                                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-settings" aria-selected="true">General Settings</a>
+                                            <a class="nav-item nav-link" id="nav-social-tab" data-toggle="tab" href="#nav-social" role="tab" aria-controls="nav-social" aria-selected="false">SEO & Social</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
 
-                                        <form-errors :errors="errors.slug"></form-errors>
+                                            <div class="form-group border-bottom pb-3">
+                                                <label for="slug" class="inline-form-control-label">Slug</label>
+                                                <input type="text" class="inline-form-control text-body-color"
+                                                       v-model="form.slug"
+                                                       placeholder="Give me a slug"
+                                                       id="slug">
+
+                                                <form-errors :errors="errors.slug"></form-errors>
+                                            </div>
+
+                                            <div class="form-group border-bottom pb-3">
+                                                <label for="author_id" class="inline-form-control-label">Author</label>
+                                                <select name="author_id" class="inline-form-control text-body-color"
+                                                        v-model="form.author_id"
+                                                        id="author_id">
+                                                    <option v-for="author in authors" :value="author.id">{{author.name}}</option>
+                                                </select>
+                                                <form-errors :errors="errors.author_id"></form-errors>
+                                            </div>
+
+                                            <div class="form-group border-bottom pb-3">
+                                                <label for="tag_ids" class="inline-form-control-label">Tags</label>
+                                                <multiselect :options="tags"
+                                                             option-id="id"
+                                                             v-model="form.tags"
+                                                             option-text="name"
+                                                ></multiselect>
+                                                <form-errors :errors="errors.tags"></form-errors>
+                                            </div>
+
+                                            <div class="form-group border-bottom pb-3">
+                                                <label for="excerpt" class="inline-form-control-label">Excerpt</label>
+                                                <textarea class="inline-form-control text-body-color"
+                                                          v-model="form.excerpt"
+                                                          placeholder="What's this post about?"
+                                                          id="excerpt"></textarea>
+
+                                                <form-errors :errors="errors.excerpt"></form-errors>
+                                            </div>
+
+                                            <button class="btn btn-link text-danger p-0" @click="deletePost" v-if="id != 'new'">Delete this post</button>
+
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-social" role="tabpanel" aria-labelledby="nav-social-tab">
+                                            <div class="form-group border-bottom pb-3">
+                                                <label for="meta_description" class="inline-form-control-label">
+                                                    Meta description
+                                                </label>
+                                                <textarea class="inline-form-control text-body-color"
+                                                          v-model="form.meta.meta_description"
+                                                          placeholder="Meta description"
+                                                          id="meta_description"></textarea>
+
+                                                <form-errors :errors="errors.meta_description"></form-errors>
+                                            </div>
+
+                                            <div class="accordion" id="social-accordion">
+                                                <social-meta
+                                                    name="facebook"
+                                                    network="opengraph"
+                                                    v-bind:expanded="true"
+                                                    v-bind:form="form"></social-meta>
+
+                                                <social-meta
+                                                    name="twitter"
+                                                    network="twitter"
+                                                    v-bind:expanded="false"
+                                                    v-bind:form="form"></social-meta>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group border-bottom pb-3">
-                                        <label for="author_id" class="inline-form-control-label">Author</label>
-                                        <select name="author_id" class="inline-form-control text-body-color"
-                                                v-model="form.author_id"
-                                                id="author_id">
-                                            <option v-for="author in authors" :value="author.id">{{author.name}}</option>
-                                        </select>
-                                        <form-errors :errors="errors.author_id"></form-errors>
-                                    </div>
-
-                                    <div class="form-group border-bottom pb-3">
-                                        <label for="tag_ids" class="inline-form-control-label">Tags</label>
-                                        <multiselect :options="tags"
-                                                     option-id="id"
-                                                     v-model="form.tags"
-                                                     option-text="name"
-                                        ></multiselect>
-                                        <form-errors :errors="errors.tags"></form-errors>
-                                    </div>
-
-                                    <div class="form-group border-bottom pb-3">
-                                        <label for="excerpt" class="inline-form-control-label">Excerpt</label>
-                                        <textarea class="inline-form-control text-body-color"
-                                                  v-model="form.excerpt"
-                                                  placeholder="What's this post about?"
-                                                  id="excerpt"></textarea>
-
-                                        <form-errors :errors="errors.excerpt"></form-errors>
-                                    </div>
-
-                                    <button class="btn btn-link text-danger p-0" @click="deletePost" v-if="id != 'new'">Delete this post</button>
                                 </div>
                             </div>
                         </div>

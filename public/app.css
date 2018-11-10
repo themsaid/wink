@@ -22263,6 +22263,66 @@ a.text-dark:focus {
   font-style: normal;
 }
 
+.modal .modal-content .modal-body.settings .explainer-subtext {
+  font-style: italic;
+  margin-bottom: .5rem;
+  font-size: .75rem;
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-header {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-header i {
+  border: solid grey;
+  border-width: 3px 0 0 3px;
+  display: inline-block;
+  float: right;
+  margin-top: 7px;
+  padding: 3px;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-header.collapsed i {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-header:hover {
+  cursor: pointer;
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-header .network-icon {
+  height: 20px;
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-body .social-image-holder {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #f8f9fa;
+  border: 1px solid grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  float: right;
+  height: 75px;
+  margin-left: 10px;
+  padding: 2px;
+  width: 100px;
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-body .social-image-holder a {
+  margin: auto;
+}
+
+.modal .modal-content .modal-body.settings .accordion .card .card-body .social-image-holder a img {
+  max-height: 71px;
+  max-width: 96px;
+}
+
 .multiselect {
   position: relative;
   z-index: 99;
