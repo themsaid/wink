@@ -14,7 +14,7 @@ class Wink
         return [
             'unsplash_key' => config('services.unsplash.key'),
             'path' => config('wink.path'),
-            'author' => auth('wink')->check() ? auth('wink')->user()->only('name', 'avatar', 'id') : null,
+            'author' => auth('web')->check() ? auth('web')->user()->only('name', 'avatar', 'id') : null,
         ];
     }
 }
