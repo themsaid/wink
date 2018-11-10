@@ -13,7 +13,7 @@ trait IsAuthor
      */
     public function posts()
     {
-        return $this->hasMany(WinkPost::class, 'user_id');
+        return $this->hasMany(WinkPost::class, 'author_id');
     }
 
     /**
@@ -25,15 +25,5 @@ trait IsAuthor
     public function getAvatarAttribute($value)
     {
         return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
-    }
-
-    /**
-     * Get the user's slug.
-     *
-     * @return string
-     */
-    public function getSlugAttribute()
-    {
-        return $this->email;
     }
 }
