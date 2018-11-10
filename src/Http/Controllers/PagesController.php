@@ -30,7 +30,7 @@ class PagesController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkPage::make(['id' => Str::uuid()])
             ]);
@@ -59,10 +59,10 @@ class PagesController
 
         validator($data, [
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_pages', 'slug')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique('wink_pages', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkPage::findOrFail($id) : new WinkPage(['id' => request('id')]);
+        $entry = $id !== 'new' ? WinkPage::findOrFail($id) : new WinkPage(['id' => request('id')]);
 
         $entry->fill($data);
 
@@ -77,7 +77,7 @@ class PagesController
      * Delete a single page.
      *
      * @param  string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return void
      */
     public function delete($id)
     {
