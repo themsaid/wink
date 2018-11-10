@@ -58534,16 +58534,13 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "small",
-                                    {
-                                      staticClass: "mb-1",
-                                      staticStyle: { "font-style": "italic" }
-                                    },
+                                    { staticClass: "mb-1" },
                                     [
                                       _c(
                                         "router-link",
                                         {
                                           staticClass:
-                                            "regular-link text-muted",
+                                            "regular-link text-muted text-italic",
                                           attrs: {
                                             to: {
                                               name: "post-edit",

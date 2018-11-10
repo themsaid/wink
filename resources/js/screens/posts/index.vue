@@ -108,8 +108,8 @@
                                             {{truncate(entry.title, 68)}}
                                         </router-link>
                                     </h5>
-                                    <small class="mb-1" style="font-style: italic;">
-                                        <router-link :to="{name:'post-edit', params:{id: entry.id}}" class="regular-link text-muted">
+                                    <small class="mb-1">
+                                        <router-link :to="{name:'post-edit', params:{id: entry.id}}" class="regular-link text-muted text-italic">
                                             {{ entry.slug }}
                                         </router-link>
                                     </small>

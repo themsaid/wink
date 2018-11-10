@@ -22426,6 +22426,10 @@ svg.preloader {
   text-decoration: none;
 }
 
+.text-italic {
+  font-style: italic;
+}
+
 .text-body-color {
   color: #212529;
 }
