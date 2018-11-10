@@ -6,7 +6,7 @@ Wink's only job is to help you write and present your content with style. Wink i
 
 ## Installation
 
-Wink runs on any Laravel application, and can leverage the default User model and authentication for a seamless integretion with your project code.
+Wink runs on any Laravel application, and can leverage the default User model and authentication for a seamless integration with your project code.
 
 To install Wink, require it via Composer:
 
