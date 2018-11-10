@@ -1,0 +1,18 @@
+language: php
+
+sudo: true
+
+php:
+- 7.2
+
+services:
+  - sqlite
+
+before_script:
+  - composer install
+  - travis_retry composer self-update
+  - travis_retry composer update --no-interaction --prefer-dist
+  - composer show laravel/framework
+
+script:
+  - vendor/bin/phpunit
