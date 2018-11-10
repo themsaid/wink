@@ -19,6 +19,7 @@ const router = new VueRouter({
 });
 
 Vue.component('alert', require('./components/Alert.vue'));
+Vue.component('dropdown', require('./components/DropDown.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('page-header', require('./components/PageHeader.vue'));
 Vue.component('mini-editor', require('./components/MiniEditor.vue'));

@@ -1,7 +1,7 @@
 <script type="text/ecmascript-6">
 
     export default {
-        computed:{
+        computed: {
             hideLogoOnSmallScreens(){
                 return this.$slots['left-side']
             }
@@ -10,48 +10,48 @@
 </script>
 
 <template>
-    <div id="pageHeader">
+    <div class="border-b border-very-light mb-10">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="d-flex align-items-center py-2">
-                        <div class="mr-auto d-flex align-items-center">
-                            <h5 class="mb-0 mr-4 logo" :class="{'d-none': hideLogoOnSmallScreens, 'd-sm-block': hideLogoOnSmallScreens}">
-                                <span class="text-secondary">W</span>ink.
-                            </h5>
-                            <slot name="left-side"></slot>
+            <div class="flex items-center py-1">
+                <div class="mr-auto">
+                    <h3 class="mr-5 font-medium font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
+                        <span class="text-light">W</span>ink.
+                    </h3>
+
+                    <slot name="left-side"></slot>
+                </div>
+
+                <div class="flex items-center">
+                    <slot name="right-side"></slot>
+
+                    <dropdown class="relative ml-5">
+                        <button slot="trigger" type="button" class="focus:outline-none">
+                            <img :src="Wink.author.avatar" class="rounded-full w-8" :title="Wink.author.name">
+                        </button>
+
+                        <div slot="content" class="bg-white border border-lighter rounded absolute whitespace-no-wrap min-w-dropdown pin-r mt-1">
+                            <router-link :to="{name:'team-edit', params:{id: Wink.author.id}}" class="no-underline text-black font-sans hover:text-primary w-full block py-2 px-4 border-b border-very-light">
+                                Profile
+                            </router-link>
+                            <router-link to="/posts" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                                Posts
+                            </router-link>
+                            <router-link to="/pages" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                                Pages
+                            </router-link>
+
+                            <router-link to="/tags" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                                Tags
+                            </router-link>
+
+                            <router-link to="/team" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                                Team
+                            </router-link>
+                            <a href="/wink/logout" class="no-underline text-black hover:text-primary w-full block py-2 px-4 border-t border-very-light">
+                                Log out
+                            </a>
                         </div>
-
-                        <slot name="right-side"></slot>
-
-                        <div class="dropdown ml-3">
-                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img :src="Wink.author.avatar" class="avatar" :title="Wink.author.name">
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <router-link :to="{name:'team-edit', params:{id: Wink.author.id}}" class="dropdown-item">
-                                    Profile
-                                </router-link>
-                                <div class="dropdown-divider"></div>
-                                <router-link to="/posts" class="dropdown-item">
-                                    Posts
-                                </router-link>
-                                <router-link to="/pages" class="dropdown-item">
-                                    Pages
-                                </router-link>
-
-                                <router-link to="/tags" class="dropdown-item">
-                                    Tags
-                                </router-link>
-
-                                <router-link to="/team" class="dropdown-item">
-                                    Team
-                                </router-link>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/wink/logout">Log out</a>
-                            </div>
-                        </div>
-                    </div>
+                    </dropdown>
                 </div>
             </div>
         </div>
