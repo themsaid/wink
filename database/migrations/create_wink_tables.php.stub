@@ -14,6 +14,7 @@ class CreateWinkTables extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('slug')->nullable();
             $table->text('bio')->nullable();
             $table->string('avatar')->nullable();
         });
