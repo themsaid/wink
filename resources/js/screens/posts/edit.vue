@@ -399,19 +399,17 @@
                 <form-errors :errors="errors.meta_description"></form-errors>
             </div>
 
-            <div class="accordion" id="social-accordion">
-                <social-meta
-                    name="facebook"
-                    network="opengraph"
-                    v-bind:expanded="false"
-                    v-bind:form="form"></social-meta>
+            <social-meta
+                name="facebook"
+                network="opengraph"
+                v-bind:expanded="false"
+                v-bind:form="form"></social-meta>
 
-                <social-meta
-                    name="twitter"
-                    network="twitter"
-                    v-bind:expanded="false"
-                    v-bind:form="form"></social-meta>
-            </div>
+            <social-meta
+                name="twitter"
+                network="twitter"
+                v-bind:expanded="false"
+                v-bind:form="form"></social-meta>
 
             <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePost" v-if="id != 'new'">Delete this post</button>
 

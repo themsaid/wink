@@ -60680,30 +60680,23 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "accordion", attrs: { id: "social-accordion" } },
-                [
-                  _c("social-meta", {
-                    attrs: {
-                      name: "facebook",
-                      network: "opengraph",
-                      expanded: false,
-                      form: _vm.form
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("social-meta", {
-                    attrs: {
-                      name: "twitter",
-                      network: "twitter",
-                      expanded: false,
-                      form: _vm.form
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("social-meta", {
+                attrs: {
+                  name: "facebook",
+                  network: "opengraph",
+                  expanded: false,
+                  form: _vm.form
+                }
+              }),
+              _vm._v(" "),
+              _c("social-meta", {
+                attrs: {
+                  name: "twitter",
+                  network: "twitter",
+                  expanded: false,
+                  form: _vm.form
+                }
+              }),
               _vm._v(" "),
               _vm.id != "new"
                 ? _c(
@@ -60731,7 +60724,8 @@ var render = function() {
                   [_vm._v("Cancel")]
                 )
               ])
-            ]
+            ],
+            1
           )
         : _vm._e(),
       _vm._v(" "),

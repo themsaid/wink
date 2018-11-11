@@ -1868,12 +1868,12 @@ table {
   font-size: .75rem;
 }
 
-.accordion .card .card-header {
+.card .card-header {
   padding-left: 0;
   padding-right: .5rem;
 }
 
-.accordion .card .card-header i {
+.card .card-header i {
   border: solid grey;
   border-width: 3px 0 0 3px;
   display: inline-block;
@@ -1884,37 +1884,37 @@ table {
           transform: rotate(-135deg);
 }
 
-.accordion .card .card-header.collapsed i {
+.card .card-header.collapsed i {
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
 }
 
-.accordion .card .card-header:hover {
+.card .card-header:hover {
   cursor: pointer;
 }
 
-.accordion .card .card-header .network-icon {
+.card .card-header .network-icon {
   height: 20px;
   vertical-align: middle;
 }
 
-.accordion .card .accordion-collapse {
+.card .accordion-collapse {
   -webkit-transition: height .25s ease-out;
   transition: height .25s ease-out;
   height: 0;
   overflow: hidden;
 }
 
-.accordion .card .accordion-collapse.show {
+.card .accordion-collapse.show {
   height: auto;
 }
 
-.accordion .card .accordion-collapse .card-body .input-group:last-of-type {
+.card .accordion-collapse .card-body .input-group:last-of-type {
   /* Avoid duplication of bottom border within accordion card */
   border-bottom: none;
 }
 
-.accordion .card .accordion-collapse .card-body .social-image-holder {
+.card .accordion-collapse .card-body .social-image-holder {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1930,11 +1930,11 @@ table {
   width: 100px;
 }
 
-.accordion .card .accordion-collapse .card-body .social-image-holder a {
+.card .accordion-collapse .card-body .social-image-holder a {
   margin: auto;
 }
 
-.accordion .card .accordion-collapse .card-body .social-image-holder a img {
+.card .accordion-collapse .card-body .social-image-holder a img {
   max-height: 71px;
   max-width: 96px;
 }

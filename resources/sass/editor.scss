@@ -148,69 +148,67 @@
   font-size: .75rem;
 }
 
-.accordion {
-  .card {
-    .card-header {
-      padding-left: 0;
-      padding-right: 0.5rem;
+.card {
+  .card-header {
+    padding-left: 0;
+    padding-right: 0.5rem;
+    i {
+      border: solid grey;
+      border-width: 3px 0 0 3px;
+      display: inline-block;
+      float: right;
+      margin-top: 7px;
+      padding: 3px;
+      transform: rotate(-135deg);
+    }
+    &.collapsed {
       i {
-        border: solid grey;
-        border-width: 3px 0 0 3px;
-        display: inline-block;
-        float: right;
-        margin-top: 7px;
-        padding: 3px;
-        transform: rotate(-135deg);
-      }
-      &.collapsed {
-        i {
-          transform: rotate(135deg);
-        }
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      .network-icon {
-        height: 20px;
-        vertical-align: middle;
+        transform: rotate(135deg);
       }
     }
 
-    .accordion-collapse {
-      transition: height 0.25s ease-out;
-      height: 0;
-      overflow: hidden;
+    &:hover {
+      cursor: pointer;
+    }
 
-      &.show {
-        height: auto;
+    .network-icon {
+      height: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  .accordion-collapse {
+    transition: height 0.25s ease-out;
+    height: 0;
+    overflow: hidden;
+
+    &.show {
+      height: auto;
+    }
+
+    .card-body {
+      .input-group:last-of-type {
+        /* Avoid duplication of bottom border within accordion card */
+        border-bottom: none;
       }
 
-      .card-body {
-        .input-group:last-of-type {
-          /* Avoid duplication of bottom border within accordion card */
-          border-bottom: none;
-        }
+      .social-image-holder {
+        align-items: center;
+        background: #f8f9fa;
+        border: 1px solid grey;
+        display: flex;
+        float: right;
+        height: 75px;
+        margin-left: 10px;
+        padding: 2px;
+        width: 100px;
 
-        .social-image-holder {
-          align-items: center;
-          background: #f8f9fa;
-          border: 1px solid grey;
-          display: flex;
-          float: right;
-          height: 75px;
-          margin-left: 10px;
-          padding: 2px;
-          width: 100px;
+        a {
+          margin: auto;
 
-          a {
-            margin: auto;
-
-            img {
-              max-height: 71px;
-              max-width: 96px;
-            }
+          img {
+            max-height: 71px;
+            max-width: 96px;
           }
         }
       }
