@@ -1,192 +1,219 @@
 @import "node_modules/quill/dist/quill.bubble";
 
+
 .ql-editor {
-    padding: 0;
-    line-height: inherit;
-    overflow-y: visible;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    p, ul, ol, h1, h2, h3, blockquote, pre{
-        min-width: 100%;
-    }
-
-    h2 {
-        margin-top: 0 !important;
-        margin-bottom: 33px !important;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 2.6rem;
-    }
-
-    h3 {
-        margin-bottom: 33px !important;
-        font-size: 17px !important;
-        font-weight: bold;
-        line-height: 2.6rem;
-    }
+  @apply .font-serif .text-lg .leading-loose;
+  padding: 0;
+  overflow-y: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote {
-    margin-bottom: 33px !important;
+.ql-editor p,
+.ql-editor ul,
+.ql-editor ol,
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor blockquote,
+.ql-editor pre {
+  min-width: 100%;
+}
+
+.ql-editor h2 {
+  margin-top: 0 !important;
+  margin-bottom: 33px !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+}
+
+.ql-editor h3 {
+  margin-bottom: 33px !important;
+  font-size: 17px !important;
+  font-weight: bold;
+  line-height: 2.6rem;
+}
+
+.ql-editor p,
+.ql-editor ol,
+.ql-editor ul,
+.ql-editor pre,
+.ql-editor blockquote {
+  margin-bottom: 33px !important;
 }
 
 .ql-bubble .ql-editor pre.ql-syntax {
-    background: rgba(238, 238, 238, 0.35);
-    border: solid 2px rgba(0, 0, 0, 0.05);
-    color: #000;
-    overflow-x: auto;
-    padding: 0.5em;
+  background: rgba(238, 238, 238, 0.35);
+  border: solid 2px rgba(0, 0, 0, 0.05);
+  color: #000;
+  overflow-x: auto;
+  padding: 0.5em;
 }
 
-.ql-editor h1, .ql-editor h2 {
-    margin-top: 56px;
-    margin-bottom: 15px;
+.ql-editor h1,
+.ql-editor h2 {
+  margin-top: 56px;
+  margin-bottom: 15px;
 }
 
-.ql-editor ol, .ql-editor ul {
-    padding-left: 0;
+.ql-editor ol,
+.ql-editor ul {
+  padding-left: 0;
 }
 
-.ql-editor ol li, .ql-editor ul li {
-    margin-bottom: 20px;
+.ql-editor ol li,
+.ql-editor ul li {
+  margin-bottom: 20px;
+}
+
+.ql-bubble .ql-editor a{
+  @apply .text-primary .no-underline;
 }
 
 .ql-container hr {
-    border: none;
-    color: #111;
-    letter-spacing: 1em;
-    text-align: center;
+  border: none;
+  color: #111;
+  letter-spacing: 1em;
+  text-align: center;
 }
 
 .ql-container hr:before {
-    content: '...';
+  content: '...';
 }
 
 #sidebar-controls {
-    display: none;
-    position: absolute;
-    z-index: 999;
+  display: none;
+  position: absolute;
+  @apply z-10;
+}
 
-    button {
-        border-radius: 50%;
-        padding: 3px 10px;
-    }
+#sidebar-controls .controls button{
+  @apply rounded-full w-8 h-8 border border-light text-light text-center pt-1;
+}
 
-    svg {
-        width: 13px;
-    }
+#sidebar-controls .controls button:hover{
+  @apply bg-light text-white;
+}
 
-    .controls {
-        display: none;
-        padding-left: 15px;
-        background: #fff;
+#sidebar-controls button:focus{
+  @apply outline-none;
+}
 
-        button {
-            padding: 3px 8px;
-        }
-    }
-
-    &.active .controls {
-        display: inline-block;
-    }
+#sidebar-controls.active .controls {
+  @apply inline-block;
 }
 
 .embedded_image {
-    margin-bottom: 33px !important;
-    cursor: default;
-
-    &[data-layout="wide"] img{
-        max-width: 1024px;
-    }
-
-    img{
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto;
-        display: block;
-    }
-
-    &:hover img {
-        box-shadow: 0 0 0 3px $primary;
-    }
-
-    p {
-        text-align: center;
-        margin-bottom: 0 !important;
-    }
+  margin-bottom: 33px !important;
+  cursor: default;
 }
 
-.ql-editor.ql-blank::before{
-    left: 0;
-    font-style: normal;
+.embedded_image[data-layout="wide"] img {
+  max-width: 1024px;
 }
 
-.modal {
-    .modal-content {
-        .modal-body {
-            &.settings {
-                .explainer-subtext {
-                    font-style: italic;
-                    margin-bottom: .5rem;
-                    font-size: .75rem;
-                }
+.embedded_image img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
 
-                .accordion {
-                    .card {
-                        .card-header {
-                            padding-left: 0;
-                            padding-right: 0.5rem;
-                            i {
-                                border: solid grey;
-                                border-width: 3px 0 0 3px;
-                                display: inline-block;
-                                float: right;
-                                margin-top: 7px;
-                                padding: 3px;
-                                transform: rotate(-135deg);
-                            }
-                            &.collapsed {
-                                i {
-                                    transform: rotate(135deg);
-                                }
-                            }
+.embedded_image:hover img {
+  box-shadow: 0 0 0 3px config('colors.primary');
+}
 
-                            &:hover {
-                                cursor: pointer;
-                            }
+.embedded_image p {
+  text-align: center;
+  margin-bottom: 0 !important;
+}
 
-                            .network-icon {
-                                height: 20px;
-                            }
-                        }
+.ql-editor.ql-blank::before {
+  left: 0;
+  font-style: normal;
+}
 
-                        .card-body {
-                            .social-image-holder {
-                                align-items: center;
-                                background: #f8f9fa;
-                                border: 1px solid grey;
-                                display: flex;
-                                float: right;
-                                height: 75px;
-                                margin-left: 10px;
-                                padding: 2px;
-                                width: 100px;
+.explainer-subtext {
+  font-style: italic;
+  margin-bottom: .5rem;
+  font-size: .75rem;
+}
 
-                                a {
-                                    margin: auto;
-
-                                    img {
-                                        max-height: 71px;
-                                        max-width: 96px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+.accordion {
+  .card {
+    .card-header {
+      padding-left: 0;
+      padding-right: 0.5rem;
+      i {
+        border: solid grey;
+        border-width: 3px 0 0 3px;
+        display: inline-block;
+        float: right;
+        margin-top: 7px;
+        padding: 3px;
+        transform: rotate(-135deg);
+      }
+      &.collapsed {
+        i {
+          transform: rotate(135deg);
         }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .network-icon {
+        height: 20px;
+        vertical-align: middle;
+      }
     }
+
+    .accordion-collapse {
+      transition: height 0.25s ease-out;
+      height: 0;
+      overflow: hidden;
+
+      &.show {
+        height: auto;
+      }
+
+      .card-body {
+        .input-group:last-of-type {
+          /* Avoid duplication of bottom border within accordion card */
+          border-bottom: none;
+        }
+
+        .social-image-holder {
+          align-items: center;
+          background: #f8f9fa;
+          border: 1px solid grey;
+          display: flex;
+          float: right;
+          height: 75px;
+          margin-left: 10px;
+          padding: 2px;
+          width: 100px;
+
+          a {
+            margin: auto;
+
+            img {
+              max-height: 71px;
+              max-width: 96px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

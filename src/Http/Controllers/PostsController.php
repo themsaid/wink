@@ -21,11 +21,11 @@ class PostsController
     {
         $entries = WinkPost::orderBy('publish_date', 'DESC')
             ->orderBy('created_at', 'DESC')
-            ->with(['tags', 'meta'])
+            ->with('tags')
             ->paginate(30);
 
         return response()->json([
-            'entries' => new WinkPostCollection($entries)
+            'entries' => $entries
         ]);
     }
 
@@ -43,10 +43,10 @@ class PostsController
             ]);
         }
 
-        $entry = WinkPost::with(['tags', 'meta'])->findOrFail($id);
+        $entry = WinkPost::with('tags')->findOrFail($id);
 
         return response()->json([
-            'entry' => new WinkPostResource($entry),
+            'entry' => $entry,
         ]);
     }
 
@@ -68,6 +68,7 @@ class PostsController
             'featured_image' => request('featured_image'),
             'featured_image_caption' => request('featured_image_caption', ''),
             'publish_date' => request('publish_date', ''),
+            'meta' => request('meta', ''),
         ];
 
         validator($data, [
@@ -83,7 +84,7 @@ class PostsController
 
         $entry->save();
 
-        $this->saveMeta(request('meta', []), $entry);
+//        $this->saveMeta(request('meta', []), $entry);
 
         $entry->tags()->sync(
             $this->collectTags(request('tags'))

@@ -18,9 +18,13 @@ const router = new VueRouter({
     base: '/' + Wink.path,
 });
 
-Vue.component('alert', require('./components/Alert.vue'));
-Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('page-header', require('./components/PageHeader.vue'));
+Vue.component('preloader', require('./partials/preloader.vue'));
+
+Vue.component('alert', require('./components/Alert.vue'));
+Vue.component('dropdown', require('./components/DropDown.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('mini-editor', require('./components/MiniEditor.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('form-errors', require('./components/FormErrors.vue'));

@@ -1,5 +1,5 @@
 <script type="text/ecmascript-6">
-    import $ from 'jquery';
+    import axios from 'axios';
     import _ from 'lodash';
 
     export default {
@@ -9,6 +9,8 @@
             return {
                 imageUrl: '',
                 uploadProgress: 100,
+
+                selectedUnsplashImageId: null,
 
                 unsplashSearchTerm: '',
                 unsplashPage: 1,
@@ -46,9 +48,9 @@
                 this.searchingUnsplash = true;
 
                 axios.get('https://api.unsplash.com/search/photos?client_id=' + Wink.unsplash_key +
-                    '&orientation=landscape&per_page=19' +
-                    '&query=' + this.unsplashSearchTerm +
-                    '&page=' + page
+                        '&orientation=landscape&per_page=19' +
+                        '&query=' + this.unsplashSearchTerm +
+                        '&page=' + page
                 ).then(response => {
                     this.unsplashImages = response.data.results;
 
@@ -88,6 +90,8 @@
              * Select an unsplash Image.
              */
             selectUnsplashImage(image){
+                this.selectedUnsplashImageId = image.id;
+
                 this.$emit('changed', {
                     url: image.urls.regular,
                     caption: 'Photo by <a href="' + image.user.links.html + '">' + image.user.name + '</a> on <a href="https://unsplash.com">Unsplash</a>',
@@ -98,34 +102,27 @@
 </script>
 
 <template>
-    <div class="imagePicker">
-        <input type="file" class="d-none" :id="'imageUpload'+_uid" accept="image/*" v-on:change="uploadSelectedImage">
+    <div>
+        <input type="file" class="hidden" :id="'imageUpload'+_uid" accept="image/*" v-on:change="uploadSelectedImage">
 
-        <p class="mb-0">
-            Please <label :for="'imageUpload'+_uid" class="uploadLabel">upload</label> an image
+        <div class="mb-0">
+            Please <label :for="'imageUpload'+_uid" class="cursor-pointer underline">upload</label> an image
             <span v-if="Wink.unsplash_key">or</span>
-            <input type="text" class="searchInput p-0"
+            <input type="text" class="border-b border-very-light focus:outline-none"
                    v-if="Wink.unsplash_key"
                    v-model="unsplashSearchTerm"
                    placeholder="search Unsplash">
-        </p>
-
-        <div v-if="searchingUnsplash" class="d-flex align-items-center justify-content-center card-bg-secondary p-5 bottom-radius">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="icon spin mr-2 fill-text-color">
-                <path d="M12 10a2 2 0 0 1-3.41 1.41A2 2 0 0 1 10 8V0a9.97 9.97 0 0 1 10 10h-8zm7.9 1.41A10 10 0 1 1 8.59.1v2.03a8 8 0 1 0 9.29 9.29h2.02zm-4.07 0a6 6 0 1 1-7.25-7.25v2.1a3.99 3.99 0 0 0-1.4 6.57 4 4 0 0 0 6.56-1.42h2.1z"/>
-            </svg>
-
-            <span>Fetching Images...</span>
         </div>
 
-        <div class="row" v-if="!searchingUnsplash && unsplashImages.length">
-            <div class="col-lg-3 col-md-4 mb-3" v-for="image in unsplashImages">
-                <img :src="image.urls.thumb" @click="selectUnsplashImage(image)"
-                     class="w-100" style="cursor: pointer">
+        <preloader v-if="searchingUnsplash" class="mt-10"></preloader>
+
+        <div v-if="!searchingUnsplash && unsplashImages.length" class="flex flex-wrap mt-5">
+            <div class="w-1/2 p-1 cursor-pointer" v-for="image in unsplashImages" @click="selectUnsplashImage(image)">
+                <div class="h-48 w-full bg-cover border-primary" :class="{'border-4': selectedUnsplashImageId == image.id}" :style="{ backgroundImage: 'url(' + image.urls.thumb + ')' }"></div>
             </div>
 
-            <div class="col-lg-3 col-md-4 mb-3 d-flex align-items-center" v-if="unsplashImages.length == 19">
-                <button class="btn btn-link" @click="getImagesFromUnsplash(unsplashPage + 1)">More...</button>
+            <div class="w-1/2 p-1 flex items-center" v-if="unsplashImages.length == 19">
+                <button class="text-primary hover:underline" @click="getImagesFromUnsplash(unsplashPage + 1)">More...</button>
             </div>
         </div>
     </div>
