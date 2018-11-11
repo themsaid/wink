@@ -25,17 +25,18 @@ mix
     })
     .setPublicPath('public')
     .js('resources/js/app.js', 'public')
-    .postCss('resources/css/light.css', 'public', [
-        tailwindcss('./light.js'),
-    ])
-    .sass('resources/sass/editor.scss', 'public')
+    .sass('resources/sass/light.scss', 'public')
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('./light.js') ],
+    })
     .version()
     .copy('resources/favicon.png', 'public')
     .copy('public', '../winktest/public/vendor/wink')
     .webpackConfig({
         resolve: {
             symlinks: false,
-            alias: {
+             alias: {
                 '@': path.resolve(__dirname, 'resources/js/'),
             }
         },

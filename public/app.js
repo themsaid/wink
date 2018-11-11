@@ -2777,6 +2777,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             errors: [],
 
+            settingsModalShown: false,
+
             form: {
                 errors: [],
                 id: '',
@@ -2875,7 +2877,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Open the settings modal.
          */
         settingsModal: function settingsModal() {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#pageSettingsModal').modal('show');
+            this.settingsModalShown = true;
 
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#title').focus();
         },
@@ -2885,7 +2887,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Close the settings modal.
          */
         closeSettingsModal: function closeSettingsModal() {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#pageSettingsModal').modal('hide');
+            this.settingsModalShown = false;
         },
 
 
@@ -2896,7 +2898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this6 = this;
 
             this.alertConfirm("Are you sure you want to delete this page?", function () {
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#pageSettingsModal').modal('hide');
+                _this6.settingsModalShown = false;
 
                 _this6.http().delete('/api/pages/' + _this6.id, _this6.form).then(function (response) {
                     _this6.$router.push({ name: 'pages' });
@@ -2923,7 +2925,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 _this7.errors = error.response.data.errors;
 
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#pageSettingsModal').modal('show');
+                _this7.settingsModalShown = true;
 
                 _this7.form.working = false;
             });
@@ -9771,7 +9773,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.ql-container[data-v-04fe0f4f] {\n    font-size: inherit;\n}\n", ""]);
+exports.push([module.i, "\n.ql-container[data-v-04fe0f4f] {\n  font-size: inherit;\n}\n", ""]);
 
 // exports
 
@@ -9786,7 +9788,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -9801,7 +9803,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -9816,7 +9818,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -9831,7 +9833,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\nselect[data-v-412102b4] {\n    width: auto;\n}\n", ""]);
+exports.push([module.i, "\nselect[data-v-412102b4] {\n  width: auto;\n}\n", ""]);
 
 // exports
 
@@ -9846,7 +9848,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.searchInput[data-v-497ddc2e] {\n    border-width: 0 0 1px 0;\n}\n.searchInput[data-v-497ddc2e]:focus {\n    outline: none;\n}\n.uploadLabel[data-v-497ddc2e] {\n    text-decoration: underline;\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.searchInput[data-v-497ddc2e] {\n  border-width: 0 0 1px 0;\n}\n.searchInput[data-v-497ddc2e]:focus {\n  outline: none;\n}\n.uploadLabel[data-v-497ddc2e] {\n  text-decoration: underline;\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -9861,7 +9863,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -9876,7 +9878,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n#notificationBody {\n    z-index: 99999;\n    position: fixed;\n    bottom: 20px;\n    right: 10px;\n}\n", ""]);
+exports.push([module.i, "\n#notificationBody {\n  z-index: 99999;\n  position: fixed;\n  bottom: 20px;\n  right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -9891,7 +9893,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n#alert {\n    position: absolute;\n    z-index: 99999;\n    width: 100%;\n    height: 100%;\n    background: #000000ba;\n}\n#alert svg {\n    display: block;\n    margin: 0 auto;\n    width: 4rem;\n    height: 4rem;\n}\n#alert .dialog{\n    background: #fff;\n    width: 400px;\n    margin: 40px auto;\n    padding: 20px;\n}\n", ""]);
+exports.push([module.i, "\n#alert {\n  position: absolute;\n  z-index: 99999;\n  width: 100%;\n  height: 100%;\n  background: #000000ba;\n}\n#alert svg {\n  display: block;\n  margin: 0 auto;\n  width: 4rem;\n  height: 4rem;\n}\n#alert .dialog {\n  background: #fff;\n  width: 400px;\n  margin: 40px auto;\n  padding: 20px;\n}\n", ""]);
 
 // exports
 
@@ -9906,7 +9908,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -59539,30 +59541,37 @@ var render = function() {
       _c("page-header", [
         _c("div", { attrs: { slot: "left-side" }, slot: "left-side" }, [
           !_vm.status && _vm.id == "new"
-            ? _c("strong", [_vm._v("New")])
+            ? _c("span", { staticClass: "font-semibold" }, [_vm._v("New")])
             : _vm._e(),
           _vm._v(" "),
           !_vm.status && _vm.id != "new"
-            ? _c("strong", [_vm._v("Saved")])
+            ? _c("span", { staticClass: "font-semibold" }, [_vm._v("Saved")])
             : _vm._e(),
           _vm._v(" "),
           _c("span", [_vm._v(_vm._s(_vm.status))])
         ]),
         _vm._v(" "),
-        _c("div", { attrs: { slot: "right-side" }, slot: "right-side" }, [
-          _vm.ready && _vm.entry
-            ? _c("div", [
+        _vm.ready && _vm.entry
+          ? _c(
+              "div",
+              {
+                staticClass: "flex items-center",
+                attrs: { slot: "right-side" },
+                slot: "right-side"
+              },
+              [
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn btn-link btn-sm btn-sm",
+                    staticClass:
+                      "focus:outline-none text-light hover:text-primary mr-5",
                     on: { click: _vm.settingsModal }
                   },
                   [
                     _c(
                       "svg",
                       {
-                        staticClass: "icon fill-secondary",
+                        staticClass: "w-4 h-4 fill-current",
                         attrs: {
                           xmlns: "http://www.w3.org/2000/svg",
                           viewBox: "0 0 20 20"
@@ -59578,185 +59587,150 @@ var render = function() {
                       ]
                     )
                   ]
-                )
-              ])
-            : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _c("div", { staticClass: "col-lg-8" }, [
-            _c("div", { staticClass: "card" }, [
-              !_vm.ready
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-flex align-items-center justify-content-center p-5 bottom-radius"
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "preloader spin fill-secondary",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.ready && !_vm.entry
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-flex align-items-center justify-content-center p-5 bottom-radius"
-                    },
-                    [
-                      _c("h2", { staticClass: "mb-5 text-center" }, [
-                        _vm._v("404 — Page not found")
-                      ])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.ready && _vm.entry
-                ? _c("div", [
-                    _c(
-                      "div",
-                      { attrs: { id: "editorContainer" } },
-                      [
-                        _c("textarea-autosize", {
-                          staticClass: "editor-title",
-                          attrs: { placeholder: "Type something here..." },
-                          model: {
-                            value: _vm.form.title,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "title", $$v)
-                            },
-                            expression: "form.title"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("editor", {
-                          attrs: { "post-id": _vm.id },
-                          model: {
-                            value: _vm.form.body,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "body", $$v)
-                            },
-                            expression: "form.body"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "modal",
-                attrs: {
-                  id: "pageSettingsModal",
-                  tabindex: "-1",
-                  role: "dialog",
-                  "aria-labelledby": "exampleModalLabel",
-                  "aria-hidden": "true"
-                }
-              },
-              [
+                ),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "modal-dialog", attrs: { role: "document" } },
-                  [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c(
-                          "div",
-                          { staticClass: "form-group border-bottom pb-3" },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "inline-form-control-label",
-                                attrs: { for: "name" }
-                              },
-                              [_vm._v("Slug")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.slug,
-                                  expression: "form.slug"
-                                }
-                              ],
-                              staticClass:
-                                "inline-form-control text-body-color",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Give me a slug",
-                                id: "slug"
-                              },
-                              domProps: { value: _vm.form.slug },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "slug",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("form-errors", {
-                              attrs: { errors: _vm.errors.slug }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _vm.id != "new"
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-link text-danger p-0",
-                                on: { click: _vm.deletePage }
-                              },
-                              [_vm._v("Delete this page")]
-                            )
-                          : _vm._e()
-                      ])
-                    ])
-                  ]
+                  "button",
+                  {
+                    staticClass: "py-1 px-2 btn-primary text-sm ml-6",
+                    on: { click: _vm.save }
+                  },
+                  [_vm._v("Save")]
                 )
               ]
             )
-          ])
-        ])
-      ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          !_vm.ready ? _c("preloader") : _vm._e(),
+          _vm._v(" "),
+          _vm.ready && !_vm.entry
+            ? _c("h2", { staticClass: "text-center font-normal" }, [
+                _vm._v("\n            404 — Page not found\n        ")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.ready && _vm.entry
+            ? _c(
+                "div",
+                { staticClass: "lg:w-3/4 mx-auto" },
+                [
+                  _c("textarea-autosize", {
+                    staticClass:
+                      "text-3xl font-semibold w-full focus:outline-none",
+                    attrs: { placeholder: "Type something here..." },
+                    model: {
+                      value: _vm.form.title,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "title", $$v)
+                      },
+                      expression: "form.title"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("editor", {
+                    attrs: { "post-id": _vm.id },
+                    model: {
+                      value: _vm.form.body,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "body", $$v)
+                      },
+                      expression: "form.body"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.settingsModalShown
+        ? _c(
+            "modal",
+            {
+              on: {
+                close: function($event) {
+                  _vm.settingsModalShown = false
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "input-group pt-0" },
+                [
+                  _c(
+                    "label",
+                    { staticClass: "input-label", attrs: { for: "name" } },
+                    [_vm._v("Slug")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.slug,
+                        expression: "form.slug"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Give me a slug",
+                      id: "slug"
+                    },
+                    domProps: { value: _vm.form.slug },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "slug", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("form-errors", { attrs: { errors: _vm.errors.slug } })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.id != "new"
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "text-red hover:underline focus:outline-none mt-10",
+                      on: { click: _vm.deletePage }
+                    },
+                    [_vm._v("Delete this post")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-10" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-sm btn-light",
+                    on: {
+                      click: function($event) {
+                        _vm.settingsModalShown = false
+                      }
+                    }
+                  },
+                  [_vm._v("Cancel")]
+                )
+              ])
+            ]
+          )
+        : _vm._e()
     ],
     1
   )
@@ -60318,7 +60292,8 @@ var render = function() {
                 { staticClass: "lg:w-3/4 mx-auto" },
                 [
                   _c("textarea-autosize", {
-                    staticClass: "text-3xl font-semibold w-full",
+                    staticClass:
+                      "text-3xl font-semibold w-full focus:outline-none",
                     attrs: { placeholder: "Type something here..." },
                     model: {
                       value: _vm.form.title,
@@ -76385,13 +76360,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/css/light.css":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78134,7 +78102,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/sass/editor.scss":
+/***/ "./resources/sass/light.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -78145,8 +78113,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/js/app.js");
-__webpack_require__("./resources/sass/editor.scss");
-module.exports = __webpack_require__("./resources/css/light.css");
+module.exports = __webpack_require__("./resources/sass/light.scss");
 
 
 /***/ })

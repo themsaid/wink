@@ -319,7 +319,7 @@
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
                         placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full"
+                        class="text-3xl font-semibold w-full focus:outline-none"
                         v-model="form.title"
                 ></textarea-autosize>
 
@@ -361,10 +361,10 @@
 
             <div class="input-group">
                 <label for="excerpt" class="input-label">Excerpt</label>
-                                        <textarea class="input"
-                                                  v-model="form.excerpt"
-                                                  placeholder="What's this post about?"
-                                                  id="excerpt"></textarea>
+                <textarea class="input"
+                          v-model="form.excerpt"
+                          placeholder="What's this post about?"
+                          id="excerpt"></textarea>
 
                 <form-errors :errors="errors.excerpt"></form-errors>
             </div>
