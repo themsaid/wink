@@ -71,6 +71,13 @@ class PostsController
             'meta' => request('meta', ''),
         ];
 
+        if (array_get($data, 'meta.opengraph_image', null)) {
+            $data['meta'] = array_merge(
+                $data['meta'],
+                $this->getOpengraphImageDimensions(array_get($data, 'meta.opengraph_image'))
+            );
+        }
+
         validator($data, [
             'publish_date' => 'required|date',
             'author_id' => 'required',
@@ -83,8 +90,6 @@ class PostsController
         $entry->fill($data);
 
         $entry->save();
-
-//        $this->saveMeta(request('meta', []), $entry);
 
         $entry->tags()->sync(
             $this->collectTags(request('tags'))
@@ -122,43 +127,17 @@ class PostsController
 
 
     /**
-     * Save meta fields. We need this rather than a straight sync() call as the meta
-     * data comes back from the frontend in a nice key->value format, but for flexibility
-     * in the database, we are storing in a more generic meta table format.
+     * Get the height and width for a given OG image.
      *
-     * @param array    $meta
-     * @param WinkPost $post
+     * @param string $location
      *
-     * @return \Wink\WinkPost
+     * @return array
      */
-    private function saveMeta(array $meta, WinkPost $post)
+    private function getOpengraphImageDimensions(string $location) : array
     {
-        if (empty($meta)) {
-            return $post;
-        }
-
-        if (array_get($meta, 'opengraph_image', false)) {
-            // Special case for opengraph image, get width & height to avoid the facebook
-            // "first share" problem (https://developers.facebook.com/docs/sharing/best-practices#precaching)
-            list($width, $height) = getimagesize(url($meta['opengraph_image']));
-            $meta['opengraph_image_height'] = $height;
-            $meta['opengraph_image_width'] = $width;
-        }
-
-        foreach ($meta as $key => $value) {
-            $post->meta()->save(
-                WinkMeta::updateOrCreate([
-                    'wink_post_id' => $post->id,
-                    'key' => $key
-                ],
-                [
-                    'key' => $key,
-                    'value' => $value
-                ])
-            );
-        }
-
-        return $post;
+        $meta = [];
+        list($meta['opengraph_image_width'], $meta['opengraph_image_height']) = getimagesize(url($location));
+        return $meta;
     }
 
 
