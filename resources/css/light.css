@@ -6,6 +6,30 @@
     background: #000;
 }
 
+.btn-primary{
+    @apply .border .border-primary .text-primary .p-2 .rounded;
+}
+
+.btn-primary:hover{
+    @apply .bg-primary .text-white;
+}
+
+.input-group{
+    @apply .border-b .border-very-light .py-4;
+}
+
+.input-label{
+    @apply .font-bold .block;
+}
+
+.input{
+    @apply .mt-3 .w-full;
+}
+
+.input:focus{
+    @apply .outline-none;
+}
+
 @tailwind utilities;
 
 @-webkit-keyframes spin {
@@ -48,4 +72,18 @@
     -ms-animation: spin 2s linear infinite;
     -o-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
 }

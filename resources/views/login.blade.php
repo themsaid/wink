@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-sans antialiased">
 <head>
     <!-- Meta Information -->
     <meta charset="utf-8">
@@ -7,69 +7,71 @@
 
     <title>Wink. — Login</title>
 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Style sheets-->
-    <link href='{{mix('app.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
-    <link rel="icon" type="image/png" href="/vendor/wink/favicon.png" />
-</head>
-<body>
-<div class="container" style="margin-top: 100px;">
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="d-flex align-items-center mb-5">
-                <h3 class="mb-0 mr-3 logo"><span class="text-secondary">W</span>ink.</h3>
+    <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
 
-                <h4 class="mb-0">— Log In</h4>
+    <!-- Icon-->
+    <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
+</head>
+<body class="text-black mb-20">
+<div class="container mt-20">
+    <div class="xl:w-1/2 mx-auto">
+        <div class="flex items-center mb-10">
+            <h2 class="mr-2 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
+                <span class="text-light">W</span>ink.
+            </h2>
+
+            <h2 class="font-normal">— Log In</h2>
+        </div>
+
+        @if ($errors->any())
+            <div class="font-semibold text-red mb-4">
+                @if ($errors->has('email'))
+                    {{ $errors->first('email') }}
+                @else
+                    {{ $errors->first('password') }}
+                @endif
+            </div>
+        @endif
+
+        @if(session()->has('loggedOut'))
+            <div class="font-semibold text-green mb-4">
+                You've been logged out.
+            </div>
+        @endif
+
+        <form method="POST" action="{{route('wink.auth.attempt')}}">
+            @csrf
+
+            <div class="input-group">
+                <label for="email" class="input-label">Email Address</label>
+                <input type="email" class="input"
+                       name="email" id="email"
+                       placeholder="mail@example.com">
             </div>
 
-            @if ($errors->any())
-                <div class="font-semibold text-danger mb-4">
-                    @if ($errors->has('email'))
-                        {{ $errors->first('email') }}
-                    @else
-                        {{ $errors->first('password') }}
-                    @endif
-                </div>
-            @endif
+            <div class="input-group mb-5">
+                <label for="password" class="input-label">Password</label>
+                <input type="password" class="input"
+                       name="password" id="password"
+                       placeholder="******">
+            </div>
 
-            @if(session()->has('loggedOut'))
-                <div class="font-semibold text-success mb-4">
-                    You've been logged out.
-                </div>
-            @endif
-
-            <form method="POST" action="{{route('wink.auth.attempt')}}">
-                @csrf
-
-                <div class="form-group border-bottom pb-3">
-                    <label for="email" class="inline-form-control-label">Email Address</label>
-                    <input type="email" class="inline-form-control text-body-color"
-                           name="email" id="email"
-                           placeholder="mail@example.com">
+            <div class="flex items-center mb-10">
+                <div class="flex items-center mr-auto">
+                    <input type="checkbox" class="-mt-1 mr-2" id="remember" name="remember">
+                    <label for="remember">Remember Me</label>
                 </div>
 
-                <div class="form-group border-bottom pb-3">
-                    <label for="password" class="inline-form-control-label">Password</label>
-                    <input type="password" class="inline-form-control text-body-color"
-                           name="password" id="password"
-                           placeholder="******">
-                </div>
+                <a href="{{route('wink.password.forgot')}}" class="no-underline text-primary">Forgot your password?</a>
+            </div>
 
-                <div class="d-flex align-items-center justify-content-between mb-5">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                        <label class="form-check-label" for="remember">Remember Me</label>
-                    </div>
-
-                    <a href="{{route('wink.password.forgot')}}">Forgot your password?</a>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-
-        </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
     </div>
 </div>
 

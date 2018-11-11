@@ -513,15 +513,15 @@ table {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .container {
-    max-width: 768px;
+    max-width: 576px;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .container {
-    max-width: 992px;
+    max-width: 768px;
   }
 }
 
@@ -533,6 +533,40 @@ table {
 
 .modal-overlay-bg {
   background: #000;
+}
+
+.btn-primary {
+  border-width: 1px;
+  border-color: #4040c8;
+  color: #4040c8;
+  padding: .5rem;
+  border-radius: .25rem;
+}
+
+.btn-primary:hover {
+  background-color: #4040c8;
+  color: #fff;
+}
+
+.input-group {
+  border-bottom-width: 1px;
+  border-color: #e9ecef;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.input-label {
+  font-weight: 700;
+  display: block;
+}
+
+.input {
+  margin-top: .75rem;
+  width: 100%;
+}
+
+.input:focus {
+  outline: 0;
 }
 
 .list-reset {
@@ -4016,6 +4050,21 @@ table {
           animation: spin 2s linear infinite;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
@@ -7406,7 +7455,7 @@ table {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .md\:list-reset {
     list-style: none;
     padding: 0;
@@ -10796,7 +10845,7 @@ table {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .lg\:list-reset {
     list-style: none;
     padding: 0;

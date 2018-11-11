@@ -7,17 +7,19 @@
 
     <title>Wink.</title>
 
-    <!-- Highlight JS sheets -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Style sheets-->
     <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+
+    <!-- Icon-->
     <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
+
+    <!-- Highlight JS sheets -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
 </head>
 
 <body class="text-black mb-20">

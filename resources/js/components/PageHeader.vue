@@ -12,9 +12,9 @@
 <template>
     <div class="border-b border-very-light mb-10">
         <div class="container">
-            <div class="flex items-center py-1">
+            <div class="flex items-center py-2">
                 <div class="mr-auto">
-                    <h3 class="mr-5 font-medium font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
+                    <h3 class="mr-5 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
                         <span class="text-light">W</span>ink.
                     </h3>
 

@@ -1,4 +1,5 @@
 <script type="text/ecmascript-6">
+    import moment from 'moment';
 
     export default {
         /**
@@ -62,7 +63,15 @@
              */
             formatTags(tags){
                 return _.chain(tags).map('name').join(', ').value();
-            }
+            },
+
+
+            /**
+             * Determine if the given date is in the future.
+             */
+            dateInTheFuture(date){
+                return moment().diff(moment(date + ' Z'), 'minutes') < 0;
+            },
         }
     }
 </script>
@@ -80,12 +89,7 @@
         <div class="container">
             <h1 class="font-semibold text-3xl mb-10">Posts</h1>
 
-            <div v-if="!ready" class="p-10 flex items-center justify-center text-light">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="spin fill-current w-10">
-                    <path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/>
-                </svg>
-            </div>
-
+            <preloader v-if="!ready"></preloader>
 
             <div v-if="ready && entries.length == 0">
                 No posts were found, start by
@@ -93,49 +97,45 @@
                 .
             </div>
 
-            <table v-if="ready && entries.length > 0" id="indexScreen">
-                <tbody>
-                <tr v-for="entry in entries" :key="entry.id" class="border-t border-very-light">
-                    <td class="pl-0 p-4 w-full" :title="entry.title">
-                        <h2 class="text-xl font-semibold mb-2">
+            <div v-if="ready && entries.length > 0">
+                <div v-for="entry in entries" :key="entry.id" class="border-t border-very-light flex items-center">
+                    <div class="py-4" :title="entry.title">
+                        <h2 class="text-xl font-semibold mb-3">
                             <router-link :to="{name:'post-edit', params:{id: entry.id}}" class="no-underline text-black">
                                 {{truncate(entry.title, 68)}}
                             </router-link>
                         </h2>
 
-                        <p class="mb-2">{{truncate(entry.body.replace(/(<([^>]+)>)/ig,""), 100)}}</p>
+                        <p class="mb-3">{{truncate(entry.body.replace(/(<([^>]+)>)/ig,""), 100)}}</p>
 
                         <small class="text-light">
-                            Updated {{timeAgo(entry.updated_at)}}
+                            <span v-if="entry.published && !dateInTheFuture(entry.publish_date)">Published {{timeAgo(entry.publish_date)}}</span>
+                            <span v-if="entry.published && dateInTheFuture(entry.publish_date)" class="text-green">Scheduled {{timeAgo(entry.publish_date)}}</span>
+                            <span v-if="! entry.published" class="text-red">Draft</span>
+                            — Updated {{timeAgo(entry.updated_at)}}
                             <span v-if="entry.tags.length">— Tags: {{formatTags(entry.tags)}}</span>
                         </small>
-                    </td>
+                    </div>
 
-                    <td class="w-1 p-4">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 fill-green" v-if="entry.published">
-                                <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/>
-                            </svg>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 fill-red" v-else>
-                                <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"/>
+                    <div class="ml-auto hidden lg:block">
+                        <div class="w-16 h-16 rounded-full bg-cover" v-if="entry.featured_image" :style="{ backgroundImage: 'url(' + entry.featured_image + ')' }"></div>
+                        <div class="w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white" v-else="entry.featured_image">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8">
+                                <path d="M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                             </svg>
                         </div>
-                    </td>
-
-                    <td class="w-1 whitespace-no-wrap text-right p-4 pr-0" :class="{'text-warning': timeAgo(entry.publish_date).startsWith('in')}">{{timeAgo(entry.publish_date)}}</td>
-                </tr>
+                    </div>
+                </div>
 
 
-                <tr v-if="hasMoreEntries">
-                    <td colspan="100" class="text-center py-3">
-                        <small><a href="#" v-on:click.prevent="loadOlderEntries" v-if="!loadingMoreEntries">Load Older Posts</a></small>
+                <div v-if="hasMoreEntries">
+                    <div colspan="100" class="py-8 uppercase">
+                        <a href="#" v-on:click.prevent="loadOlderEntries" v-if="!loadingMoreEntries" class="no-underline text-primary">Load more posts</a>
 
-                        <small v-if="loadingMoreEntries">Loading...</small>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <span v-if="loadingMoreEntries">Loading...</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

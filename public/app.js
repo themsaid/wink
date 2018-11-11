@@ -2661,6 +2661,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/partials/preloader.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/screens/404.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3323,7 +3334,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("./node_modules/moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     /**
@@ -3393,6 +3408,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
          */
         formatTags: function formatTags(tags) {
             return _.chain(tags).map('name').join(', ').value();
+        },
+
+
+        /**
+         * Determine if the given date is in the future.
+         */
+        dateInTheFuture: function dateInTheFuture(date) {
+            return __WEBPACK_IMPORTED_MODULE_0_moment___default()().diff(__WEBPACK_IMPORTED_MODULE_0_moment___default()(date + ' Z'), 'minutes') < 0;
         }
     }
 });
@@ -58456,85 +58479,61 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-          _vm._v("Posts")
-        ]),
-        _vm._v(" "),
-        !_vm.ready
-          ? _c(
-              "div",
-              {
-                staticClass: "p-10 flex items-center justify-center text-light"
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "spin fill-current w-10",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      viewBox: "0 0 20 20"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"
-                      }
-                    })
-                  ]
-                )
-              ]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.ready && _vm.entries.length == 0
-          ? _c(
-              "div",
-              [
-                _vm._v(
-                  "\n            No posts were found, start by\n            "
-                ),
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "no-underline text-primary hover:text-primary-dark",
-                    attrs: { to: { name: "post-new" } }
-                  },
-                  [_vm._v("writing your first post")]
-                ),
-                _vm._v("\n            .\n        ")
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.ready && _vm.entries.length > 0
-          ? _c("table", { attrs: { id: "indexScreen" } }, [
-              _c(
-                "tbody",
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
+            _vm._v("Posts")
+          ]),
+          _vm._v(" "),
+          !_vm.ready ? _c("preloader") : _vm._e(),
+          _vm._v(" "),
+          _vm.ready && _vm.entries.length == 0
+            ? _c(
+                "div",
+                [
+                  _vm._v(
+                    "\n            No posts were found, start by\n            "
+                  ),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "no-underline text-primary hover:text-primary-dark",
+                      attrs: { to: { name: "post-new" } }
+                    },
+                    [_vm._v("writing your first post")]
+                  ),
+                  _vm._v("\n            .\n        ")
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.ready && _vm.entries.length > 0
+            ? _c(
+                "div",
                 [
                   _vm._l(_vm.entries, function(entry) {
                     return _c(
-                      "tr",
+                      "div",
                       {
                         key: entry.id,
-                        staticClass: "border-t border-very-light"
+                        staticClass:
+                          "border-t border-very-light flex items-center"
                       },
                       [
                         _c(
-                          "td",
+                          "div",
                           {
-                            staticClass: "pl-0 p-4 w-full",
+                            staticClass: "py-4",
                             attrs: { title: entry.title }
                           },
                           [
                             _c(
                               "h2",
-                              { staticClass: "text-xl font-semibold mb-2" },
+                              { staticClass: "text-xl font-semibold mb-3" },
                               [
                                 _c(
                                   "router-link",
@@ -58559,7 +58558,7 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _c("p", { staticClass: "mb-2" }, [
+                            _c("p", { staticClass: "mb-3" }, [
                               _vm._v(
                                 _vm._s(
                                   _vm.truncate(
@@ -58571,8 +58570,33 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("small", { staticClass: "text-light" }, [
+                              entry.published &&
+                              !_vm.dateInTheFuture(entry.publish_date)
+                                ? _c("span", [
+                                    _vm._v(
+                                      "Published " +
+                                        _vm._s(_vm.timeAgo(entry.publish_date))
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              entry.published &&
+                              _vm.dateInTheFuture(entry.publish_date)
+                                ? _c("span", { staticClass: "text-green" }, [
+                                    _vm._v(
+                                      "Scheduled " +
+                                        _vm._s(_vm.timeAgo(entry.publish_date))
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !entry.published
+                                ? _c("span", { staticClass: "text-red" }, [
+                                    _vm._v("Draft")
+                                  ])
+                                : _vm._e(),
                               _vm._v(
-                                "\n                        Updated " +
+                                "\n                        — Updated " +
                                   _vm._s(_vm.timeAgo(entry.updated_at)) +
                                   "\n                        "
                               ),
@@ -58588,94 +58612,75 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("td", { staticClass: "w-1 p-4" }, [
-                          _c("div", { staticClass: "flex items-center" }, [
-                            entry.published
-                              ? _c(
-                                  "svg",
-                                  {
-                                    staticClass: "w-4 fill-green",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
+                        _c("div", { staticClass: "ml-auto hidden lg:block" }, [
+                          entry.featured_image
+                            ? _c("div", {
+                                staticClass: "w-16 h-16 rounded-full bg-cover",
+                                style: {
+                                  backgroundImage:
+                                    "url(" + entry.featured_image + ")"
+                                }
+                              })
+                            : _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white"
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "fill-current w-8",
                                       attrs: {
-                                        d:
-                                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        viewBox: "0 0 20 20"
                                       }
-                                    })
-                                  ]
-                                )
-                              : _c(
-                                  "svg",
-                                  {
-                                    staticClass: "w-4 fill-red",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
-                                      }
-                                    })
-                                  ]
-                                )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass:
-                              "w-1 whitespace-no-wrap text-right p-4 pr-0",
-                            class: {
-                              "text-warning": _vm
-                                .timeAgo(entry.publish_date)
-                                .startsWith("in")
-                            }
-                          },
-                          [_vm._v(_vm._s(_vm.timeAgo(entry.publish_date)))]
-                        )
+                                    },
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          d:
+                                            "M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                        ])
                       ]
                     )
                   }),
                   _vm._v(" "),
                   _vm.hasMoreEntries
-                    ? _c("tr", [
+                    ? _c("div", [
                         _c(
-                          "td",
+                          "div",
                           {
-                            staticClass: "text-center py-3",
+                            staticClass: "py-8 uppercase",
                             attrs: { colspan: "100" }
                           },
                           [
-                            _c("small", [
-                              !_vm.loadingMoreEntries
-                                ? _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.loadOlderEntries($event)
-                                        }
+                            !_vm.loadingMoreEntries
+                              ? _c(
+                                  "a",
+                                  {
+                                    staticClass: "no-underline text-primary",
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.loadOlderEntries($event)
                                       }
-                                    },
-                                    [_vm._v("Load Older Posts")]
-                                  )
-                                : _vm._e()
-                            ]),
+                                    }
+                                  },
+                                  [_vm._v("Load more posts")]
+                                )
+                              : _vm._e(),
                             _vm._v(" "),
                             _vm.loadingMoreEntries
-                              ? _c("small", [_vm._v("Loading...")])
+                              ? _c("span", [_vm._v("Loading...")])
                               : _vm._e()
                           ]
                         )
@@ -58684,9 +58689,10 @@ var render = function() {
                 ],
                 2
               )
-            ])
-          : _vm._e()
-      ])
+            : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
@@ -58978,225 +58984,179 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("page-header", [
-        _c(
-          "div",
-          { attrs: { slot: "right-side" }, slot: "right-side" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-outline-primary btn-sm",
-                attrs: { to: { name: "page-new" } }
-              },
-              [_vm._v("\n                New page\n            ")]
-            )
-          ],
-          1
-        )
-      ]),
+      _c(
+        "page-header",
+        [
+          _c(
+            "template",
+            { slot: "right-side" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass:
+                    "no-underline text-sm text-primary hover:text-white hover:bg-primary rounded border border-primary py-1 px-2",
+                  attrs: { to: { name: "page-new" } }
+                },
+                [_vm._v("\n                New Page\n            ")]
+              )
+            ],
+            1
+          )
+        ],
+        2
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _c("div", { staticClass: "col-lg-10" }, [
-            _c("div", { staticClass: "card" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              !_vm.ready
-                ? _c(
-                    "div",
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
+            _vm._v("Pages")
+          ]),
+          _vm._v(" "),
+          !_vm.ready ? _c("preloader") : _vm._e(),
+          _vm._v(" "),
+          _vm.ready && _vm.entries.length == 0
+            ? _c(
+                "div",
+                [
+                  _vm._v(
+                    "\n            No pages were found, start by\n            "
+                  ),
+                  _c(
+                    "router-link",
                     {
                       staticClass:
-                        "d-flex align-items-center justify-content-center p-5"
+                        "no-underline text-primary hover:text-primary-dark",
+                      attrs: { to: { name: "page-new" } }
                     },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "preloader spin fill-secondary",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.ready && _vm.entries.length == 0
-                ? _c("div", [
-                    _c(
-                      "p",
+                    [_vm._v("writing your first page")]
+                  ),
+                  _vm._v("\n            .\n        ")
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.ready && _vm.entries.length > 0
+            ? _c(
+                "div",
+                [
+                  _vm._l(_vm.entries, function(entry) {
+                    return _c(
+                      "div",
+                      {
+                        key: entry.id,
+                        staticClass:
+                          "border-t border-very-light flex items-center"
+                      },
                       [
-                        _vm._v(
-                          "No pages were found, start by\n                            "
-                        ),
                         _c(
-                          "router-link",
-                          { attrs: { to: { name: "page-new" } } },
-                          [_vm._v("building your first page")]
-                        ),
-                        _vm._v(
-                          "\n                            .\n                        "
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.ready && _vm.entries.length > 0
-                ? _c(
-                    "table",
-                    {
-                      staticClass: "table table-sm mb-0",
-                      attrs: { id: "indexScreen" }
-                    },
-                    [
-                      _c(
-                        "tbody",
-                        [
-                          _vm._l(_vm.entries, function(entry) {
-                            return _c("tr", { key: entry.id }, [
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "pl-0",
-                                  attrs: { title: entry.title }
-                                },
-                                [
-                                  _c(
-                                    "h5",
-                                    { staticClass: "mb-1 font-weight-bold" },
-                                    [
-                                      _c(
-                                        "router-link",
-                                        {
-                                          staticClass: "regular-link",
-                                          attrs: {
-                                            to: {
-                                              name: "page-edit",
-                                              params: { id: entry.id }
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                        " +
-                                              _vm._s(
-                                                _vm.truncate(entry.title, 80)
-                                              ) +
-                                              "\n                                    "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "mb-1" }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.truncate(
-                                          entry.body.replace(
-                                            /(<([^>]+)>)/gi,
-                                            ""
-                                          ),
-                                          100
-                                        )
-                                      )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(
-                                      "\n                                    Updated " +
-                                        _vm._s(_vm.timeAgo(entry.updated_at)) +
-                                        "\n                                "
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                { staticClass: "table-fit pr-0 text-right" },
-                                [_vm._v(_vm._s(_vm.timeAgo(entry.created_at)))]
-                              )
-                            ])
-                          }),
-                          _vm._v(" "),
-                          _vm.hasMoreEntries
-                            ? _c("tr", [
+                          "div",
+                          {
+                            staticClass: "py-4",
+                            attrs: { title: entry.title }
+                          },
+                          [
+                            _c(
+                              "h2",
+                              { staticClass: "text-xl font-semibold mb-3" },
+                              [
                                 _c(
-                                  "td",
+                                  "router-link",
                                   {
-                                    staticClass: "text-center py-3",
-                                    attrs: { colspan: "100" }
+                                    staticClass: "no-underline text-black",
+                                    attrs: {
+                                      to: {
+                                        name: "page-edit",
+                                        params: { id: entry.id }
+                                      }
+                                    }
                                   },
                                   [
-                                    _c("small", [
-                                      !_vm.loadingMoreEntries
-                                        ? _c(
-                                            "a",
-                                            {
-                                              attrs: { href: "#" },
-                                              on: {
-                                                click: function($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.loadOlderEntries(
-                                                    $event
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [_vm._v("Load Older Pages")]
-                                          )
-                                        : _vm._e()
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.loadingMoreEntries
-                                      ? _c("small", [_vm._v("Loading...")])
-                                      : _vm._e()
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(_vm.truncate(entry.title, 68)) +
+                                        "\n                        "
+                                    )
                                   ]
                                 )
-                              ])
-                            : _vm._e()
-                        ],
-                        2
-                      )
-                    ]
-                  )
-                : _vm._e()
-            ])
-          ])
-        ])
-      ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "mb-3" }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.truncate(
+                                    entry.body.replace(/(<([^>]+)>)/gi, ""),
+                                    100
+                                  )
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-light" }, [
+                              _vm._v(
+                                "\n                        Updated " +
+                                  _vm._s(_vm.timeAgo(entry.updated_at)) +
+                                  "\n                        — Created " +
+                                  _vm._s(_vm.timeAgo(entry.created_at)) +
+                                  "\n                    "
+                              )
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.hasMoreEntries
+                    ? _c("div", [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "py-8 uppercase",
+                            attrs: { colspan: "100" }
+                          },
+                          [
+                            !_vm.loadingMoreEntries
+                              ? _c(
+                                  "a",
+                                  {
+                                    staticClass: "no-underline text-primary",
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.loadOlderEntries($event)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Load more pages")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.loadingMoreEntries
+                              ? _c("span", [_vm._v("Loading...")])
+                              : _vm._e()
+                          ]
+                        )
+                      ])
+                    : _vm._e()
+                ],
+                2
+              )
+            : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-flex align-items-center justify-content-between mb-4" },
-      [_c("h2", [_vm._v("Pages")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -62066,7 +62026,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "border-b border-very-light mb-10" }, [
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "flex items-center py-1" }, [
+      _c("div", { staticClass: "flex items-center py-2" }, [
         _c(
           "div",
           { staticClass: "mr-auto" },
@@ -62074,7 +62034,7 @@ var render = function() {
             _c(
               "h3",
               {
-                staticClass: "mr-5 font-medium font-serif",
+                staticClass: "mr-5 font-semibold font-serif",
                 class: {
                   hidden: _vm.hideLogoOnSmallScreens,
                   "sm:block": _vm.hideLogoOnSmallScreens
@@ -62231,6 +62191,47 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-7fb418a7", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-96b1af92\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/partials/preloader.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-col items-center justify-center text-light" },
+    [
+      _c(
+        "svg",
+        {
+          staticClass: "spin fill-current w-10",
+          attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" }
+        },
+        [
+          _c("path", {
+            attrs: {
+              d:
+                "M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+            }
+          })
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-96b1af92", module.exports)
   }
 }
 
@@ -76857,10 +76858,12 @@ var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
     base: '/' + Wink.path
 });
 
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('page-header', __webpack_require__("./resources/js/components/PageHeader.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('preloader', __webpack_require__("./resources/js/partials/preloader.vue"));
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('alert', __webpack_require__("./resources/js/components/Alert.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('dropdown', __webpack_require__("./resources/js/components/DropDown.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('notification', __webpack_require__("./resources/js/components/Notification.vue"));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('page-header', __webpack_require__("./resources/js/components/PageHeader.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('mini-editor', __webpack_require__("./resources/js/components/MiniEditor.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('editor', __webpack_require__("./resources/js/components/Editor.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('form-errors', __webpack_require__("./resources/js/components/FormErrors.vue"));
@@ -77898,6 +77901,54 @@ module.exports = {
         });
     }
 };
+
+/***/ }),
+
+/***/ "./resources/js/partials/preloader.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/partials/preloader.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-96b1af92\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/partials/preloader.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/partials/preloader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-96b1af92", Component.options)
+  } else {
+    hotAPI.reload("data-v-96b1af92", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 
