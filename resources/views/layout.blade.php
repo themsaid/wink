@@ -13,6 +13,7 @@
 
     <!-- Style sheets-->
     <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+    <link href='{{mix('editor.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
 
     <!-- Icon-->
     <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>

@@ -541,6 +541,7 @@ table {
   color: #4040c8;
   padding: .5rem;
   border-radius: .25rem;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -548,11 +549,22 @@ table {
   color: #fff;
 }
 
+.btn-primary[disabled] {
+  cursor: wait;
+  color: #8e9397;
+  background-color: #fff;
+  border-color: #8e9397;
+}
+
+.btn-primary:focus {
+  outline: 0;
+}
+
 .input-group {
   border-bottom-width: 1px;
   border-color: #e9ecef;
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: .5rem;
 }
 
 .input-label {
@@ -566,6 +578,10 @@ table {
 }
 
 .input:focus {
+  outline: 0;
+}
+
+[contenteditable]:focus {
   outline: 0;
 }
 

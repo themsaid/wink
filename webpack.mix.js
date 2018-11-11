@@ -28,6 +28,7 @@ mix
     .postCss('resources/css/light.css', 'public', [
         tailwindcss('./light.js'),
     ])
+    .sass('resources/sass/editor.scss', 'public')
     .version()
     .copy('resources/favicon.png', 'public')
     .copy('public', '../winktest/public/vendor/wink')

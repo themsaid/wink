@@ -24,7 +24,7 @@
                 <div class="flex items-center">
                     <slot name="right-side"></slot>
 
-                    <dropdown class="relative ml-5">
+                    <dropdown class="relative ml-4">
                         <button slot="trigger" type="button" class="focus:outline-none">
                             <img :src="Wink.author.avatar" class="rounded-full w-8" :title="Wink.author.name">
                         </button>

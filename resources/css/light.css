@@ -7,15 +7,24 @@
 }
 
 .btn-primary{
-    @apply .border .border-primary .text-primary .p-2 .rounded;
+    @apply .border .border-primary .text-primary .p-2 .rounded .no-underline;
 }
 
 .btn-primary:hover{
     @apply .bg-primary .text-white;
 }
 
+.btn-primary[disabled]{
+    cursor: wait;
+    @apply .text-light .bg-white .border-light;
+}
+
+.btn-primary:focus{
+    @apply .outline-none;
+}
+
 .input-group{
-    @apply .border-b .border-very-light .py-4;
+    @apply .border-b .border-very-light .pt-4 .pb-2;
 }
 
 .input-label{
@@ -28,6 +37,10 @@
 
 .input:focus{
     @apply .outline-none;
+}
+
+[contenteditable]:focus{
+    outline: 0;
 }
 
 @tailwind utilities;

@@ -59,7 +59,7 @@
     <div>
         <page-header>
             <template slot="right-side">
-                <router-link :to="{name:'page-new'}" class="no-underline text-sm text-primary hover:text-white hover:bg-primary rounded border border-primary py-1 px-2">
+                <router-link :to="{name:'page-new'}" class="py-1 px-2 btn-primary text-sm">
                     New Page
                 </router-link>
             </template>
