@@ -70,16 +70,6 @@ class WinkPost extends Model
     }
 
     /**
-     * The meta that this post has.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function meta()
-    {
-        return $this->hasMany(WinkMeta::class, 'wink_post_id');
-    }
-
-    /**
      * The post author.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -3,12 +3,9 @@
 namespace Wink\Http\Controllers;
 
 use Wink\WinkTag;
-use Wink\WinkMeta;
 use Wink\WinkPost;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Wink\Http\Resources\WinkPostCollection;
-use Wink\Http\Resources\WinkPost as WinkPostResource;
 
 class PostsController
 {
