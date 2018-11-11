@@ -12,6 +12,8 @@
                 imagePickerKey: '',
                 uploadProgress: 0,
                 uploading: false,
+
+                modalShown: false,
             }
         },
 
@@ -25,7 +27,7 @@
                 this.imageUrl = this.currentImageUrl;
                 this.caption = this.currentCaption;
 
-                $('#featuredImageUploadModal').modal('show');
+                this.modalShown = true;
             });
         },
 
@@ -35,7 +37,7 @@
              * Close the modal.
              */
             saveImage(){
-                $('#featuredImageUploadModal').modal('hide');
+                this.modalShown = false;
 
                 this.$emit('changed', {url: this.imageUrl, caption: this.caption});
             },
@@ -63,40 +65,28 @@
 </script>
 
 <template>
-    <div class="modal" id="featuredImageUploadModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h4 class="mb-4">Featured Image</h4>
+    <modal v-if="modalShown" @close="modalShown = false">
+        <h2 class="font-semibold mb-5">Featured Image</h2>
 
-                    <div v-if="uploading" class="d-flex align-items-center justify-content-center p-5 bottom-radius">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="preloader spin fill-secondary">
-                            <path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/>
-                        </svg>
-                    </div>
+        <preloader v-if="uploading"></preloader>
 
-                    <div v-if="imageUrl && !uploading">
-                        <img :src="imageUrl" class="w-100 mb-4">
+        <div v-if="imageUrl && !uploading">
+            <img :src="imageUrl" class="max-w-full">
 
-                        <div class="form-group border-bottom pb-3">
-                            <label class="inline-form-control-label">Caption</label>
-                            <input type="text" class="inline-form-control text-body-color"
-                                   v-model="caption"
-                                   ref="caption"
-                                   placeholder="Add caption to the image">
-                        </div>
-                    </div>
-
-                    <image-picker :key="imagePickerKey"
-                                  @changed="updateImage"
-                                  @progressing="updateProgress"
-                                  @uploading="uploading = true"></image-picker>
-
-                    <button class="btn btn-outline-secondary btn-sm mt-4" @click="saveImage">Save Image</button>
-                </div>
+            <div class="input-group">
+                <label class="input-label">Caption</label>
+                <textarea rows="2" v-model="caption" ref="caption" class="input" placeholder="Add caption to the image"></textarea>
             </div>
         </div>
-    </div>
+
+        <image-picker :key="imagePickerKey"
+                      class="mt-5"
+                      @changed="updateImage"
+                      @progressing="updateProgress"
+                      @uploading="uploading = true"></image-picker>
+
+        <button class="btn-sm btn-primary mt-10" @click="saveImage">Save Image</button>
+    </modal>
 </template>
 
 <style>

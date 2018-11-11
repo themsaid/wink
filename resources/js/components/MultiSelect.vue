@@ -50,7 +50,7 @@
                 } else {
                     var matches = _.reject(options, option => {
                         return _.find(this.value, {id: option.id}) ||
-                            option[this.optionText].toLowerCase().indexOf(this.searchTerm.toLowerCase()) == -1;
+                                option[this.optionText].toLowerCase().indexOf(this.searchTerm.toLowerCase()) == -1;
                     });
 
                     let addNewOption = {};
@@ -147,7 +147,7 @@
                 }
 
                 this.selectOption(
-                    this.matches[this.selectedOptionIndex]
+                        this.matches[this.selectedOptionIndex]
                 );
 
                 this.selectedOptionIndex = 0;
@@ -205,16 +205,17 @@
 </script>
 
 <template>
-    <div class="multiselect inline-form-control"
+    <div class="multiselect relative z-50"
          :class="{active: focused}"
          @click="activate"
          v-click-outside="deactivate">
         <div class="multiselect_options">
-            <span class="badge badge-secondary mr-1"
+            <span class="bg-light hover:bg-red rounded cursor-pointer text-sm text-white font-semibold px-1 mr-1"
                   v-for="option in value"
                   v-on:click="removeOption(option)">{{option[optionText]}}</span>
 
             <input type="text"
+                   class="focus:outline-none bg-transparent"
                    v-on:keydown.8="backspaceAction"
                    v-on:keydown.40="selectNextOption"
                    v-on:keydown.38="selectPreviousOption"
@@ -223,15 +224,13 @@
                    v-model="searchTerm">
         </div>
 
-        <div class="multiselect_dropdown" v-show="focused">
-            <ul>
-                <li v-if="! matches.length">Add new tag...</li>
-                <li v-for="(match, index) in matches"
+        <div class="multiselect_dropdown absolute w-full" v-show="focused">
+            <button v-if="! matches.length">Add new tag...</button>
+            <button v-for="(match, index) in matches"
                     v-on:click="selectOption(match)"
                     :class="{selected: selectedOptionIndex == index}"
                     :value="match[optionId]">{{match[optionText]}}
-                </li>
-            </ul>
+            </button>
         </div>
     </div>
 </template>

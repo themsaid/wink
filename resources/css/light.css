@@ -23,6 +23,27 @@
     @apply .outline-none;
 }
 
+.btn-light{
+    @apply .border .border-light .text-light .p-2 .rounded .no-underline;
+}
+
+.btn-light:hover{
+    @apply .bg-light .text-white;
+}
+
+.btn-light[disabled]{
+    cursor: wait;
+    @apply .text-light .bg-white .border-light;
+}
+
+.btn-light:focus{
+    @apply .outline-none;
+}
+
+.btn-sm{
+    @apply py-1 px-2;
+}
+
 .input-group{
     @apply .border-b .border-very-light .pt-4 .pb-2;
 }
@@ -32,7 +53,7 @@
 }
 
 .input{
-    @apply .mt-3 .w-full;
+    @apply mt-3 w-full bg-white p-0 appearance-none;
 }
 
 .input:focus{
@@ -41,6 +62,181 @@
 
 [contenteditable]:focus{
     outline: 0;
+}
+
+
+.multiselect.active{
+    @apply bg-very-light;
+}
+
+.multiselect.active .multiselect_options{
+    @apply pt-2 pl-2 pr-2;
+}
+
+.multiselect_dropdown {
+    @apply bg-very-light p-2;
+ }
+
+.multiselect_dropdown button{
+    @apply block w-full text-left;
+}
+
+.multiselect_dropdown button:hover{
+    @apply bg-lighter;
+}
+
+.multiselect_dropdown button.selected{
+    @apply bg-lighter;
+}
+
+
+
+.ql-editor {
+    @apply .font-serif .text-lg .leading-loose;
+    padding: 0;
+    overflow-y: visible;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.ql-editor p,
+.ql-editor ul,
+.ql-editor ol,
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor blockquote,
+.ql-editor pre {
+    min-width: 100%;
+}
+
+.ql-editor h2 {
+    margin-top: 0 !important;
+    margin-bottom: 33px !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+}
+
+.ql-editor h3 {
+    margin-bottom: 33px !important;
+    font-size: 17px !important;
+    font-weight: bold;
+    line-height: 2.6rem;
+}
+
+.ql-editor p,
+.ql-editor ol,
+.ql-editor ul,
+.ql-editor pre,
+.ql-editor blockquote {
+    margin-bottom: 33px !important;
+}
+
+.ql-bubble .ql-editor pre.ql-syntax {
+    background: rgba(238, 238, 238, 0.35);
+    border: solid 2px rgba(0, 0, 0, 0.05);
+    color: #000;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+
+.ql-editor h1,
+.ql-editor h2 {
+    margin-top: 56px;
+    margin-bottom: 15px;
+}
+
+.ql-editor ol,
+.ql-editor ul {
+    padding-left: 0;
+}
+
+.ql-editor ol li,
+.ql-editor ul li {
+    margin-bottom: 20px;
+}
+
+.ql-bubble .ql-editor a{
+    @apply .text-primary .no-underline;
+}
+
+.ql-container hr {
+    border: none;
+    color: #111;
+    letter-spacing: 1em;
+    text-align: center;
+}
+
+.ql-container hr:before {
+    content: '...';
+}
+
+#sidebar-controls {
+    display: none;
+    position: absolute;
+    z-index: 999;
+}
+
+#sidebar-controls button {
+    border-radius: 50%;
+    padding: 3px 10px;
+}
+
+#sidebar-controls svg {
+    width: 13px;
+}
+
+#sidebar-controls .controls {
+    display: none;
+    padding-left: 15px;
+    background: #fff;
+}
+
+#sidebar-controls .controls button {
+    padding: 3px 8px;
+}
+
+#sidebar-controls.active .controls {
+    display: inline-block;
+}
+
+.embedded_image {
+    margin-bottom: 33px !important;
+    cursor: default;
+}
+
+.embedded_image[data-layout="wide"] img {
+    max-width: 1024px;
+}
+
+.embedded_image img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.embedded_image:hover img {
+    box-shadow: 0 0 0 3px config('colors.primary');
+}
+
+.embedded_image p {
+    text-align: center;
+    margin-bottom: 0 !important;
+}
+
+.ql-editor.ql-blank::before {
+    left: 0;
+    font-style: normal;
 }
 
 @tailwind utilities;

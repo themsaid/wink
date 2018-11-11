@@ -13,7 +13,7 @@
     <div class="border-b border-very-light mb-10">
         <div class="container">
             <div class="flex items-center py-2">
-                <div class="mr-auto">
+                <div class="flex items-center mr-auto">
                     <h3 class="mr-5 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
                         <span class="text-light">W</span>ink.
                     </h3>
@@ -29,7 +29,7 @@
                             <img :src="Wink.author.avatar" class="rounded-full w-8" :title="Wink.author.name">
                         </button>
 
-                        <div slot="content" class="bg-white border border-lighter rounded absolute whitespace-no-wrap min-w-dropdown pin-r mt-1">
+                        <div slot="content" class="bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap min-w-dropdown pin-r mt-1">
                             <router-link :to="{name:'team-edit', params:{id: Wink.author.id}}" class="no-underline text-black font-sans hover:text-primary w-full block py-2 px-4 border-b border-very-light">
                                 Profile
                             </router-link>
