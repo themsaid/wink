@@ -1,5 +1,7 @@
 @extends('wink::default.layout')
+
 @section('content')
+    <h1 class="mb-20 px-5 text-center font-sans">Posts in: {{ $tag->name }}</h1>
     <div class="flex justify-center flex-wrap">
         <div class="lg:w-2/3">
             @foreach($posts as $post)

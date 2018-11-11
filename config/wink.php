@@ -46,10 +46,14 @@ return [
     */
 
     'default' => [
+
+        'site_description' => env('WINK_DEFAULT_SITE_DESCRIPTION', ''),
+
         'twitter' => env('WINK_DEFAULT_TWITTER', ''),
 
         'google_verification' => env('WINK_DEFAULT_GOOGLE_VERIFICATION', ''),
 
-        'google_analytics' => env('WINK_DEFAULT_GOOGLE_ANALYTICS', '')
+        'google_analytics' => env('WINK_DEFAULT_GOOGLE_ANALYTICS', ''),
+
     ]
 ];

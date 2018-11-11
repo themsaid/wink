@@ -59,7 +59,6 @@ class WinkServiceProvider extends ServiceProvider
             Route::namespace('\Wink\Http\Controllers\DefaultTheme')
                 ->as('wink.default.')
                 ->group(function () {
-                    Route::get('blog/tags', 'TagsController@index')->name('tags.index');
                     Route::get('blog/tags/{tag}', 'TagsController@show')->name('tags.show');
 
                     Route::get('blog', 'PostsController@index')->name('posts.index');
