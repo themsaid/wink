@@ -54,6 +54,18 @@ class WinkServiceProvider extends ServiceProvider
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
             });
+
+        Route::macro('winkDefaultTheme', function () {
+            Route::namespace('\Wink\Http\Controllers\DefaultTheme')
+                ->as('wink.default.')
+                ->group(function () {
+                    Route::get('blog/tags', 'TagsController@index')->name('tags.index');
+                    Route::get('blog/tags/{tag}', 'TagsController@show')->name('tags.show');
+
+                    Route::get('blog', 'PostsController@index')->name('posts.index');
+                    Route::get('blog/{slug}', 'PostsController@show')->name('posts.show');
+                });
+        });
     }
 
     /**

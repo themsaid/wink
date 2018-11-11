@@ -34,4 +34,22 @@ return [
     */
 
     'path' => env('WINK_PATH', 'wink'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Wink Default Theme Configuration
+    |--------------------------------------------------------------------------
+    |
+    | If you are using the default's Wink Theme, here are some configurations
+    | you may need to configure for your SEO results.
+    |
+    */
+
+    'default' => [
+        'twitter' => env('WINK_DEFAULT_TWITTER', ''),
+
+        'google_verification' => env('WINK_DEFAULT_GOOGLE_VERIFICATION', ''),
+
+        'google_analytics' => env('WINK_DEFAULT_GOOGLE_ANALYTICS', '')
+    ]
 ];
