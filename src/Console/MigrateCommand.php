@@ -46,7 +46,7 @@ class MigrateCommand extends Command
                 'slug' => 'regina-phalange',
                 'bio' => 'This is me.',
                 'email' => 'admin@mail.com',
-                'password' => bcrypt($password = str_random()),
+                'password' => \Hash::make($password = str_random()),
             ]);
 
             $this->line('');
