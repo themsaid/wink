@@ -9,10 +9,12 @@ use Wink\WinkTag;
 class TagsController extends Controller
 {
 
-    public function show(Request $request, string $tag)
+    public function show(Request $request, string $slug)
     {
+        $tag = WinkTag::with('posts')->where('slug', $slug)->firstOrFail();
+        
         $data = [
-            'tag' => WinkTag::with('posts')->where('slug', $tag)->firstOrFail(),
+            'tag' => $tag,
             'posts' => $tag->posts()
                 ->where('published', true)
                 ->orderBy('publish_date', 'DESC')
