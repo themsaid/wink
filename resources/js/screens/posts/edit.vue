@@ -369,16 +369,20 @@
                 <form-errors :errors="errors.excerpt"></form-errors>
             </div>
 
-            <button class="text-red hover:underline mt-10" @click="deletePost" v-if="id != 'new'">Delete this post</button>
+            <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePost" v-if="id != 'new'">Delete this post</button>
+
+            <div class="mt-10">
+                <button class="btn-sm btn-light" @click="settingsModalShown = false">Cancel</button>
+            </div>
         </modal>
 
         <!-- Publishing Modal -->
         <modal v-if="publishingModalShown" @close="publishingModalShown = false">
-            <div class="mb-2 text-red" v-if="form.title == 'Draft'">
+            <div class="mb-10 text-red" v-if="form.title == 'Draft'">
                 Your post doesn't seem to have a friendly title.
             </div>
 
-            <div class="mb-2 text-red" v-if="!form.slug || form.slug.startsWith('draft-')">
+            <div class="mb-10 text-red" v-if="!form.slug || form.slug.startsWith('draft-')">
                 Your post doesn't seem to have a friendly slug.
             </div>
 
@@ -391,6 +395,7 @@
             <button class="btn-sm btn-primary" @click="publishPost" v-if="!form.published" v-loading="status">Publish this post</button>
             <button class="btn-sm btn-primary" @click="publishPost" v-if="form.published" v-loading="status">Update Post</button>
             <button class="btn-sm btn-light" @click="unpublishPost" v-if="form.published" v-loading="status">Convert to draft</button>
+            <button class="btn-sm btn-light" @click="publishingModalShown = false">Cancel</button>
         </modal>
 
         <featured-image-uploader :post-id="this.form.id"

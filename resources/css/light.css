@@ -183,30 +183,23 @@
 #sidebar-controls {
     display: none;
     position: absolute;
-    z-index: 999;
+    @apply z-10;
 }
 
-#sidebar-controls button {
-    border-radius: 50%;
-    padding: 3px 10px;
+#sidebar-controls .controls button{
+    @apply rounded-full w-8 h-8 border border-light text-light text-center pt-1;
 }
 
-#sidebar-controls svg {
-    width: 13px;
+#sidebar-controls .controls button:hover{
+    @apply bg-light text-white;
 }
 
-#sidebar-controls .controls {
-    display: none;
-    padding-left: 15px;
-    background: #fff;
-}
-
-#sidebar-controls .controls button {
-    padding: 3px 8px;
+#sidebar-controls button:focus{
+    @apply outline-none;
 }
 
 #sidebar-controls.active .controls {
-    display: inline-block;
+    @apply inline-block;
 }
 
 .embedded_image {

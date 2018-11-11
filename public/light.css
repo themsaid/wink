@@ -746,26 +746,27 @@ table {
 #sidebar-controls {
   display: none;
   position: absolute;
-  z-index: 999;
-}
-
-#sidebar-controls button {
-  border-radius: 50%;
-  padding: 3px 10px;
-}
-
-#sidebar-controls svg {
-  width: 13px;
-}
-
-#sidebar-controls .controls {
-  display: none;
-  padding-left: 15px;
-  background: #fff;
+  z-index: 10;
 }
 
 #sidebar-controls .controls button {
-  padding: 3px 8px;
+  border-radius: 9999px;
+  width: 2rem;
+  height: 2rem;
+  border-width: 1px;
+  border-color: #9ba3aa;
+  color: #9ba3aa;
+  text-align: center;
+  padding-top: .25rem;
+}
+
+#sidebar-controls .controls button:hover {
+  background-color: #9ba3aa;
+  color: #fff;
+}
+
+#sidebar-controls button:focus {
+  outline: 0;
 }
 
 #sidebar-controls.active .controls {
@@ -3694,6 +3695,50 @@ table {
 }
 
 .fill-primary-dark {
+  fill: #28287f;
+}
+
+.hover\:fill-current:hover {
+  fill: currentColor;
+}
+
+.hover\:fill-transparent:hover {
+  fill: transparent;
+}
+
+.hover\:fill-black:hover {
+  fill: #22292f;
+}
+
+.hover\:fill-light:hover {
+  fill: #9ba3aa;
+}
+
+.hover\:fill-lighter:hover {
+  fill: #cacfd4;
+}
+
+.hover\:fill-very-light:hover {
+  fill: #e9ecef;
+}
+
+.hover\:fill-white:hover {
+  fill: #fff;
+}
+
+.hover\:fill-green:hover {
+  fill: #3ea265;
+}
+
+.hover\:fill-red:hover {
+  fill: #ef5753;
+}
+
+.hover\:fill-primary:hover {
+  fill: #4040c8;
+}
+
+.hover\:fill-primary-dark:hover {
   fill: #28287f;
 }
 

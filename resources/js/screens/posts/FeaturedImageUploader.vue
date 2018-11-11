@@ -19,10 +19,6 @@
 
 
         mounted() {
-            $('#featuredImageUploadModal').on('hidden.bs.modal', e => {
-                this.imagePickerKey = _.uniqueId();
-            });
-
             this.$parent.$on('openingFeaturedImageUploader', data => {
                 this.imageUrl = this.currentImageUrl;
                 this.caption = this.currentCaption;
@@ -34,12 +30,22 @@
 
         methods: {
             /**
-             * Close the modal.
+             * Save the image.
              */
             saveImage(){
-                this.modalShown = false;
-
                 this.$emit('changed', {url: this.imageUrl, caption: this.caption});
+
+                this.close();
+            },
+
+
+            /**
+             * Close the modal.
+             */
+            close(){
+                this.imagePickerKey = _.uniqueId();
+
+                this.modalShown = false;
             },
 
 
@@ -65,7 +71,7 @@
 </script>
 
 <template>
-    <modal v-if="modalShown" @close="modalShown = false">
+    <modal v-if="modalShown" @close="close">
         <h2 class="font-semibold mb-5">Featured Image</h2>
 
         <preloader v-if="uploading"></preloader>
@@ -86,6 +92,7 @@
                       @uploading="uploading = true"></image-picker>
 
         <button class="btn-sm btn-primary mt-10" @click="saveImage">Save Image</button>
+        <button class="btn-sm btn-light mt-10" @click="close">Cancel</button>
     </modal>
 </template>
 

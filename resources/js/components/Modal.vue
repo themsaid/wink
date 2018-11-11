@@ -46,7 +46,7 @@
 
 <template>
     <div class="z-30 fixed pin overflow-y-scroll">
-        <div class="bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5" v-click-outside="close">
+        <div class="bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5">
             <slot/>
         </div>
     </div>
