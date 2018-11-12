@@ -40,7 +40,7 @@ class CreateTables extends Migration
             $table->string('featured_image')->nullable();
             $table->string('featured_image_caption');
             $table->json('meta')->nullable();
-            $table->string('author_id')->index();
+            $table->uuid('author_id')->index();
             $table->timestamps();
         });
 
