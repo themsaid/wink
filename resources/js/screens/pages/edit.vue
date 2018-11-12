@@ -175,7 +175,7 @@
                     </svg>
                 </button>
 
-                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="save">Save</button>
+                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="save" v-loading="status">Save</button>
             </div>
         </page-header>
 

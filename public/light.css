@@ -531,6 +531,35 @@ table {
   }
 }
 
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+  }
+}
+
+.spin {
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
 /*!
  * Quill Editor v1.3.6
  * https://quilljs.com/
@@ -1897,8 +1926,29 @@ table {
   background-color: #cacfd4;
 }
 
-.modal-overlay-bg {
-  background: #000;
+.modal-mask {
+  background: rgba(255, 255, 255, .86);
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+}
+
+.modal-container {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .btn-primary {
@@ -1916,10 +1966,10 @@ table {
 }
 
 .btn-primary[disabled] {
-  cursor: wait;
   color: #9ba3aa;
   background-color: #fff;
   border-color: #9ba3aa;
+  cursor: wait;
 }
 
 .btn-primary:focus {
@@ -1941,10 +1991,10 @@ table {
 }
 
 .btn-light[disabled] {
-  cursor: wait;
   color: #9ba3aa;
   background-color: #fff;
   border-color: #9ba3aa;
+  cursor: wait;
 }
 
 .btn-light:focus {
@@ -5482,35 +5532,6 @@ table {
 
 .z-auto {
   z-index: auto;
-}
-
-@-webkit-keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-  }
-}
-
-.spin {
-  -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
 }
 
 input:-webkit-autofill,
