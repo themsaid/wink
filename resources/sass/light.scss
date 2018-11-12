@@ -2,45 +2,41 @@
 
 @tailwind components;
 
+@import "animations";
 @import "editor";
 @import "multiselect";
-
-.modal-overlay-bg{
-    background: #000;
-}
+@import "modal";
 
 .btn-primary{
-    @apply .border .border-primary .text-primary .p-2 .rounded .no-underline;
+    @apply border border-primary text-primary p-2 rounded no-underline;
 }
 
 .btn-primary:hover{
-    @apply .bg-primary .text-white;
+    @apply bg-primary text-white;
 }
 
 .btn-primary[disabled]{
-    cursor: wait;
-    @apply .text-light .bg-white .border-light;
+    @apply text-light bg-white border-light cursor-wait;
 }
 
 .btn-primary:focus{
-    @apply .outline-none;
+    @apply outline-none;
 }
 
 .btn-light{
-    @apply .border .border-light .text-light .p-2 .rounded .no-underline;
+    @apply border border-light text-light p-2 rounded no-underline;
 }
 
 .btn-light:hover{
-    @apply .bg-light .text-white;
+    @apply bg-light text-white;
 }
 
 .btn-light[disabled]{
-    cursor: wait;
-    @apply .text-light .bg-white .border-light;
+    @apply text-light bg-white border-light cursor-wait;
 }
 
 .btn-light:focus{
-    @apply .outline-none;
+    @apply outline-none;
 }
 
 .btn-sm{
@@ -48,11 +44,11 @@
 }
 
 .input-group{
-    @apply .border-b .border-very-light .pt-4 .pb-2;
+    @apply border-b border-very-light pt-4 pb-2;
 }
 
 .input-label{
-    @apply .font-bold .block;
+    @apply font-bold block;
 }
 
 .input{
@@ -60,7 +56,7 @@
 }
 
 .input:focus{
-    @apply .outline-none;
+    @apply outline-none;
 }
 
 [contenteditable]:focus{
@@ -68,48 +64,6 @@
 }
 
 @tailwind utilities;
-
-@-webkit-keyframes spin {
-    from {
-        -ms-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    to {
-        -ms-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes spin {
-    from {
-        -ms-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    to {
-        -ms-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
-.spin {
-    -webkit-animation: spin 2s linear infinite;
-    -moz-animation: spin 2s linear infinite;
-    -ms-animation: spin 2s linear infinite;
-    -o-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

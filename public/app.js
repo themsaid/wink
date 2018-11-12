@@ -2242,26 +2242,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            modalBg: null
-        };
+        return {};
     },
     created: function created() {
         document.addEventListener('keydown', this.handleEscape);
         document.body.classList.add('overflow-hidden');
-
-        var modalBg = document.createElement('div');
-        modalBg.classList = 'fixed pin modal-overlay-bg z-20 opacity-75';
-        modalBg.addEventListener('click', this.close);
-
-        this.modalBg = modalBg;
-
-        document.body.appendChild(this.modalBg);
     },
     destroyed: function destroyed() {
         document.removeEventListener('keydown', this.handleEscape);
         document.body.classList.remove('overflow-hidden');
-        document.body.removeChild(this.modalBg);
     },
 
 
@@ -2273,6 +2262,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.close();
             }
         },
+
+
+        /**
+         * Close the modal.
+         */
         close: function close() {
             this.$emit('close');
         }
@@ -2587,7 +2581,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             formWatcher: null,
 
-            readableName: this.name.charAt(0).toUpperCase() + this.name.slice(1)
+            readableName: this.name.charAt(0).toUpperCase() + this.name.slice(1),
+
+            is_expanded: this.expanded
         };
     },
     mounted: function mounted() {},
@@ -59721,6 +59717,14 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    directives: [
+                      {
+                        name: "loading",
+                        rawName: "v-loading",
+                        value: _vm.status,
+                        expression: "status"
+                      }
+                    ],
                     staticClass: "py-1 px-2 btn-primary text-sm ml-6",
                     on: { click: _vm.save }
                   },
@@ -61492,12 +61496,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "z-30 fixed pin overflow-y-scroll" }, [
+  return _c("transition", { attrs: { name: "modal" } }, [
     _c(
       "div",
-      { staticClass: "bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5" },
-      [_vm._t("default")],
-      2
+      {
+        staticClass: "z-30 fixed pin overflow-y-scroll modal-mask",
+        on: { click: _vm.close }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+              }
+            }
+          },
+          [_vm._t("default")],
+          2
+        )
+      ]
     )
   ])
 }
@@ -61842,13 +61863,13 @@ var render = function() {
     _c(
       "div",
       {
-        class: "card-header input-label " + (!this.expanded ? "collapsed" : ""),
-        attrs: {
-          id: _vm.name + "-heading",
-          "data-toggle": "collapse",
-          "data-target": "#" + _vm.name + "-collapse",
-          "aria-expanded": "false",
-          "aria-controls": _vm.name + "-collapse"
+        staticClass: "card-header input-label",
+        class: { collapsed: !_vm.is_expanded },
+        attrs: { id: _vm.name + "-heading", "aria-expanded": "false" },
+        on: {
+          click: function($event) {
+            _vm.is_expanded = !_vm.is_expanded
+          }
         }
       },
       [
@@ -61867,11 +61888,9 @@ var render = function() {
     _c(
       "div",
       {
-        class: "accordion-collapse " + (this.expanded ? "show" : ""),
-        attrs: {
-          id: _vm.name + "-collapse",
-          "aria-labelledby": _vm.name + "-collapse"
-        }
+        staticClass: "accordion-collapse",
+        class: { show: _vm.is_expanded },
+        attrs: { id: _vm.name + "-collapse" }
       },
       [
         _c("div", { staticClass: "card-body" }, [

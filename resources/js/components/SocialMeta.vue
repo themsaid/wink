@@ -28,12 +28,13 @@
                 formWatcher: null,
 
                 readableName: this.name.charAt(0).toUpperCase()+this.name.slice(1),
+
+                is_expanded: this.expanded
             }
         },
 
 
-        mounted() {
-        },
+        mounted() {},
 
 
         watch: {
@@ -50,17 +51,23 @@
             updateSocialImage({url}){
                 this.form.meta[this.network+'_image'] = url;
                 this.is_uploading = false;
-            },
+            }
         }
     }
 </script>
 
 <template>
     <div class="card input-group">
-        <div :class="'card-header input-label '+(!this.expanded ? 'collapsed': '')" :id="name+'-heading'" data-toggle="collapse" :data-target="'#'+name+'-collapse'" aria-expanded="false" :aria-controls="name+'-collapse'">
+        <div :id="name+'-heading'"
+            aria-expanded="false"
+            class="card-header input-label"
+            v-bind:class="{ collapsed: !is_expanded}"
+            @click="is_expanded = !is_expanded">
             <img :src="'/vendor/wink/icons/'+name+'.svg'" :alt="readableName" class="network-icon" /> {{ readableName }} Sharing Settings <i></i>
         </div>
-        <div :id="name+'-collapse'" :class="'accordion-collapse '+(this.expanded ? 'show': '')" :aria-labelledby="name+'-collapse'">
+        <div :id="name+'-collapse'"
+            class="accordion-collapse"
+            v-bind:class="{ show: is_expanded }">
             <div class="card-body">
                 <div class="input-group">
                     <label :for="network+'_title'" class="input-label">
