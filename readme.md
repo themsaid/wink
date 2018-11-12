@@ -14,7 +14,7 @@ To install Wink, require it via Composer:
 composer require writingink/wink
 ```
 
-Once Composer is done, run the following command.
+Once Composer is done, run the following command:
 
 ```
 php artisan wink:install
@@ -72,8 +72,8 @@ Here's the plan for what's coming:
 - [ ] Add text search inside listings.
 - [ ] Filter posts by status, scheduling, tags, and authors.
 - [ ] Adding image galleries to posts and pages.
-- [ ] Attach meta data to posts and pages.
-- [ ] Customize Twitter/Facebook cards and SEO meta data.
+- [ ] Attach metadata to posts and pages.
+- [ ] Customize Twitter/Facebook cards and SEO metadata.
 - [ ] Link social accounts and automatic post on new published content.
 - [ ] Optimize image uploads and allow cropping.
 - [ ] Built-in database backups.
