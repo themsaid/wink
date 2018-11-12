@@ -7,19 +7,15 @@
         data(){
             return {
                 content: '',
+
+                modalShown: false,
             }
         },
 
 
         mounted() {
-            $('#editorHTMLEmbedModal').on('hidden.bs.modal', e => {
-
-            });
-
             this.$parent.$on('openingHTMLEmbedder', data => {
-                $('#editorHTMLEmbedModal').modal({
-                    backdrop: 'static',
-                });
+                this.modalShown = true;
 
                 this.$nextTick(() => this.$refs.content.focus());
             });
@@ -31,7 +27,7 @@
              * Close the modal.
              */
             close(){
-                $('#editorHTMLEmbedModal').modal('hide');
+                this.modalShown = false;
             },
 
 
@@ -49,22 +45,16 @@
 </script>
 
 <template>
-    <div class="modal" id="editorHTMLEmbedModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h4 class="mb-4">Embed HTML</h4>
+    <modal v-if="modalShown" @close="close">
+        <h2 class="font-semibold mb-5">Embed HTML</h2>
 
-                    <textarea ref="content" cols="30" rows="10" class="inline-form-control text-body-color"
-                              placeholder="Paste your HTML here"
-                              v-model="content"></textarea>
+        <textarea ref="content" cols="30" rows="10" class="input"
+                  placeholder="Paste your HTML here"
+                  v-model="content"></textarea>
 
-                    <button class="btn btn-outline-primary btn-sm mt-4" @click="addHTML">Add HTML</button>
-                    <button class="btn btn-outline-secondary btn-sm mt-4" @click="close">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        <button class="btn-sm btn-primary mt-10" @click="addHTML">Add HTML</button>
+        <button class="btn-sm btn-light mt-10" @click="close">Cancel</button>
+    </modal>
 </template>
 
 <style>

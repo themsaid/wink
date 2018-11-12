@@ -20,9 +20,7 @@
 </script>
 
 <template>
-    <ul class="formErrorsList mt-1" v-if="errors">
-        <li v-for="error in errors">
-            <small>{{error}}</small>
-        </li>
-    </ul>
+    <div class="mt-2 text-sm">
+        <span class="text-red block" v-for="error in errors">{{error}}</span>
+    </div>
 </template>

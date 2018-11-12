@@ -66,7 +66,7 @@ class ForgotPasswordController extends Controller
 
         cache()->forget('password.reset.'.$authorId);
 
-        $author->password = bcrypt($password = str_random());
+        $author->password = \Hash::make($password = str_random());
 
         $author->save();
 

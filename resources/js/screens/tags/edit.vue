@@ -95,64 +95,48 @@
 <template>
     <div>
         <page-header>
-            <div slot="right-side">
-                <div v-if="ready && entry">
-                    <button class="btn btn-link btn-sm" @click="deleteTag" v-if="id != 'new'">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="icon fill-secondary">
-                            <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
-                        </svg>
-                    </button>
+            <div class="flex items-center" v-if="ready && entry" slot="right-side">
+                <button class="focus:outline-none text-light hover:text-red" @click="deleteTag" v-if="id != 'new'">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
+                        <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                    </svg>
+                </button>
 
-                    <button class="btn btn-outline-primary btn-sm ml-2" @click="save" v-loading="form.working">Save</button>
-                </div>
+                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="save" v-loading="form.working">Save</button>
             </div>
         </page-header>
 
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div v-if="!ready" class="d-flex align-items-center justify-content-center p-5 bottom-radius">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="preloader spin fill-secondary">
-                                <path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/>
-                            </svg>
-                        </div>
+            <preloader v-if="!ready"></preloader>
 
+            <h2 v-if="ready && !entry" class="text-center font-normal">
+                404 — Tag not found
+            </h2>
 
-                        <div v-if="ready && !entry" class="d-flex align-items-center justify-content-center p-5 bottom-radius">
-                            <h2 class="mb-5 text-center">404 — Tag not found</h2>
-                        </div>
+            <div class="lg:w-2/3 mx-auto" v-if="ready && entry">
+                <h1 class="font-semibold text-3xl mb-10" v-if="id != 'new'">Edit Tag</h1>
+                <h1 class="font-semibold text-3xl mb-10" v-else>New Tag</h1>
 
-                        <div v-if="ready && entry">
-                            <h2 class="mb-5" v-if="id != 'new'">Edit Tag</h2>
-                            <h2 class="mb-5" v-else>New Tag</h2>
+                <div class="input-group">
+                    <label for="name" class="input-label">Tag Name</label>
+                    <input type="text" class="input"
+                           v-model="form.name"
+                           placeholder="Give me a name"
+                           id="name">
 
-                            <div class="form-group border-bottom pb-3">
-                                <label for="name" class="inline-form-control-label">Tag Name</label>
-                                <input type="text" class="inline-form-control text-body-color"
-                                       v-model="form.name"
-                                       placeholder="Give me a name"
-                                       id="name">
+                    <form-errors :errors="form.errors.name"></form-errors>
+                </div>
 
-                                <form-errors :errors="form.errors.name"></form-errors>
-                            </div>
+                <div class="input-group">
+                    <label for="name" class="input-label">Tag Slug</label>
+                    <input type="text" class="input"
+                           v-model="form.slug"
+                           placeholder="and-a-slug-please"
+                           id="slug">
 
-                            <div class="form-group border-bottom pb-3">
-                                <label for="name" class="inline-form-control-label">Tag Slug</label>
-                                <input type="text" class="inline-form-control text-body-color"
-                                       v-model="form.slug"
-                                       placeholder="and-a-slug-please"
-                                       id="slug">
-
-                                <form-errors :errors="form.errors.slug"></form-errors>
-                            </div>
-                        </div>
-                    </div>
+                    <form-errors :errors="form.errors.slug"></form-errors>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
-<style scoped>
-</style>

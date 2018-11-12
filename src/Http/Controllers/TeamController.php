@@ -76,7 +76,7 @@ class TeamController
         $entry = $id != 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
 
         if (request('password')) {
-            $entry->password = bcrypt(request('password'));
+            $entry->password = \Hash::make(request('password'));
         }
 
         if (request('email') !== $entry->email && str_contains($entry->avatar, 'gravatar')) {

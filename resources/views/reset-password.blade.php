@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-sans antialiased">
 <head>
     <!-- Meta Information -->
     <meta charset="utf-8">
@@ -7,27 +7,31 @@
 
     <title>Wink. — Reset Password</title>
 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Style sheets-->
-    <link href='{{mix('app.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
-    <link rel="icon" type="image/png" href="/vendor/wink/favicon.png" />
+    <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+
+    <!-- Icon-->
+    <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
 </head>
-<body>
-<div class="container" style="margin-top: 100px;">
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="d-flex align-items-center mb-5">
-                <h3 class="mb-0 mr-3 logo"><span class="text-secondary">W</span>ink.</h3>
+<body class="text-black mb-20">
+<div class="container mt-20">
+    <div class="xl:w-1/2 mx-auto">
+        <div class="flex items-center mb-10">
+            <h2 class="mr-2 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
+                <span class="text-light">W</span>ink.
+            </h2>
 
-                <h4 class="mb-0">— New Password</h4>
-            </div>
-
-            <p class="mb-4">Copy your new password, use it for your <a href="/wink/login">next login</a>, and then reset it.</p>
-
-            <span style="font-size:8px;" class="bg-info">{{$password}}</span>
+            <h2 class="font-normal">— Your New Password</h2>
         </div>
+
+        <p class="mb-5 leading-normal">Copy your new password, use it for your <a class="text-primary no-underline" href="{{route('wink.auth.login')}}">next login</a>, and then reset it.
+        </p>
+
+        <span class="bg-lighter text-sm p-1">{{$password}}</span>
     </div>
 </div>
 

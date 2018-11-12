@@ -69,7 +69,7 @@
 </script>
 
 <template>
-    <div style="position: relative">
+    <div class="relative">
         <div ref="editor"></div>
     </div>
 </template>

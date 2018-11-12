@@ -32,7 +32,7 @@
 </script>
 
 <template>
-    <div id="notificationBody" class="text-white bg-success border px-5 py-2">
+    <div id="notificationBody" class="text-white bg-green px-8 py-4 rounded-lg">
         {{message}}
     </div>
 </template>

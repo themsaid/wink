@@ -1,0 +1,126 @@
+@tailwind preflight;
+
+@tailwind components;
+
+@import "editor";
+@import "multiselect";
+
+.modal-overlay-bg{
+    background: #000;
+}
+
+.btn-primary{
+    @apply .border .border-primary .text-primary .p-2 .rounded .no-underline;
+}
+
+.btn-primary:hover{
+    @apply .bg-primary .text-white;
+}
+
+.btn-primary[disabled]{
+    cursor: wait;
+    @apply .text-light .bg-white .border-light;
+}
+
+.btn-primary:focus{
+    @apply .outline-none;
+}
+
+.btn-light{
+    @apply .border .border-light .text-light .p-2 .rounded .no-underline;
+}
+
+.btn-light:hover{
+    @apply .bg-light .text-white;
+}
+
+.btn-light[disabled]{
+    cursor: wait;
+    @apply .text-light .bg-white .border-light;
+}
+
+.btn-light:focus{
+    @apply .outline-none;
+}
+
+.btn-sm{
+    @apply py-1 px-2;
+}
+
+.input-group{
+    @apply .border-b .border-very-light .pt-4 .pb-2;
+}
+
+.input-label{
+    @apply .font-bold .block;
+}
+
+.input{
+    @apply mt-3 w-full bg-white p-0 appearance-none;
+}
+
+.input:focus{
+    @apply .outline-none;
+}
+
+[contenteditable]:focus{
+    outline: 0;
+}
+
+@tailwind utilities;
+
+@-webkit-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    -ms-animation: spin 2s linear infinite;
+    -o-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+}

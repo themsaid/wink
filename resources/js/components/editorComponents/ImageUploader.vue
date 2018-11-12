@@ -13,23 +13,13 @@
                 imagePickerKey: '',
                 uploadProgress: 0,
                 uploading: false,
+
+                modalShown: false,
             }
         },
 
         mounted() {
             this.layouts = [{id: 'test', name: 'Test'}];
-
-            $('#editorImageUploadModal').on('hidden.bs.modal', e => {
-                this.imagePickerKey = _.uniqueId();
-
-                this.existingBlot = null;
-
-                this.imageUrl = null;
-
-                this.layout = 'default';
-
-                this.caption = '';
-            });
 
             this.$parent.$on('openingImageUploader', data => {
                 if (data) {
@@ -39,7 +29,7 @@
                     this.existingBlot = data.existingBlot;
                 }
 
-                $('#editorImageUploadModal').modal('show');
+                this.modalShown = true;
             });
         },
 
@@ -49,7 +39,17 @@
              * Close the modal.
              */
             close(){
-                $('#editorImageUploadModal').modal('hide');
+                this.modalShown = false;
+
+                this.imagePickerKey = _.uniqueId();
+
+                this.existingBlot = null;
+
+                this.imageUrl = null;
+
+                this.layout = 'default';
+
+                this.caption = '';
             },
 
 
@@ -94,49 +94,37 @@
 </script>
 
 <template>
-    <div class="modal" id="editorImageUploadModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h4 class="mb-4">Image</h4>
+    <modal v-if="modalShown" @close="close">
+        <h2 class="font-semibold mb-5">Add Image</h2>
 
-                    <div v-if="uploading" class="d-flex align-items-center justify-content-center p-5 bottom-radius">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="preloader spin fill-secondary">
-                            <path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/>
-                        </svg>
-                    </div>
+        <preloader v-if="uploading"></preloader>
 
-                    <div v-if="imageUrl && !uploading">
-                        <img :src="imageUrl" class="w-100 mb-4">
+        <div v-if="imageUrl && !uploading">
+            <img :src="imageUrl" class="max-w-full">
 
-                        <div class="form-group border-bottom pb-3">
-                            <label class="inline-form-control-label">Caption</label>
-                            <input type="text" class="inline-form-control text-body-color"
-                                   v-model="caption"
-                                   ref="caption"
-                                   placeholder="Add caption to the image">
-                        </div>
+            <div class="input-group">
+                <label class="input-label">Caption</label>
+                <textarea rows="2" v-model="caption" ref="caption" class="input" placeholder="Add caption to the image"></textarea>
+            </div>
 
-                        <div class="form-group border-bottom pb-3">
-                            <label class="inline-form-control-label">Layout</label>
-                            <select class="inline-form-control text-body-color" v-model="layout">
-                                <option value="default">Default</option>
-                                <option value="wide">Wide Image</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <image-picker v-if="!imageUrl" :key="imagePickerKey"
-                                  @changed="updateImage"
-                                  @progressing="updateProgress"
-                                  @uploading="uploading = true"></image-picker>
-
-                    <button class="btn btn-outline-primary btn-sm mt-4" @click="applyImage">Apply</button>
-                    <button class="btn btn-outline-secondary btn-sm mt-4" @click="close">Cancel</button>
-                </div>
+            <div class="input-group">
+                <label class="input-label">Layout</label>
+                <select class="input" v-model="layout">
+                    <option value="default">Default</option>
+                    <option value="wide">Wide Image</option>
+                </select>
             </div>
         </div>
-    </div>
+
+        <image-picker v-if="!imageUrl" :key="imagePickerKey"
+                      class="mt-5"
+                      @changed="updateImage"
+                      @progressing="updateProgress"
+                      @uploading="uploading = true"></image-picker>
+
+        <button class="btn-sm btn-primary mt-10" @click="applyImage">Apply</button>
+        <button class="btn-sm btn-light mt-10" @click="close">Cancel</button>
+    </modal>
 </template>
 
 <style>

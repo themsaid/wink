@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const webpack = require('webpack');
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -24,14 +25,18 @@ mix
     })
     .setPublicPath('public')
     .js('resources/js/app.js', 'public')
-    .sass('resources/sass/app.scss', 'public')
+    .sass('resources/sass/light.scss', 'public')
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('./light.js') ],
+    })
     .version()
     .copy('resources/favicon.png', 'public')
     .copy('public', '../winktest/public/vendor/wink')
     .webpackConfig({
         resolve: {
             symlinks: false,
-            alias: {
+             alias: {
                 '@': path.resolve(__dirname, 'resources/js/'),
             }
         },
