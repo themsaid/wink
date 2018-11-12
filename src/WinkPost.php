@@ -69,4 +69,14 @@ class WinkPost extends Model
     {
         return $this->belongsTo(config('wink.author_model'), 'author_id');
     }
+
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string
+     */
+    public function getConnectionName()
+    {
+        return config('wink.database_connection');
+    }
 }

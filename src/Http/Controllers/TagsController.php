@@ -17,14 +17,14 @@ class TagsController
     {
         $entries = WinkTag::withCount('posts')->orderBy('created_at', 'DESC');
 
-        if(request('paginate')){
+        if (request('paginate')) {
             $entries = $entries->paginate(request('paginate'));
-        }else{
+        } else {
             $entries = $entries->get();
         }
 
         return response()->json([
-            'entries' => $entries
+            'entries' => $entries,
         ]);
     }
 
@@ -32,6 +32,7 @@ class TagsController
      * Return a single post.
      *
      * @param  string $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -39,15 +40,15 @@ class TagsController
         if ($id === 'new') {
             return response()->json([
                 'entry' => WinkTag::make([
-                    'id' => Str::uuid()
-                ])
+                    'id' => Str::uuid(),
+                ]),
             ]);
         }
 
         $entry = WinkTag::findOrFail($id);
 
         return response()->json([
-            'entry' => $entry
+            'entry' => $entry,
         ]);
     }
 
@@ -55,6 +56,7 @@ class TagsController
      * Store a single category.
      *
      * @param  string $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -66,7 +68,7 @@ class TagsController
 
         validator($data, [
             'name' => 'required',
-            'slug' => 'required|'.Rule::unique('wink_tags', 'slug')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_tags', 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);
@@ -76,7 +78,7 @@ class TagsController
         $entry->save();
 
         return response()->json([
-            'entry' => $entry->fresh()
+            'entry' => $entry->fresh(),
         ]);
     }
 
@@ -84,6 +86,7 @@ class TagsController
      * Return a single tag.
      *
      * @param  string $id
+     *
      * @return void
      */
     public function delete($id)
