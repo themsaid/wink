@@ -38,15 +38,7 @@
                     body: '',
                     published: false,
                     publish_date: '',
-                    meta: {
-                        meta_description: '',
-                        opengraph_title: '',
-                        opengraph_description: '',
-                        opengraph_image: '',
-                        twitter_title: '',
-                        twitter_description: '',
-                        twitter_image: ''
-                    }
+                    meta: {}
                 }
             };
         },
@@ -134,15 +126,7 @@
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
-                    this.form.meta = {
-                        meta_description: data.meta.meta_description || '',
-                        opengraph_title: data.meta.opengraph_title || '',
-                        opengraph_description: data.meta.opengraph_description || '',
-                        opengraph_image: data.meta.opengraph_image || '',
-                        twitter_title: data.meta.twitter_title || '',
-                        twitter_description: data.meta.twitter_description || '',
-                        twitter_image: data.meta.twitter_image || ''
-                    };
+                    this.form.meta = data.meta;
                 }
 
                 if (!this.form.published) {
@@ -398,18 +382,6 @@
 
                 <form-errors :errors="errors.meta_description"></form-errors>
             </div>
-
-            <social-meta
-                name="facebook"
-                network="opengraph"
-                v-bind:expanded="false"
-                v-bind:form="form"></social-meta>
-
-            <social-meta
-                name="twitter"
-                network="twitter"
-                v-bind:expanded="false"
-                v-bind:form="form"></social-meta>
 
             <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePost" v-if="id != 'new'">Delete this post</button>
 

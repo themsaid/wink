@@ -31,7 +31,6 @@ Vue.component('form-errors', require('./components/FormErrors.vue'));
 Vue.component('image-picker', require('./components/ImagePicker.vue'));
 Vue.component('date-time-picker', require('./components/DateTimePicker.vue'));
 Vue.component('multiselect', require('./components/MultiSelect.vue'));
-Vue.component('social-meta', require('./components/SocialMeta.vue'));
 Vue.directive('loading', require('./components/loadingButton'));
 Vue.directive('click-outside', require('./components/clickOutside'));
 

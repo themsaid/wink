@@ -472,6 +472,12 @@ textarea::-webkit-input-placeholder {
   opacity: .5;
 }
 
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: inherit;
+  opacity: .5;
+}
+
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
   color: inherit;
@@ -1889,83 +1895,6 @@ table {
 .ql-editor.ql-blank::before {
   left: 0;
   font-style: normal;
-}
-
-.explainer-subtext {
-  font-style: italic;
-  margin-bottom: .5rem;
-  font-size: .75rem;
-}
-
-.card .card-header {
-  padding-left: 0;
-  padding-right: .5rem;
-}
-
-.card .card-header i {
-  border: solid grey;
-  border-width: 3px 0 0 3px;
-  display: inline-block;
-  float: right;
-  margin-top: 7px;
-  padding: 3px;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-}
-
-.card .card-header.collapsed i {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-}
-
-.card .card-header:hover {
-  cursor: pointer;
-}
-
-.card .card-header .network-icon {
-  height: 20px;
-  vertical-align: middle;
-}
-
-.card .accordion-collapse {
-  -webkit-transition: height .25s ease-out;
-  transition: height .25s ease-out;
-  height: 0;
-  overflow: hidden;
-}
-
-.card .accordion-collapse.show {
-  height: auto;
-}
-
-.card .accordion-collapse .card-body .input-group:last-of-type {
-  /* Avoid duplication of bottom border within accordion card */
-  border-bottom: none;
-}
-
-.card .accordion-collapse .card-body .social-image-holder {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: #f8f9fa;
-  border: 1px solid grey;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  float: right;
-  height: 75px;
-  margin-left: 10px;
-  padding: 2px;
-  width: 100px;
-}
-
-.card .accordion-collapse .card-body .social-image-holder a {
-  margin: auto;
-}
-
-.card .accordion-collapse .card-body .social-image-holder a img {
-  max-height: 71px;
-  max-width: 96px;
 }
 
 .multiselect.active {
