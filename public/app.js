@@ -59909,7 +59909,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm.id == "new" && _vm.Wink.author.id != _vm.entry.id
                   ? _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-                      _vm._v("New Tag")
+                      _vm._v("New Author")
                     ])
                   : _vm._e(),
                 _vm._v(" "),
