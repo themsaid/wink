@@ -19,6 +19,7 @@
 
                 settingsModalShown: false,
                 publishingModalShown: false,
+                seoModalShown: false,
 
                 id: this.$route.params.id || 'new',
 
@@ -184,8 +185,14 @@
              */
             settingsModal(){
                 this.settingsModalShown = true;
+            },
 
-                $('#title').focus();
+
+            /**
+             * Open the SEO & Social modal.
+             */
+            seoModal(){
+                this.seoModalShown = true;
             },
 
 
@@ -294,20 +301,28 @@
             </div>
 
             <div class="flex items-center" v-if="ready && entry" slot="right-side">
-                <button class="focus:outline-none text-light hover:text-primary mr-5" @click="featuredImageModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
-                        <path d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11 9l-3-3-6 6h16l-5-5-2 2zm4-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                    </svg>
-                </button>
+                <button class="py-1 px-2 btn-primary text-sm mr-6" @click="publishingModal" v-if="!form.published">Publish</button>
+                <button class="py-1 px-2 btn-primary text-sm mr-6" @click="publishingModal" v-if="form.published">Update</button>
 
-                <button class="focus:outline-none text-light hover:text-primary" @click="settingsModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
-                        <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
-                    </svg>
-                </button>
+                <dropdown class="relative mr-4">
+                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current mt-1">
+                            <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
+                        </svg>
+                    </button>
 
-                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="publishingModal" v-if="!form.published">Publish</button>
-                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="publishingModal" v-if="form.published">Update</button>
+                    <div slot="content" class="bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1">
+                        <a href="#" @click.prevent="settingsModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            General Settings
+                        </a>
+                        <a href="#" @click.prevent="featuredImageModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            Featured Image
+                        </a>
+                        <a href="#" @click.prevent="seoModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            SEO & Social
+                        </a>
+                    </div>
+                </dropdown>
             </div>
         </page-header>
 
@@ -329,7 +344,7 @@
             </div>
         </div>
 
-        <!-- Post Settings Modal -->
+        <!-- General Settings Modal -->
         <modal v-if="settingsModalShown" @close="settingsModalShown = false">
             <div class="input-group pt-0">
                 <label for="slug" class="input-label">Slug</label>
@@ -371,18 +386,6 @@
                 <form-errors :errors="errors.excerpt"></form-errors>
             </div>
 
-            <div class="input-group">
-                <label for="meta_description" class="input-label">
-                    Meta description
-                </label>
-                <textarea class="input"
-                          v-model="form.meta.meta_description"
-                          placeholder="Meta description"
-                          id="meta_description"></textarea>
-
-                <form-errors :errors="errors.meta_description"></form-errors>
-            </div>
-
             <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePost" v-if="id != 'new'">Delete this post</button>
 
             <div class="mt-10">
@@ -410,6 +413,23 @@
             <button class="btn-sm btn-primary" @click="publishPost" v-if="form.published" v-loading="status">Update Post</button>
             <button class="btn-sm btn-light" @click="unpublishPost" v-if="form.published" v-loading="status">Convert to draft</button>
             <button class="btn-sm btn-light" @click="publishingModalShown = false">Cancel</button>
+        </modal>
+
+        <!-- SEO & Social Modal -->
+        <modal v-if="seoModalShown" @close="seoModalShown = false">
+            <div class="input-group">
+                <label for="meta_description" class="input-label">
+                    Meta description
+                </label>
+                <textarea class="input"
+                          v-model="form.meta.meta_description"
+                          placeholder="Meta description"
+                          id="meta_description"></textarea>
+            </div>
+
+            <div class="mt-10">
+                <button class="btn-sm btn-primary" @click="settingsModalShown = false">Done</button>
+            </div>
         </modal>
 
         <featured-image-uploader :post-id="this.form.id"

@@ -2269,6 +2269,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         close: function close() {
             this.$emit('close');
+        },
+
+
+        /**
+         * Handle a click on the modal.
+         */
+        handleClicks: function handleClicks(e) {
+            if (e.target.classList.contains('modal-mask')) {
+                this.close();
+            }
         }
     }
 });
@@ -3113,6 +3123,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             settingsModalShown: false,
             publishingModalShown: false,
+            seoModalShown: false,
 
             id: this.$route.params.id || 'new',
 
@@ -3287,8 +3298,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         settingsModal: function settingsModal() {
             this.settingsModalShown = true;
+        },
 
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#title').focus();
+
+        /**
+         * Open the SEO & Social modal.
+         */
+        seoModal: function seoModal() {
+            this.seoModalShown = true;
         },
 
 
@@ -60194,69 +60211,11 @@ var render = function() {
                 slot: "right-side"
               },
               [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "focus:outline-none text-light hover:text-primary mr-5",
-                    on: { click: _vm.featuredImageModal }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-4 h-4 fill-current",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11 9l-3-3-6 6h16l-5-5-2 2zm4-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "focus:outline-none text-light hover:text-primary",
-                    on: { click: _vm.settingsModal }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-4 h-4 fill-current",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
                 !_vm.form.published
                   ? _c(
                       "button",
                       {
-                        staticClass: "py-1 px-2 btn-primary text-sm ml-6",
+                        staticClass: "py-1 px-2 btn-primary text-sm mr-6",
                         on: { click: _vm.publishingModal }
                       },
                       [_vm._v("Publish")]
@@ -60267,13 +60226,117 @@ var render = function() {
                   ? _c(
                       "button",
                       {
-                        staticClass: "py-1 px-2 btn-primary text-sm ml-6",
+                        staticClass: "py-1 px-2 btn-primary text-sm mr-6",
                         on: { click: _vm.publishingModal }
                       },
                       [_vm._v("Update")]
                     )
-                  : _vm._e()
-              ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("dropdown", { staticClass: "relative mr-4" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "focus:outline-none text-light hover:text-primary h-8",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 fill-current mt-1",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1",
+                      attrs: { slot: "content" },
+                      slot: "content"
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "no-underline text-black hover:text-primary w-full block py-2 px-4",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.settingsModal($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        General Settings\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "no-underline text-black hover:text-primary w-full block py-2 px-4",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.featuredImageModal($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Featured Image\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "no-underline text-black hover:text-primary w-full block py-2 px-4",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.seoModal($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        SEO & Social\n                    "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ],
+              1
             )
           : _vm._e()
       ]),
@@ -60506,55 +60569,6 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "input-group" },
-                [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "input-label",
-                      attrs: { for: "meta_description" }
-                    },
-                    [_vm._v("\n                Meta description\n            ")]
-                  ),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.meta.meta_description,
-                        expression: "form.meta.meta_description"
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: {
-                      placeholder: "Meta description",
-                      id: "meta_description"
-                    },
-                    domProps: { value: _vm.form.meta.meta_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form.meta,
-                          "meta_description",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("form-errors", {
-                    attrs: { errors: _vm.errors.meta_description }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
               _vm.id != "new"
                 ? _c(
                     "button",
@@ -60706,6 +60720,75 @@ var render = function() {
                 },
                 [_vm._v("Cancel")]
               )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.seoModalShown
+        ? _c(
+            "modal",
+            {
+              on: {
+                close: function($event) {
+                  _vm.seoModalShown = false
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "input-label",
+                    attrs: { for: "meta_description" }
+                  },
+                  [_vm._v("\n                Meta description\n            ")]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.meta.meta_description,
+                      expression: "form.meta.meta_description"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    placeholder: "Meta description",
+                    id: "meta_description"
+                  },
+                  domProps: { value: _vm.form.meta.meta_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form.meta,
+                        "meta_description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-10" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-sm btn-primary",
+                    on: {
+                      click: function($event) {
+                        _vm.settingsModalShown = false
+                      }
+                    }
+                  },
+                  [_vm._v("Done")]
+                )
+              ])
             ]
           )
         : _vm._e(),
@@ -61352,20 +61435,15 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "z-30 fixed pin overflow-y-scroll modal-mask",
-        on: { click: _vm.close }
+        staticClass: "z-50 fixed pin overflow-y-scroll modal-mask",
+        on: { click: _vm.handleClicks }
       },
       [
         _c(
           "div",
           {
             staticClass:
-              "bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container",
-            on: {
-              click: function($event) {
-                $event.stopPropagation()
-              }
-            }
+              "bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container"
           },
           [_vm._t("default")],
           2
