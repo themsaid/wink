@@ -189,7 +189,7 @@
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
                         placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full focus:outline-none"
+                        class="text-3xl font-semibold w-full focus:outline-none mb-10"
                         v-model="form.title"
                 ></textarea-autosize>
 

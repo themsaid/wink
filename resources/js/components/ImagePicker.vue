@@ -10,7 +10,7 @@
                 imageUrl: '',
                 uploadProgress: 100,
 
-                selectedUnsplashImageId: null,
+                selectedUnsplashImage: null,
 
                 unsplashSearchTerm: '',
                 unsplashPage: 1,
@@ -34,7 +34,11 @@
         },
 
 
-        computed: {},
+        computed: {
+            unsplashModalShown(){
+                return this.unsplashSearchTerm.length;
+            }
+        },
 
 
         methods: {
@@ -87,15 +91,36 @@
 
 
             /**
+             * Open unsplash modal.
+             */
+            openUnsplashModal(){
+                this.unsplashSearchTerm = 'sunny';
+
+                this.$nextTick(() => {
+                    this.$refs.unsplashSearch.focus();
+                })
+            },
+
+
+            /**
              * Select an unsplash Image.
              */
-            selectUnsplashImage(image){
-                this.selectedUnsplashImageId = image.id;
-
+            closeUnplashModalAndInsertImage(){
                 this.$emit('changed', {
-                    url: image.urls.regular,
-                    caption: 'Photo by <a href="' + image.user.links.html + '">' + image.user.name + '</a> on <a href="https://unsplash.com">Unsplash</a>',
+                    url: this.selectedUnsplashImage.urls.regular,
+                    caption: 'Photo by <a href="' + this.selectedUnsplashImage.user.links.html + '">' + this.selectedUnsplashImage.user.name + '</a> on <a href="https://unsplash.com">Unsplash</a>',
                 });
+
+                this.closeUnsplashModal();
+            },
+
+
+            /**
+             * Close unsplash modal.
+             */
+            closeUnsplashModal(){
+                this.unsplashSearchTerm = '';
+                this.selectedUnsplashImage = null;
             }
         }
     }
@@ -108,37 +133,39 @@
         <div class="mb-0">
             Please <label :for="'imageUpload'+_uid" class="cursor-pointer underline">upload</label> an image
             <span v-if="Wink.unsplash_key">or</span>
-            <input type="text" class="border-b border-very-light focus:outline-none"
-                   v-if="Wink.unsplash_key"
-                   v-model="unsplashSearchTerm"
-                   placeholder="search Unsplash">
+            <a v-if="Wink.unsplash_key" href="#" @click.prevent="openUnsplashModal" class="text-black">search Unsplash</a>
         </div>
 
-        <preloader v-if="searchingUnsplash" class="mt-10"></preloader>
+        <fullscreen-modal v-if="unsplashModalShown">
+            <div class="bg-white z-50 fixed pin overflow-y-scroll">
+                <div class="container py-20">
+                    <div class="flex items-center">
+                        <h2 class="mr-auto">Search Unsplash</h2>
 
-        <div v-if="!searchingUnsplash && unsplashImages.length" class="flex flex-wrap mt-5">
-            <div class="w-1/2 p-1 cursor-pointer" v-for="image in unsplashImages" @click="selectUnsplashImage(image)">
-                <div class="h-48 w-full bg-cover border-primary" :class="{'border-4': selectedUnsplashImageId == image.id}" :style="{ backgroundImage: 'url(' + image.urls.thumb + ')' }"></div>
-            </div>
+                        <button class="btn-primary mr-4" v-if="selectedUnsplashImage" @click="closeUnplashModalAndInsertImage">Choose Selected Image</button>
+                        <button class="btn-light" @click="closeUnsplashModal">Cancel</button>
+                    </div>
 
-            <div class="w-1/2 p-1 flex items-center" v-if="unsplashImages.length == 19">
-                <button class="text-primary hover:underline" @click="getImagesFromUnsplash(unsplashPage + 1)">More...</button>
+                    <input type="text" class="my-10 border-b border-very-light focus:outline-none w-full"
+                           v-if="Wink.unsplash_key"
+                           v-model="unsplashSearchTerm"
+                           ref="unsplashSearch"
+                           placeholder="search Unsplash">
+
+                    <preloader v-if="searchingUnsplash" class="mt-10"></preloader>
+
+                    <div v-if="!searchingUnsplash && unsplashImages.length" class="flex flex-wrap mt-5">
+                        <div class="w-1/4 p-1 cursor-pointer" v-for="image in unsplashImages" @click="selectedUnsplashImage = image">
+                            <div class="h-48 w-full bg-cover border-primary"
+                                 :class="{'border-4': selectedUnsplashImage && selectedUnsplashImage.id == image.id}" :style="{ backgroundImage: 'url(' + image.urls.thumb + ')' }"></div>
+                        </div>
+
+                        <div class="w-1/4 p-1 flex items-center" v-if="unsplashImages.length == 19">
+                            <button class="text-primary hover:underline" @click="getImagesFromUnsplash(unsplashPage + 1)">More...</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </fullscreen-modal>
     </div>
 </template>
-
-<style scoped>
-    .searchInput {
-        border-width: 0 0 1px 0;
-    }
-
-    .searchInput:focus {
-        outline: none;
-    }
-
-    .uploadLabel {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-</style>

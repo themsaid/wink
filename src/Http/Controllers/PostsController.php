@@ -65,15 +65,8 @@ class PostsController
             'featured_image' => request('featured_image'),
             'featured_image_caption' => request('featured_image_caption', ''),
             'publish_date' => request('publish_date', ''),
-            'meta' => request('meta', ''),
+            'meta' => request('meta', (object) []),
         ];
-
-        if (array_get($data, 'meta.opengraph_image', null)) {
-            $data['meta'] = array_merge(
-                $data['meta'],
-                $this->getOpengraphImageDimensions(array_get($data, 'meta.opengraph_image'))
-            );
-        }
 
         validator($data, [
             'publish_date' => 'required|date',
@@ -121,22 +114,6 @@ class PostsController
             return (string) $tag->id;
         })->toArray();
     }
-
-
-    /**
-     * Get the height and width for a given OG image.
-     *
-     * @param string $location
-     *
-     * @return array
-     */
-    private function getOpengraphImageDimensions(string $location) : array
-    {
-        $meta = [];
-        list($meta['opengraph_image_width'], $meta['opengraph_image_height']) = getimagesize(url($location));
-        return $meta;
-    }
-
 
     /**
      * Return a single post.

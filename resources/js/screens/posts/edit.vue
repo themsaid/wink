@@ -39,7 +39,13 @@
                     body: '',
                     published: false,
                     publish_date: '',
-                    meta: {}
+                    meta: {
+                        meta_description: '',
+                        opengraph_title: '',
+                        opengraph_description: '',
+                        twitter_title: '',
+                        twitter_description: '',
+                    }
                 }
             };
         },
@@ -127,7 +133,13 @@
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
-                    this.form.meta = data.meta;
+                    this.form.meta = {
+                        meta_description: data.meta.meta_description || '',
+                        opengraph_title: data.meta.opengraph_title || '',
+                        opengraph_description: data.meta.opengraph_description || '',
+                        twitter_title: data.meta.twitter_title || '',
+                        twitter_description: data.meta.twitter_description || '',
+                    };
                 }
 
                 if (!this.form.published) {
@@ -321,6 +333,7 @@
                         <a href="#" @click.prevent="seoModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
                             SEO & Social
                         </a>
+                        <a href="#" @click.prevent="deletePost" class="no-underline text-red hover:text-primary w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
                     </div>
                 </dropdown>
             </div>
@@ -336,7 +349,7 @@
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
                         placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full focus:outline-none"
+                        class="text-3xl font-semibold w-full focus:outline-none mb-10"
                         v-model="form.title"
                 ></textarea-autosize>
 
@@ -386,10 +399,8 @@
                 <form-errors :errors="errors.excerpt"></form-errors>
             </div>
 
-            <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePost" v-if="id != 'new'">Delete this post</button>
-
             <div class="mt-10">
-                <button class="btn-sm btn-light" @click="settingsModalShown = false">Cancel</button>
+                <button class="btn-sm btn-primary" @click="settingsModalShown = false">Done</button>
             </div>
         </modal>
 
@@ -468,7 +479,7 @@
             </div>
 
             <div class="mt-10">
-                <button class="btn-sm btn-primary" @click="settingsModalShown = false">Done</button>
+                <button class="btn-sm btn-primary" @click="seoModalShown = false">Done</button>
             </div>
         </modal>
 
