@@ -14,7 +14,7 @@ To install Wink, require it via Composer:
 composer require writingink/wink
 ```
 
-Once Composer is done, run the following command.
+Once Composer is done, run the following command:
 
 ```
 php artisan wink:install
@@ -68,23 +68,22 @@ Wink is still under heavy development, I decided to ship it in this early stage 
 
 Here's the plan for what's coming:
 
+- [x] Customize Twitter/Facebook cards and SEO metadata.
+- [x] Optimize CSS. Move to Tailwind?
+- [ ] Ability to extract featured image/ social images from images used in post/page.
 - [ ] Create an initial theme that people can use right away.
 - [ ] Add text search inside listings.
 - [ ] Filter posts by status, scheduling, tags, and authors.
 - [ ] Adding image galleries to posts and pages.
-- [ ] Attach meta data to posts and pages.
-- [ ] Customize Twitter/Facebook cards and SEO meta data.
+- [ ] Attach metadata to posts and pages.
 - [ ] Link social accounts and automatic post on new published content.
 - [ ] Optimize image uploads and allow cropping.
 - [ ] Built-in database backups.
-- [ ] Design a better logo.
-- [ ] Optimize CSS. Move to Tailwind?
 - [ ] Dark mode.
 - [ ] Add tests.
 
 And here are some ideas I'm still not sure about:
 
-- [ ] Convert to Tailwind
 - [ ] Email Subscription & auto send emails on new content.
 - [ ] Built-in comments system.
 - [ ] Configure roles (Contributor / Admin)

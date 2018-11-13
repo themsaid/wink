@@ -65,6 +65,7 @@ class PostsController
             'featured_image' => request('featured_image'),
             'featured_image_caption' => request('featured_image_caption', ''),
             'publish_date' => request('publish_date', ''),
+            'meta' => request('meta', (object) []),
         ];
 
         validator($data, [

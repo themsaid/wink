@@ -1,0 +1,21 @@
+.modal-mask{
+  background: rgba(255, 255, 255, 0.86);
+  transition: opacity .3s ease;
+}
+
+.modal-container{
+  transition: all .3s ease;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  transform: scale(1.1);
+}
