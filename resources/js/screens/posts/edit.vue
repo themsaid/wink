@@ -406,12 +406,8 @@
 
         <!-- Publishing Modal -->
         <modal v-if="publishingModalShown" @close="publishingModalShown = false">
-            <div class="mb-10 text-red" v-if="form.title == 'Draft'">
-                Your post doesn't seem to have a friendly title.
-            </div>
-
-            <div class="mb-10 text-red" v-if="!form.slug || form.slug.startsWith('draft-')">
-                Your post doesn't seem to have a friendly slug.
+            <div class="mb-10 text-red" v-if="form.title == 'Draft' || !form.slug || form.slug.startsWith('draft-')">
+                Make sure your post has a friendly title and slug.
             </div>
 
             <div class="input-group pt-0 mb-10">

@@ -60690,18 +60690,12 @@ var render = function() {
               }
             },
             [
-              _vm.form.title == "Draft"
+              _vm.form.title == "Draft" ||
+              !_vm.form.slug ||
+              _vm.form.slug.startsWith("draft-")
                 ? _c("div", { staticClass: "mb-10 text-red" }, [
                     _vm._v(
-                      "\n            Your post doesn't seem to have a friendly title.\n        "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.form.slug || _vm.form.slug.startsWith("draft-")
-                ? _c("div", { staticClass: "mb-10 text-red" }, [
-                    _vm._v(
-                      "\n            Your post doesn't seem to have a friendly slug.\n        "
+                      "\n            Make sure your post has a friendly title and slug.\n        "
                     )
                   ])
                 : _vm._e(),
