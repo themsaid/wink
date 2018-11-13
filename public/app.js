@@ -60775,6 +60775,180 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "input-label",
+                    attrs: { for: "opengraph_title" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                Facebook Card Title\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.meta.opengraph_title,
+                      expression: "form.meta.opengraph_title"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Title in Facebook card",
+                    id: "opengraph_title"
+                  },
+                  domProps: { value: _vm.form.meta.opengraph_title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form.meta,
+                        "opengraph_title",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "input-label",
+                    attrs: { for: "opengraph_description" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                Facebook Card Description\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.meta.opengraph_description,
+                      expression: "form.meta.opengraph_description"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    placeholder: "Meta description",
+                    id: "opengraph_description"
+                  },
+                  domProps: { value: _vm.form.meta.opengraph_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form.meta,
+                        "opengraph_description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "input-label",
+                    attrs: { for: "twitter_title" }
+                  },
+                  [_vm._v("\n                Twitter Card Title\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.meta.twitter_title,
+                      expression: "form.meta.twitter_title"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Title in Facebook card",
+                    id: "twitter_title"
+                  },
+                  domProps: { value: _vm.form.meta.twitter_title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form.meta,
+                        "twitter_title",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "input-label",
+                    attrs: { for: "twitter_description" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                Twitter Card Description\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.meta.twitter_description,
+                      expression: "form.meta.twitter_description"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    placeholder: "Meta description",
+                    id: "twitter_description"
+                  },
+                  domProps: { value: _vm.form.meta.twitter_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form.meta,
+                        "twitter_description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "mt-10" }, [
                 _c(
                   "button",

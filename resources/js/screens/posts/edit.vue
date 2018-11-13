@@ -427,6 +427,46 @@
                           id="meta_description"></textarea>
             </div>
 
+            <div class="input-group">
+                <label for="opengraph_title" class="input-label">
+                    Facebook Card Title
+                </label>
+                <input type="text" class="input"
+                       v-model="form.meta.opengraph_title"
+                       placeholder="Title in Facebook card"
+                       id="opengraph_title">
+            </div>
+
+            <div class="input-group">
+                <label for="opengraph_description" class="input-label">
+                    Facebook Card Description
+                </label>
+                <textarea class="input"
+                          v-model="form.meta.opengraph_description"
+                          placeholder="Meta description"
+                          id="opengraph_description"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="twitter_title" class="input-label">
+                    Twitter Card Title
+                </label>
+                <input type="text" class="input"
+                       v-model="form.meta.twitter_title"
+                       placeholder="Title in Facebook card"
+                       id="twitter_title">
+            </div>
+
+            <div class="input-group">
+                <label for="twitter_description" class="input-label">
+                    Twitter Card Description
+                </label>
+                <textarea class="input"
+                          v-model="form.meta.twitter_description"
+                          placeholder="Meta description"
+                          id="twitter_description"></textarea>
+            </div>
+
             <div class="mt-10">
                 <button class="btn-sm btn-primary" @click="settingsModalShown = false">Done</button>
             </div>
