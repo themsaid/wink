@@ -58709,44 +58709,58 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "ml-auto hidden lg:block" }, [
-                          entry.featured_image
-                            ? _c("div", {
-                                staticClass: "w-16 h-16 rounded-full bg-cover",
-                                style: {
-                                  backgroundImage:
-                                    "url(" + entry.featured_image + ")"
-                                }
-                              })
-                            : _c(
-                                "div",
-                                {
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "no-underline ml-auto hidden lg:block",
+                            attrs: {
+                              to: {
+                                name: "post-edit",
+                                params: { id: entry.id }
+                              }
+                            }
+                          },
+                          [
+                            entry.featured_image
+                              ? _c("div", {
                                   staticClass:
-                                    "w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white"
-                                },
-                                [
-                                  _c(
-                                    "svg",
-                                    {
-                                      staticClass: "fill-current w-8",
-                                      attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20"
-                                      }
-                                    },
-                                    [
-                                      _c("path", {
+                                    "w-16 h-16 rounded-full bg-cover",
+                                  style: {
+                                    backgroundImage:
+                                      "url(" + entry.featured_image + ")"
+                                  }
+                                })
+                              : _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white"
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass: "fill-current w-8",
                                         attrs: {
-                                          d:
-                                            "M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                                          xmlns: "http://www.w3.org/2000/svg",
+                                          viewBox: "0 0 20 20"
                                         }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                        ])
-                      ]
+                                      },
+                                      [
+                                        _c("path", {
+                                          attrs: {
+                                            d:
+                                              "M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                          ]
+                        )
+                      ],
+                      1
                     )
                   }),
                   _vm._v(" "),
@@ -58925,15 +58939,28 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "hidden lg:block" }, [
-                          _c("div", {
-                            staticClass: "w-16 h-16 rounded-full bg-cover",
-                            style: {
-                              backgroundImage: "url(" + entry.avatar + ")"
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "no-underline ml-auto hidden lg:block",
+                            attrs: {
+                              to: {
+                                name: "team-edit",
+                                params: { id: entry.id }
+                              }
                             }
-                          })
-                        ])
-                      ]
+                          },
+                          [
+                            _c("div", {
+                              staticClass: "w-16 h-16 rounded-full bg-cover",
+                              style: {
+                                backgroundImage: "url(" + entry.avatar + ")"
+                              }
+                            })
+                          ]
+                        )
+                      ],
+                      1
                     )
                   }),
                   _vm._v(" "),
@@ -60315,7 +60342,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1",
+                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -60385,7 +60412,7 @@ var render = function() {
                             "a",
                             {
                               staticClass:
-                                "no-underline text-red hover:text-primary w-full block py-2 px-4",
+                                "no-underline text-red w-full block py-2 px-4",
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -62171,7 +62198,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap min-w-dropdown pin-r mt-1",
+                    "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
                   attrs: { slot: "content" },
                   slot: "content"
                 },

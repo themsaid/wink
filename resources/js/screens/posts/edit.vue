@@ -323,7 +323,7 @@
                         </svg>
                     </button>
 
-                    <div slot="content" class="bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1">
+                    <div slot="content" class="bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2">
                         <a href="#" @click.prevent="settingsModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
                             General Settings
                         </a>
@@ -333,7 +333,7 @@
                         <a href="#" @click.prevent="seoModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
                             SEO & Social
                         </a>
-                        <a href="#" @click.prevent="deletePost" class="no-underline text-red hover:text-primary w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
+                        <a href="#" @click.prevent="deletePost" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
                     </div>
                 </dropdown>
             </div>

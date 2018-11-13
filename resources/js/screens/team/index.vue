@@ -96,9 +96,9 @@
                         {{entry.posts_count}} Post(s)
                     </div>
 
-                    <div class="hidden lg:block">
+                    <router-link :to="{name:'team-edit', params:{id: entry.id}}" class="no-underline ml-auto hidden lg:block">
                         <div class="w-16 h-16 rounded-full bg-cover" :style="{ backgroundImage: 'url(' + entry.avatar + ')' }"></div>
-                    </div>
+                    </router-link>
                 </div>
 
                 <div v-if="hasMoreEntries">
