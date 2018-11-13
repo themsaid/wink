@@ -70,7 +70,7 @@
             /**
              * Upload the selected image.
              */
-            uploadSelectedImage(){
+            uploadSelectedImage(event){
                 let file = event.target.files[0];
                 let formData = new FormData();
 
