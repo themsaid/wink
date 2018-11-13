@@ -212,7 +212,7 @@
             <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePage" v-if="id != 'new'">Delete this post</button>
 
             <div class="mt-10">
-                <button class="btn-sm btn-light" @click="settingsModalShown = false">Cancel</button>
+                <button class="btn-sm btn-primary" @click="settingsModalShown = false">Done</button>
             </div>
         </modal>
     </div>
