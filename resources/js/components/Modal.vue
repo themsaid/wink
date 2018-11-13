@@ -32,14 +32,24 @@
             close() {
                 this.$emit('close');
             },
+
+
+            /**
+             * Handle a click on the modal.
+             */
+            handleClicks(e){
+                if (e.target.classList.contains('modal-mask')) {
+                    this.close();
+                }
+            }
         }
     }
 </script>
 
 <template>
     <transition name="modal">
-        <div class="z-30 fixed pin overflow-y-scroll modal-mask" @click="close">
-            <div class="bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container" @click.stop>
+        <div class="z-30 fixed pin overflow-y-scroll modal-mask" @click="handleClicks">
+            <div class="bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container">
                 <slot/>
             </div>
         </div>

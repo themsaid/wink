@@ -2269,6 +2269,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         close: function close() {
             this.$emit('close');
+        },
+
+
+        /**
+         * Handle a click on the modal.
+         */
+        handleClicks: function handleClicks(e) {
+            if (e.target.classList.contains('modal-mask')) {
+                this.close();
+            }
         }
     }
 });
@@ -61302,19 +61312,14 @@ var render = function() {
       "div",
       {
         staticClass: "z-30 fixed pin overflow-y-scroll modal-mask",
-        on: { click: _vm.close }
+        on: { click: _vm.handleClicks }
       },
       [
         _c(
           "div",
           {
             staticClass:
-              "bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container",
-            on: {
-              click: function($event) {
-                $event.stopPropagation()
-              }
-            }
+              "bg-white rounded shadow-lg max-w-md mx-auto my-10 p-5 modal-container"
           },
           [_vm._t("default")],
           2
