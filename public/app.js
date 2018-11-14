@@ -2622,12 +2622,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            facebookImageUploading: false,
+            twitterImageUploading: false,
+
             form: {
                 meta_description: '',
                 opengraph_title: '',
                 opengraph_description: '',
+                opengraph_image: '',
                 twitter_title: '',
-                twitter_description: ''
+                twitter_description: '',
+                twitter_image: ''
             }
         };
     },
@@ -2641,6 +2646,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('close', {
                 content: this.form
             });
+        },
+
+
+        /**
+         * Update the selected opengraph image.
+         */
+        updateFacebookImage: function updateFacebookImage(_ref) {
+            var url = _ref.url,
+                caption = _ref.caption;
+
+            this.form.opengraph_image = url;
+
+            this.facebookImageUploading = false;
+        },
+
+
+        /**
+         * Update the selected twitter image.
+         */
+        updateTwitterImage: function updateTwitterImage(_ref2) {
+            var url = _ref2.url,
+                caption = _ref2.caption;
+
+            this.form.twitter_image = url;
+
+            this.twitterImageUploading = false;
         }
     }
 });
@@ -3241,8 +3272,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     meta_description: '',
                     opengraph_title: '',
                     opengraph_description: '',
+                    opengraph_image: '',
                     twitter_title: '',
-                    twitter_description: ''
+                    twitter_description: '',
+                    twitter_image: ''
                 }
             }
         };
@@ -3338,8 +3371,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     meta_description: data.meta.meta_description || '',
                     opengraph_title: data.meta.opengraph_title || '',
                     opengraph_description: data.meta.opengraph_description || '',
+                    opengraph_image: data.meta.opengraph_image || '',
                     twitter_title: data.meta.twitter_title || '',
-                    twitter_description: data.meta.twitter_description || ''
+                    twitter_description: data.meta.twitter_description || '',
+                    twitter_image: data.meta.twitter_image || ''
                 };
             }
 
@@ -59394,6 +59429,82 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
+    _c("div", { staticClass: "input-group py-4" }, [
+      _c(
+        "div",
+        { staticClass: "flex items-center justify-between" },
+        [
+          _c(
+            "div",
+            [
+              _c("label", { staticClass: "input-label" }, [
+                _vm._v(
+                  "\n                    Facebook Card Image\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("image-picker", {
+                staticClass: "mt-4 mb-1",
+                on: {
+                  changed: _vm.updateFacebookImage,
+                  uploading: function($event) {
+                    _vm.facebookImageUploading = true
+                  }
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.facebookImageUploading ? _c("preloader") : _vm._e(),
+          _vm._v(" "),
+          !_vm.facebookImageUploading
+            ? _c("div", [
+                !_vm.form.opengraph_image
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white"
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "fill-current w-8",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.form.opengraph_image
+                  ? _c("div", {
+                      staticClass: "w-16 h-16 rounded-full bg-cover",
+                      style: {
+                        backgroundImage: "url(" + _vm.form.opengraph_image + ")"
+                      }
+                    })
+                  : _vm._e()
+              ])
+            : _vm._e()
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "input-group" }, [
       _c(
         "label",
@@ -59459,6 +59570,82 @@ var render = function() {
           }
         }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group py-4" }, [
+      _c(
+        "div",
+        { staticClass: "flex items-center justify-between" },
+        [
+          _c(
+            "div",
+            [
+              _c("label", { staticClass: "input-label" }, [
+                _vm._v(
+                  "\n                    Twitter Card Image\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("image-picker", {
+                staticClass: "mt-4 mb-1",
+                on: {
+                  changed: _vm.updateTwitterImage,
+                  uploading: function($event) {
+                    _vm.twitterImageUploading = true
+                  }
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.twitterImageUploading ? _c("preloader") : _vm._e(),
+          _vm._v(" "),
+          !_vm.twitterImageUploading
+            ? _c("div", [
+                !_vm.form.twitter_image
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white"
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "fill-current w-8",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              viewBox: "0 0 20 20"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.form.twitter_image
+                  ? _c("div", {
+                      staticClass: "w-16 h-16 rounded-full bg-cover",
+                      style: {
+                        backgroundImage: "url(" + _vm.form.twitter_image + ")"
+                      }
+                    })
+                  : _vm._e()
+              ])
+            : _vm._e()
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "mt-10" }, [

@@ -45,8 +45,10 @@
                         meta_description: '',
                         opengraph_title: '',
                         opengraph_description: '',
+                        opengraph_image: '',
                         twitter_title: '',
                         twitter_description: '',
+                        twitter_image: '',
                     }
                 }
             };
@@ -139,8 +141,10 @@
                         meta_description: data.meta.meta_description || '',
                         opengraph_title: data.meta.opengraph_title || '',
                         opengraph_description: data.meta.opengraph_description || '',
+                        opengraph_image: data.meta.opengraph_image || '',
                         twitter_title: data.meta.twitter_title || '',
                         twitter_description: data.meta.twitter_description || '',
+                        twitter_image: data.meta.twitter_image || '',
                     };
                 }
 

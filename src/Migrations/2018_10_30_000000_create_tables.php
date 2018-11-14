@@ -17,6 +17,7 @@ class CreateTables extends Migration
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('name');
+            $table->text('meta')->nullable();
             $table->timestamps();
 
             $table->index('created_at');
@@ -39,7 +40,7 @@ class CreateTables extends Migration
             $table->dateTime('publish_date')->default('2018-10-10 00:00:00');
             $table->string('featured_image')->nullable();
             $table->string('featured_image_caption');
-            $table->json('meta')->nullable();
+            $table->text('meta')->nullable();
             $table->uuid('author_id')->index();
             $table->timestamps();
         });
@@ -52,6 +53,7 @@ class CreateTables extends Migration
             $table->string('password');
             $table->text('bio');
             $table->string('avatar')->nullable();
+            $table->text('meta')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -61,6 +63,7 @@ class CreateTables extends Migration
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('body');
+            $table->text('meta')->nullable();
             $table->timestamps();
         });
     }
