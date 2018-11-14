@@ -2607,6 +2607,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/SEOModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__("./node_modules/lodash/lodash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['input'],
+
+    data: function data() {
+        return {
+            form: {
+                meta_description: '',
+                opengraph_title: '',
+                opengraph_description: '',
+                twitter_title: '',
+                twitter_description: ''
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.form = this.input;
+    },
+
+
+    methods: {
+        close: function close() {
+            this.$emit('close', {
+                content: this.form
+            });
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/editorComponents/HTMLEmbedder.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3153,13 +3193,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader__ = __webpack_require__("./resources/js/screens/posts/FeaturedImageUploader.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_SEOModal__ = __webpack_require__("./resources/js/components/SEOModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_SEOModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_SEOModal__);
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        'featured-image-uploader': __WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader___default.a
+        'featured-image-uploader': __WEBPACK_IMPORTED_MODULE_1__FeaturedImageUploader___default.a,
+        'seo-modal': __WEBPACK_IMPORTED_MODULE_2__components_SEOModal___default.a
     },
 
     data: function data() {
@@ -3396,6 +3440,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.form.featured_image = url;
             this.form.featured_image_caption = caption;
+        },
+
+
+        /**
+         * Close the SEO modal.
+         */
+        closeSeoModal: function closeSeoModal(_ref2) {
+            var content = _ref2.content;
+
+            this.seoModalShown = false;
+            this.form.meta = content;
         },
 
 
@@ -59234,6 +59289,199 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0c1171bb\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/SEOModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("modal", { on: { close: _vm.close } }, [
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "label",
+        { staticClass: "input-label", attrs: { for: "meta_description" } },
+        [_vm._v("\n            Meta description\n        ")]
+      ),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.meta_description,
+            expression: "form.meta_description"
+          }
+        ],
+        staticClass: "input",
+        attrs: { placeholder: "Meta description", id: "meta_description" },
+        domProps: { value: _vm.form.meta_description },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "meta_description", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "label",
+        { staticClass: "input-label", attrs: { for: "opengraph_title" } },
+        [_vm._v("\n            Facebook Card Title\n        ")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.opengraph_title,
+            expression: "form.opengraph_title"
+          }
+        ],
+        staticClass: "input",
+        attrs: {
+          type: "text",
+          placeholder: "Title in Facebook Card",
+          id: "opengraph_title"
+        },
+        domProps: { value: _vm.form.opengraph_title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "opengraph_title", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "label",
+        { staticClass: "input-label", attrs: { for: "opengraph_description" } },
+        [_vm._v("\n            Facebook Card Description\n        ")]
+      ),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.opengraph_description,
+            expression: "form.opengraph_description"
+          }
+        ],
+        staticClass: "input",
+        attrs: {
+          placeholder: "Description in Facebook Card",
+          id: "opengraph_description"
+        },
+        domProps: { value: _vm.form.opengraph_description },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "opengraph_description", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "label",
+        { staticClass: "input-label", attrs: { for: "twitter_title" } },
+        [_vm._v("\n            Twitter Card Title\n        ")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.twitter_title,
+            expression: "form.twitter_title"
+          }
+        ],
+        staticClass: "input",
+        attrs: {
+          type: "text",
+          placeholder: "Title in Twitter Card",
+          id: "twitter_title"
+        },
+        domProps: { value: _vm.form.twitter_title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "twitter_title", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "label",
+        { staticClass: "input-label", attrs: { for: "twitter_description" } },
+        [_vm._v("\n            Twitter Card Description\n        ")]
+      ),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.twitter_description,
+            expression: "form.twitter_description"
+          }
+        ],
+        staticClass: "input",
+        attrs: {
+          placeholder: "Description in Twitter Card",
+          id: "twitter_description"
+        },
+        domProps: { value: _vm.form.twitter_description },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "twitter_description", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "mt-10" }, [
+      _c(
+        "button",
+        { staticClass: "btn-sm btn-primary", on: { click: _vm.close } },
+        [_vm._v("Done")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0c1171bb", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0e13d92a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/screens/tags/edit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60799,246 +61047,10 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.seoModalShown
-        ? _c(
-            "modal",
-            {
-              on: {
-                close: function($event) {
-                  _vm.seoModalShown = false
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "input-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "input-label",
-                    attrs: { for: "meta_description" }
-                  },
-                  [_vm._v("\n                Meta description\n            ")]
-                ),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.meta.meta_description,
-                      expression: "form.meta.meta_description"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    placeholder: "Meta description",
-                    id: "meta_description"
-                  },
-                  domProps: { value: _vm.form.meta.meta_description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.meta,
-                        "meta_description",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "input-label",
-                    attrs: { for: "opengraph_title" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                Facebook Card Title\n            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.meta.opengraph_title,
-                      expression: "form.meta.opengraph_title"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Title in Facebook card",
-                    id: "opengraph_title"
-                  },
-                  domProps: { value: _vm.form.meta.opengraph_title },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.meta,
-                        "opengraph_title",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "input-label",
-                    attrs: { for: "opengraph_description" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                Facebook Card Description\n            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.meta.opengraph_description,
-                      expression: "form.meta.opengraph_description"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    placeholder: "Meta description",
-                    id: "opengraph_description"
-                  },
-                  domProps: { value: _vm.form.meta.opengraph_description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.meta,
-                        "opengraph_description",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "input-label",
-                    attrs: { for: "twitter_title" }
-                  },
-                  [_vm._v("\n                Twitter Card Title\n            ")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.meta.twitter_title,
-                      expression: "form.meta.twitter_title"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Title in Facebook card",
-                    id: "twitter_title"
-                  },
-                  domProps: { value: _vm.form.meta.twitter_title },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.meta,
-                        "twitter_title",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "input-label",
-                    attrs: { for: "twitter_description" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                Twitter Card Description\n            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.meta.twitter_description,
-                      expression: "form.meta.twitter_description"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    placeholder: "Meta description",
-                    id: "twitter_description"
-                  },
-                  domProps: { value: _vm.form.meta.twitter_description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.meta,
-                        "twitter_description",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mt-10" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn-sm btn-primary",
-                    on: {
-                      click: function($event) {
-                        _vm.seoModalShown = false
-                      }
-                    }
-                  },
-                  [_vm._v("Done")]
-                )
-              ])
-            ]
-          )
+        ? _c("seo-modal", {
+            attrs: { input: _vm.form.meta },
+            on: { close: _vm.closeSeoModal }
+          })
         : _vm._e(),
       _vm._v(" "),
       _c("featured-image-uploader", {
@@ -77651,6 +77663,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-7fb418a7", Component.options)
   } else {
     hotAPI.reload("data-v-7fb418a7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SEOModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/SEOModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0c1171bb\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/SEOModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/SEOModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c1171bb", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c1171bb", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

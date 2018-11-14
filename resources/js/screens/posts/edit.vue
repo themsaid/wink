@@ -1,10 +1,12 @@
 <script type="text/ecmascript-6">
     import $ from 'jquery';
     import FeaturedImageUploader from './FeaturedImageUploader';
+    import SEOModal from './../../components/SEOModal';
 
     export default {
         components: {
-            'featured-image-uploader': FeaturedImageUploader
+            'featured-image-uploader': FeaturedImageUploader,
+            'seo-modal': SEOModal,
         },
 
 
@@ -234,6 +236,15 @@
 
 
             /**
+             * Close the SEO modal.
+             */
+            closeSeoModal({content}){
+                this.seoModalShown = false;
+                this.form.meta = content;
+            },
+
+
+            /**
              * Delete the post.
              */
             deletePost(){
@@ -423,62 +434,11 @@
         </modal>
 
         <!-- SEO & Social Modal -->
-        <modal v-if="seoModalShown" @close="seoModalShown = false">
-            <div class="input-group">
-                <label for="meta_description" class="input-label">
-                    Meta description
-                </label>
-                <textarea class="input"
-                          v-model="form.meta.meta_description"
-                          placeholder="Meta description"
-                          id="meta_description"></textarea>
-            </div>
+        <seo-modal v-if="seoModalShown"
+                   :input="form.meta"
+                   @close="closeSeoModal"></seo-modal>
 
-            <div class="input-group">
-                <label for="opengraph_title" class="input-label">
-                    Facebook Card Title
-                </label>
-                <input type="text" class="input"
-                       v-model="form.meta.opengraph_title"
-                       placeholder="Title in Facebook card"
-                       id="opengraph_title">
-            </div>
-
-            <div class="input-group">
-                <label for="opengraph_description" class="input-label">
-                    Facebook Card Description
-                </label>
-                <textarea class="input"
-                          v-model="form.meta.opengraph_description"
-                          placeholder="Meta description"
-                          id="opengraph_description"></textarea>
-            </div>
-
-            <div class="input-group">
-                <label for="twitter_title" class="input-label">
-                    Twitter Card Title
-                </label>
-                <input type="text" class="input"
-                       v-model="form.meta.twitter_title"
-                       placeholder="Title in Facebook card"
-                       id="twitter_title">
-            </div>
-
-            <div class="input-group">
-                <label for="twitter_description" class="input-label">
-                    Twitter Card Description
-                </label>
-                <textarea class="input"
-                          v-model="form.meta.twitter_description"
-                          placeholder="Meta description"
-                          id="twitter_description"></textarea>
-            </div>
-
-            <div class="mt-10">
-                <button class="btn-sm btn-primary" @click="seoModalShown = false">Done</button>
-            </div>
-        </modal>
-
+        <!-- Featured Image Modal -->
         <featured-image-uploader :post-id="this.form.id"
                                  @changed="featuredImageChanged"
                                  :current-image-url="form.featured_image"
