@@ -55,7 +55,7 @@ class PagesController
             'title' => request('title'),
             'slug' => request('slug'),
             'body' => request('body', ''),
-            'meta' => request('meta', ''),
+            'meta' => request('meta', (object) []),
         ];
 
         validator($data, [

@@ -62,6 +62,7 @@ class TagsController
         $data = [
             'name' => request('name'),
             'slug' => request('slug'),
+            'meta' => request('meta', (object) []),
         ];
 
         validator($data, [
