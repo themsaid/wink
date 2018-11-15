@@ -41,7 +41,7 @@ class WinkAuthor extends Model implements Authenticatable
      * @var bool
      */
     public $incrementing = false;
-    
+
     /**
      * The column name of the "remember me" token.
      *
@@ -132,7 +132,29 @@ class WinkAuthor extends Model implements Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+        if (is_null($value)) {
+            return 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+        }
+
+        return \Storage::disk(config('wink.storage_disk'))->url($value);
+    }
+
+    /**
+     * Set the authors's avatar.
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setAvatarAttribute($value)
+    {
+        if (stristr($value, 'secure.gravatar.com')) {
+            $this->attributes['avatar'] = null;
+            return;
+        }
+
+        $prefixUrl = \Storage::disk('public_dev')->getDriver()->getConfig()->get('url') .'/';
+
+        $this->attributes['avatar'] = $value ? str_replace($prefixUrl, '', $value) : null;
     }
 
     /**

@@ -79,4 +79,33 @@ class WinkPost extends Model
     {
         return config('wink.database_connection');
     }
+
+    /**
+     * Get the featured image.
+     *
+     * @param  string $value
+     * @return string
+     */
+
+    public function getFeaturedImageAttribute($value)
+    {
+        if (is_null($value)) {
+            return $value;
+        }
+
+        return \Storage::disk(config('wink.storage_disk'))->url($value);
+    }
+
+    /**
+     * Set the feature image of the post
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setFeaturedImageAttribute($value)
+    {
+        $prefixUrl = \Storage::disk('public_dev')->getDriver()->getConfig()->get('url') .'/';
+
+        $this->attributes['featured_image'] = $value ? str_replace($prefixUrl, '', $value) : null;
+    }
 }
