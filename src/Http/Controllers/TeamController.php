@@ -65,6 +65,7 @@ class TeamController
             'email' => request('email'),
             'bio' => request('bio'),
             'avatar' => request('avatar'),
+            'meta' => request('meta'),
         ];
 
         validator($data, [

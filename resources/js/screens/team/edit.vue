@@ -1,6 +1,12 @@
 <script type="text/ecmascript-6">
 
+    import SEOModal from './../../components/SEOModal';
+
     export default {
+        components: {
+            'seo-modal': SEOModal,
+        },
+
         data() {
             return {
                 entry: null,
@@ -10,6 +16,9 @@
 
                 uploadProgress: 0,
                 uploading: false,
+
+                settingsModalShown: false,
+                seoModalShown: false,
 
                 form: {
                     errors: [],
@@ -21,6 +30,15 @@
                     bio: 'I am who I\'m meant to be, this is me.',
                     avatar: '',
                     password: '',
+                    meta: {
+                        meta_description: '',
+                        opengraph_title: '',
+                        opengraph_description: '',
+                        opengraph_image: '',
+                        twitter_title: '',
+                        twitter_description: '',
+                        twitter_image: '',
+                    }
                 }
             };
         },
@@ -73,6 +91,15 @@
                         this.form.email = response.data.entry.email;
                         this.form.bio = response.data.entry.bio;
                         this.form.avatar = response.data.entry.avatar;
+                        this.form.meta = {
+                            meta_description: response.data.entry.meta.meta_description || '',
+                            opengraph_title: response.data.entry.meta.opengraph_title || '',
+                            opengraph_description: response.data.entry.meta.opengraph_description || '',
+                            opengraph_image: response.data.entry.meta.opengraph_image || '',
+                            twitter_title: response.data.entry.meta.twitter_title || '',
+                            twitter_description: response.data.entry.meta.twitter_description || '',
+                            twitter_image: response.data.entry.meta.twitter_image || '',
+                        };
                     }
 
                     this.ready = true;
@@ -140,6 +167,29 @@
                 }).catch(error => {
                 });
             },
+
+            /**
+             * Open the settings modal.
+             */
+            settingsModal(){
+                this.settingsModalShown = true;
+            },
+
+            /**
+             * Open the SEO & Social modal.
+             */
+            seoModal(){
+                this.seoModalShown = true;
+            },
+
+            /**
+             * Close the SEO modal.
+             */
+            closeSeoModal({content}){
+                this.seoModalShown = false;
+                this.form.meta = content;
+            },
+
         }
     }
 </script>
@@ -148,13 +198,23 @@
     <div>
         <page-header>
             <div class="flex items-center" v-if="ready && entry" slot="right-side">
-                <button class="focus:outline-none text-light hover:text-red" @click="deleteAuthor" v-if="id != 'new'">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
-                        <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
-                    </svg>
-                </button>
 
-                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="save" v-loading="form.working">Save</button>
+                <button class="py-1 px-2 btn-primary text-sm mr-6" @click="save" v-loading="form.working">Save</button>
+
+                <dropdown class="relative mr-4">
+                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current mt-1">
+                            <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
+                        </svg>
+                    </button>
+
+                    <div slot="content" class="bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2">
+                        <a href="#" @click.prevent="seoModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            SEO & Social
+                        </a>
+                        <a href="#" @click.prevent="deleteAuthor" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
+                    </div>
+                </dropdown>
             </div>
         </page-header>
 
@@ -229,5 +289,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- SEO & Social Modal -->
+        <seo-modal v-if="seoModalShown"
+                   :input="form.meta"
+                   @close="closeSeoModal"></seo-modal>
     </div>
 </template>

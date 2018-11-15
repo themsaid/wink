@@ -41,13 +41,22 @@ class WinkAuthor extends Model implements Authenticatable
      * @var bool
      */
     public $incrementing = false;
-    
+
     /**
      * The column name of the "remember me" token.
      *
      * @var string
      */
     protected $rememberTokenName = 'remember_token';
+
+    /**
+     * The attributes that should be casted.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'array'
+    ];
 
     /**
      * The posts.
