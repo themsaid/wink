@@ -141,7 +141,7 @@
             <div class="flex items-center" v-if="ready && entry" slot="right-side">
                 <button class="py-1 px-2 btn-primary text-sm mr-6" @click="save" v-loading="form.working">Save</button>
 
-                <dropdown class="relative mr-4">
+                <dropdown class="relative">
                     <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current mt-1">
                             <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>

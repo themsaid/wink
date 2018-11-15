@@ -59915,7 +59915,7 @@ var render = function() {
                   [_vm._v("Save")]
                 ),
                 _vm._v(" "),
-                _c("dropdown", { staticClass: "relative mr-4" }, [
+                _c("dropdown", { staticClass: "relative" }, [
                   _c(
                     "button",
                     {
@@ -60366,7 +60366,7 @@ var render = function() {
                   [_vm._v("Save")]
                 ),
                 _vm._v(" "),
-                _c("dropdown", { staticClass: "relative mr-4" }, [
+                _c("dropdown", { staticClass: "relative" }, [
                   _c(
                     "button",
                     {
@@ -60649,7 +60649,7 @@ var render = function() {
                   [_vm._v("Save")]
                 ),
                 _vm._v(" "),
-                _c("dropdown", { staticClass: "relative mr-4" }, [
+                _c("dropdown", { staticClass: "relative" }, [
                   _c(
                     "button",
                     {
@@ -61135,7 +61135,7 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _c("dropdown", { staticClass: "relative mr-4" }, [
+                _c("dropdown", { staticClass: "relative" }, [
                   _c(
                     "button",
                     {
