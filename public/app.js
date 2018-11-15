@@ -3951,7 +3951,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             uploadProgress: 0,
             uploading: false,
 
-            settingsModalShown: false,
             seoModalShown: false,
 
             form: {
@@ -4107,22 +4106,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 _this6.uploading = false;
             }).catch(function (error) {});
-        },
-
-
-        /**
-         * Open the settings modal.
-         */
-        settingsModal: function settingsModal() {
-            this.settingsModalShown = true;
-        },
-
-
-        /**
-         * Close the settings modal.
-         */
-        closeSettingsModal: function closeSettingsModal() {
-            this.settingsModalShown = false;
         },
 
 

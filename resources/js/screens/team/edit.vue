@@ -17,7 +17,6 @@
                 uploadProgress: 0,
                 uploading: false,
 
-                settingsModalShown: false,
                 seoModalShown: false,
 
                 form: {
@@ -166,20 +165,6 @@
                     this.uploading = false;
                 }).catch(error => {
                 });
-            },
-
-            /**
-             * Open the settings modal.
-             */
-            settingsModal(){
-                this.settingsModalShown = true;
-            },
-
-            /**
-             * Close the settings modal.
-             */
-            closeSettingsModal(){
-                this.settingsModalShown = false;
             },
 
             /**
