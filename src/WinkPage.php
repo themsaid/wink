@@ -49,6 +49,7 @@ class WinkPage extends Model
     protected $casts = [
         'id' => 'string',
         'body' => 'string',
+        'meta' => 'array',
     ];
 
     /**

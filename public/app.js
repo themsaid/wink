@@ -2888,10 +2888,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_SEOModal__ = __webpack_require__("./resources/js/components/SEOModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_SEOModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_SEOModal__);
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'seo-modal': __WEBPACK_IMPORTED_MODULE_1__components_SEOModal___default.a
+    },
+
     data: function data() {
         return {
             ready: false,
@@ -2903,13 +2910,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             errors: [],
 
             settingsModalShown: false,
+            seoModalShown: false,
 
             form: {
                 errors: [],
                 id: '',
                 title: 'Page Title',
                 slug: '',
-                body: ''
+                body: '',
+                meta: {
+                    meta_description: '',
+                    opengraph_title: '',
+                    opengraph_description: '',
+                    opengraph_image: '',
+                    twitter_title: '',
+                    twitter_description: '',
+                    twitter_image: ''
+                }
             }
         };
     },
@@ -2988,6 +3005,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.form.title = data.title;
                 this.form.slug = data.slug;
                 this.form.body = data.body;
+                this.form.meta = {
+                    meta_description: data.meta.meta_description || '',
+                    opengraph_title: data.meta.opengraph_title || '',
+                    opengraph_description: data.meta.opengraph_description || '',
+                    opengraph_image: data.meta.opengraph_image || '',
+                    twitter_title: data.meta.twitter_title || '',
+                    twitter_description: data.meta.twitter_description || '',
+                    twitter_image: data.meta.twitter_image || ''
+                };
             }
 
             setTimeout(function () {
@@ -3013,6 +3039,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         closeSettingsModal: function closeSettingsModal() {
             this.settingsModalShown = false;
+        },
+
+
+        /**
+         * Open the SEO & Social modal.
+         */
+        seoModal: function seoModal() {
+            this.seoModalShown = true;
+        },
+
+
+        /**
+         * Close the SEO modal.
+         */
+        closeSeoModal: function closeSeoModal(_ref) {
+            var content = _ref.content;
+
+            this.seoModalShown = false;
+            this.form.meta = content;
         },
 
 
@@ -4022,6 +4067,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         settingsModal: function settingsModal() {
             this.settingsModalShown = true;
+        },
+
+
+        /**
+         * Close the settings modal.
+         */
+        closeSettingsModal: function closeSettingsModal() {
+            this.settingsModalShown = false;
         },
 
 
@@ -60193,35 +60246,6 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass:
-                      "focus:outline-none text-light hover:text-primary mr-5",
-                    on: { click: _vm.settingsModal }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "w-4 h-4 fill-current",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          viewBox: "0 0 20 20"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
                     directives: [
                       {
                         name: "loading",
@@ -60230,12 +60254,114 @@ var render = function() {
                         expression: "status"
                       }
                     ],
-                    staticClass: "py-1 px-2 btn-primary text-sm ml-6",
+                    staticClass: "py-1 px-2 btn-primary text-sm mr-6",
                     on: { click: _vm.save }
                   },
                   [_vm._v("Save")]
-                )
-              ]
+                ),
+                _vm._v(" "),
+                _c("dropdown", { staticClass: "relative mr-4" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "focus:outline-none text-light hover:text-primary h-8",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 fill-current mt-1",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
+                      attrs: { slot: "content" },
+                      slot: "content"
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "no-underline text-black hover:text-primary w-full block py-2 px-4",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.settingsModal($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        General Settings\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "no-underline text-black hover:text-primary w-full block py-2 px-4",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.seoModal($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        SEO & Social\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.id != "new"
+                        ? _c(
+                            "a",
+                            {
+                              staticClass:
+                                "no-underline text-red w-full block py-2 px-4",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deletePage($event)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        : _vm._e()
+                    ]
+                  )
+                ])
+              ],
+              1
             )
           : _vm._e()
       ]),
@@ -60340,18 +60466,6 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.id != "new"
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "text-red hover:underline focus:outline-none mt-10",
-                      on: { click: _vm.deletePage }
-                    },
-                    [_vm._v("Delete this post")]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
               _c("div", { staticClass: "mt-10" }, [
                 _c(
                   "button",
@@ -60368,6 +60482,13 @@ var render = function() {
               ])
             ]
           )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.seoModalShown
+        ? _c("seo-modal", {
+            attrs: { input: _vm.form.meta },
+            on: { close: _vm.closeSeoModal }
+          })
         : _vm._e()
     ],
     1

@@ -1,7 +1,12 @@
 <script type="text/ecmascript-6">
     import $ from 'jquery';
+    import SEOModal from './../../components/SEOModal';
 
     export default {
+        components: {
+            'seo-modal': SEOModal,
+        },
+
         data() {
             return {
                 ready: false,
@@ -13,6 +18,7 @@
                 errors: [],
 
                 settingsModalShown: false,
+                seoModalShown: false,
 
                 form: {
                     errors: [],
@@ -20,6 +26,15 @@
                     title: 'Page Title',
                     slug: '',
                     body: '',
+                    meta: {
+                        meta_description: '',
+                        opengraph_title: '',
+                        opengraph_description: '',
+                        opengraph_image: '',
+                        twitter_title: '',
+                        twitter_description: '',
+                        twitter_image: '',
+                    }
                 }
             };
         },
@@ -93,6 +108,15 @@
                     this.form.title = data.title;
                     this.form.slug = data.slug;
                     this.form.body = data.body;
+                    this.form.meta = {
+                        meta_description: data.meta.meta_description || '',
+                        opengraph_title: data.meta.opengraph_title || '',
+                        opengraph_description: data.meta.opengraph_description || '',
+                        opengraph_image: data.meta.opengraph_image || '',
+                        twitter_title: data.meta.twitter_title || '',
+                        twitter_description: data.meta.twitter_description || '',
+                        twitter_image: data.meta.twitter_image || '',
+                    };
                 }
 
                 setTimeout(() => {
@@ -116,6 +140,21 @@
              */
             closeSettingsModal(){
                 this.settingsModalShown = false;
+            },
+
+            /**
+             * Open the SEO & Social modal.
+             */
+            seoModal(){
+                this.seoModalShown = true;
+            },
+
+            /**
+             * Close the SEO modal.
+             */
+            closeSeoModal({content}){
+                this.seoModalShown = false;
+                this.form.meta = content;
             },
 
 
@@ -169,13 +208,26 @@
 
 
             <div class="flex items-center" v-if="ready && entry" slot="right-side">
-                <button class="focus:outline-none text-light hover:text-primary mr-5" @click="settingsModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
-                        <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
-                    </svg>
-                </button>
 
-                <button class="py-1 px-2 btn-primary text-sm ml-6" @click="save" v-loading="status">Save</button>
+                <button class="py-1 px-2 btn-primary text-sm mr-6" @click="save" v-loading="status">Save</button>
+
+                <dropdown class="relative mr-4">
+                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current mt-1">
+                            <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
+                        </svg>
+                    </button>
+
+                    <div slot="content" class="bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2">
+                        <a href="#" @click.prevent="settingsModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            General Settings
+                        </a>
+                        <a href="#" @click.prevent="seoModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            SEO & Social
+                        </a>
+                        <a href="#" @click.prevent="deletePage" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
+                    </div>
+                </dropdown>
             </div>
         </page-header>
 
@@ -209,12 +261,15 @@
                 <form-errors :errors="errors.slug"></form-errors>
             </div>
 
-            <button class="text-red hover:underline focus:outline-none mt-10" @click="deletePage" v-if="id != 'new'">Delete this post</button>
-
             <div class="mt-10">
                 <button class="btn-sm btn-primary" @click="settingsModalShown = false">Done</button>
             </div>
         </modal>
+
+        <!-- SEO & Social Modal -->
+        <seo-modal v-if="seoModalShown"
+                   :input="form.meta"
+                   @close="closeSeoModal"></seo-modal>
     </div>
 </template>
 

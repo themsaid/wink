@@ -176,6 +176,13 @@
             },
 
             /**
+             * Close the settings modal.
+             */
+            closeSettingsModal(){
+                this.settingsModalShown = false;
+            },
+
+            /**
              * Open the SEO & Social modal.
              */
             seoModal(){
