@@ -28,6 +28,14 @@ php artisan wink:migrate
 
 Head to `yourproject.test/wink` and use the provided email and password to log in.
 
+## Updates
+
+Add this command in your deployment script so that wink runs new migrations if any:
+
+```
+php artisan wink:migrate
+```
+
 ## Themes
 
 Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
