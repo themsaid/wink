@@ -80,7 +80,7 @@ class TeamController
             $entry->password = \Hash::make(request('password'));
         }
 
-        if (request('email') !== $entry->email && str_contains($entry->avatar, 'gravatar')) {
+        if (request('email') !== $entry->email && Str::contains($entry->avatar, 'gravatar')) {
             unset($data['avatar']);
 
             $entry->avatar = null;
