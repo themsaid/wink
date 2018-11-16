@@ -85,7 +85,7 @@ class TagsController
      * Return a single tag.
      *
      * @param  string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return null
      */
     public function delete($id)
     {

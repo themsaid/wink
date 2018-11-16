@@ -78,7 +78,7 @@ class PagesController
      * Delete a single page.
      *
      * @param  string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return null
      */
     public function delete($id)
     {

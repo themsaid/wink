@@ -99,7 +99,7 @@ class TeamController
      * Return a single author.
      *
      * @param  string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|null
      */
     public function delete($id)
     {
