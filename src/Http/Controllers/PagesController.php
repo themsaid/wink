@@ -30,7 +30,7 @@ class PagesController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkPage::make(['id' => Str::uuid()])
             ]);

@@ -36,7 +36,7 @@ class TeamController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkAuthor::make([
                     'id' => Str::uuid()

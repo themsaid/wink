@@ -36,7 +36,7 @@ class TagsController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkTag::make([
                     'id' => Str::uuid()
