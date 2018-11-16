@@ -70,7 +70,7 @@ class TagsController
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_tags', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);
+        $entry = $id !== 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);
 
         $entry->fill($data);
 

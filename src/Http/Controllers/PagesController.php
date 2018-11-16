@@ -63,7 +63,7 @@ class PagesController
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_pages', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkPage::findOrFail($id) : new WinkPage(['id' => request('id')]);
+        $entry = $id !== 'new' ? WinkPage::findOrFail($id) : new WinkPage(['id' => request('id')]);
 
         $entry->fill($data);
 
