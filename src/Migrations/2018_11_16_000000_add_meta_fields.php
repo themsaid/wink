@@ -45,11 +45,11 @@ class AddMetaFields extends Migration
             $table->dropColumn('meta')->nullable();
         });
 
-        Schema::create('wink_authors', function (Blueprint $table) {
+        Schema::table('wink_authors', function (Blueprint $table) {
             $table->dropColumn('meta')->nullable();
         });
 
-        Schema::create('wink_tags', function (Blueprint $table) {
+        Schema::table('wink_tags', function (Blueprint $table) {
             $table->dropColumn('meta')->nullable();
         });
     }
