@@ -2,6 +2,7 @@
 
 namespace Wink\Http\Controllers;
 
+use Throwable;
 use Wink\WinkAuthor;
 use Wink\Mail\ResetPasswordEmail;
 use Illuminate\Routing\Controller;
@@ -56,7 +57,7 @@ class ForgotPasswordController extends Controller
             list($authorId, $token) = explode('|', $token);
 
             $author = WinkAuthor::findOrFail($authorId);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return redirect()->route('wink.password.forgot')->with('invalidResetToken', true);
         }
 
