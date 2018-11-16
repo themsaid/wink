@@ -31,7 +31,6 @@ class Authenticate
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
-     * @param  string[] ...$guards
      * @return mixed
      *
      * @throws \Illuminate\Auth\AuthenticationException

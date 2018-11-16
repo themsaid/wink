@@ -119,7 +119,7 @@ class PostsController
      * Return a single post.
      *
      * @param  string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return null
      */
     public function delete($id)
     {
