@@ -36,6 +36,12 @@ Add this command in your deployment script so that wink runs new migrations if a
 php artisan wink:migrate
 ```
 
+You may also want to run this command to re-publish the assets:
+
+```
+php artisan vendor:publish --tag=wink-assets --force
+```
+
 ## Themes
 
 Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
