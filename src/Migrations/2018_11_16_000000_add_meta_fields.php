@@ -25,7 +25,7 @@ class AddMetaFields extends Migration
             $table->text('meta')->nullable();
         });
 
-        Schema::table('wink_tags', function (Blueprint $table) {
+        Schema::table('wink_posts', function (Blueprint $table) {
             $table->text('meta')->nullable();
         });
     }
@@ -49,7 +49,7 @@ class AddMetaFields extends Migration
             $table->dropColumn('meta')->nullable();
         });
 
-        Schema::table('wink_tags', function (Blueprint $table) {
+        Schema::table('wink_posts', function (Blueprint $table) {
             $table->dropColumn('meta')->nullable();
         });
     }
