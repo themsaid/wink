@@ -84,7 +84,7 @@ php artisan wink:author "Your Name" your.name@domain.com your-secret-password
 ```
 If you leave the password field blank, a random password will be generated for you. The slug for your author will also be automatically generated with the `str_slug()` helper function unless you specify the `--slug` option.
 
-Other available options are `--bio` and `--avatar`
+Other available options are `--bio` and `--avatar`.
 
 ## Road map
 
