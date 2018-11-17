@@ -17,21 +17,21 @@ class TagsController
     {
         $entries = WinkTag::withCount('posts')->orderBy('created_at', 'DESC');
 
-        if(request('paginate')){
+        if (request('paginate')) {
             $entries = $entries->paginate(request('paginate'));
-        }else{
+        } else {
             $entries = $entries->get();
         }
 
         return response()->json([
-            'entries' => $entries
+            'entries' => $entries,
         ]);
     }
 
     /**
      * Return a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -39,22 +39,22 @@ class TagsController
         if ($id === 'new') {
             return response()->json([
                 'entry' => WinkTag::make([
-                    'id' => Str::uuid()
-                ])
+                    'id' => Str::uuid(),
+                ]),
             ]);
         }
 
         $entry = WinkTag::findOrFail($id);
 
         return response()->json([
-            'entry' => $entry
+            'entry' => $entry,
         ]);
     }
 
     /**
      * Store a single category.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -77,14 +77,14 @@ class TagsController
         $entry->save();
 
         return response()->json([
-            'entry' => $entry->fresh()
+            'entry' => $entry->fresh(),
         ]);
     }
 
     /**
      * Return a single tag.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return null
      */
     public function delete($id)

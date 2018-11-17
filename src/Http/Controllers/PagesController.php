@@ -18,35 +18,35 @@ class PagesController
         $entries = WinkPage::orderBy('created_at', 'DESC')->paginate(30);
 
         return response()->json([
-            'entries' => $entries
+            'entries' => $entries,
         ]);
     }
 
     /**
      * Return a single page.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
     {
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkPage::make(['id' => Str::uuid()])
+                'entry' => WinkPage::make(['id' => Str::uuid()]),
             ]);
         }
 
         $entry = WinkPage::findOrFail($id);
 
         return response()->json([
-            'entry' => $entry
+            'entry' => $entry,
         ]);
     }
 
     /**
      * Store a single page.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -70,14 +70,14 @@ class PagesController
         $entry->save();
 
         return response()->json([
-            'entry' => $entry
+            'entry' => $entry,
         ]);
     }
 
     /**
      * Delete a single page.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return null
      */
     public function delete($id)

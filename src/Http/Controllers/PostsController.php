@@ -22,21 +22,21 @@ class PostsController
             ->paginate(30);
 
         return response()->json([
-            'entries' => $entries
+            'entries' => $entries,
         ]);
     }
 
     /**
      * Return a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
     {
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->toDateTimeString()])
+                'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->toDateTimeString()]),
             ]);
         }
 
@@ -50,7 +50,7 @@ class PostsController
     /**
      * Store a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -86,14 +86,14 @@ class PostsController
         );
 
         return response()->json([
-            'entry' => $entry
+            'entry' => $entry,
         ]);
     }
 
     /**
      * Tags incoming from the request.
      *
-     * @param  array $incomingTags
+     * @param  array  $incomingTags
      * @return array
      */
     private function collectTags($incomingTags)
@@ -118,7 +118,7 @@ class PostsController
     /**
      * Return a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return null
      */
     public function delete($id)

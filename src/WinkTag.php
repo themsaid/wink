@@ -45,7 +45,7 @@ class WinkTag extends AbstractWinkModel
      * @var array
      */
     protected $casts = [
-        'meta' => 'array'
+        'meta' => 'array',
     ];
 
     /**
