@@ -76,6 +76,16 @@ Route::get('/{tag}/{slug}', 'BlogController@post');
 Route::get('/{year}/{month}/{slug}', 'BlogController@post');
 ```
 
+## Command line tools
+### Create new authors
+You can easily create new authors from the console with this command:
+```
+php artisan wink:author "Your Name" your.name@domain.com your-secret-password
+```
+If you leave the password field blank, a random password will be generated for you. The slug for your author will also be automatically generated with the `str_slug()` helper function unless you specify the `--slug` option.
+
+Other available options are `--bio` and `--avatar`
+
 ## Road map
 
 Wink is still under heavy development, I decided to ship it in this early stage so you can help me make it better, however I'm already using it to run multiple websites including my personal blog.
