@@ -42,9 +42,7 @@
 
 <!-- Global Wink Object -->
 <script>
-    window.Wink = <?php echo json_encode(array_merge(
-            \Wink\Wink::scriptVariables(), []
-    )); ?>;
+    window.Wink = @json($winkScriptVariables);
 </script>
 
 <script src="{{mix('app.js', 'vendor/wink')}}"></script>
