@@ -5,6 +5,7 @@ namespace Wink\Http\Controllers;
 use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class TeamController
 {
@@ -77,7 +78,7 @@ class TeamController
         $entry = $id !== 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
 
         if (request('password')) {
-            $entry->password = \Hash::make(request('password'));
+            $entry->password = Hash::make(request('password'));
         }
 
         if (request('email') !== $entry->email && Str::contains($entry->avatar, 'gravatar')) {

@@ -5,6 +5,7 @@ namespace Wink\Console;
 use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class MigrateCommand extends Command
@@ -46,7 +47,7 @@ class MigrateCommand extends Command
                 'slug' => 'regina-phalange',
                 'bio' => 'This is me.',
                 'email' => 'admin@mail.com',
-                'password' => \Hash::make($password = Str::random()),
+                'password' => Hash::make($password = str_random()),
             ]);
 
             $this->line('');
