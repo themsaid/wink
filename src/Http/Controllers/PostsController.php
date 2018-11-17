@@ -16,7 +16,13 @@ class PostsController
      */
     public function index()
     {
-        $entries = WinkPost::orderBy('publish_date', 'DESC')
+        $query = WinkPost::query();
+
+        if (request()->has('search')) {
+            $query->where('title','LIKE','%'.request('search').'%');
+        }
+
+        $entries = $query->orderBy('publish_date', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->with('tags')
             ->paginate(30);

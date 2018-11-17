@@ -16,7 +16,13 @@ class TeamController
      */
     public function index()
     {
-        $entries = WinkAuthor::withCount('posts')->orderBy('created_at', 'DESC');
+        $query = WinkAuthor::query();
+
+        if (request()->has('search')) {
+            $query->where('name','LIKE','%'.request('search').'%');
+        }
+
+        $entries = $query->withCount('posts')->orderBy('created_at', 'DESC');
 
         if (request('paginate')) {
             $entries = $entries->paginate(request('paginate'));

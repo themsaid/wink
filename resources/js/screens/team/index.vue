@@ -7,10 +7,12 @@
         data() {
             return {
                 entries: [],
-                ready: false,
-                nextPageUrl: null,
+                hasRecords: false,
                 hasMoreEntries: false,
+                nextPageUrl: null,
                 loadingMoreEntries: false,
+                ready: false,
+                searchQuery: ''
             };
         },
 
@@ -29,6 +31,8 @@
             loadEntries(){
                 this.http().get('/api/team?paginate=50').then(response => {
                     this.entries = response.data.entries.data;
+
+                    this.hasRecords = !!this.entries.length;
 
                     this.hasMoreEntries = !!response.data.entries.next_page_url;
 
@@ -50,7 +54,24 @@
 
                     this.loadingMoreEntries = false;
                 });
-            }
+            },
+
+            /**
+             * Filter the entries by the search query.
+             */
+            filterEntries: _.debounce(function () {
+                this.ready = false;
+
+                this.http().get('/api/team?paginate=50&search=' + this.searchQuery).then(response => {
+                    this.entries = response.data.entries.data;
+
+                    this.hasMoreEntries = !!response.data.entries.next_page_url;
+
+                    this.nextPageUrl = response.data.entries.next_page_url;
+
+                    this.ready = true;
+                });
+            }, 500)
         }
     }
 </script>
@@ -66,15 +87,27 @@
         </page-header>
 
         <div class="container">
-            <h1 class="font-semibold text-3xl mb-10">Team</h1>
+            <div class="mb-10">
+                <h1 class="inline font-semibold text-3xl">Team</h1>
+                <input v-if="hasRecords"
+                       type="text" class="input mt-1 border-b border-very-light pb-2 w-1/4 float-right"
+                       placeholder="Search"
+                       v-model="searchQuery"
+                       @input="filterEntries"
+                       id="search">
+            </div>
 
             <preloader v-if="!ready"></preloader>
 
-            <div v-if="ready && entries.length == 0">
+            <div v-if="ready && entries.length == 0 && !hasRecords">
                 <p>No authors were found, start by
                     <router-link :to="{name:'team-new'}" class="no-underline text-primary hover:text-primary-dark">adding an author</router-link>
                     .
                 </p>
+            </div>
+
+            <div v-if="entries.length == 0 && searchQuery && ready">
+                No authors matched the given search.
             </div>
 
             <div v-if="ready && entries.length > 0">
