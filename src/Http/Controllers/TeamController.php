@@ -37,7 +37,7 @@ class TeamController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkAuthor::make([
                     'id' => Str::uuid()
@@ -75,13 +75,13 @@ class TeamController
             'email' => 'required|email|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'email')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
+        $entry = $id !== 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
 
         if (request('password')) {
             $entry->password = Hash::make(request('password'));
         }
 
-        if (request('email') !== $entry->email && str_contains($entry->avatar, 'gravatar')) {
+        if (request('email') !== $entry->email && Str::contains($entry->avatar, 'gravatar')) {
             unset($data['avatar']);
 
             $entry->avatar = null;
@@ -100,7 +100,7 @@ class TeamController
      * Return a single author.
      *
      * @param  string $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|null
      */
     public function delete($id)
     {

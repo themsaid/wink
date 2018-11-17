@@ -62,7 +62,7 @@ class WinkPost extends Model
     /**
      * The tags the post belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags()
     {
@@ -72,7 +72,7 @@ class WinkPost extends Model
     /**
      * The post author.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function author()
     {
