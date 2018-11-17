@@ -2,10 +2,9 @@
 
 namespace Wink;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class WinkAuthor extends Model implements Authenticatable
+class WinkAuthor extends AbstractWinkModel implements Authenticatable
 {
     /**
      * The attributes that aren't mass assignable.
@@ -142,15 +141,5 @@ class WinkAuthor extends Model implements Authenticatable
     public function getAvatarAttribute($value)
     {
         return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
-    }
-
-    /**
-     * Get the current connection name for the model.
-     *
-     * @return string
-     */
-    public function getConnectionName()
-    {
-        return config('wink.database_connection');
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Wink;
 
-use Illuminate\Database\Eloquent\Model;
-
-class WinkPost extends Model
+class WinkPost extends AbstractWinkModel
 {
     /**
      * The attributes that aren't mass assignable.
@@ -77,15 +75,5 @@ class WinkPost extends Model
     public function author()
     {
         return $this->belongsTo(WinkAuthor::class, 'author_id');
-    }
-
-    /**
-     * Get the current connection name for the model.
-     *
-     * @return string
-     */
-    public function getConnectionName()
-    {
-        return config('wink.database_connection');
     }
 }
