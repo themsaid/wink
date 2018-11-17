@@ -35,6 +35,14 @@ Run `composer update` in your laravel project, then `php artisan wink:install`, 
 
 Now head to the `wink` directory and run `yarn` to install the frontend dependencies.
 
-If you make changes to Wink's frontend code, run `yarn run dev`.
+If you make changes to Wink's frontend code, run `yarn run dev`. By default, `webpack.mix.js` will compile de assets into a laravel project named `winktest`. If your project has a different name, make sure to modify the path on the `webpack.mix.js` file:
+
+```
+    .copy('public', '../winktest/public/vendor/wink')
+```
+```
+    .copy('public', '../NAME_OF_YOUR_PROJECT_FOLDER/public/vendor/wink')
+```
+
 
 Any change you apply should reflect on the test laravel application you setup earlier.
