@@ -55,7 +55,7 @@ class WinkAuthor extends Model implements Authenticatable
      * @var array
      */
     protected $casts = [
-        'meta' => 'array'
+        'meta' => 'array',
     ];
 
     /**
@@ -113,7 +113,7 @@ class WinkAuthor extends Model implements Authenticatable
     /**
      * Set the token value for the "remember me" session.
      *
-     * @param  string $value
+     * @param  string  $value
      * @return void
      */
     public function setRememberToken($value)
@@ -136,12 +136,12 @@ class WinkAuthor extends Model implements Authenticatable
     /**
      * Get the authors's avatar.
      *
-     * @param  string $value
+     * @param  string  $value
      * @return string
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
     }
 
     /**

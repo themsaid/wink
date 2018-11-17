@@ -16,7 +16,7 @@ class ResetPasswordEmail extends Mailable
     /**
      * New instance.
      *
-     * @param $token
+     * @param  string  $token
      * @return void
      */
     public function __construct($token)
@@ -33,7 +33,7 @@ class ResetPasswordEmail extends Mailable
     {
         return $this->subject('Reset your password')
             ->view('wink::emails.password', [
-                'link' => route('wink.password.reset', ['token' => $this->token])
+                'link' => route('wink.password.reset', ['token' => $this->token]),
             ]);
     }
 }

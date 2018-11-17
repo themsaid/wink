@@ -7,7 +7,7 @@ class SPAViewController
     /**
      * Single page application catch-all route.
      *
-     * @return \Illuminate\Http\Response.
+     * @return \Illuminate\Http\Response
      */
     public function __invoke()
     {

@@ -25,14 +25,14 @@ class TeamController
         }
 
         return response()->json([
-            'entries' => $entries
+            'entries' => $entries,
         ]);
     }
 
     /**
      * Return a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -40,22 +40,22 @@ class TeamController
         if ($id === 'new') {
             return response()->json([
                 'entry' => WinkAuthor::make([
-                    'id' => Str::uuid()
-                ])
+                    'id' => Str::uuid(),
+                ]),
             ]);
         }
 
         $entry = WinkAuthor::findOrFail($id);
 
         return response()->json([
-            'entry' => $entry
+            'entry' => $entry,
         ]);
     }
 
     /**
      * Store a single category.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -92,14 +92,14 @@ class TeamController
         $entry->save();
 
         return response()->json([
-            'entry' => $entry->fresh()
+            'entry' => $entry->fresh(),
         ]);
     }
 
     /**
      * Return a single author.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse|null
      */
     public function delete($id)

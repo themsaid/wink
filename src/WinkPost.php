@@ -47,7 +47,7 @@ class WinkPost extends Model
      * @var array
      */
     public $dates = [
-        'publish_date'
+        'publish_date',
     ];
 
     /**
@@ -56,7 +56,7 @@ class WinkPost extends Model
      * @var array
      */
     protected $casts = [
-        'meta' => 'array'
+        'meta' => 'array',
     ];
 
     /**

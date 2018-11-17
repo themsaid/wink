@@ -55,7 +55,7 @@ class ForgotPasswordController extends Controller
         try {
             $token = decrypt($token);
 
-            list($authorId, $token) = explode('|', $token);
+            [$authorId, $token] = explode('|', $token);
 
             $author = WinkAuthor::findOrFail($authorId);
         } catch (Throwable $e) {
@@ -73,7 +73,7 @@ class ForgotPasswordController extends Controller
         $author->save();
 
         return view('wink::reset-password', [
-            'password' => $password
+            'password' => $password,
         ]);
     }
 }
