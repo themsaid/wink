@@ -34,7 +34,7 @@ class PostsController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->toDateTimeString()])
             ]);
@@ -75,7 +75,7 @@ class PostsController
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_posts', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkPost::findOrFail($id) : new WinkPost(['id' => request('id')]);
+        $entry = $id !== 'new' ? WinkPost::findOrFail($id) : new WinkPost(['id' => request('id')]);
 
         $entry->fill($data);
 

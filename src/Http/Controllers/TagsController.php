@@ -36,7 +36,7 @@ class TagsController
      */
     public function show($id = null)
     {
-        if ($id == 'new') {
+        if ($id === 'new') {
             return response()->json([
                 'entry' => WinkTag::make([
                     'id' => Str::uuid()
@@ -70,7 +70,7 @@ class TagsController
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_tags', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id != 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);
+        $entry = $id !== 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);
 
         $entry->fill($data);
 
