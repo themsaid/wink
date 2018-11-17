@@ -15,7 +15,13 @@ class PagesController
      */
     public function index()
     {
-        $entries = WinkPage::orderBy('created_at', 'DESC')->paginate(30);
+        $query = WinkPage::query();
+
+        if (request()->has('search')) {
+            $query->where('title','LIKE','%'.request('search').'%');
+        }
+
+        $entries = $query->orderBy('created_at', 'DESC')->paginate(30);
 
         return response()->json([
             'entries' => $entries,
