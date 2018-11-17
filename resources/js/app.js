@@ -5,12 +5,8 @@ import Routes from './routes';
 import VueRouter from 'vue-router';
 import VueTextareaAutosize from 'vue-textarea-autosize';
 
-require('bootstrap');
-
 Vue.use(VueRouter);
 Vue.use(VueTextareaAutosize);
-
-window.Popper = require('popper.js').default;
 
 const router = new VueRouter({
     routes: Routes,
