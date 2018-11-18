@@ -76,4 +76,26 @@ class WinkPost extends AbstractWinkModel
     {
         return $this->belongsTo(WinkAuthor::class, 'author_id');
     }
+
+    /**
+     * Scope a query to only include published posts.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
+
+    /**
+     * Scope a query to only include drafts (unpublished posts).
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeDrafts($query)
+    {
+        return $query->where('published', false);
+    }
 }
