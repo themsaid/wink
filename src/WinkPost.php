@@ -107,7 +107,18 @@ class WinkPost extends AbstractWinkModel
      */
     public function scopeLive($query)
     {
-        return $query->where('publish_date', "<=", now());
+        return $query->published()->where('publish_date', "<=", now());
+    }
+
+    /**
+     * Scope a query to only include posts whose publish date is in the future.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeScheduled($query)
+    {
+        return $query->where('publish_date', ">", now());
     }
 
     /**

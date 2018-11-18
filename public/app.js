@@ -52427,8 +52427,16 @@ var render = function() {
                             _vm._v("All")
                           ]),
                           _vm._v(" "),
+                          _c("option", { attrs: { value: "live" } }, [
+                            _vm._v("Live")
+                          ]),
+                          _vm._v(" "),
                           _c("option", { attrs: { value: "published" } }, [
                             _vm._v("Published")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "scheduled" } }, [
+                            _vm._v("Scheduled")
                           ]),
                           _vm._v(" "),
                           _c("option", { attrs: { value: "draft" } }, [

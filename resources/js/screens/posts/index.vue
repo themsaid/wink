@@ -88,7 +88,9 @@
                                 v-model="filters.status"
                                 id="author_id">
                             <option value="">All</option>
+                            <option value="live">Live</option>
                             <option value="published">Published</option>
+                            <option value="scheduled">Scheduled</option>
                             <option value="draft">Draft</option>
                         </select>
                     </div>

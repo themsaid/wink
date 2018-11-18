@@ -19,10 +19,8 @@ class PostsController
     {
         $entries = WinkPost::when(request()->has('search'), function ($q) {
             $q->where('title', 'LIKE', '%'.request('search').'%');
-        })->when(request('status') == 'published', function ($q) {
-            $q->published();
-        })->when(request('status') == 'draft', function ($q) {
-            $q->draft();
+        })->when(request('status'), function ($q, $value) {
+            $q->$value();
         })
             ->orderBy('created_at', 'DESC')
             ->with('tags')
