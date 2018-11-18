@@ -1,8 +1,15 @@
 <script type="text/ecmascript-6">
     import loadsEntries from '../loadsEntries';
+    import FiltersDropdown from '../../partials/FilterDropdown.vue';
 
     export default {
         mixins: [loadsEntries],
+
+
+        components: {
+            'filters': FiltersDropdown
+        },
+
 
 
         /**
@@ -46,21 +53,13 @@
             <div class="mb-10 flex items-center">
                 <h1 class="inline font-semibold text-3xl mr-auto">Team</h1>
 
-                <dropdown class="relative ml-4" @showing="focusSearchInput()">
-                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
-                            <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
-                        </svg>
-                    </button>
-
-                    <div slot="content" class="dropdown-content w-64 pin-r p-3">
-                        <input type="text" class="input mt-0 w-full"
-                               placeholder="Search..."
-                               v-model="searchQuery"
-                               ref="searchInput"
-                               @input="searchEntries">
-                    </div>
-                </dropdown>
+                <filters @showing="focusSearchInput" :is-filtered="isFiltered">
+                    <input type="text" class="input mt-0 w-full"
+                           placeholder="Search..."
+                           v-model="searchQuery"
+                           ref="searchInput"
+                           @input="searchEntries">
+                </filters>
             </div>
 
             <preloader v-if="!ready"></preloader>

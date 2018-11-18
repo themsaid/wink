@@ -1,4 +1,11 @@
 module.exports = {
+    computed: {
+        isFiltered(){
+            return !!this.searchQuery.length;
+        }
+    },
+
+
     methods: {
         loadEntries(){
             this.http().get(this.baseURL).then(response => {
@@ -30,7 +37,7 @@ module.exports = {
             });
         },
 
-        
+
         /**
          * Filter the entries by the search query.
          */

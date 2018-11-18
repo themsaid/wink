@@ -2860,6 +2860,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/partials/FilterDropdown.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['isFiltered']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/partials/preloader.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3135,11 +3147,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__loadsEntries__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue__ = __webpack_require__("./resources/js/partials/FilterDropdown.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue__);
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__loadsEntries___default.a],
+
+    components: {
+        'filters': __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue___default.a
+    },
 
     /**
      * The component's data.
@@ -3616,12 +3635,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__loadsEntries__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue__ = __webpack_require__("./resources/js/partials/FilterDropdown.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue__);
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_1__loadsEntries___default.a],
+
+    components: {
+        'filters': __WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue___default.a
+    },
 
     /**
      * The component's data.
@@ -3837,11 +3863,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__loadsEntries__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue__ = __webpack_require__("./resources/js/partials/FilterDropdown.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue__);
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__loadsEntries___default.a],
+
+    components: {
+        'filters': __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue___default.a
+    },
 
     /**
      * The component's data.
@@ -4088,11 +4121,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__loadsEntries__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue__ = __webpack_require__("./resources/js/partials/FilterDropdown.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue__);
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__loadsEntries___default.a],
+
+    components: {
+        'filters': __WEBPACK_IMPORTED_MODULE_1__partials_FilterDropdown_vue___default.a
+    },
 
     /**
      * The component's data.
@@ -52301,81 +52341,37 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "dropdown",
+                "filters",
                 {
-                  staticClass: "relative ml-4",
-                  on: {
-                    showing: function($event) {
-                      _vm.focusSearchInput()
-                    }
-                  }
+                  attrs: { "is-filtered": _vm.isFiltered },
+                  on: { showing: _vm.focusSearchInput }
                 },
                 [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "focus:outline-none text-light hover:text-primary h-8",
-                      attrs: { slot: "trigger" },
-                      slot: "trigger"
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-4 h-4 fill-current",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchQuery,
+                        expression: "searchQuery"
+                      }
+                    ],
+                    ref: "searchInput",
+                    staticClass: "input mt-0 w-full",
+                    attrs: { type: "text", placeholder: "Search..." },
+                    domProps: { value: _vm.searchQuery },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
+                          _vm.searchQuery = $event.target.value
                         },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-content w-64 pin-r p-3",
-                      attrs: { slot: "content" },
-                      slot: "content"
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.searchQuery,
-                            expression: "searchQuery"
-                          }
-                        ],
-                        ref: "searchInput",
-                        staticClass: "input mt-0 w-full",
-                        attrs: { type: "text", placeholder: "Search..." },
-                        domProps: { value: _vm.searchQuery },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.searchQuery = $event.target.value
-                            },
-                            _vm.searchEntries
-                          ]
-                        }
-                      })
-                    ]
-                  )
+                        _vm.searchEntries
+                      ]
+                    }
+                  })
                 ]
               )
             ],
@@ -52669,81 +52665,37 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "dropdown",
+                "filters",
                 {
-                  staticClass: "relative ml-4",
-                  on: {
-                    showing: function($event) {
-                      _vm.focusSearchInput()
-                    }
-                  }
+                  attrs: { "is-filtered": _vm.isFiltered },
+                  on: { showing: _vm.focusSearchInput }
                 },
                 [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "focus:outline-none text-light hover:text-primary h-8",
-                      attrs: { slot: "trigger" },
-                      slot: "trigger"
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-4 h-4 fill-current",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchQuery,
+                        expression: "searchQuery"
+                      }
+                    ],
+                    ref: "searchInput",
+                    staticClass: "input mt-0 w-full",
+                    attrs: { type: "text", placeholder: "Search..." },
+                    domProps: { value: _vm.searchQuery },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
+                          _vm.searchQuery = $event.target.value
                         },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-content w-64 pin-r p-3",
-                      attrs: { slot: "content" },
-                      slot: "content"
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.searchQuery,
-                            expression: "searchQuery"
-                          }
-                        ],
-                        ref: "searchInput",
-                        staticClass: "input mt-0 w-full",
-                        attrs: { type: "text", placeholder: "Search..." },
-                        domProps: { value: _vm.searchQuery },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.searchQuery = $event.target.value
-                            },
-                            _vm.searchEntries
-                          ]
-                        }
-                      })
-                    ]
-                  )
+                        _vm.searchEntries
+                      ]
+                    }
+                  })
                 ]
               )
             ],
@@ -52990,81 +52942,37 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "dropdown",
+                "filters",
                 {
-                  staticClass: "relative ml-4",
-                  on: {
-                    showing: function($event) {
-                      _vm.focusSearchInput()
-                    }
-                  }
+                  attrs: { "is-filtered": _vm.isFiltered },
+                  on: { showing: _vm.focusSearchInput }
                 },
                 [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "focus:outline-none text-light hover:text-primary h-8",
-                      attrs: { slot: "trigger" },
-                      slot: "trigger"
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-4 h-4 fill-current",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchQuery,
+                        expression: "searchQuery"
+                      }
+                    ],
+                    ref: "searchInput",
+                    staticClass: "input mt-0 w-full",
+                    attrs: { type: "text", placeholder: "Search..." },
+                    domProps: { value: _vm.searchQuery },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
+                          _vm.searchQuery = $event.target.value
                         },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-content w-64 pin-r p-3",
-                      attrs: { slot: "content" },
-                      slot: "content"
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.searchQuery,
-                            expression: "searchQuery"
-                          }
-                        ],
-                        ref: "searchInput",
-                        staticClass: "input mt-0 w-full",
-                        attrs: { type: "text", placeholder: "Search..." },
-                        domProps: { value: _vm.searchQuery },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.searchQuery = $event.target.value
-                            },
-                            _vm.searchEntries
-                          ]
-                        }
-                      })
-                    ]
-                  )
+                        _vm.searchEntries
+                      ]
+                    }
+                  })
                 ]
               )
             ],
@@ -53924,81 +53832,37 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "dropdown",
+                "filters",
                 {
-                  staticClass: "relative ml-4",
-                  on: {
-                    showing: function($event) {
-                      _vm.focusSearchInput()
-                    }
-                  }
+                  attrs: { "is-filtered": _vm.isFiltered },
+                  on: { showing: _vm.focusSearchInput }
                 },
                 [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "focus:outline-none text-light hover:text-primary h-8",
-                      attrs: { slot: "trigger" },
-                      slot: "trigger"
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-4 h-4 fill-current",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchQuery,
+                        expression: "searchQuery"
+                      }
+                    ],
+                    ref: "searchInput",
+                    staticClass: "input mt-0 w-full",
+                    attrs: { type: "text", placeholder: "Search..." },
+                    domProps: { value: _vm.searchQuery },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
+                          _vm.searchQuery = $event.target.value
                         },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-content w-64 pin-r p-3",
-                      attrs: { slot: "content" },
-                      slot: "content"
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.searchQuery,
-                            expression: "searchQuery"
-                          }
-                        ],
-                        ref: "searchInput",
-                        staticClass: "input mt-0 w-full",
-                        attrs: { type: "text", placeholder: "Search..." },
-                        domProps: { value: _vm.searchQuery },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.searchQuery = $event.target.value
-                            },
-                            _vm.searchEntries
-                          ]
-                        }
-                      })
-                    ]
-                  )
+                        _vm.searchEntries
+                      ]
+                    }
+                  })
                 ]
               )
             ],
@@ -55731,6 +55595,85 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1dbb5118", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33389b58\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/partials/FilterDropdown.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "dropdown",
+    {
+      staticClass: "relative ml-4",
+      on: {
+        showing: function($event) {
+          _vm.$emit("showing")
+        }
+      }
+    },
+    [
+      _c(
+        "button",
+        {
+          staticClass: "focus:outline-none text-light hover:text-primary h-8",
+          attrs: { slot: "trigger" },
+          slot: "trigger"
+        },
+        [
+          _vm.isFiltered
+            ? _c("span", {
+                staticClass:
+                  "block rounded-full pulse bg-red absolute w-3 h-3 pin-t pin-r opacity-75"
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "svg",
+            {
+              staticClass: "w-4 h-4 fill-current",
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 20 20"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  d:
+                    "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+                }
+              })
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-content w-64 pin-r p-3",
+          attrs: { slot: "content" },
+          slot: "content"
+        },
+        [_vm._t("default")],
+        2
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-33389b58", module.exports)
   }
 }
 
@@ -72477,6 +72420,54 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/partials/FilterDropdown.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/partials/FilterDropdown.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33389b58\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/partials/FilterDropdown.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/partials/FilterDropdown.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-33389b58", Component.options)
+  } else {
+    hotAPI.reload("data-v-33389b58", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/js/partials/preloader.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -72654,6 +72645,12 @@ module.exports = Component.exports
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 module.exports = {
+    computed: {
+        isFiltered: function isFiltered() {
+            return !!this.searchQuery.length;
+        }
+    },
+
     methods: {
         loadEntries: function loadEntries() {
             var _this = this;
