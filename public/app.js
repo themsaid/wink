@@ -2655,21 +2655,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Update the selected opengraph image.
          */
         updateFacebookImage: function updateFacebookImage(_ref) {
-            var url = _ref.url,
-                caption = _ref.caption;
+            var _this = this;
+
+            var url = _ref.url;
+
+            var img = new Image();
 
             this.form.opengraph_image = url;
 
-            // For FB, knowing height and width means we can avoid the "empty image"
-            // problem for the first user to share our content. Set up a dummy image
-            // object to grab height and width, and send back as hidden params.
-            var tempimage = new Image();
-            tempimage.src = url;
+            img.src = url;
 
-            var _this = this;
-            tempimage.onload = function () {
-                _this.form.opengraph_image_height = this.height;
-                _this.form.opengraph_image_width = this.width;
+            img.onload = function (e) {
+                _this.form.opengraph_image_height = e.target.height;
+                _this.form.opengraph_image_width = e.target.width;
             };
 
             this.facebookImageUploading = false;
@@ -2680,8 +2678,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Update the selected twitter image.
          */
         updateTwitterImage: function updateTwitterImage(_ref2) {
-            var url = _ref2.url,
-                caption = _ref2.caption;
+            var url = _ref2.url;
 
             this.form.twitter_image = url;
 
