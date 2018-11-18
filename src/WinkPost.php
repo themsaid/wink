@@ -109,4 +109,28 @@ class WinkPost extends AbstractWinkModel
     {
         return $query->where('publish_date', "<=", now());
     }
+
+    /**
+     * Scope a query to only include posts whose publish date is before a given date.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeBeforePublishDate($query, $date)
+    {
+        return $query->where('publish_date', "<=", $date);
+    }
+
+    /**
+     * Scope a query to only include posts whose publish date is after a given date.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAfterPublishDate($query, $date)
+    {
+        return $query->where('publish_date', ">", $date);
+    }
 }
