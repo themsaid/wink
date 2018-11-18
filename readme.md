@@ -50,8 +50,8 @@ Wink is shipped with an admin panel that's simple to use. However, we give you f
 public function index()
 {
     $posts = WinkPost::with('tags')
-        ->where('published', true)
-        ->where('publish_date', '<=', now()->toDateTimeString())
+        ->published()
+        ->live()
         ->orderBy('publish_date', 'DESC')
         ->simplePaginate(12);
 
