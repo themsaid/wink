@@ -1,7 +1,7 @@
 module.exports = {
     computed: {
         isFiltered(){
-            return !!this.searchQuery.length || this.filters.status;
+            return !!this.searchQuery.length || (this.filters && this.filters.status);
         }
     },
 
@@ -10,7 +10,7 @@ module.exports = {
         loadEntries(){
             this.http().get(this.baseURL + '?wink=wink' +
                 (this.searchQuery ? '&search=' + this.searchQuery : '') +
-                (this.filters.status ? '&status=' + this.filters.status : '')
+                (this.filters && this.filters.status ? '&status=' + this.filters.status : '')
             ).then(response => {
                 this.entries = response.data.data;
 

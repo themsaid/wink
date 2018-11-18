@@ -72723,7 +72723,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 module.exports = {
     computed: {
         isFiltered: function isFiltered() {
-            return !!this.searchQuery.length || this.filters.status;
+            return !!this.searchQuery.length || this.filters && this.filters.status;
         }
     },
 
@@ -72731,7 +72731,7 @@ module.exports = {
         loadEntries: function loadEntries() {
             var _this = this;
 
-            this.http().get(this.baseURL + '?wink=wink' + (this.searchQuery ? '&search=' + this.searchQuery : '') + (this.filters.status ? '&status=' + this.filters.status : '')).then(function (response) {
+            this.http().get(this.baseURL + '?wink=wink' + (this.searchQuery ? '&search=' + this.searchQuery : '') + (this.filters && this.filters.status ? '&status=' + this.filters.status : '')).then(function (response) {
                 _this.entries = response.data.data;
 
                 _this.hasMoreEntries = !!response.data.next_page_url;
