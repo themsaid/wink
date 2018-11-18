@@ -3628,7 +3628,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
-            ready: false
+            ready: false,
+            filter: ''
         };
     },
 
@@ -3647,7 +3648,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         loadEntries: function loadEntries() {
             var _this = this;
 
-            this.http().get('/api/posts').then(function (response) {
+            var postsUri = '/api/posts?' + this.filter;
+            this.http().get(postsUri).then(function (response) {
                 _this.entries = response.data.entries.data;
 
                 _this.hasMoreEntries = !!response.data.entries.next_page_url;
@@ -52367,8 +52369,59 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-            _vm._v("Posts")
+          _c("div", { staticClass: "mb-10" }, [
+            _c("h1", { staticClass: "inline font-semibold text-3xl mb-10" }, [
+              _vm._v("Posts")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filter,
+                    expression: "filter"
+                  }
+                ],
+                staticClass:
+                  "float-right appearance-none border border-grey-lighter text-grey-darker py-1 px-2 text-sm rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.filter = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.loadEntries
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("All")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "published" } }, [
+                  _vm._v("Published")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "scheduled" } }, [
+                  _vm._v("Scheduled")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "drafts" } }, [_vm._v("Drafts")])
+              ]
+            )
           ]),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),

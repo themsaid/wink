@@ -11,7 +11,8 @@
                 hasMoreEntries: false,
                 nextPageUrl: null,
                 loadingMoreEntries: false,
-                ready: false
+                ready: false,
+                filter: '',
             };
         },
 
@@ -28,7 +29,8 @@
 
         methods: {
             loadEntries(){
-                this.http().get('/api/posts').then(response => {
+                let postsUri = '/api/posts?' + this.filter;
+                this.http().get(postsUri).then(response => {
                     this.entries = response.data.entries.data;
 
                     this.hasMoreEntries = !!response.data.entries.next_page_url;
@@ -87,7 +89,15 @@
         </page-header>
 
         <div class="container">
-            <h1 class="font-semibold text-3xl mb-10">Posts</h1>
+            <div class="mb-10">
+                <h1 class="inline font-semibold text-3xl mb-10">Posts</h1>
+                <select v-model="filter" @change="loadEntries" class="float-right appearance-none border border-grey-lighter text-grey-darker py-1 px-2 text-sm rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                    <option value="" selected>All</option>
+                    <option value="published">Published</option>
+                    <option value="scheduled">Scheduled</option>
+                    <option value="drafts">Drafts</option>
+                </select>
+            </div>
 
             <preloader v-if="!ready"></preloader>
 
