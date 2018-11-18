@@ -5,6 +5,7 @@ namespace Wink\Http\Controllers;
 use Wink\WinkPage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Wink\Http\Resources\PagesResource;
 
 class PagesController
 {
@@ -15,23 +16,19 @@ class PagesController
      */
     public function index()
     {
-        $query = WinkPage::query();
+        $entries = WinkPage::when(request()->has('search'), function ($q) {
+            $q->where('title', 'LIKE', '%'.request('search').'%');
+        })
+            ->orderBy('created_at', 'DESC')
+            ->paginate(30);
 
-        if (request()->has('search')) {
-            $query->where('title','LIKE','%'.request('search').'%');
-        }
-
-        $entries = $query->orderBy('created_at', 'DESC')->paginate(30);
-
-        return response()->json([
-            'entries' => $entries,
-        ]);
+        return PagesResource::collection($entries);
     }
 
     /**
      * Return a single page.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -52,7 +49,7 @@ class PagesController
     /**
      * Store a single page.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -83,7 +80,7 @@ class PagesController
     /**
      * Delete a single page.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return null
      */
     public function delete($id)

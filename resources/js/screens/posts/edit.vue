@@ -173,11 +173,11 @@
              */
             loadResources(){
                 this.http().get('/api/tags').then(response => {
-                    this.tags = response.data.entries;
+                    this.tags = response.data.data;
                 });
 
                 this.http().get('/api/team').then(response => {
-                    this.authors = response.data.entries;
+                    this.authors = response.data.data;
 
                     if (!this.form.author_id && this.authors) {
                         this.form.author_id = _.first(this.authors).id;

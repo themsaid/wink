@@ -6,6 +6,7 @@ use Wink\WinkTag;
 use Wink\WinkPost;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Wink\Http\Resources\PostsResource;
 
 class PostsController
 {
@@ -16,20 +17,14 @@ class PostsController
      */
     public function index()
     {
-        $query = WinkPost::query();
-
-        if (request()->has('search')) {
-            $query->where('title','LIKE','%'.request('search').'%');
-        }
-
-        $entries = $query->orderBy('publish_date', 'DESC')
+        $entries = WinkPost::when(request()->has('search'), function ($q) {
+            $q->where('title', 'LIKE', '%'.request('search').'%');
+        })
             ->orderBy('created_at', 'DESC')
             ->with('tags')
             ->paginate(30);
 
-        return response()->json([
-            'entries' => $entries,
-        ]);
+        return PostsResource::collection($entries);
     }
 
     /**

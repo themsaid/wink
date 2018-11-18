@@ -1,13 +1,17 @@
 <script type="text/ecmascript-6">
+    import loadsEntries from '../loadsEntries';
 
     export default {
+        mixins: [loadsEntries],
+
+
         /**
          * The component's data.
          */
         data() {
             return {
+                baseURL: '/api/pages',
                 entries: [],
-                hasRecords: false,
                 hasMoreEntries: false,
                 nextPageUrl: null,
                 loadingMoreEntries: false,
@@ -25,54 +29,6 @@
 
             this.loadEntries();
         },
-
-
-        methods: {
-            loadEntries(){
-                this.http().get('/api/pages').then(response => {
-                    this.entries = response.data.entries.data;
-
-                    this.hasRecords = !!this.entries.length;
-
-                    this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                    this.nextPageUrl = response.data.entries.next_page_url;
-
-                    this.ready = true;
-                });
-            },
-
-            loadOlderEntries(){
-                this.loadingMoreEntries = true;
-
-                this.http().get(this.nextPageUrl).then(response => {
-                    this.entries.push(...response.data.entries.data);
-
-                    this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                    this.nextPageUrl = response.data.entries.next_page_url;
-
-                    this.loadingMoreEntries = false;
-                });
-            },
-
-            /**
-             * Filter the entries by the search query.
-             */
-            filterEntries: _.debounce(function () {
-                this.ready = false;
-
-                this.http().get('/api/pages?search=' + this.searchQuery).then(response => {
-                    this.entries = response.data.entries.data;
-
-                    this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                    this.nextPageUrl = response.data.entries.next_page_url;
-
-                    this.ready = true;
-                });
-            }, 500)
-        }
     }
 </script>
 
@@ -87,25 +43,35 @@
         </page-header>
 
         <div class="container">
-            <div class="mb-10">
-                <h1 class="inline font-semibold text-3xl">Pages</h1>
-                <input v-if="hasRecords"
-                       type="text" class="input mt-1 border-b border-very-light pb-2 w-1/4 float-right"
-                       placeholder="Search"
-                       v-model="searchQuery"
-                       @input="filterEntries"
-                       id="search">
+            <div class="mb-10 flex items-center">
+                <h1 class="inline font-semibold text-3xl mr-auto">Pages</h1>
+
+                <dropdown class="relative ml-4" @showing="focusSearchInput()">
+                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
+                            <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                        </svg>
+                    </button>
+
+                    <div slot="content" class="bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3">
+                        <input type="text" class="input mt-0 w-full"
+                               placeholder="Search..."
+                               v-model="searchQuery"
+                               ref="searchInput"
+                               @input="searchEntries">
+                    </div>
+                </dropdown>
             </div>
 
             <preloader v-if="!ready"></preloader>
 
-            <div v-if="ready && entries.length == 0 && !hasRecords">
+            <div v-if="ready && entries.length == 0 && !searchQuery">
                 No pages were found, start by
                 <router-link :to="{name:'page-new'}" class="no-underline text-primary hover:text-primary-dark">writing your first page</router-link>
                 .
             </div>
 
-            <div v-if="entries.length == 0 && searchQuery && ready">
+            <div v-if="ready && entries.length == 0 && searchQuery">
                 No pages matched the given search.
             </div>
 

@@ -6,6 +6,16 @@
             }
         },
 
+
+        watch:{
+            shouldShowContent(val){
+                if(val){
+                    this.$emit('showing');
+                }
+            }
+        },
+
+
         methods: {
             toggle(){
                 this.shouldShowContent = !this.shouldShowContent;
@@ -13,7 +23,7 @@
 
             hide(){
                 this.shouldShowContent = false;
-            }
+            },
         }
     }
 </script>

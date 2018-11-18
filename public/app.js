@@ -1775,6 +1775,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    watch: {
+        shouldShowContent: function shouldShowContent(val) {
+            if (val) {
+                this.$emit('showing');
+            }
+        }
+    },
+
     methods: {
         toggle: function toggle() {
             this.shouldShowContent = !this.shouldShowContent;
@@ -3125,16 +3133,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__loadsEntries__);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__loadsEntries___default.a],
+
     /**
      * The component's data.
      */
     data: function data() {
         return {
+            baseURL: '/api/pages',
             entries: [],
-            hasRecords: false,
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
@@ -3151,62 +3164,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         document.title = "Pages — Wink.";
 
         this.loadEntries();
-    },
-
-
-    methods: {
-        loadEntries: function loadEntries() {
-            var _this = this;
-
-            this.http().get('/api/pages').then(function (response) {
-                _this.entries = response.data.entries.data;
-
-                _this.hasRecords = !!_this.entries.length;
-
-                _this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this.nextPageUrl = response.data.entries.next_page_url;
-
-                _this.ready = true;
-            });
-        },
-        loadOlderEntries: function loadOlderEntries() {
-            var _this2 = this;
-
-            this.loadingMoreEntries = true;
-
-            this.http().get(this.nextPageUrl).then(function (response) {
-                var _entries;
-
-                (_entries = _this2.entries).push.apply(_entries, _toConsumableArray(response.data.entries.data));
-
-                _this2.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this2.nextPageUrl = response.data.entries.next_page_url;
-
-                _this2.loadingMoreEntries = false;
-            });
-        },
-
-
-        /**
-         * Filter the entries by the search query.
-         */
-        filterEntries: _.debounce(function () {
-            var _this3 = this;
-
-            this.ready = false;
-
-            this.http().get('/api/pages?search=' + this.searchQuery).then(function (response) {
-                _this3.entries = response.data.entries.data;
-
-                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this3.nextPageUrl = response.data.entries.next_page_url;
-
-                _this3.ready = true;
-            });
-        }, 500)
     }
 });
 
@@ -3493,11 +3450,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this5 = this;
 
             this.http().get('/api/tags').then(function (response) {
-                _this5.tags = response.data.entries;
+                _this5.tags = response.data.data;
             });
 
             this.http().get('/api/team').then(function (response) {
-                _this5.authors = response.data.entries;
+                _this5.authors = response.data.data;
 
                 if (!_this5.form.author_id && _this5.authors) {
                     _this5.form.author_id = _.first(_this5.authors).id;
@@ -3657,18 +3614,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__loadsEntries__);
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__loadsEntries___default.a],
+
     /**
      * The component's data.
      */
     data: function data() {
         return {
+            baseURL: '/api/posts',
             entries: [],
-            hasRecords: false,
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
@@ -3689,45 +3650,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
     methods: {
-        loadEntries: function loadEntries() {
-            var _this = this;
-
-            this.http().get('/api/posts').then(function (response) {
-                _this.entries = response.data.entries.data;
-
-                _this.hasRecords = !!_this.entries.length;
-
-                _this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this.nextPageUrl = response.data.entries.next_page_url;
-
-                _this.ready = true;
-            });
-        },
-
-
-        /**
-         * Load the older entries.
-         */
-        loadOlderEntries: function loadOlderEntries() {
-            var _this2 = this;
-
-            this.loadingMoreEntries = true;
-
-            this.http().get(this.nextPageUrl).then(function (response) {
-                var _entries;
-
-                (_entries = _this2.entries).push.apply(_entries, _toConsumableArray(response.data.entries.data));
-
-                _this2.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this2.nextPageUrl = response.data.entries.next_page_url;
-
-                _this2.loadingMoreEntries = false;
-            });
-        },
-
-
         /**
          * Format the given tags for display.
          */
@@ -3741,27 +3663,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
          */
         dateInTheFuture: function dateInTheFuture(date) {
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()().diff(__WEBPACK_IMPORTED_MODULE_0_moment___default()(date + ' Z'), 'minutes') < 0;
-        },
-
-
-        /**
-         * Filter the entries by the search query.
-         */
-        filterEntries: _.debounce(function () {
-            var _this3 = this;
-
-            this.ready = false;
-
-            this.http().get('/api/posts?search=' + this.searchQuery).then(function (response) {
-                _this3.entries = response.data.entries.data;
-
-                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this3.nextPageUrl = response.data.entries.next_page_url;
-
-                _this3.ready = true;
-            });
-        }, 500)
+        }
     }
 });
 
@@ -3933,16 +3835,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__loadsEntries__);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__loadsEntries___default.a],
+
     /**
      * The component's data.
      */
     data: function data() {
         return {
+            baseURL: '/api/tags',
             entries: [],
-            hasRecords: false,
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
@@ -3959,62 +3866,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         document.title = "Tags — Wink.";
 
         this.loadEntries();
-    },
-
-
-    methods: {
-        loadEntries: function loadEntries() {
-            var _this = this;
-
-            this.http().get('/api/tags?paginate=50').then(function (response) {
-                _this.entries = response.data.entries.data;
-
-                _this.hasRecords = !!_this.entries.length;
-
-                _this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this.nextPageUrl = response.data.entries.next_page_url;
-
-                _this.ready = true;
-            });
-        },
-        loadOlderEntries: function loadOlderEntries() {
-            var _this2 = this;
-
-            this.loadingMoreEntries = true;
-
-            this.http().get(this.nextPageUrl).then(function (response) {
-                var _entries;
-
-                (_entries = _this2.entries).push.apply(_entries, _toConsumableArray(response.data.entries.data));
-
-                _this2.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this2.nextPageUrl = response.data.entries.next_page_url;
-
-                _this2.loadingMoreEntries = false;
-            });
-        },
-
-
-        /**
-         * Filter the entries by the search query.
-         */
-        filterEntries: _.debounce(function () {
-            var _this3 = this;
-
-            this.ready = false;
-
-            this.http().get('/api/tags?paginate=50&search=' + this.searchQuery).then(function (response) {
-                _this3.entries = response.data.entries.data;
-
-                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this3.nextPageUrl = response.data.entries.next_page_url;
-
-                _this3.ready = true;
-            });
-        }, 500)
     }
 });
 
@@ -4235,16 +4086,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries__ = __webpack_require__("./resources/js/screens/loadsEntries.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__loadsEntries__);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__loadsEntries___default.a],
+
     /**
      * The component's data.
      */
     data: function data() {
         return {
+            baseURL: '/api/team',
             entries: [],
-            hasRecords: false,
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
@@ -4261,62 +4117,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         document.title = "Team — Wink.";
 
         this.loadEntries();
-    },
-
-
-    methods: {
-        loadEntries: function loadEntries() {
-            var _this = this;
-
-            this.http().get('/api/team?paginate=50').then(function (response) {
-                _this.entries = response.data.entries.data;
-
-                _this.hasRecords = !!_this.entries.length;
-
-                _this.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this.nextPageUrl = response.data.entries.next_page_url;
-
-                _this.ready = true;
-            });
-        },
-        loadOlderEntries: function loadOlderEntries() {
-            var _this2 = this;
-
-            this.loadingMoreEntries = true;
-
-            this.http().get(this.nextPageUrl).then(function (response) {
-                var _entries;
-
-                (_entries = _this2.entries).push.apply(_entries, _toConsumableArray(response.data.entries.data));
-
-                _this2.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this2.nextPageUrl = response.data.entries.next_page_url;
-
-                _this2.loadingMoreEntries = false;
-            });
-        },
-
-
-        /**
-         * Filter the entries by the search query.
-         */
-        filterEntries: _.debounce(function () {
-            var _this3 = this;
-
-            this.ready = false;
-
-            this.http().get('/api/team?paginate=50&search=' + this.searchQuery).then(function (response) {
-                _this3.entries = response.data.entries.data;
-
-                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
-
-                _this3.nextPageUrl = response.data.entries.next_page_url;
-
-                _this3.ready = true;
-            });
-        }, 500)
     }
 });
 
@@ -52490,43 +52290,102 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("div", { staticClass: "mb-10" }, [
-            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
-              _vm._v("Posts")
-            ]),
-            _vm._v(" "),
-            _vm.hasRecords
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.searchQuery,
-                      expression: "searchQuery"
-                    }
-                  ],
-                  staticClass:
-                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
-                  attrs: { type: "text", placeholder: "Search", id: "search" },
-                  domProps: { value: _vm.searchQuery },
+          _c(
+            "div",
+            { staticClass: "mb-10 flex items-center" },
+            [
+              _c(
+                "h1",
+                { staticClass: "inline font-semibold text-3xl mr-auto" },
+                [_vm._v("Posts")]
+              ),
+              _vm._v(" "),
+              _c(
+                "dropdown",
+                {
+                  staticClass: "relative ml-4",
                   on: {
-                    input: [
-                      function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.searchQuery = $event.target.value
-                      },
-                      _vm.filterEntries
-                    ]
+                    showing: function($event) {
+                      _vm.focusSearchInput()
+                    }
                   }
-                })
-              : _vm._e()
-          ]),
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "focus:outline-none text-light hover:text-primary h-8",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      attrs: { slot: "content" },
+                      slot: "content"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchQuery,
+                            expression: "searchQuery"
+                          }
+                        ],
+                        ref: "searchInput",
+                        staticClass: "input mt-0 w-full",
+                        attrs: { type: "text", placeholder: "Search..." },
+                        domProps: { value: _vm.searchQuery },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.searchQuery = $event.target.value
+                            },
+                            _vm.searchEntries
+                          ]
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
+          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
             ? _c(
                 "div",
                 [
@@ -52548,7 +52407,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
             ? _c("div", [
                 _vm._v(
                   "\n            No posts matched the given search.\n        "
@@ -52800,43 +52659,102 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("div", { staticClass: "mb-10" }, [
-            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
-              _vm._v("Team")
-            ]),
-            _vm._v(" "),
-            _vm.hasRecords
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.searchQuery,
-                      expression: "searchQuery"
-                    }
-                  ],
-                  staticClass:
-                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
-                  attrs: { type: "text", placeholder: "Search", id: "search" },
-                  domProps: { value: _vm.searchQuery },
+          _c(
+            "div",
+            { staticClass: "mb-10 flex items-center" },
+            [
+              _c(
+                "h1",
+                { staticClass: "inline font-semibold text-3xl mr-auto" },
+                [_vm._v("Team")]
+              ),
+              _vm._v(" "),
+              _c(
+                "dropdown",
+                {
+                  staticClass: "relative ml-4",
                   on: {
-                    input: [
-                      function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.searchQuery = $event.target.value
-                      },
-                      _vm.filterEntries
-                    ]
+                    showing: function($event) {
+                      _vm.focusSearchInput()
+                    }
                   }
-                })
-              : _vm._e()
-          ]),
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "focus:outline-none text-light hover:text-primary h-8",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      attrs: { slot: "content" },
+                      slot: "content"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchQuery,
+                            expression: "searchQuery"
+                          }
+                        ],
+                        ref: "searchInput",
+                        staticClass: "input mt-0 w-full",
+                        attrs: { type: "text", placeholder: "Search..." },
+                        domProps: { value: _vm.searchQuery },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.searchQuery = $event.target.value
+                            },
+                            _vm.searchEntries
+                          ]
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
+          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
             ? _c("div", [
                 _c(
                   "p",
@@ -52858,7 +52776,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
             ? _c("div", [
                 _vm._v(
                   "\n            No authors matched the given search.\n        "
@@ -53063,43 +52981,102 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("div", { staticClass: "mb-10" }, [
-            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
-              _vm._v("Pages")
-            ]),
-            _vm._v(" "),
-            _vm.hasRecords
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.searchQuery,
-                      expression: "searchQuery"
-                    }
-                  ],
-                  staticClass:
-                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
-                  attrs: { type: "text", placeholder: "Search", id: "search" },
-                  domProps: { value: _vm.searchQuery },
+          _c(
+            "div",
+            { staticClass: "mb-10 flex items-center" },
+            [
+              _c(
+                "h1",
+                { staticClass: "inline font-semibold text-3xl mr-auto" },
+                [_vm._v("Pages")]
+              ),
+              _vm._v(" "),
+              _c(
+                "dropdown",
+                {
+                  staticClass: "relative ml-4",
                   on: {
-                    input: [
-                      function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.searchQuery = $event.target.value
-                      },
-                      _vm.filterEntries
-                    ]
+                    showing: function($event) {
+                      _vm.focusSearchInput()
+                    }
                   }
-                })
-              : _vm._e()
-          ]),
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "focus:outline-none text-light hover:text-primary h-8",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      attrs: { slot: "content" },
+                      slot: "content"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchQuery,
+                            expression: "searchQuery"
+                          }
+                        ],
+                        ref: "searchInput",
+                        staticClass: "input mt-0 w-full",
+                        attrs: { type: "text", placeholder: "Search..." },
+                        domProps: { value: _vm.searchQuery },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.searchQuery = $event.target.value
+                            },
+                            _vm.searchEntries
+                          ]
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
+          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
             ? _c(
                 "div",
                 [
@@ -53121,7 +53098,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
             ? _c("div", [
                 _vm._v(
                   "\n            No pages matched the given search.\n        "
@@ -53939,43 +53916,102 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("div", { staticClass: "mb-10" }, [
-            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
-              _vm._v("Tags")
-            ]),
-            _vm._v(" "),
-            _vm.hasRecords
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.searchQuery,
-                      expression: "searchQuery"
-                    }
-                  ],
-                  staticClass:
-                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
-                  attrs: { type: "text", placeholder: "Search", id: "search" },
-                  domProps: { value: _vm.searchQuery },
+          _c(
+            "div",
+            { staticClass: "mb-10 flex items-center" },
+            [
+              _c(
+                "h1",
+                { staticClass: "inline font-semibold text-3xl mr-auto" },
+                [_vm._v("Tags")]
+              ),
+              _vm._v(" "),
+              _c(
+                "dropdown",
+                {
+                  staticClass: "relative ml-4",
                   on: {
-                    input: [
-                      function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.searchQuery = $event.target.value
-                      },
-                      _vm.filterEntries
-                    ]
+                    showing: function($event) {
+                      _vm.focusSearchInput()
+                    }
                   }
-                })
-              : _vm._e()
-          ]),
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "focus:outline-none text-light hover:text-primary h-8",
+                      attrs: { slot: "trigger" },
+                      slot: "trigger"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-4 h-4 fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      attrs: { slot: "content" },
+                      slot: "content"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchQuery,
+                            expression: "searchQuery"
+                          }
+                        ],
+                        ref: "searchInput",
+                        staticClass: "input mt-0 w-full",
+                        attrs: { type: "text", placeholder: "Search..." },
+                        domProps: { value: _vm.searchQuery },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.searchQuery = $event.target.value
+                            },
+                            _vm.searchEntries
+                          ]
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
+          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
             ? _c("div", [
                 _c(
                   "p",
@@ -53997,7 +54033,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
             ? _c("div", [
                 _vm._v(
                   "\n            No tags matched the given search.\n        "
@@ -72613,6 +72649,91 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+
+/***/ "./resources/js/screens/loadsEntries.js":
+/***/ (function(module, exports) {
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+module.exports = {
+    methods: {
+        loadEntries: function loadEntries() {
+            var _this = this;
+
+            this.http().get(this.baseURL).then(function (response) {
+                _this.entries = response.data.data;
+
+                _this.hasMoreEntries = !!response.data.next_page_url;
+
+                _this.nextPageUrl = response.data.next_page_url;
+
+                _this.ready = true;
+            });
+        },
+
+
+        /**
+         * Load the older entries.
+         */
+        loadOlderEntries: function loadOlderEntries() {
+            var _this2 = this;
+
+            this.loadingMoreEntries = true;
+
+            this.http().get(this.nextPageUrl).then(function (response) {
+                var _entries;
+
+                (_entries = _this2.entries).push.apply(_entries, _toConsumableArray(response.data.data));
+
+                _this2.hasMoreEntries = !!response.data.next_page_url;
+
+                _this2.nextPageUrl = response.data.next_page_url;
+
+                _this2.loadingMoreEntries = false;
+            });
+        },
+
+
+        /**
+         * Filter the entries by the search query.
+         */
+        searchEntries: function searchEntries() {
+            var _this3 = this;
+
+            if (!this.searchQuery) {
+                this.ready = false;
+            }
+
+            this.debouncer(function () {
+                _this3.ready = false;
+
+                _this3.http().get(_this3.baseURL + '?search=' + _this3.searchQuery).then(function (response) {
+                    _this3.entries = response.data.data;
+
+                    _this3.hasMoreEntries = !!response.data.next_page_url;
+
+                    _this3.nextPageUrl = response.data.next_page_url;
+
+                    _this3.ready = true;
+                });
+            });
+        },
+
+
+        /**
+         * Focus the search input when the filter dropdown opens.
+         */
+        focusSearchInput: function focusSearchInput() {
+            var _this4 = this;
+
+            this.$nextTick(function () {
+                _this4.$refs.searchInput.focus();
+            });
+        }
+    }
+};
 
 /***/ }),
 

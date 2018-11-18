@@ -6,6 +6,7 @@ use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Wink\Http\Resources\TeamResource;
 
 class TeamController
 {
@@ -16,23 +17,14 @@ class TeamController
      */
     public function index()
     {
-        $query = WinkAuthor::query();
+        $entries = WinkAuthor::when(request()->has('search'), function ($q) {
+            $q->where('name', 'LIKE', '%'.request('search').'%');
+        })
+            ->orderBy('created_at', 'DESC')
+            ->withCount('posts')
+            ->get();
 
-        if (request()->has('search')) {
-            $query->where('name','LIKE','%'.request('search').'%');
-        }
-
-        $entries = $query->withCount('posts')->orderBy('created_at', 'DESC');
-
-        if (request('paginate')) {
-            $entries = $entries->paginate(request('paginate'));
-        } else {
-            $entries = $entries->get();
-        }
-
-        return response()->json([
-            'entries' => $entries,
-        ]);
+        return TeamResource::collection($entries);
     }
 
     /**

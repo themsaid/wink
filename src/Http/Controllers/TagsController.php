@@ -5,6 +5,7 @@ namespace Wink\Http\Controllers;
 use Wink\WinkTag;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Wink\Http\Resources\TagsResource;
 
 class TagsController
 {
@@ -15,23 +16,14 @@ class TagsController
      */
     public function index()
     {
-        $query = WinkTag::query();
+        $entries = WinkTag::when(request()->has('search'), function ($q) {
+            $q->where('name', 'LIKE', '%'.request('search').'%');
+        })
+            ->orderBy('created_at', 'DESC')
+            ->withCount('posts')
+            ->get();
 
-        if (request()->has('search')) {
-            $query->where('name','LIKE','%'.request('search').'%');
-        }
-
-        $entries = $query->withCount('posts')->orderBy('created_at', 'DESC');
-
-        if (request('paginate')) {
-            $entries = $entries->paginate(request('paginate'));
-        } else {
-            $entries = $entries->get();
-        }
-
-        return response()->json([
-            'entries' => $entries,
-        ]);
+        return TagsResource::collection($entries);
     }
 
     /**
