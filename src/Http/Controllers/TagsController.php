@@ -15,7 +15,13 @@ class TagsController
      */
     public function index()
     {
-        $entries = WinkTag::withCount('posts')->orderBy('created_at', 'DESC');
+        $query = WinkTag::query();
+
+        if (request()->has('search')) {
+            $query->where('name','LIKE','%'.request('search').'%');
+        }
+
+        $entries = $query->withCount('posts')->orderBy('created_at', 'DESC');
 
         if (request('paginate')) {
             $entries = $entries->paginate(request('paginate'));

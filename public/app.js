@@ -3134,10 +3134,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     data: function data() {
         return {
             entries: [],
+            hasRecords: false,
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
-            ready: false
+            ready: false,
+            searchQuery: ''
         };
     },
 
@@ -3158,6 +3160,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
             this.http().get('/api/pages').then(function (response) {
                 _this.entries = response.data.entries.data;
+
+                _this.hasRecords = !!_this.entries.length;
 
                 _this.hasMoreEntries = !!response.data.entries.next_page_url;
 
@@ -3182,7 +3186,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
                 _this2.loadingMoreEntries = false;
             });
-        }
+        },
+
+
+        /**
+         * Filter the entries by the search query.
+         */
+        filterEntries: _.debounce(function () {
+            var _this3 = this;
+
+            this.ready = false;
+
+            this.http().get('/api/pages?search=' + this.searchQuery).then(function (response) {
+                _this3.entries = response.data.entries.data;
+
+                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
+
+                _this3.nextPageUrl = response.data.entries.next_page_url;
+
+                _this3.ready = true;
+            });
+        }, 500)
     }
 });
 
@@ -3644,10 +3668,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     data: function data() {
         return {
             entries: [],
+            hasRecords: false,
             hasMoreEntries: false,
             nextPageUrl: null,
             loadingMoreEntries: false,
-            ready: false
+            ready: false,
+            searchQuery: ''
         };
     },
 
@@ -3668,6 +3694,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
             this.http().get('/api/posts').then(function (response) {
                 _this.entries = response.data.entries.data;
+
+                _this.hasRecords = !!_this.entries.length;
 
                 _this.hasMoreEntries = !!response.data.entries.next_page_url;
 
@@ -3713,7 +3741,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
          */
         dateInTheFuture: function dateInTheFuture(date) {
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()().diff(__WEBPACK_IMPORTED_MODULE_0_moment___default()(date + ' Z'), 'minutes') < 0;
-        }
+        },
+
+
+        /**
+         * Filter the entries by the search query.
+         */
+        filterEntries: _.debounce(function () {
+            var _this3 = this;
+
+            this.ready = false;
+
+            this.http().get('/api/posts?search=' + this.searchQuery).then(function (response) {
+                _this3.entries = response.data.entries.data;
+
+                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
+
+                _this3.nextPageUrl = response.data.entries.next_page_url;
+
+                _this3.ready = true;
+            });
+        }, 500)
     }
 });
 
@@ -3894,10 +3942,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     data: function data() {
         return {
             entries: [],
-            ready: false,
-            nextPageUrl: null,
+            hasRecords: false,
             hasMoreEntries: false,
-            loadingMoreEntries: false
+            nextPageUrl: null,
+            loadingMoreEntries: false,
+            ready: false,
+            searchQuery: ''
         };
     },
 
@@ -3918,6 +3968,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
             this.http().get('/api/tags?paginate=50').then(function (response) {
                 _this.entries = response.data.entries.data;
+
+                _this.hasRecords = !!_this.entries.length;
 
                 _this.hasMoreEntries = !!response.data.entries.next_page_url;
 
@@ -3942,7 +3994,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
                 _this2.loadingMoreEntries = false;
             });
-        }
+        },
+
+
+        /**
+         * Filter the entries by the search query.
+         */
+        filterEntries: _.debounce(function () {
+            var _this3 = this;
+
+            this.ready = false;
+
+            this.http().get('/api/tags?paginate=50&search=' + this.searchQuery).then(function (response) {
+                _this3.entries = response.data.entries.data;
+
+                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
+
+                _this3.nextPageUrl = response.data.entries.next_page_url;
+
+                _this3.ready = true;
+            });
+        }, 500)
     }
 });
 
@@ -4172,10 +4244,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     data: function data() {
         return {
             entries: [],
-            ready: false,
-            nextPageUrl: null,
+            hasRecords: false,
             hasMoreEntries: false,
-            loadingMoreEntries: false
+            nextPageUrl: null,
+            loadingMoreEntries: false,
+            ready: false,
+            searchQuery: ''
         };
     },
 
@@ -4196,6 +4270,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
             this.http().get('/api/team?paginate=50').then(function (response) {
                 _this.entries = response.data.entries.data;
+
+                _this.hasRecords = !!_this.entries.length;
 
                 _this.hasMoreEntries = !!response.data.entries.next_page_url;
 
@@ -4220,7 +4296,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
                 _this2.loadingMoreEntries = false;
             });
-        }
+        },
+
+
+        /**
+         * Filter the entries by the search query.
+         */
+        filterEntries: _.debounce(function () {
+            var _this3 = this;
+
+            this.ready = false;
+
+            this.http().get('/api/team?paginate=50&search=' + this.searchQuery).then(function (response) {
+                _this3.entries = response.data.entries.data;
+
+                _this3.hasMoreEntries = !!response.data.entries.next_page_url;
+
+                _this3.nextPageUrl = response.data.entries.next_page_url;
+
+                _this3.ready = true;
+            });
+        }, 500)
     }
 });
 
@@ -52394,13 +52490,43 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-            _vm._v("Posts")
+          _c("div", { staticClass: "mb-10" }, [
+            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
+              _vm._v("Posts")
+            ]),
+            _vm._v(" "),
+            _vm.hasRecords
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchQuery,
+                      expression: "searchQuery"
+                    }
+                  ],
+                  staticClass:
+                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
+                  attrs: { type: "text", placeholder: "Search", id: "search" },
+                  domProps: { value: _vm.searchQuery },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      },
+                      _vm.filterEntries
+                    ]
+                  }
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0
+          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
             ? _c(
                 "div",
                 [
@@ -52420,6 +52546,14 @@ var render = function() {
                 ],
                 1
               )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+            ? _c("div", [
+                _vm._v(
+                  "\n            No posts matched the given search.\n        "
+                )
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.ready && _vm.entries.length > 0
@@ -52666,13 +52800,43 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-            _vm._v("Team")
+          _c("div", { staticClass: "mb-10" }, [
+            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
+              _vm._v("Team")
+            ]),
+            _vm._v(" "),
+            _vm.hasRecords
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchQuery,
+                      expression: "searchQuery"
+                    }
+                  ],
+                  staticClass:
+                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
+                  attrs: { type: "text", placeholder: "Search", id: "search" },
+                  domProps: { value: _vm.searchQuery },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      },
+                      _vm.filterEntries
+                    ]
+                  }
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0
+          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
             ? _c("div", [
                 _c(
                   "p",
@@ -52690,6 +52854,14 @@ var render = function() {
                     _vm._v("\n                .\n            ")
                   ],
                   1
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+            ? _c("div", [
+                _vm._v(
+                  "\n            No authors matched the given search.\n        "
                 )
               ])
             : _vm._e(),
@@ -52891,13 +53063,43 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-            _vm._v("Pages")
+          _c("div", { staticClass: "mb-10" }, [
+            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
+              _vm._v("Pages")
+            ]),
+            _vm._v(" "),
+            _vm.hasRecords
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchQuery,
+                      expression: "searchQuery"
+                    }
+                  ],
+                  staticClass:
+                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
+                  attrs: { type: "text", placeholder: "Search", id: "search" },
+                  domProps: { value: _vm.searchQuery },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      },
+                      _vm.filterEntries
+                    ]
+                  }
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0
+          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
             ? _c(
                 "div",
                 [
@@ -52917,6 +53119,14 @@ var render = function() {
                 ],
                 1
               )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+            ? _c("div", [
+                _vm._v(
+                  "\n            No pages matched the given search.\n        "
+                )
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.ready && _vm.entries.length > 0
@@ -53729,13 +53939,43 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("h1", { staticClass: "font-semibold text-3xl mb-10" }, [
-            _vm._v("Tags")
+          _c("div", { staticClass: "mb-10" }, [
+            _c("h1", { staticClass: "inline font-semibold text-3xl" }, [
+              _vm._v("Tags")
+            ]),
+            _vm._v(" "),
+            _vm.hasRecords
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchQuery,
+                      expression: "searchQuery"
+                    }
+                  ],
+                  staticClass:
+                    "input mt-1 border-b border-very-light pb-2 w-1/4 float-right",
+                  attrs: { type: "text", placeholder: "Search", id: "search" },
+                  domProps: { value: _vm.searchQuery },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      },
+                      _vm.filterEntries
+                    ]
+                  }
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0
+          _vm.ready && _vm.entries.length == 0 && !_vm.hasRecords
             ? _c("div", [
                 _c(
                   "p",
@@ -53753,6 +53993,14 @@ var render = function() {
                     _vm._v("\n                .\n            ")
                   ],
                   1
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.entries.length == 0 && _vm.searchQuery && _vm.ready
+            ? _c("div", [
+                _vm._v(
+                  "\n            No tags matched the given search.\n        "
                 )
               ])
             : _vm._e(),

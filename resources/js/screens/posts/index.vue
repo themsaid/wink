@@ -8,10 +8,12 @@
         data() {
             return {
                 entries: [],
+                hasRecords: false,
                 hasMoreEntries: false,
                 nextPageUrl: null,
                 loadingMoreEntries: false,
-                ready: false
+                ready: false,
+                searchQuery: ''
             };
         },
 
@@ -30,6 +32,8 @@
             loadEntries(){
                 this.http().get('/api/posts').then(response => {
                     this.entries = response.data.entries.data;
+
+                    this.hasRecords = !!this.entries.length;
 
                     this.hasMoreEntries = !!response.data.entries.next_page_url;
 
@@ -72,6 +76,24 @@
             dateInTheFuture(date){
                 return moment().diff(moment(date + ' Z'), 'minutes') < 0;
             },
+
+
+            /**
+             * Filter the entries by the search query.
+             */
+            filterEntries: _.debounce(function () {
+                this.ready = false;
+
+                this.http().get('/api/posts?search=' + this.searchQuery).then(response => {
+                    this.entries = response.data.entries.data;
+
+                    this.hasMoreEntries = !!response.data.entries.next_page_url;
+
+                    this.nextPageUrl = response.data.entries.next_page_url;
+
+                    this.ready = true;
+                });
+            }, 500)
         }
     }
 </script>
@@ -87,14 +109,26 @@
         </page-header>
 
         <div class="container">
-            <h1 class="font-semibold text-3xl mb-10">Posts</h1>
+            <div class="mb-10">
+                <h1 class="inline font-semibold text-3xl">Posts</h1>
+                <input v-if="hasRecords"
+                       type="text" class="input mt-1 border-b border-very-light pb-2 w-1/4 float-right"
+                       placeholder="Search"
+                       v-model="searchQuery"
+                       @input="filterEntries"
+                       id="search">
+            </div>
 
             <preloader v-if="!ready"></preloader>
 
-            <div v-if="ready && entries.length == 0">
+            <div v-if="ready && entries.length == 0 && !hasRecords">
                 No posts were found, start by
                 <router-link :to="{name:'post-new'}" class="no-underline text-primary hover:text-primary-dark">writing your first post</router-link>
                 .
+            </div>
+
+            <div v-if="entries.length == 0 && searchQuery && ready">
+                No posts matched the given search.
             </div>
 
             <div v-if="ready && entries.length > 0">
