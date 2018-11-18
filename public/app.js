@@ -2630,6 +2630,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 opengraph_title: '',
                 opengraph_description: '',
                 opengraph_image: '',
+                opengraph_image_width: '',
+                opengraph_image_height: '',
                 twitter_title: '',
                 twitter_description: '',
                 twitter_image: ''
@@ -2657,6 +2659,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 caption = _ref.caption;
 
             this.form.opengraph_image = url;
+
+            // For FB, knowing height and width means we can avoid the "empty image"
+            // problem for the first user to share our content. Set up a dummy image
+            // object to grab height and width, and send back as hidden params.
+            var tempimage = new Image();
+            tempimage.src = url;
+
+            var _this = this;
+            tempimage.onload = function () {
+                _this.form.opengraph_image_height = this.height;
+                _this.form.opengraph_image_width = this.width;
+            };
 
             this.facebookImageUploading = false;
         },
@@ -2923,6 +2937,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: '',
                     opengraph_description: '',
                     opengraph_image: '',
+                    opengraph_image_width: '',
+                    opengraph_image_height: '',
                     twitter_title: '',
                     twitter_description: '',
                     twitter_image: ''
@@ -3010,6 +3026,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: data.meta.opengraph_title || '',
                     opengraph_description: data.meta.opengraph_description || '',
                     opengraph_image: data.meta.opengraph_image || '',
+                    opengraph_image_width: data.meta.opengraph_image_width || '',
+                    opengraph_image_height: data.meta.opengraph_image_height || '',
                     twitter_title: data.meta.twitter_title || '',
                     twitter_description: data.meta.twitter_description || '',
                     twitter_image: data.meta.twitter_image || ''
@@ -3342,6 +3360,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: '',
                     opengraph_description: '',
                     opengraph_image: '',
+                    opengraph_image_width: '',
+                    opengraph_image_height: '',
                     twitter_title: '',
                     twitter_description: '',
                     twitter_image: ''
@@ -3441,6 +3461,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: data.meta.opengraph_title || '',
                     opengraph_description: data.meta.opengraph_description || '',
                     opengraph_image: data.meta.opengraph_image || '',
+                    opengraph_image_width: data.meta.opengraph_image_width || '',
+                    opengraph_image_height: data.meta.opengraph_image_height || '',
                     twitter_title: data.meta.twitter_title || '',
                     twitter_description: data.meta.twitter_description || '',
                     twitter_image: data.meta.twitter_image || ''
@@ -3784,6 +3806,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: '',
                     opengraph_description: '',
                     opengraph_image: '',
+                    opengraph_image_width: '',
+                    opengraph_image_height: '',
                     twitter_title: '',
                     twitter_description: '',
                     twitter_image: ''
@@ -3815,6 +3839,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: response.data.entry.meta.opengraph_title || '',
                     opengraph_description: response.data.entry.meta.opengraph_description || '',
                     opengraph_image: response.data.entry.meta.opengraph_image || '',
+                    opengraph_image_width: response.data.entry.meta.opengraph_image_width || '',
+                    opengraph_image_height: response.data.entry.meta.opengraph_image_height || '',
                     twitter_title: response.data.entry.meta.twitter_title || '',
                     twitter_description: response.data.entry.meta.twitter_description || '',
                     twitter_image: response.data.entry.meta.twitter_image || ''
@@ -4040,6 +4066,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     opengraph_title: '',
                     opengraph_description: '',
                     opengraph_image: '',
+                    opengraph_image_width: '',
+                    opengraph_image_height: '',
                     twitter_title: '',
                     twitter_description: '',
                     twitter_image: ''
@@ -4105,6 +4133,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         opengraph_title: response.data.entry.meta.opengraph_title || '',
                         opengraph_description: response.data.entry.meta.opengraph_description || '',
                         opengraph_image: response.data.entry.meta.opengraph_image || '',
+                        opengraph_image_width: response.data.entry.meta.opengraph_image_width || '',
+                        opengraph_image_height: response.data.entry.meta.opengraph_image_height || '',
                         twitter_title: response.data.entry.meta.twitter_title || '',
                         twitter_description: response.data.entry.meta.twitter_description || '',
                         twitter_image: response.data.entry.meta.twitter_image || ''
@@ -53406,7 +53436,53 @@ var render = function() {
                     })
                   : _vm._e()
               ])
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.opengraph_image_width,
+                expression: "form.opengraph_image_width"
+              }
+            ],
+            attrs: { type: "hidden" },
+            domProps: { value: _vm.form.opengraph_image_width },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "opengraph_image_width", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.opengraph_image_height,
+                expression: "form.opengraph_image_height"
+              }
+            ],
+            attrs: { type: "hidden" },
+            domProps: { value: _vm.form.opengraph_image_height },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.form,
+                  "opengraph_image_height",
+                  $event.target.value
+                )
+              }
+            }
+          })
         ],
         1
       )

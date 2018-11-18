@@ -14,6 +14,13 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
     protected $guarded = [];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
+
+    /**
      * The table associated with the model.
      *
      * @var string
