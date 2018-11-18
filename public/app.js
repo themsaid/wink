@@ -56529,9 +56529,19 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "text-light" }, [_vm._v("W")]),
-                _vm._v("ink.\n                ")
-              ]
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "no-underline text-black",
+                    attrs: { to: "/" }
+                  },
+                  [
+                    _c("span", { staticClass: "text-light" }, [_vm._v("W")]),
+                    _vm._v("ink.\n                    ")
+                  ]
+                )
+              ],
+              1
             ),
             _vm._v(" "),
             _vm._t("left-side")

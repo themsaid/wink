@@ -15,7 +15,9 @@
             <div class="flex items-center py-2">
                 <div class="flex items-center mr-auto">
                     <h3 class="mr-5 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
-                        <span class="text-light">W</span>ink.
+                        <router-link to="/" class="no-underline text-black">
+                            <span class="text-light">W</span>ink.
+                        </router-link>
                     </h3>
 
                     <slot name="left-side"></slot>
