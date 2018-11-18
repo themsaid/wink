@@ -15,7 +15,7 @@ const router = new VueRouter({
 });
 
 Vue.component('page-header', require('./components/PageHeader.vue'));
-Vue.component('preloader', require('./partials/preloader.vue'));
+Vue.component('preloader', require('./partials/Preloader.vue'));
 
 Vue.component('alert', require('./components/Alert.vue'));
 Vue.component('dropdown', require('./components/DropDown.vue'));
