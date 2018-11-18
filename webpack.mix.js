@@ -32,7 +32,7 @@ mix
     })
     .version()
     .copy('resources/favicon.png', 'public')
-    // .copy('public', '../winktest/public/vendor/wink')
+    .copy('public', '../winktest/public/vendor/wink')
     .webpackConfig({
         resolve: {
             symlinks: false,
