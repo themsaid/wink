@@ -15,6 +15,8 @@
                     opengraph_title: '',
                     opengraph_description: '',
                     opengraph_image: '',
+                    opengraph_image_width: '',
+                    opengraph_image_height: '',
                     twitter_title: '',
                     twitter_description: '',
                     twitter_image: '',
@@ -39,17 +41,25 @@
             /**
              * Update the selected opengraph image.
              */
-            updateFacebookImage({url, caption}){
+            updateFacebookImage({url}){
+                var img = new Image();
+
                 this.form.opengraph_image = url;
+
+                img.src = url;
+
+                img.onload = e => {
+                    this.form.opengraph_image_height = e.target.height;
+                    this.form.opengraph_image_width = e.target.width;
+                };
 
                 this.facebookImageUploading = false;
             },
 
-
             /**
              * Update the selected twitter image.
              */
-            updateTwitterImage({url, caption}){
+            updateTwitterImage({url}){
                 this.form.twitter_image = url;
 
                 this.twitterImageUploading = false;
@@ -114,6 +124,8 @@
                          v-if="form.opengraph_image"
                          :style="{ backgroundImage: 'url(' + form.opengraph_image + ')' }"></div>
                 </div>
+                <input type="hidden" v-model="form.opengraph_image_width"/>
+                <input type="hidden" v-model="form.opengraph_image_height"/>
             </div>
         </div>
 
