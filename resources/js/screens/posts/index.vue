@@ -71,7 +71,7 @@
                         </svg>
                     </button>
 
-                    <div slot="content" class="bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3">
+                    <div slot="content" class="dropdown-content w-64 pin-r p-3">
                         <input type="text" class="input mt-0 w-full"
                                placeholder="Search..."
                                v-model="searchQuery"

@@ -2032,6 +2032,18 @@ table {
   outline: 0;
 }
 
+.dropdown-content {
+  background-color: #fff;
+  border-width: 1px;
+  border-color: #cacfd4;
+  border-radius: .25rem;
+  position: absolute;
+  z-index: 50;
+  white-space: nowrap;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

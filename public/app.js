@@ -52344,8 +52344,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass:
-                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      staticClass: "dropdown-content w-64 pin-r p-3",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -52713,8 +52712,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass:
-                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      staticClass: "dropdown-content w-64 pin-r p-3",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -53035,8 +53033,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass:
-                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      staticClass: "dropdown-content w-64 pin-r p-3",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -53698,7 +53695,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
+                        "dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -53970,8 +53967,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass:
-                        "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap w-64 pin-r p-3",
+                      staticClass: "dropdown-content w-64 pin-r p-3",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -54246,7 +54242,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
+                        "dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -54529,7 +54525,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
+                        "dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -55015,7 +55011,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
+                        "dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2",
                       attrs: { slot: "content" },
                       slot: "content"
                     },
@@ -56629,7 +56625,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2",
+                    "dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2",
                   attrs: { slot: "content" },
                   slot: "content"
                 },

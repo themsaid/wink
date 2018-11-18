@@ -63,6 +63,10 @@
     outline: 0;
 }
 
+.dropdown-content{
+    @apply bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap shadow;
+}
+
 @tailwind utilities;
 
 input:-webkit-autofill,

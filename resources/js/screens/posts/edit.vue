@@ -342,7 +342,7 @@
                         </svg>
                     </button>
 
-                    <div slot="content" class="bg-white border border-lighter rounded absolute z-30 whitespace-no-wrap min-w-dropdown pin-r mt-1 text-sm py-2">
+                    <div slot="content" class="dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2">
                         <a href="#" @click.prevent="settingsModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
                             General Settings
                         </a>
