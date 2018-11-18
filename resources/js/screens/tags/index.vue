@@ -63,14 +63,14 @@
 
             <preloader v-if="!ready"></preloader>
 
-            <div v-if="ready && entries.length == 0 && !searchQuery">
+            <div v-if="ready && entries.length == 0 && !isFiltered">
                 <p>No tags were found, start by
                     <router-link :to="{name:'tag-new'}" class="no-underline text-primary hover:text-primary-dark">adding some tags</router-link>
                     .
                 </p>
             </div>
 
-            <div v-if="ready && entries.length == 0 && searchQuery">
+            <div v-if="ready && entries.length == 0 && isFiltered">
                 No tags matched the given search.
             </div>
 

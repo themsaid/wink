@@ -3655,6 +3655,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             baseURL: '/api/posts',
+            tags: [],
+            authors: [],
             entries: [],
             hasMoreEntries: false,
             nextPageUrl: null,
@@ -3663,7 +3665,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             searchQuery: '',
 
             filters: {
-                status: ''
+                status: '',
+                author_id: '',
+                tag_id: ''
             }
         };
     },
@@ -3677,11 +3681,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.loadEntries();
 
+        this.loadResources();
+
         this.watchFiltersChanges();
     },
 
 
     methods: {
+        /**
+         * Load the resources needed for the screen.
+         */
+        loadResources: function loadResources() {
+            var _this = this;
+
+            this.http().get('/api/tags').then(function (response) {
+                _this.tags = response.data.data;
+            });
+
+            this.http().get('/api/team').then(function (response) {
+                _this.authors = response.data.data;
+            });
+        },
+
+
         /**
          * Format the given tags for display.
          */
@@ -52401,7 +52423,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "w-1/2 focus:outline-none",
-                          attrs: { name: "status", id: "author_id" },
+                          attrs: { name: "status" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -52445,6 +52467,120 @@ var render = function() {
                         ]
                       )
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "flex items-center justify-between mt-3" },
+                    [
+                      _c("span", [_vm._v("Author")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.filters.author_id,
+                              expression: "filters.author_id"
+                            }
+                          ],
+                          staticClass: "w-1/2 focus:outline-none",
+                          attrs: { name: "status" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.filters,
+                                "author_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.authors, function(author) {
+                            return _c(
+                              "option",
+                              { domProps: { value: author.id } },
+                              [_vm._v(_vm._s(author.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "flex items-center justify-between mt-3" },
+                    [
+                      _c("span", [_vm._v("Tag")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.filters.tag_id,
+                              expression: "filters.tag_id"
+                            }
+                          ],
+                          staticClass: "w-1/2 focus:outline-none",
+                          attrs: { name: "status" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.filters,
+                                "tag_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.tags, function(tag) {
+                            return _c(
+                              "option",
+                              { domProps: { value: tag.id } },
+                              [_vm._v(_vm._s(tag.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ]
                   )
                 ]
               )
@@ -52454,7 +52590,7 @@ var render = function() {
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && !_vm.isFiltered
             ? _c(
                 "div",
                 [
@@ -52476,7 +52612,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && _vm.isFiltered
             ? _c("div", [
                 _vm._v(
                   "\n            No posts matched the given search.\n        "
@@ -52778,7 +52914,7 @@ var render = function() {
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && !_vm.isFiltered
             ? _c("div", [
                 _c(
                   "p",
@@ -52800,7 +52936,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && _vm.isFiltered
             ? _c("div", [
                 _vm._v(
                   "\n            No authors matched the given search.\n        "
@@ -53055,7 +53191,7 @@ var render = function() {
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && !_vm.isFiltered
             ? _c(
                 "div",
                 [
@@ -53077,7 +53213,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && _vm.isFiltered
             ? _c("div", [
                 _vm._v(
                   "\n            No pages matched the given search.\n        "
@@ -53945,7 +54081,7 @@ var render = function() {
           _vm._v(" "),
           !_vm.ready ? _c("preloader") : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && !_vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && !_vm.isFiltered
             ? _c("div", [
                 _c(
                   "p",
@@ -53967,7 +54103,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.ready && _vm.entries.length == 0 && _vm.searchQuery
+          _vm.ready && _vm.entries.length == 0 && _vm.isFiltered
             ? _c("div", [
                 _vm._v(
                   "\n            No tags matched the given search.\n        "
@@ -72731,7 +72867,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 module.exports = {
     computed: {
         isFiltered: function isFiltered() {
-            return !!this.searchQuery.length || this.filters && this.filters.status;
+            return !!this.searchQuery.length || this.filters && this.filters.status || this.filters && this.filters.author_id || this.filters && this.filters.tag_id;
         }
     },
 
@@ -72739,7 +72875,7 @@ module.exports = {
         loadEntries: function loadEntries() {
             var _this = this;
 
-            this.http().get(this.baseURL + '?wink=wink' + (this.searchQuery ? '&search=' + this.searchQuery : '') + (this.filters && this.filters.status ? '&status=' + this.filters.status : '')).then(function (response) {
+            this.http().get(this.baseURL + '?wink=wink' + (this.searchQuery ? '&search=' + this.searchQuery : '') + (this.filters && this.filters.status ? '&status=' + this.filters.status : '') + (this.filters && this.filters.author_id ? '&author_id=' + this.filters.author_id : '') + (this.filters && this.filters.tag_id ? '&tag_id=' + this.filters.tag_id : '')).then(function (response) {
                 _this.entries = response.data.data;
 
                 _this.hasMoreEntries = !!response.data.next_page_url;

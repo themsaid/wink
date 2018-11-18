@@ -16,6 +16,8 @@
         data() {
             return {
                 baseURL: '/api/posts',
+                tags: [],
+                authors: [],
                 entries: [],
                 hasMoreEntries: false,
                 nextPageUrl: null,
@@ -24,7 +26,9 @@
                 searchQuery: '',
 
                 filters:{
-                    status: ''
+                    status: '',
+                    author_id: '',
+                    tag_id: '',
                 }
             };
         },
@@ -38,11 +42,27 @@
 
             this.loadEntries();
 
+            this.loadResources();
+
             this.watchFiltersChanges();
         },
 
 
         methods: {
+            /**
+             * Load the resources needed for the screen.
+             */
+            loadResources(){
+                this.http().get('/api/tags').then(response => {
+                    this.tags = response.data.data;
+                });
+
+                this.http().get('/api/team').then(response => {
+                    this.authors = response.data.data;
+                });
+            },
+
+
             /**
              * Format the given tags for display.
              */
@@ -85,8 +105,7 @@
                     <div class="flex items-center justify-between mt-5 pt-5 border-t border-very-light">
                         <span>Status</span>
                         <select name="status" class="w-1/2 focus:outline-none"
-                                v-model="filters.status"
-                                id="author_id">
+                                v-model="filters.status">
                             <option value="">All</option>
                             <option value="live">Live</option>
                             <option value="published">Published</option>
@@ -94,18 +113,36 @@
                             <option value="draft">Draft</option>
                         </select>
                     </div>
+
+                    <div class="flex items-center justify-between mt-3">
+                        <span>Author</span>
+                        <select name="status" class="w-1/2 focus:outline-none"
+                                v-model="filters.author_id">
+                            <option value="">All</option>
+                            <option v-for="author in authors" :value="author.id">{{author.name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-3">
+                        <span>Tag</span>
+                        <select name="status" class="w-1/2 focus:outline-none"
+                                v-model="filters.tag_id">
+                            <option value="">All</option>
+                            <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
+                        </select>
+                    </div>
                 </filters>
             </div>
 
             <preloader v-if="!ready"></preloader>
 
-            <div v-if="ready && entries.length == 0 && !searchQuery">
+            <div v-if="ready && entries.length == 0 && !isFiltered">
                 No posts were found, start by
                 <router-link :to="{name:'post-new'}" class="no-underline text-primary hover:text-primary-dark">writing your first post</router-link>
                 .
             </div>
 
-            <div v-if="ready && entries.length == 0 && searchQuery">
+            <div v-if="ready && entries.length == 0 && isFiltered">
                 No posts matched the given search.
             </div>
 

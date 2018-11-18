@@ -21,6 +21,12 @@ class PostsController
             $q->where('title', 'LIKE', '%'.request('search').'%');
         })->when(request('status'), function ($q, $value) {
             $q->$value();
+        })->when(request('author_id'), function ($q, $value) {
+            $q->whereAuthorId($value);
+        })->when(request('tag_id'), function ($q, $value) {
+            $q->whereHas('tags', function ($query) use ($value) {
+                $query->where('id', $value);
+            });
         })
             ->orderBy('created_at', 'DESC')
             ->with('tags')

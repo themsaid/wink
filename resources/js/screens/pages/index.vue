@@ -63,13 +63,13 @@
 
             <preloader v-if="!ready"></preloader>
 
-            <div v-if="ready && entries.length == 0 && !searchQuery">
+            <div v-if="ready && entries.length == 0 && !isFiltered">
                 No pages were found, start by
                 <router-link :to="{name:'page-new'}" class="no-underline text-primary hover:text-primary-dark">writing your first page</router-link>
                 .
             </div>
 
-            <div v-if="ready && entries.length == 0 && searchQuery">
+            <div v-if="ready && entries.length == 0 && isFiltered">
                 No pages matched the given search.
             </div>
 

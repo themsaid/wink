@@ -50,7 +50,6 @@ Wink is shipped with an admin panel that's simple to use. However, we give you f
 public function index()
 {
     $posts = WinkPost::with('tags')
-        ->published()
         ->live()
         ->orderBy('publish_date', 'DESC')
         ->simplePaginate(12);
@@ -85,9 +84,9 @@ Here's the plan for what's coming:
 - [x] Customize Twitter/Facebook cards and SEO metadata.
 - [x] Optimize CSS. Move to Tailwind?
 - [x] Add text search inside listings.
+- [x] Filter posts by status, scheduling, tags, and authors.
 - [ ] Ability to extract featured image/ social images from images used in post/page.
 - [ ] Create an initial theme that people can use right away.
-- [ ] Filter posts by status, scheduling, tags, and authors.
 - [ ] Adding image galleries to posts and pages.
 - [ ] Attach metadata to posts and pages.
 - [ ] Link social accounts and automatic post on new published content.
