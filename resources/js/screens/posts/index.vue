@@ -21,7 +21,11 @@
                 nextPageUrl: null,
                 loadingMoreEntries: false,
                 ready: false,
-                searchQuery: ''
+                searchQuery: '',
+
+                filters:{
+                    status: ''
+                }
             };
         },
 
@@ -33,6 +37,8 @@
             document.title = "Posts — Wink.";
 
             this.loadEntries();
+
+            this.watchFiltersChanges();
         },
 
 
@@ -69,12 +75,23 @@
             <div class="mb-10 flex items-center">
                 <h1 class="inline font-semibold text-3xl mr-auto">Posts</h1>
 
-                <filters @showing="focusSearchInput" :is-filtered="isFiltered">
+                <filters @showing="focusSearchInput" :is-filtered="isFiltered" class="text-sm">
                     <input type="text" class="input mt-0 w-full"
                            placeholder="Search..."
                            v-model="searchQuery"
                            ref="searchInput"
                            @input="searchEntries">
+
+                    <div class="flex items-center justify-between mt-5 pt-5 border-t border-very-light">
+                        <span>Status</span>
+                        <select name="status" class="w-1/2 focus:outline-none"
+                                v-model="filters.status"
+                                id="author_id">
+                            <option value="">All</option>
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
                 </filters>
             </div>
 

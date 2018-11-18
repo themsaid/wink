@@ -1,14 +1,17 @@
 module.exports = {
     computed: {
         isFiltered(){
-            return !!this.searchQuery.length;
+            return !!this.searchQuery.length || this.filters.status;
         }
     },
 
 
     methods: {
         loadEntries(){
-            this.http().get(this.baseURL).then(response => {
+            this.http().get(this.baseURL + '?wink=wink' +
+                (this.searchQuery ? '&search=' + this.searchQuery : '') +
+                (this.filters.status ? '&status=' + this.filters.status : '')
+            ).then(response => {
                 this.entries = response.data.data;
 
                 this.hasMoreEntries = !!response.data.next_page_url;
@@ -49,15 +52,7 @@ module.exports = {
             this.debouncer(() => {
                 this.ready = false;
 
-                this.http().get(this.baseURL + '?search=' + this.searchQuery).then(response => {
-                    this.entries = response.data.data;
-
-                    this.hasMoreEntries = !!response.data.next_page_url;
-
-                    this.nextPageUrl = response.data.next_page_url;
-
-                    this.ready = true;
-                });
+                this.loadEntries();
             });
         },
 
@@ -69,6 +64,22 @@ module.exports = {
             this.$nextTick(() => {
                 this.$refs.searchInput.focus();
             });
-        }
+        },
+
+
+        /**
+         * Watch changes and save the post.
+         */
+        watchFiltersChanges(){
+            this.$watch('filters', () => {
+                this.ready = false;
+
+                this.debouncer(() => {
+                    this.ready = false;
+
+                    this.loadEntries();
+                });
+            }, {deep: true});
+        },
     }
 };

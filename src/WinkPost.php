@@ -94,7 +94,7 @@ class WinkPost extends AbstractWinkModel
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeDrafts($query)
+    public function scopeDraft($query)
     {
         return $query->where('published', false);
     }

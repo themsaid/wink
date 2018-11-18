@@ -19,6 +19,10 @@ class PostsController
     {
         $entries = WinkPost::when(request()->has('search'), function ($q) {
             $q->where('title', 'LIKE', '%'.request('search').'%');
+        })->when(request('status') == 'published', function ($q) {
+            $q->published();
+        })->when(request('status') == 'draft', function ($q) {
+            $q->draft();
         })
             ->orderBy('created_at', 'DESC')
             ->with('tags')
@@ -30,7 +34,7 @@ class PostsController
     /**
      * Return a single post.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -51,7 +55,7 @@ class PostsController
     /**
      * Store a single post.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -94,7 +98,7 @@ class PostsController
     /**
      * Tags incoming from the request.
      *
-     * @param  array  $incomingTags
+     * @param  array $incomingTags
      * @return array
      */
     private function collectTags($incomingTags)
@@ -119,7 +123,7 @@ class PostsController
     /**
      * Return a single post.
      *
-     * @param  string  $id
+     * @param  string $id
      * @return null
      */
     public function delete($id)

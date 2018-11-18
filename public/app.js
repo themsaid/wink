@@ -3660,7 +3660,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             nextPageUrl: null,
             loadingMoreEntries: false,
             ready: false,
-            searchQuery: ''
+            searchQuery: '',
+
+            filters: {
+                status: ''
+            }
         };
     },
 
@@ -3672,6 +3676,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         document.title = "Posts — Wink.";
 
         this.loadEntries();
+
+        this.watchFiltersChanges();
     },
 
 
@@ -52343,6 +52349,7 @@ var render = function() {
               _c(
                 "filters",
                 {
+                  staticClass: "text-sm",
                   attrs: { "is-filtered": _vm.isFiltered },
                   on: { showing: _vm.focusSearchInput }
                 },
@@ -52371,7 +52378,66 @@ var render = function() {
                         _vm.searchEntries
                       ]
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "flex items-center justify-between mt-5 pt-5 border-t border-very-light"
+                    },
+                    [
+                      _c("span", [_vm._v("Status")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.filters.status,
+                              expression: "filters.status"
+                            }
+                          ],
+                          staticClass: "w-1/2 focus:outline-none",
+                          attrs: { name: "status", id: "author_id" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.filters,
+                                "status",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "published" } }, [
+                            _vm._v("Published")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "draft" } }, [
+                            _vm._v("Draft")
+                          ])
+                        ]
+                      )
+                    ]
+                  )
                 ]
               )
             ],
@@ -72657,7 +72723,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 module.exports = {
     computed: {
         isFiltered: function isFiltered() {
-            return !!this.searchQuery.length;
+            return !!this.searchQuery.length || this.filters.status;
         }
     },
 
@@ -72665,7 +72731,7 @@ module.exports = {
         loadEntries: function loadEntries() {
             var _this = this;
 
-            this.http().get(this.baseURL).then(function (response) {
+            this.http().get(this.baseURL + '?wink=wink' + (this.searchQuery ? '&search=' + this.searchQuery : '') + (this.filters.status ? '&status=' + this.filters.status : '')).then(function (response) {
                 _this.entries = response.data.data;
 
                 _this.hasMoreEntries = !!response.data.next_page_url;
@@ -72712,15 +72778,7 @@ module.exports = {
             this.debouncer(function () {
                 _this3.ready = false;
 
-                _this3.http().get(_this3.baseURL + '?search=' + _this3.searchQuery).then(function (response) {
-                    _this3.entries = response.data.data;
-
-                    _this3.hasMoreEntries = !!response.data.next_page_url;
-
-                    _this3.nextPageUrl = response.data.next_page_url;
-
-                    _this3.ready = true;
-                });
+                _this3.loadEntries();
             });
         },
 
@@ -72734,6 +72792,24 @@ module.exports = {
             this.$nextTick(function () {
                 _this4.$refs.searchInput.focus();
             });
+        },
+
+
+        /**
+         * Watch changes and save the post.
+         */
+        watchFiltersChanges: function watchFiltersChanges() {
+            var _this5 = this;
+
+            this.$watch('filters', function () {
+                _this5.ready = false;
+
+                _this5.debouncer(function () {
+                    _this5.ready = false;
+
+                    _this5.loadEntries();
+                });
+            }, { deep: true });
         }
     }
 };
