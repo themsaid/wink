@@ -52846,7 +52846,7 @@ var render = function() {
                         _c(
                           "router-link",
                           {
-                            staticClass: "no-underline ml-auto hidden lg:block",
+                            staticClass: "no-underline hidden lg:block",
                             attrs: {
                               to: {
                                 name: "team-edit",

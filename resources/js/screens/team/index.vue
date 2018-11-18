@@ -95,7 +95,7 @@
                         {{entry.posts_count}} Post(s)
                     </div>
 
-                    <router-link :to="{name:'team-edit', params:{id: entry.id}}" class="no-underline ml-auto hidden lg:block">
+                    <router-link :to="{name:'team-edit', params:{id: entry.id}}" class="no-underline hidden lg:block">
                         <div class="w-16 h-16 rounded-full bg-cover" :style="{ backgroundImage: 'url(' + entry.avatar + ')' }"></div>
                     </router-link>
                 </div>
