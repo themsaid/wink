@@ -15,6 +15,8 @@
                     opengraph_title: '',
                     opengraph_description: '',
                     opengraph_image: '',
+                    opengraph_image_width: '',
+                    opengraph_image_height: '',
                     twitter_title: '',
                     twitter_description: '',
                     twitter_image: '',
@@ -42,9 +44,20 @@
             updateFacebookImage({url, caption}){
                 this.form.opengraph_image = url;
 
+                // For FB, knowing height and width means we can avoid the "empty image"
+                // problem for the first user to share our content. Set up a dummy image
+                // object to grab height and width, and send back as hidden params.
+                var tempimage = new Image();
+                tempimage.src = url;
+
+                var _this = this;
+                tempimage.onload = function() {
+                    _this.form.opengraph_image_height = this.height;
+                    _this.form.opengraph_image_width = this.width;
+                }
+
                 this.facebookImageUploading = false;
             },
-
 
             /**
              * Update the selected twitter image.
@@ -114,6 +127,8 @@
                          v-if="form.opengraph_image"
                          :style="{ backgroundImage: 'url(' + form.opengraph_image + ')' }"></div>
                 </div>
+                <input type="hidden" v-model="form.opengraph_image_width" />
+                <input type="hidden" v-model="form.opengraph_image_height" />
             </div>
         </div>
 
