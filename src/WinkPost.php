@@ -76,4 +76,16 @@ class WinkPost extends AbstractWinkModel
     {
         return $this->belongsTo(WinkAuthor::class, 'author_id');
     }
+
+    /**
+     * Applies the given filters
+     *
+     * @param Illuminate\Database\Eloquent\Builder $query
+     * @param Wink\Filters\Filters $filters
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }

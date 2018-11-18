@@ -6,6 +6,7 @@ use Wink\WinkTag;
 use Wink\WinkPost;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Wink\Filters\WinkPostFilters;
 
 class PostsController
 {
@@ -14,12 +15,18 @@ class PostsController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(WinkPostFilters $filters)
     {
-        $entries = WinkPost::orderBy('publish_date', 'DESC')
+        $queryParams = collect(request()->all())->map(function ($item) {
+            return is_null($item) ? '' : $item;
+        })->all();
+
+        $entries = WinkPost::filter($filters)
+            ->orderBy('publish_date', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->with('tags')
-            ->paginate(30);
+            ->paginate(30)
+            ->appends($queryParams);
 
         return response()->json([
             'entries' => $entries,
