@@ -98,4 +98,15 @@ class WinkPost extends AbstractWinkModel
     {
         return $query->where('published', false);
     }
+
+    /**
+     * Scope a query to only include posts whose publish date is in the past (or now).
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLive($query)
+    {
+        return $query->where('publish_date', "<=", now());
+    }
 }
