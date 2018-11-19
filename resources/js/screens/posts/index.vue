@@ -1,3 +1,4 @@
+
 <script type="text/ecmascript-6">
     import moment from 'moment';
     import loadsEntries from '../loadsEntries';
@@ -77,6 +78,15 @@
             dateInTheFuture(date){
                 return moment().diff(moment(date + ' Z'), 'minutes') < 0;
             },
+
+
+            /**
+             * Clear the filters.
+             */
+            clearFilters(){
+                this.searchQuery = '';
+                Object.keys(this.filters).forEach(filter => this.filters[filter] = '');
+            },
         }
     }
 </script>
@@ -131,6 +141,8 @@
                             <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
                         </select>
                     </div>
+
+                    <button @click.prevent="clearFilters" class="btn-sm btn-light mt-3">Clear</button>
                 </filters>
             </div>
 

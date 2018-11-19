@@ -3626,6 +3626,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loadsEntries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__loadsEntries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue__ = __webpack_require__("./resources/js/partials/FilterDropdown.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_FilterDropdown_vue__);
+//
 
 
 
@@ -3706,6 +3707,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         dateInTheFuture: function dateInTheFuture(date) {
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()().diff(__WEBPACK_IMPORTED_MODULE_0_moment___default()(date + ' Z'), 'minutes') < 0;
+        },
+
+
+        /**
+         * Clear the filters.
+         */
+        clearFilters: function clearFilters() {
+            var _this2 = this;
+
+            this.searchQuery = '';
+            Object.keys(this.filters).forEach(function (filter) {
+                return _this2.filters[filter] = '';
+            });
         }
     }
 });
@@ -42198,6 +42212,20 @@ var render = function() {
                         2
                       )
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-sm btn-light mt-3",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.clearFilters($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Clear")]
                   )
                 ]
               )
