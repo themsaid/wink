@@ -116,7 +116,7 @@
 
                     <div class="flex items-center justify-between mt-3">
                         <span>Author</span>
-                        <select name="status" class="w-1/2 focus:outline-none"
+                        <select name="author" class="w-1/2 focus:outline-none"
                                 v-model="filters.author_id">
                             <option value="">All</option>
                             <option v-for="author in authors" :value="author.id">{{author.name}}</option>
@@ -125,7 +125,7 @@
 
                     <div class="flex items-center justify-between mt-3">
                         <span>Tag</span>
-                        <select name="status" class="w-1/2 focus:outline-none"
+                        <select name="tag" class="w-1/2 focus:outline-none"
                                 v-model="filters.tag_id">
                             <option value="">All</option>
                             <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
