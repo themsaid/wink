@@ -18,7 +18,8 @@ return [
     | Wink Uploads Disk
     |--------------------------------------------------------------------------
     | This is the storage disk Wink will use to put file uploads, you can use
-    | any of the disks defined in your config/filesystems.php file.
+    | any of the disks defined in your config/filesystems.php file. You may
+    | also configure the path where the files should be stored.
     */
 
     'storage_disk' => env('WINK_STORAGE_DISK', 'local'),
