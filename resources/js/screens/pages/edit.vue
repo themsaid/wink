@@ -1,5 +1,4 @@
 <script type="text/ecmascript-6">
-    import $ from 'jquery';
     import SEOModal from './../../components/SEOModal';
 
     export default {
@@ -14,6 +13,8 @@
                 status: '',
 
                 id: this.$route.params.id || 'new',
+
+                saveKeyboardShortcut: null,
 
                 errors: [],
 
@@ -86,20 +87,21 @@
          * Clean after the component is destroyed.
          */
         destroyed() {
-            $(document).off('keydown');
+            document.removeEventListener('keydown', this.saveKeyboardShortcut);
         },
 
 
         methods: {
             registerSaveKeyboardShortcut(){
-                $(document).keydown(event => {
-                            if ((event.ctrlKey || event.metaKey) && event.which == 83) {
-                                event.preventDefault();
+                this.saveKeyboardShortcut = (event) => {
+                    if ((event.ctrlKey || event.metaKey) && event.which == 83) {
+                        event.preventDefault();
 
-                                this.save();
-                            }
-                        }
-                );
+                        this.save();
+                    }
+                };
+
+                document.addEventListener('keydown', this.saveKeyboardShortcut);
             },
 
 
@@ -134,8 +136,6 @@
              */
             settingsModal(){
                 this.settingsModalShown = true;
-
-                $('#title').focus();
             },
 
 

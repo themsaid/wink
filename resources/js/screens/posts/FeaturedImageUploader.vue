@@ -1,5 +1,4 @@
 <script type="text/ecmascript-6">
-    import $ from 'jquery';
     import _ from 'lodash';
 
     export default {

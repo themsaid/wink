@@ -1,5 +1,4 @@
 <script type="text/ecmascript-6">
-    import $ from 'jquery';
     import _ from 'lodash';
     import Quill from 'quill';
     import ImageUploader from './editorComponents/ImageUploader.vue';
@@ -97,7 +96,7 @@
                         var values = blot.value(blot.domNode)['captioned-image'];
 
                         values.existingBlot = blot;
-                        
+
                         this.openImageUploader(values);
                     }
                 });
@@ -111,6 +110,8 @@
                 let Block = Quill.import('blots/block');
 
                 this.editor.on(Quill.events.EDITOR_CHANGE, (eventType, range) => {
+                    let sidebarControls = document.getElementById('sidebar-controls');
+
                     if (eventType !== Quill.events.SELECTION_CHANGE) return;
 
                     if (range == null) return;
@@ -121,17 +122,21 @@
                         if (block != null && block.domNode.firstChild instanceof HTMLBRElement) {
                             let lineBounds = this.editor.getBounds(range);
 
-                            $('#sidebar-controls').removeClass('active').show().css({
-                                left: lineBounds.left - 50,
-                                top: lineBounds.top - 2
-                            });
+                            sidebarControls.classList.remove('active');
+
+                            sidebarControls.style.display = 'block';
+
+                            sidebarControls.style.left = (lineBounds.left - 50) + 'px';
+                            sidebarControls.style.top = (lineBounds.top - 2) + 'px';
                         } else {
-                            $('#sidebar-controls').hide().removeClass('active');
+                            sidebarControls.style.display = 'none';
+
+                            sidebarControls.classList.remove('active');
                         }
                     } else {
-                        $('#sidebar-controls').hide();
+                        sidebarControls.style.display = 'none';
 
-                        $('#sidebar-controls').removeClass('active');
+                        sidebarControls.classList.remove('active');
                     }
                 });
             },
@@ -141,7 +146,7 @@
              * Show the side controls.
              */
             showSideControls(){
-                $('#sidebar-controls').toggleClass('active');
+                document.getElementById('sidebar-controls').classList.toggle('active');
 
                 this.editor.focus();
             },
