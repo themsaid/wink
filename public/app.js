@@ -1790,6 +1790,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hide: function hide() {
             this.shouldShowContent = false;
         }
+    },
+
+    created: function created() {
+        this.$parent.$on('closeDropDown', this.hide);
     }
 });
 
@@ -2867,7 +2871,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['isFiltered']
+    props: ['isFiltered'],
+    methods: {
+        /**
+         * Clear the filters.
+         */
+        clearFilters: function clearFilters() {
+            var _this = this;
+
+            this.$parent.searchQuery = '';
+            Object.keys(this.$parent.filters).forEach(function (filter) {
+                return _this.$parent.filters[filter] = '';
+            });
+
+            this.$emit('closeDropDown');
+        }
+    }
 });
 
 /***/ }),
@@ -52528,7 +52547,9 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "flex items-center justify-between mt-3" },
+                    {
+                      staticClass: "flex items-center justify-between mt-3 mb-5"
+                    },
                     [
                       _c("span", [_vm._v("Tag")]),
                       _vm._v(" "),
@@ -55871,7 +55892,24 @@ var render = function() {
           attrs: { slot: "content" },
           slot: "content"
         },
-        [_vm._t("default")],
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "py-1 px-2 btn-light btn-sm text-xs",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.clearFilters($event)
+                }
+              }
+            },
+            [_vm._v("Clear")]
+          )
+        ],
         2
       )
     ]

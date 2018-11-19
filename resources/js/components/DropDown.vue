@@ -24,6 +24,10 @@
             hide(){
                 this.shouldShowContent = false;
             },
+        },
+
+        created: function() {
+            this.$parent.$on('closeDropDown', this.hide);
         }
     }
 </script>
