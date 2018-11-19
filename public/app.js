@@ -42104,7 +42104,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "w-1/2 focus:outline-none",
-                          attrs: { name: "status" },
+                          attrs: { name: "author" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -42161,7 +42161,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "w-1/2 focus:outline-none",
-                          attrs: { name: "status" },
+                          attrs: { name: "tag" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
