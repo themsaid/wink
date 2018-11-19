@@ -74,7 +74,7 @@ module.exports = {
 
 
         /**
-         * Watch changes and save the post.
+         * Watch filters changes and fetch the entries.
          */
         watchFiltersChanges(){
             this.$watch('filters', () => {
