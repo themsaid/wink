@@ -28,6 +28,14 @@ php artisan wink:migrate
 
 Head to `yourproject.test/wink` and use the provided email and password to log in.
 
+(optional) Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the access key and update `config/services.php`:
+
+```php
+'unsplash' => [
+    'key' => 'UNSPLASH_ACCESS_KEY',
+],
+```
+
 ## Updates
 
 Add this command in your deployment script so that wink runs new migrations if any:
