@@ -10,6 +10,13 @@ module.exports = {
     },
 
 
+    watch:{
+        searchQuery(){
+            this.searchEntries();
+        }
+    },
+
+
     methods: {
         loadEntries(){
             this.http().get(this.baseURL + '?wink=wink' +

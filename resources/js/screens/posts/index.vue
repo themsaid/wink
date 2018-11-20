@@ -25,7 +25,7 @@
                 ready: false,
                 searchQuery: '',
 
-                filters:{
+                filters: {
                     status: '',
                     author_id: '',
                     tag_id: '',
@@ -77,6 +77,16 @@
             dateInTheFuture(date){
                 return moment().diff(moment(date + ' Z'), 'minutes') < 0;
             },
+
+
+            /**
+             * Clear the filters.
+             */
+            clearFilters(){
+                this.searchQuery = '';
+
+                Object.keys(this.filters).forEach(filter => this.filters[filter] = '');
+            },
         }
     }
 </script>
@@ -96,13 +106,12 @@
                 <h1 class="inline font-semibold text-3xl mr-auto">Posts</h1>
 
                 <filters @showing="focusSearchInput" :is-filtered="isFiltered" class="text-sm">
-                    <input type="text" class="input mt-0 w-full"
+                    <input type="text" class="input mt-0 w-full pb-2 border-b border-very-light"
                            placeholder="Search..."
                            v-model="searchQuery"
-                           ref="searchInput"
-                           @input="searchEntries">
+                           ref="searchInput">
 
-                    <div class="flex items-center justify-between mt-5 pt-5 border-t border-very-light">
+                    <div class="flex items-center justify-between mt-5">
                         <span>Status</span>
                         <select name="status" class="w-1/2 focus:outline-none"
                                 v-model="filters.status">
@@ -131,6 +140,11 @@
                             <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
                         </select>
                     </div>
+
+                    <button v-if="isFiltered"
+                            @click.prevent="clearFilters"
+                            class="btn-sm btn-light w-full mt-5">Reset
+                    </button>
                 </filters>
             </div>
 

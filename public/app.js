@@ -3706,6 +3706,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         dateInTheFuture: function dateInTheFuture(date) {
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()().diff(__WEBPACK_IMPORTED_MODULE_0_moment___default()(date + ' Z'), 'minutes') < 0;
+        },
+
+
+        /**
+         * Clear the filters.
+         */
+        clearFilters: function clearFilters() {
+            var _this2 = this;
+
+            this.searchQuery = '';
+
+            Object.keys(this.filters).forEach(function (filter) {
+                return _this2.filters[filter] = '';
+            });
         }
     }
 });
@@ -42003,28 +42017,23 @@ var render = function() {
                       }
                     ],
                     ref: "searchInput",
-                    staticClass: "input mt-0 w-full",
+                    staticClass:
+                      "input mt-0 w-full pb-2 border-b border-very-light",
                     attrs: { type: "text", placeholder: "Search..." },
                     domProps: { value: _vm.searchQuery },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchQuery = $event.target.value
-                        },
-                        _vm.searchEntries
-                      ]
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      }
                     }
                   }),
                   _vm._v(" "),
                   _c(
                     "div",
-                    {
-                      staticClass:
-                        "flex items-center justify-between mt-5 pt-5 border-t border-very-light"
-                    },
+                    { staticClass: "flex items-center justify-between mt-5" },
                     [
                       _c("span", [_vm._v("Status")]),
                       _vm._v(" "),
@@ -42198,7 +42207,23 @@ var render = function() {
                         2
                       )
                     ]
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm.isFiltered
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn-sm btn-light w-full mt-5",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.clearFilters($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Reset\n                ")]
+                      )
+                    : _vm._e()
                 ]
               )
             ],
@@ -42512,15 +42537,12 @@ var render = function() {
                     attrs: { type: "text", placeholder: "Search..." },
                     domProps: { value: _vm.searchQuery },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchQuery = $event.target.value
-                        },
-                        _vm.searchEntries
-                      ]
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      }
                     }
                   })
                 ]
@@ -42789,15 +42811,12 @@ var render = function() {
                     attrs: { type: "text", placeholder: "Search..." },
                     domProps: { value: _vm.searchQuery },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchQuery = $event.target.value
-                        },
-                        _vm.searchEntries
-                      ]
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      }
                     }
                   })
                 ]
@@ -43679,15 +43698,12 @@ var render = function() {
                     attrs: { type: "text", placeholder: "Search..." },
                     domProps: { value: _vm.searchQuery },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchQuery = $event.target.value
-                        },
-                        _vm.searchEntries
-                      ]
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      }
                     }
                   })
                 ]
@@ -46433,7 +46449,7 @@ var render = function() {
                 },
                 [
                   _c("img", {
-                    staticClass: "rounded-full w-8",
+                    staticClass: "rounded-full w-8 h-8",
                     attrs: {
                       src: _vm.Wink.author.avatar,
                       title: _vm.Wink.author.name
@@ -62485,6 +62501,12 @@ module.exports = {
     computed: {
         isFiltered: function isFiltered() {
             return !!this.searchQuery.length || this.filters && this.filters.status || this.filters && this.filters.author_id || this.filters && this.filters.tag_id;
+        }
+    },
+
+    watch: {
+        searchQuery: function searchQuery() {
+            this.searchEntries();
         }
     },
 

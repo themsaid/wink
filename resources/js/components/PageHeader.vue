@@ -28,7 +28,7 @@
 
                     <dropdown class="relative ml-6">
                         <button slot="trigger" type="button" class="focus:outline-none">
-                            <img :src="Wink.author.avatar" class="rounded-full w-8" :title="Wink.author.name">
+                            <img :src="Wink.author.avatar" class="rounded-full w-8 h-8" :title="Wink.author.name">
                         </button>
 
                         <div slot="content" class="dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2">

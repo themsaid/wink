@@ -57,8 +57,7 @@
                     <input type="text" class="input mt-0 w-full"
                            placeholder="Search..."
                            v-model="searchQuery"
-                           ref="searchInput"
-                           @input="searchEntries">
+                           ref="searchInput">
                 </filters>
             </div>
 
