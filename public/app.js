@@ -42037,61 +42037,92 @@ var render = function() {
                     [
                       _c("span", [_vm._v("Status")]),
                       _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.filters.status,
-                              expression: "filters.status"
+                      _c("div", { staticClass: "relative w-3/5" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filters.status,
+                                expression: "filters.status"
+                              }
+                            ],
+                            staticClass:
+                              "w-full appearance-none border border-lighter py-1 px-4 pr-8 rounded leading-tight focus:outline-none",
+                            attrs: { name: "status" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.filters,
+                                  "status",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
                             }
-                          ],
-                          staticClass: "w-1/2 focus:outline-none",
-                          attrs: { name: "status" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "live" } }, [
+                              _vm._v("Live")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "published" } }, [
+                              _vm._v("Published")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "scheduled" } }, [
+                              _vm._v("Scheduled")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "draft" } }, [
+                              _vm._v("Draft")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "fill-current h-4 w-4",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                  }
                                 })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.filters,
-                                "status",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "live" } }, [
-                            _vm._v("Live")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "published" } }, [
-                            _vm._v("Published")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "scheduled" } }, [
-                            _vm._v("Scheduled")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "draft" } }, [
-                            _vm._v("Draft")
-                          ])
-                        ]
-                      )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
                     ]
                   ),
                   _vm._v(" "),
@@ -42101,54 +42132,85 @@ var render = function() {
                     [
                       _c("span", [_vm._v("Author")]),
                       _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.filters.author_id,
-                              expression: "filters.author_id"
+                      _c("div", { staticClass: "relative w-3/5" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filters.author_id,
+                                expression: "filters.author_id"
+                              }
+                            ],
+                            staticClass:
+                              "w-full appearance-none border border-lighter py-1 px-4 pr-8 rounded leading-tight focus:outline-none",
+                            attrs: { name: "author" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.filters,
+                                  "author_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
                             }
-                          ],
-                          staticClass: "w-1/2 focus:outline-none",
-                          attrs: { name: "author" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.filters,
-                                "author_id",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.authors, function(author) {
+                              return _c(
+                                "option",
+                                { domProps: { value: author.id } },
+                                [_vm._v(_vm._s(author.name))]
                               )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.authors, function(author) {
-                            return _c(
-                              "option",
-                              { domProps: { value: author.id } },
-                              [_vm._v(_vm._s(author.name))]
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "fill-current h-4 w-4",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                  }
+                                })
+                              ]
                             )
-                          })
-                        ],
-                        2
-                      )
+                          ]
+                        )
+                      ])
                     ]
                   ),
                   _vm._v(" "),
@@ -42158,54 +42220,85 @@ var render = function() {
                     [
                       _c("span", [_vm._v("Tag")]),
                       _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.filters.tag_id,
-                              expression: "filters.tag_id"
+                      _c("div", { staticClass: "relative w-3/5" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.filters.tag_id,
+                                expression: "filters.tag_id"
+                              }
+                            ],
+                            staticClass:
+                              "w-full appearance-none border border-lighter py-1 px-4 pr-8 rounded leading-tight focus:outline-none",
+                            attrs: { name: "tag" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.filters,
+                                  "tag_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
                             }
-                          ],
-                          staticClass: "w-1/2 focus:outline-none",
-                          attrs: { name: "tag" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.filters,
-                                "tag_id",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.tags, function(tag) {
+                              return _c(
+                                "option",
+                                { domProps: { value: tag.id } },
+                                [_vm._v(_vm._s(tag.name))]
                               )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.tags, function(tag) {
-                            return _c(
-                              "option",
-                              { domProps: { value: tag.id } },
-                              [_vm._v(_vm._s(tag.name))]
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "fill-current h-4 w-4",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                  }
+                                })
+                              ]
                             )
-                          })
-                        ],
-                        2
-                      )
+                          ]
+                        )
+                      ])
                     ]
                   ),
                   _vm._v(" "),
