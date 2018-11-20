@@ -113,56 +113,35 @@
 
                     <div class="flex items-center justify-between mt-5">
                         <span>Status</span>
-                        <div class="relative w-3/5">
-                            <select name="status"
-                                    class="w-full appearance-none border border-lighter py-1 px-4 pr-8 rounded leading-tight focus:outline-none"
-                                    v-model="filters.status">
-                                <option value="">All</option>
-                                <option value="live">Live</option>
-                                <option value="published">Published</option>
-                                <option value="scheduled">Scheduled</option>
-                                <option value="draft">Draft</option>
-                            </select>
-                            <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current h-4 w-4">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                        <select name="status"
+                                class="border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                v-model="filters.status">
+                            <option value="">All</option>
+                            <option value="live">Live</option>
+                            <option value="published">Published</option>
+                            <option value="scheduled">Scheduled</option>
+                            <option value="draft">Draft</option>
+                        </select>
                     </div>
 
                     <div class="flex items-center justify-between mt-3">
                         <span>Author</span>
-                        <div class="relative w-3/5">
-                            <select name="author"
-                                    class="w-full appearance-none border border-lighter py-1 px-4 pr-8 rounded leading-tight focus:outline-none"
-                                    v-model="filters.author_id">
-                                <option value="">All</option>
-                                <option v-for="author in authors" :value="author.id">{{author.name}}</option>
-                            </select>
-                            <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current h-4 w-4">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                        <select name="author"
+                                class="border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                v-model="filters.author_id">
+                            <option value="">All</option>
+                            <option v-for="author in authors" :value="author.id">{{author.name}}</option>
+                        </select>
                     </div>
 
                     <div class="flex items-center justify-between mt-3">
                         <span>Tag</span>
-                        <div class="relative w-3/5">
-                            <select name="tag"
-                                    class="w-full appearance-none border border-lighter py-1 px-4 pr-8 rounded leading-tight focus:outline-none"
-                                    v-model="filters.tag_id">
-                                <option value="">All</option>
-                                <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
-                            </select>
-                            <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current h-4 w-4">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                        <select name="tag"
+                                class="border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                v-model="filters.tag_id">
+                            <option value="">All</option>
+                            <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
+                        </select>
                     </div>
 
                     <button v-if="isFiltered"
