@@ -87,11 +87,11 @@
                 </button>
 
 
-                <button v-if="type == 'confirmation'" class="btn-light btn-sm" @click="confirm">
+                <button v-if="type == 'confirmation'" class="btn-primary btn-sm" @click="confirm">
                     Yes
                 </button>
-                <button v-if="type == 'confirmation'" class="btn-primary btn-sm ml-1" @click="cancel">
-                    No, Abort
+                <button v-if="type == 'confirmation'" class="btn-light btn-sm ml-1" @click="cancel">
+                    No
                 </button>
             </div>
         </div>

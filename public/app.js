@@ -46360,7 +46360,10 @@ var render = function() {
           _vm.type == "confirmation"
             ? _c(
                 "button",
-                { staticClass: "btn-light btn-sm", on: { click: _vm.confirm } },
+                {
+                  staticClass: "btn-primary btn-sm",
+                  on: { click: _vm.confirm }
+                },
                 [_vm._v("\n                Yes\n            ")]
               )
             : _vm._e(),
@@ -46369,10 +46372,10 @@ var render = function() {
             ? _c(
                 "button",
                 {
-                  staticClass: "btn-primary btn-sm ml-1",
+                  staticClass: "btn-light btn-sm ml-1",
                   on: { click: _vm.cancel }
                 },
-                [_vm._v("\n                No, Abort\n            ")]
+                [_vm._v("\n                No\n            ")]
               )
             : _vm._e()
         ])

@@ -92,15 +92,10 @@ Here's the plan for what's coming:
 - [x] Customize Twitter/Facebook cards and SEO metadata.
 - [x] Optimize CSS. Move to Tailwind?
 - [x] Add text search inside listings.
-- [x] Filter posts by status, scheduling, tags, and authors.
-- [ ] Ability to extract featured image/ social images from images used in post/page.
-- [ ] Create an initial theme that people can use right away.
-- [ ] Adding image galleries to posts and pages.
-- [ ] Attach metadata to posts and pages.
-- [ ] Link social accounts and automatic post on new published content.
+- [x] Filter posts by status, scheduling, tags, and authors
+- [ ] Create an initial theme that people can use right away. @themsaid
 - [ ] Optimize image uploads and allow cropping.
-- [ ] Built-in database backups.
-- [ ] Dark mode.
+- [ ] Adding image galleries to posts and pages. @themsaid
 - [ ] Add tests.
 
 And here are some ideas I'm still not sure about:
@@ -110,6 +105,8 @@ And here are some ideas I'm still not sure about:
 - [ ] Configure roles (Contributor / Admin)
 - [ ] Localization
 - [ ] Multi-lingual content
+- [ ] Attach metadata to posts and pages.
+- [ ] Dark mode.
 
 
 ## Contributing
