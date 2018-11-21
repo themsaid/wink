@@ -42049,7 +42049,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3",
+                            "border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3",
                           attrs: { name: "status" },
                           on: {
                             change: function($event) {
@@ -42114,7 +42114,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3",
+                            "border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3",
                           attrs: { name: "author" },
                           on: {
                             change: function($event) {
@@ -42172,7 +42172,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3",
+                            "border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3",
                           attrs: { name: "tag" },
                           on: {
                             change: function($event) {
