@@ -107,21 +107,13 @@ class PostsController
      */
     private function collectTags($incomingTags)
     {
-        $allTags = WinkTag::all();
-
-        return collect($incomingTags)->map(function ($incomingTag) use ($allTags) {
-            $tag = $allTags->where('slug', Str::slug($incomingTag['name']))->first();
-
-            if (! $tag) {
-                $tag = WinkTag::create([
-                    'id' => $id = Str::uuid(),
-                    'name' => $incomingTag['name'],
-                    'slug' => Str::slug($incomingTag['name']),
-                ]);
-            }
-
+        return collect($incomingTags)->map(function ($incomingTag) {
+            $tag = WinkTag::firstOrCreate(
+                ['name' => $incomingTag['name']],
+                ['id' => Str::uuid(), 'slug' => Str::slug($incomingTag['name'])]
+            );
             return (string) $tag->id;
-        })->toArray();
+        });
     }
 
     /**
