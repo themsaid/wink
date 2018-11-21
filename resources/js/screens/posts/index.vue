@@ -114,7 +114,7 @@
                     <div class="flex items-center justify-between mt-5">
                         <span>Status</span>
                         <select name="status"
-                                class="border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                class="border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3"
                                 v-model="filters.status">
                             <option value="">All</option>
                             <option value="live">Live</option>
@@ -127,7 +127,7 @@
                     <div class="flex items-center justify-between mt-3">
                         <span>Author</span>
                         <select name="author"
-                                class="border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                class="border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3"
                                 v-model="filters.author_id">
                             <option value="">All</option>
                             <option v-for="author in authors" :value="author.id">{{author.name}}</option>
@@ -137,7 +137,7 @@
                     <div class="flex items-center justify-between mt-3">
                         <span>Tag</span>
                         <select name="tag"
-                                class="border border-lighter w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                class="border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3"
                                 v-model="filters.tag_id">
                             <option value="">All</option>
                             <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
