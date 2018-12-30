@@ -2,7 +2,7 @@
     export default {
         props: ['postId'],
 
-        data(){
+        data() {
             return {
                 content: '',
 
@@ -24,12 +24,12 @@
             /**
              * Close the modal.
              */
-            close(){
+            close() {
                 this.modalShown = false;
             },
 
 
-            addHTML(){
+            addHTML() {
                 this.close();
 
                 this.$emit('adding', {

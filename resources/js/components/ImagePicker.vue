@@ -5,7 +5,7 @@
     export default {
         props: [],
 
-        data(){
+        data() {
             return {
                 imageUrl: '',
                 uploadProgress: 100,
@@ -26,7 +26,7 @@
 
 
         watch: {
-            unsplashSearchTerm(){
+            unsplashSearchTerm() {
                 this.debouncer(() => {
                     this.getImagesFromUnsplash();
                 });
@@ -35,14 +35,14 @@
 
 
         computed: {
-            unsplashModalShown(){
+            unsplashModalShown() {
                 return this.unsplashSearchTerm.length;
             }
         },
 
 
         methods: {
-            getImagesFromUnsplash(page = 1){
+            getImagesFromUnsplash(page = 1) {
                 if (!Wink.unsplash_key) {
                     return this.alertError('Please configure your Unsplash API Key.');
                 }
@@ -52,9 +52,9 @@
                 this.searchingUnsplash = true;
 
                 axios.get('https://api.unsplash.com/search/photos?client_id=' + Wink.unsplash_key +
-                        '&orientation=landscape&per_page=19' +
-                        '&query=' + this.unsplashSearchTerm +
-                        '&page=' + page
+                    '&orientation=landscape&per_page=19' +
+                    '&query=' + this.unsplashSearchTerm +
+                    '&page=' + page
                 ).then(response => {
                     this.unsplashImages = response.data.results;
 
@@ -70,7 +70,7 @@
             /**
              * Upload the selected image.
              */
-            uploadSelectedImage(event){
+            uploadSelectedImage(event) {
                 let file = event.target.files[0];
                 let formData = new FormData();
 
@@ -93,7 +93,7 @@
             /**
              * Open unsplash modal.
              */
-            openUnsplashModal(){
+            openUnsplashModal() {
                 this.unsplashSearchTerm = 'sunny';
 
                 this.$nextTick(() => {
@@ -105,7 +105,7 @@
             /**
              * Select an unsplash Image.
              */
-            closeUnplashModalAndInsertImage(){
+            closeUnplashModalAndInsertImage() {
                 this.$emit('changed', {
                     url: this.selectedUnsplashImage.urls.regular,
                     caption: 'Photo by <a href="' + this.selectedUnsplashImage.user.links.html + '">' + this.selectedUnsplashImage.user.name + '</a> on <a href="https://unsplash.com">Unsplash</a>',
@@ -118,7 +118,7 @@
             /**
              * Close unsplash modal.
              */
-            closeUnsplashModal(){
+            closeUnsplashModal() {
                 this.unsplashSearchTerm = '';
                 this.selectedUnsplashImage = null;
             }

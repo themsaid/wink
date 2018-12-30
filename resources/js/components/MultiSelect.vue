@@ -5,7 +5,7 @@
     export default {
         props: ['value', 'options', 'optionId', 'optionText'],
 
-        data(){
+        data() {
             return {
                 searchTerm: '',
                 selectedOptionIndex: 0,
@@ -22,25 +22,25 @@
 
 
         watch: {
-            value(val){
+            value(val) {
                 this.$refs.input.style.width = this.value.length ? '25px' : '108px';
                 this.$refs.input.placeholder = this.value.length ? '' : 'Add tags';
             },
 
-            searchTerm(val){
+            searchTerm(val) {
                 var width = val.length * 12;
 
                 this.$refs.input.style.width = width > 25 ? width + 'px' : '25px';
             },
 
-            matches(val){
+            matches(val) {
                 this.selectedOptionIndex = _.find(val, option => option[this.optionId] == 'addNew') ? 1 : 0;
             }
         },
 
 
         computed: {
-            matches(){
+            matches() {
                 let options = _.union(this.options, this.newOptions);
 
                 if (!this.searchTerm) {
@@ -50,7 +50,7 @@
                 } else {
                     var matches = _.reject(options, option => {
                         return _.find(this.value, {id: option.id}) ||
-                                option[this.optionText].toLowerCase().indexOf(this.searchTerm.toLowerCase()) == -1;
+                            option[this.optionText].toLowerCase().indexOf(this.searchTerm.toLowerCase()) == -1;
                     });
 
                     let addNewOption = {};
@@ -70,7 +70,7 @@
             /**
              * Select the given option.
              */
-            selectOption(option){
+            selectOption(option) {
                 let values = this.value || [];
 
                 if (_.includes(values, option.id)) return;
@@ -90,7 +90,7 @@
             /**
              * Remove the given option.
              */
-            removeOption(option){
+            removeOption(option) {
                 let values = this.value || [];
 
                 values = _.reject(values, {id: option.id});
@@ -102,7 +102,7 @@
             /**
              * Backspace was hit.
              */
-            backspaceAction(){
+            backspaceAction() {
                 if (this.searchTerm) return;
 
                 let values = this.value || [];
@@ -118,7 +118,7 @@
             /**
              * Select the next option.
              */
-            selectNextOption(){
+            selectNextOption() {
                 if (!this.matches.length) return;
 
                 if (this.selectedOptionIndex + 1 == this.matches.length) return;
@@ -130,7 +130,7 @@
             /**
              * Select the previous option.
              */
-            selectPreviousOption(){
+            selectPreviousOption() {
                 if (!this.matches.length) return;
 
                 if (this.selectedOptionIndex === 0) return;
@@ -141,13 +141,13 @@
             /**
              * Add the selected option to the list.
              */
-            addSelectedOption(){
+            addSelectedOption() {
                 if (!this.matches[this.selectedOptionIndex]) {
                     return this.addNewOption();
                 }
 
                 this.selectOption(
-                        this.matches[this.selectedOptionIndex]
+                    this.matches[this.selectedOptionIndex]
                 );
 
                 this.selectedOptionIndex = 0;
@@ -157,7 +157,7 @@
             /**
              * Add a brand new option.
              */
-            addNewOption(){
+            addNewOption() {
                 let values = this.value || [];
                 let option = {};
 
@@ -187,7 +187,7 @@
             /**
              * Activate the field.
              */
-            activate(){
+            activate() {
                 this.focused = true;
 
                 this.$refs.input.focus();
@@ -197,7 +197,7 @@
             /**
              * Deactivate the field.
              */
-            deactivate(){
+            deactivate() {
                 this.focused = false;
             }
         }

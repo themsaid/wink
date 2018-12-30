@@ -1,4 +1,5 @@
 import Quill from 'quill';
+
 let BlockEmbed = Quill.import('blots/block/embed');
 
 class HTMLBlot extends BlockEmbed {
@@ -7,7 +8,7 @@ class HTMLBlot extends BlockEmbed {
 
         node.innerHTML = value.content;
         node.setAttribute('contenteditable', false);
-        
+
         return node;
     }
 

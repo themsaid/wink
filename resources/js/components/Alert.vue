@@ -2,7 +2,7 @@
     export default {
         props: ['type', 'message', 'autoClose', 'confirmationProceed', 'confirmationCancel'],
 
-        data(){
+        data() {
             return {
                 timeout: null,
             }
@@ -22,7 +22,7 @@
             /**
              * Close the alert.
              */
-            close(){
+            close() {
                 clearTimeout(this.timeout);
 
                 this.$root.alert.type = null;
@@ -36,7 +36,7 @@
             /**
              * Confirm and close the alert.
              */
-            confirm(){
+            confirm() {
                 this.confirmationProceed();
 
                 this.close();
@@ -46,7 +46,7 @@
             /**
              * Cancel and close the alert.
              */
-            cancel(){
+            cancel() {
                 if (this.confirmationCancel) {
                     this.confirmationCancel();
                 }
@@ -114,7 +114,7 @@
         height: 4rem;
     }
 
-    #alert .dialog{
+    #alert .dialog {
         background: #fff;
         width: 400px;
         margin: 40px auto;

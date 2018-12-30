@@ -52,7 +52,7 @@
             /**
              * Load the resources needed for the screen.
              */
-            loadResources(){
+            loadResources() {
                 this.http().get('/api/tags').then(response => {
                     this.tags = response.data.data;
                 });
@@ -66,7 +66,7 @@
             /**
              * Format the given tags for display.
              */
-            formatTags(tags){
+            formatTags(tags) {
                 return _.chain(tags).map('name').join(', ').value();
             },
 
@@ -74,7 +74,7 @@
             /**
              * Determine if the given date is in the future.
              */
-            dateInTheFuture(date){
+            dateInTheFuture(date) {
                 return moment().diff(moment(date + ' Z'), 'minutes') < 0;
             },
 
@@ -82,7 +82,7 @@
             /**
              * Clear the filters.
              */
-            clearFilters(){
+            clearFilters() {
                 this.searchQuery = '';
 
                 Object.keys(this.filters).forEach(filter => this.filters[filter] = '');

@@ -31,10 +31,12 @@
            :confirmation-cancel="alert.confirmationCancel"
            v-if="alert.type"></alert>
 
+
     <notification :message="notification.message"
                   :type="notification.type"
                   :auto-close="notification.autoClose"
                   v-if="notification.type"></notification>
+
 
     <router-view></router-view>
 </div>

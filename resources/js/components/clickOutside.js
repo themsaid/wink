@@ -2,7 +2,7 @@
  * src: https://jsfiddle.net/Linusborg/Lx49LaL8/
  */
 module.exports = {
-    bind (el, binding, vnode) {
+    bind(el, binding, vnode) {
         if (typeof binding.value !== 'function') {
             const compName = vnode.context.name
 

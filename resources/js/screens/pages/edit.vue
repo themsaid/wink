@@ -44,13 +44,13 @@
 
 
         watch: {
-            'form.slug'(val){
+            'form.slug'(val) {
                 this.debouncer(() => {
                     this.form.slug = this.slugify(val);
                 });
             },
 
-            'form.title'(val){
+            'form.title'(val) {
                 this.debouncer(() => {
                     if (this.form.slug) return;
 
@@ -58,10 +58,11 @@
                 });
             },
 
-            '$route.params.id'(){
+            '$route.params.id'() {
                 this.id = this.$route.params.id;
             }
         },
+
 
         /**
          * Prepare the component.
@@ -92,7 +93,7 @@
 
 
         methods: {
-            registerSaveKeyboardShortcut(){
+            registerSaveKeyboardShortcut() {
                 this.saveKeyboardShortcut = (event) => {
                     if ((event.ctrlKey || event.metaKey) && event.which == 83) {
                         event.preventDefault();
@@ -105,7 +106,7 @@
             },
 
 
-            fillForm(data){
+            fillForm(data) {
                 this.form.id = data.id;
 
                 if (this.id != 'new') {
@@ -134,7 +135,7 @@
             /**
              * Open the settings modal.
              */
-            settingsModal(){
+            settingsModal() {
                 this.settingsModalShown = true;
             },
 
@@ -142,21 +143,21 @@
             /**
              * Close the settings modal.
              */
-            closeSettingsModal(){
+            closeSettingsModal() {
                 this.settingsModalShown = false;
             },
 
             /**
              * Open the SEO & Social modal.
              */
-            seoModal(){
+            seoModal() {
                 this.seoModalShown = true;
             },
 
             /**
              * Close the SEO modal.
              */
-            closeSeoModal({content}){
+            closeSeoModal({content}) {
                 this.seoModalShown = false;
                 this.form.meta = content;
             },
@@ -165,7 +166,7 @@
             /**
              * Delete the page.
              */
-            deletePage(){
+            deletePage() {
                 this.alertConfirm("Are you sure you want to delete this page?", () => {
                     this.settingsModalShown = false;
 
@@ -179,7 +180,7 @@
             /**
              * Save the page.
              */
-            save(){
+            save() {
                 this.errors = [];
                 this.status = 'Saving...';
 
@@ -256,7 +257,7 @@
         <!-- Post Settings Modal -->
         <modal v-if="settingsModalShown" @close="settingsModalShown = false">
             <div class="input-group pt-0">
-                <label for="name" class="input-label">Slug</label>
+                <label class="input-label">Slug</label>
                 <input type="text" class="input"
                        v-model="form.slug"
                        placeholder="Give me a slug"

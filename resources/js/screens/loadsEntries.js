@@ -1,6 +1,6 @@
 module.exports = {
     computed: {
-        isFiltered(){
+        isFiltered() {
             return !!this.searchQuery.length ||
                 (this.filters && this.filters.status) ||
                 (this.filters && this.filters.author_id) ||
@@ -10,15 +10,15 @@ module.exports = {
     },
 
 
-    watch:{
-        searchQuery(){
+    watch: {
+        searchQuery() {
             this.searchEntries();
         }
     },
 
 
     methods: {
-        loadEntries(){
+        loadEntries() {
             this.http().get(this.baseURL + '?wink=wink' +
                 (this.searchQuery ? '&search=' + this.searchQuery : '') +
                 (this.filters && this.filters.status ? '&status=' + this.filters.status : '') +
@@ -39,7 +39,7 @@ module.exports = {
         /**
          * Load the older entries.
          */
-        loadOlderEntries(){
+        loadOlderEntries() {
             this.loadingMoreEntries = true;
 
             this.http().get(this.nextPageUrl).then(response => {
@@ -57,7 +57,7 @@ module.exports = {
         /**
          * Filter the entries by the search query.
          */
-        searchEntries(){
+        searchEntries() {
             if (!this.searchQuery) {
                 this.ready = false;
             }
@@ -73,7 +73,7 @@ module.exports = {
         /**
          * Focus the search input when the filter dropdown opens.
          */
-        focusSearchInput(){
+        focusSearchInput() {
             this.$nextTick(() => {
                 this.$refs.searchInput.focus();
             });
@@ -83,7 +83,7 @@ module.exports = {
         /**
          * Watch filters changes and fetch the entries.
          */
-        watchFiltersChanges(){
+        watchFiltersChanges() {
             this.$watch('filters', () => {
                 this.ready = false;
 

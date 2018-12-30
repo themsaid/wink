@@ -55,13 +55,13 @@
 
 
         watch: {
-            'form.slug'(val){
+            'form.slug'(val) {
                 this.debouncer(() => {
                     this.form.slug = this.slugify(val);
                 });
             },
 
-            'form.name'(val){
+            'form.name'(val) {
                 this.debouncer(() => {
                     if (this.form.slug) return;
 
@@ -69,7 +69,7 @@
                 });
             },
 
-            '$route'(){
+            '$route'() {
                 this.id = this.$route.params.id;
 
                 this.loadEntry();
@@ -78,7 +78,7 @@
 
 
         methods: {
-            loadEntry(){
+            loadEntry() {
                 this.ready = false;
 
                 this.http().get('/api/team/' + this.id).then(response => {
@@ -115,7 +115,7 @@
             /**
              * Save the post.
              */
-            save(){
+            save() {
                 this.form.working = true;
                 this.form.errors = [];
 
@@ -137,7 +137,7 @@
             },
 
 
-            deleteAuthor(){
+            deleteAuthor() {
                 this.alertConfirm("Are you sure you want to delete this author?", () => {
                     this.http().delete('/api/team/' + this.id).then(response => {
                         this.$router.push({name: 'team'})
@@ -151,7 +151,7 @@
             /**
              * Upload the selected image.
              */
-            uploadSelectedImage(event){
+            uploadSelectedImage(event) {
                 let file = event.target.files[0];
                 let formData = new FormData();
 
@@ -174,14 +174,14 @@
             /**
              * Open the SEO & Social modal.
              */
-            seoModal(){
+            seoModal() {
                 this.seoModalShown = true;
             },
 
             /**
              * Close the SEO modal.
              */
-            closeSeoModal({content}){
+            closeSeoModal({content}) {
                 this.seoModalShown = false;
                 this.form.meta = content;
             },

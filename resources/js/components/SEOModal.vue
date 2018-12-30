@@ -5,7 +5,7 @@
         props: ['input'],
 
 
-        data(){
+        data() {
             return {
                 facebookImageUploading: false,
                 twitterImageUploading: false,
@@ -25,13 +25,13 @@
         },
 
 
-        mounted(){
+        mounted() {
             this.form = this.input;
         },
 
 
         methods: {
-            close(){
+            close() {
                 this.$emit('close', {
                     content: this.form
                 });
@@ -41,7 +41,7 @@
             /**
              * Update the selected opengraph image.
              */
-            updateFacebookImage({url}){
+            updateFacebookImage({url}) {
                 var img = new Image();
 
                 this.form.opengraph_image = url;
@@ -59,7 +59,7 @@
             /**
              * Update the selected twitter image.
              */
-            updateTwitterImage({url}){
+            updateTwitterImage({url}) {
                 this.form.twitter_image = url;
 
                 this.twitterImageUploading = false;
@@ -74,10 +74,10 @@
             <label for="meta_description" class="input-label">
                 Meta description
             </label>
-                <textarea class="input"
-                          v-model="form.meta_description"
-                          placeholder="Meta description"
-                          id="meta_description"></textarea>
+            <textarea class="input"
+                      v-model="form.meta_description"
+                      placeholder="Meta description"
+                      id="meta_description"></textarea>
         </div>
 
         <div class="input-group">
@@ -94,10 +94,10 @@
             <label for="opengraph_description" class="input-label">
                 Facebook Card Description
             </label>
-                <textarea class="input"
-                          v-model="form.opengraph_description"
-                          placeholder="Description in Facebook Card"
-                          id="opengraph_description"></textarea>
+            <textarea class="input"
+                      v-model="form.opengraph_description"
+                      placeholder="Description in Facebook Card"
+                      id="opengraph_description"></textarea>
         </div>
 
         <div class="input-group py-4">
@@ -143,10 +143,10 @@
             <label for="twitter_description" class="input-label">
                 Twitter Card Description
             </label>
-                <textarea class="input"
-                          v-model="form.twitter_description"
-                          placeholder="Description in Twitter Card"
-                          id="twitter_description"></textarea>
+            <textarea class="input"
+                      v-model="form.twitter_description"
+                      placeholder="Description in Twitter Card"
+                      id="twitter_description"></textarea>
         </div>
 
         <div class="input-group py-4">

@@ -4,7 +4,7 @@
     export default {
         props: ['postId', 'currentImageUrl', 'currentCaption'],
 
-        data(){
+        data() {
             return {
                 imageUrl: '',
                 caption: '',
@@ -31,7 +31,7 @@
             /**
              * Save the image.
              */
-            saveImage(){
+            saveImage() {
                 this.$emit('changed', {url: this.imageUrl, caption: this.caption});
 
                 this.close();
@@ -41,7 +41,7 @@
             /**
              * Close the modal.
              */
-            close(){
+            close() {
                 this.imagePickerKey = _.uniqueId();
 
                 this.modalShown = false;
@@ -51,7 +51,7 @@
             /**
              * Update the selected image.
              */
-            updateImage({url, caption}){
+            updateImage({url, caption}) {
                 this.imageUrl = url;
                 this.caption = caption;
 
@@ -62,7 +62,7 @@
             /**
              * Update the upload progress.
              */
-            updateProgress({progress}){
+            updateProgress({progress}) {
                 this.uploadProgress = progress;
             }
         }

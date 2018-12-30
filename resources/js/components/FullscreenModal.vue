@@ -1,6 +1,6 @@
 <script type="text/ecmascript-6">
     export default {
-        data(){
+        data() {
             return {}
         },
 
@@ -20,6 +20,6 @@
 
 <template>
     <transition name="modal">
-            <slot/>
+        <slot/>
     </transition>
 </template>

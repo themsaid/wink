@@ -5,7 +5,7 @@ import {Bus} from './bus.js';
 
 export default {
     computed: {
-        Wink(){
+        Wink() {
             return Wink;
         }
     },
@@ -15,7 +15,7 @@ export default {
         /**
          * Show the time ago format for the given time.
          */
-        timeAgo(time){
+        timeAgo(time) {
             return moment(time + ' Z').utc().local().fromNow();
         },
 
@@ -23,7 +23,7 @@ export default {
         /**
          * Show the time in local time.
          */
-        localTime(time){
+        localTime(time) {
             return moment(time + ' Z').utc().local().format('MMMM Do YYYY, h:mm:ss A');
         },
 
@@ -31,7 +31,7 @@ export default {
         /**
          * Truncate the given string.
          */
-        truncate(string, length = 70){
+        truncate(string, length = 70) {
             return _.truncate(string, {
                 'length': length,
                 'separator': /,? +/
@@ -50,7 +50,7 @@ export default {
          *
          * src: https://gist.github.com/mathewbyrne/1280286
          */
-        slugify(text){
+        slugify(text) {
             return text.toString().toLowerCase()
                 .replace(/\s+/g, '-')
                 .replace(/[^\w\-]+/g, '')
@@ -61,7 +61,7 @@ export default {
         /**
          * Create an instance of axios.
          */
-        http(){
+        http() {
             let instance = axios.create();
 
             instance.defaults.baseURL = '/' + Wink.path;
@@ -90,7 +90,7 @@ export default {
         /**
          * Show an error message.
          */
-        alertError(message){
+        alertError(message) {
             this.$root.alert.type = 'error';
             this.$root.alert.autoClose = false;
             this.$root.alert.message = message;
@@ -100,7 +100,7 @@ export default {
         /**
          * Show confirmation message.
          */
-        alertConfirm(message, success, failure){
+        alertConfirm(message, success, failure) {
             this.$root.alert.type = 'confirmation';
             this.$root.alert.autoClose = false;
             this.$root.alert.message = message;
@@ -112,7 +112,7 @@ export default {
         /**
          * Show a success message.
          */
-        notifySuccess(message, autoClose){
+        notifySuccess(message, autoClose) {
             this.$root.notification.type = 'success';
             this.$root.notification.autoClose = autoClose;
             this.$root.notification.message = message;

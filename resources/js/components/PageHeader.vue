@@ -2,7 +2,7 @@
 
     export default {
         computed: {
-            hideLogoOnSmallScreens(){
+            hideLogoOnSmallScreens() {
                 return this.$slots['left-side']
             }
         }

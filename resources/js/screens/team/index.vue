@@ -11,7 +11,6 @@
         },
 
 
-
         /**
          * The component's data.
          */

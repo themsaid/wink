@@ -38,7 +38,7 @@ new Vue({
 
     router,
 
-    data(){
+    data() {
         return {
             alert: {
                 type: null,
@@ -56,7 +56,7 @@ new Vue({
         }
     },
 
-    mounted(){
+    mounted() {
         Bus.$on('httpError', message => this.alertError(message));
     },
 

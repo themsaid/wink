@@ -1,15 +1,15 @@
 <script type="text/ecmascript-6">
     export default {
-        data(){
+        data() {
             return {
                 shouldShowContent: false
             }
         },
 
 
-        watch:{
-            shouldShowContent(val){
-                if(val){
+        watch: {
+            shouldShowContent(val) {
+                if (val) {
                     this.$emit('showing');
                 }
             }
@@ -17,11 +17,11 @@
 
 
         methods: {
-            toggle(){
+            toggle() {
                 this.shouldShowContent = !this.shouldShowContent;
             },
 
-            hide(){
+            hide() {
                 this.shouldShowContent = false;
             },
         }

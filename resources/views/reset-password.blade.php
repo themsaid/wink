@@ -27,7 +27,8 @@
             <h2 class="font-normal">— Your New Password</h2>
         </div>
 
-        <p class="mb-5 leading-normal">Copy your new password, use it for your <a class="text-primary no-underline" href="{{route('wink.auth.login')}}">next login</a>, and then reset it.
+        <p class="mb-5 leading-normal">Copy your new password, use it for your
+            <a class="text-primary no-underline" href="{{route('wink.auth.login')}}">next login</a>, and then reset it.
         </p>
 
         <span class="bg-lighter text-sm p-1">{{$password}}</span>

@@ -5,7 +5,7 @@
 
         props: ['errors'],
 
-        data(){
+        data() {
             return {}
         },
 

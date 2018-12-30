@@ -5,7 +5,7 @@
     export default {
         props: ['value'],
 
-        data(){
+        data() {
             return {
                 dateComponents: {
                     day: '',
@@ -26,7 +26,7 @@
 
 
         watch: {
-            value(val){
+            value(val) {
                 this.buildComponents(val);
             },
 
@@ -46,7 +46,7 @@
 
 
         methods: {
-            buildComponents(val){
+            buildComponents(val) {
                 let date = moment(val + ' Z').utc();
 
                 this.dateComponents = {month: date.format('MM'), day: date.format('DD'), year: date.format('YYYY'), hour: date.format('HH'), minute: date.format('mm')};

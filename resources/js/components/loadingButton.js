@@ -7,7 +7,7 @@ module.exports = {
     /**
      * Component is ready.
      */
-    bind (el, binding, vnode) {
+    bind(el, binding, vnode) {
         var element = el;
 
         vnode.context.$watch(binding.expression || 'saving', (val) => {

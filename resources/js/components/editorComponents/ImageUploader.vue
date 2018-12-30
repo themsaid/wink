@@ -2,7 +2,7 @@
     export default {
         props: ['postId'],
 
-        data(){
+        data() {
             return {
                 existingBlot: null,
                 imageUrl: null,
@@ -36,7 +36,7 @@
             /**
              * Close the modal.
              */
-            close(){
+            close() {
                 this.modalShown = false;
 
                 this.imagePickerKey = _.uniqueId();
@@ -54,7 +54,7 @@
             /**
              * Update the selected image.
              */
-            updateImage({url, caption}){
+            updateImage({url, caption}) {
                 this.imageUrl = url;
                 this.caption = caption;
 
@@ -65,7 +65,7 @@
             /**
              * Add the image to the editor.
              */
-            applyImage(){
+            applyImage() {
                 if (!this.imageUrl) {
                     return this.alertError('Please select an image.');
                 }
@@ -84,7 +84,7 @@
             /**
              * Update the upload progress.
              */
-            updateProgress({progress}){
+            updateProgress({progress}) {
                 this.uploadProgress = progress;
             }
         }

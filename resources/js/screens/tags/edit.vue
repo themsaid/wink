@@ -73,13 +73,13 @@
 
 
         watch: {
-            'form.slug'(val){
+            'form.slug'(val) {
                 this.debouncer(() => {
                     this.form.slug = this.slugify(val);
                 });
             },
 
-            'form.name'(val){
+            'form.name'(val) {
                 this.debouncer(() => {
                     if (this.form.slug) return;
 
@@ -93,7 +93,7 @@
             /**
              * Delete the tag.
              */
-            deleteTag(){
+            deleteTag() {
                 this.alertConfirm("Are you sure you want to delete this tag?", () => {
                     this.http().delete('/api/tags/' + this.id, this.form).then(response => {
                         this.$router.push({name: 'tags'})
@@ -105,7 +105,7 @@
             /**
              * Save the tag.
              */
-            save(){
+            save() {
                 this.form.working = true;
                 this.form.errors = [];
 
@@ -124,14 +124,14 @@
             /**
              * Open the SEO & Social modal.
              */
-            seoModal(){
+            seoModal() {
                 this.seoModalShown = true;
             },
 
             /**
              * Close the SEO modal.
              */
-            closeSeoModal({content}){
+            closeSeoModal({content}) {
                 this.seoModalShown = false;
                 this.form.meta = content;
             },

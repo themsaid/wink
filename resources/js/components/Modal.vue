@@ -1,6 +1,6 @@
 <script type="text/ecmascript-6">
     export default {
-        data(){
+        data() {
             return {}
         },
 
@@ -37,7 +37,7 @@
             /**
              * Handle a click on the modal.
              */
-            handleClicks(e){
+            handleClicks(e) {
                 if (e.target.classList.contains('modal-mask')) {
                     this.close();
                 }

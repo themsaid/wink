@@ -2,7 +2,7 @@
     export default {
         props: ['type', 'message', 'autoClose'],
 
-        data(){
+        data() {
             return {
                 timeout: null
             }
@@ -20,7 +20,7 @@
             /**
              * Close the notification.
              */
-            close(){
+            close() {
                 clearTimeout(this.timeout);
 
                 this.$root.notification.type = null;

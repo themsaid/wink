@@ -59,13 +59,13 @@
 
 
         watch: {
-            'form.slug'(val){
+            'form.slug'(val) {
                 this.debouncer(() => {
                     this.form.slug = this.slugify(val);
                 });
             },
 
-            'form.published'(val){
+            'form.published'(val) {
                 if (this.formWatcher) {
                     this.formWatcher();
                 }
@@ -75,7 +75,7 @@
                 }
             },
 
-            '$route.params.id'(){
+            '$route.params.id'() {
                 this.id = this.$route.params.id;
             }
         },
@@ -111,7 +111,7 @@
 
 
         methods: {
-            registerSaveKeyboardShortcut(){
+            registerSaveKeyboardShortcut() {
                 this.saveKeyboardShortcut = (event) => {
                     if ((event.ctrlKey || event.metaKey) && event.which == 83) {
                         event.preventDefault();
@@ -127,7 +127,7 @@
             /**
              * Fill the form.
              */
-            fillForm(data){
+            fillForm(data) {
                 this.form.id = data.id;
                 this.form.publish_date = data.publish_date;
 
@@ -163,7 +163,7 @@
             /**
              * Watch changes and save the post.
              */
-            watchChangesAndSave(){
+            watchChangesAndSave() {
                 setTimeout(() => {
                     this.formWatcher = this.$watch('form', _.debounce(() => this.save(), 1000), {deep: true});
                 }, 1000);
@@ -173,7 +173,7 @@
             /**
              * Load the resources needed for the screen.
              */
-            loadResources(){
+            loadResources() {
                 this.http().get('/api/tags').then(response => {
                     this.tags = response.data.data;
                 });
@@ -191,7 +191,7 @@
             /**
              * Listen to changes in the post body.
              */
-            updatePostBody(data){
+            updatePostBody(data) {
                 this.form.body = data.body;
             },
 
@@ -199,7 +199,7 @@
             /**
              * Update the post title.
              */
-            updateTitle(val){
+            updateTitle(val) {
                 this.form.title = val;
             },
 
@@ -207,7 +207,7 @@
             /**
              * Open the settings modal.
              */
-            settingsModal(){
+            settingsModal() {
                 this.settingsModalShown = true;
             },
 
@@ -215,7 +215,7 @@
             /**
              * Open the SEO & Social modal.
              */
-            seoModal(){
+            seoModal() {
                 this.seoModalShown = true;
             },
 
@@ -223,7 +223,7 @@
             /**
              * Open the publishing modal.
              */
-            publishingModal(){
+            publishingModal() {
                 this.publishingModalShown = true;
             },
 
@@ -231,7 +231,7 @@
             /**
              * Open the featured image modal.
              */
-            featuredImageModal(){
+            featuredImageModal() {
                 this.$emit('openingFeaturedImageUploader');
             },
 
@@ -239,7 +239,7 @@
             /**
              * Handle the change event of featured images.
              */
-            featuredImageChanged({url, caption}){
+            featuredImageChanged({url, caption}) {
                 this.form.featured_image = url;
                 this.form.featured_image_caption = caption;
             },
@@ -248,7 +248,7 @@
             /**
              * Close the SEO modal.
              */
-            closeSeoModal({content}){
+            closeSeoModal({content}) {
                 this.seoModalShown = false;
                 this.form.meta = content;
             },
@@ -257,7 +257,7 @@
             /**
              * Delete the post.
              */
-            deletePost(){
+            deletePost() {
                 this.alertConfirm("Are you sure you want to delete this post?", () => {
                     this.settingsModalShown = false;
 
@@ -271,7 +271,7 @@
             /**
              * Publish the post.
              */
-            publishPost(){
+            publishPost() {
                 this.form.published = true;
 
                 this.save();
@@ -285,7 +285,7 @@
             /**
              * Un-publish the post.
              */
-            unpublishPost(){
+            unpublishPost() {
                 this.form.published = false;
 
                 this.save();
@@ -299,7 +299,7 @@
             /**
              * Save the post.
              */
-            save(){
+            save() {
                 this.errors = [];
                 this.status = 'Saving...';
 
