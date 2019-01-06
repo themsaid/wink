@@ -1921,7 +1921,7 @@ table {
 }
 
 .multiselect.active {
-  background-color: #173953;
+  background-color: #10314a;
 }
 
 .multiselect.active .multiselect_options {
@@ -1931,7 +1931,7 @@ table {
 }
 
 .multiselect_dropdown {
-  background-color: #173953;
+  background-color: #10314a;
   padding: .5rem;
 }
 
@@ -1971,6 +1971,28 @@ table {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+#alert {
+  position: absolute;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: #000000ba;
+}
+
+#alert svg {
+  display: block;
+  margin: 0 auto;
+  width: 4rem;
+  height: 4rem;
+}
+
+#alert .dialog {
+  background-color: #011627;
+  width: 400px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
 body {
@@ -2036,7 +2058,7 @@ body {
 
 .input-group {
   border-bottom-width: 1px;
-  border-color: #173953;
+  border-color: #10314a;
   padding-top: 1rem;
   padding-bottom: .5rem;
 }
@@ -2067,7 +2089,7 @@ textarea {
 }
 
 select {
-  background-color: #173953;
+  background-color: #10314a;
   color: #c1d4ea;
 }
 
@@ -2126,7 +2148,7 @@ select {
 }
 
 .bg-very-light {
-  background-color: #173953;
+  background-color: #10314a;
 }
 
 .bg-contrast {
@@ -2166,7 +2188,7 @@ select {
 }
 
 .hover\:bg-very-light:hover {
-  background-color: #173953;
+  background-color: #10314a;
 }
 
 .hover\:bg-contrast:hover {
@@ -2206,7 +2228,7 @@ select {
 }
 
 .focus\:bg-very-light:focus {
-  background-color: #173953;
+  background-color: #10314a;
 }
 
 .focus\:bg-contrast:focus {
@@ -2318,7 +2340,7 @@ select {
 }
 
 .border-very-light {
-  border-color: #173953;
+  border-color: #10314a;
 }
 
 .border-contrast {
@@ -2358,7 +2380,7 @@ select {
 }
 
 .hover\:border-very-light:hover {
-  border-color: #173953;
+  border-color: #10314a;
 }
 
 .hover\:border-contrast:hover {
@@ -2398,7 +2420,7 @@ select {
 }
 
 .focus\:border-very-light:focus {
-  border-color: #173953;
+  border-color: #10314a;
 }
 
 .focus\:border-contrast:focus {
@@ -4877,7 +4899,7 @@ select {
 }
 
 .fill-very-light {
-  fill: #173953;
+  fill: #10314a;
 }
 
 .fill-contrast {
@@ -4921,7 +4943,7 @@ select {
 }
 
 .hover\:fill-very-light:hover {
-  fill: #173953;
+  fill: #10314a;
 }
 
 .hover\:fill-contrast:hover {
@@ -4989,7 +5011,7 @@ select {
 }
 
 .text-very-light {
-  color: #173953;
+  color: #10314a;
 }
 
 .text-contrast {
@@ -5029,7 +5051,7 @@ select {
 }
 
 .hover\:text-very-light:hover {
-  color: #173953;
+  color: #10314a;
 }
 
 .hover\:text-contrast:hover {
@@ -5069,7 +5091,7 @@ select {
 }
 
 .focus\:text-very-light:focus {
-  color: #173953;
+  color: #10314a;
 }
 
 .focus\:text-contrast:focus {
@@ -5514,8 +5536,16 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+#alert {
+  background: rgba(17, 59, 92, .83);
+}
+
 .modal-mask {
   background: rgba(17, 59, 92, .83);
+}
+
+.ql-editor.ql-blank::before {
+  color: #9baecd;
 }
 
 .ql-bubble .ql-editor pre.ql-syntax {
@@ -5684,7 +5714,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:bg-very-light {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .sm\:bg-contrast {
@@ -5724,7 +5754,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:hover\:bg-very-light:hover {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .sm\:hover\:bg-contrast:hover {
@@ -5764,7 +5794,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:focus\:bg-very-light:focus {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .sm\:focus\:bg-contrast:focus {
@@ -5868,7 +5898,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:border-very-light {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .sm\:border-contrast {
@@ -5908,7 +5938,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:hover\:border-very-light:hover {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .sm\:hover\:border-contrast:hover {
@@ -5948,7 +5978,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:focus\:border-very-light:focus {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .sm\:focus\:border-contrast:focus {
@@ -8439,7 +8469,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:text-very-light {
-    color: #173953;
+    color: #10314a;
   }
 
   .sm\:text-contrast {
@@ -8479,7 +8509,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:hover\:text-very-light:hover {
-    color: #173953;
+    color: #10314a;
   }
 
   .sm\:hover\:text-contrast:hover {
@@ -8519,7 +8549,7 @@ select:-webkit-autofill:focus {
   }
 
   .sm\:focus\:text-very-light:focus {
-    color: #173953;
+    color: #10314a;
   }
 
   .sm\:focus\:text-contrast:focus {
@@ -8994,7 +9024,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:bg-very-light {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .md\:bg-contrast {
@@ -9034,7 +9064,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:hover\:bg-very-light:hover {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .md\:hover\:bg-contrast:hover {
@@ -9074,7 +9104,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:focus\:bg-very-light:focus {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .md\:focus\:bg-contrast:focus {
@@ -9178,7 +9208,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:border-very-light {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .md\:border-contrast {
@@ -9218,7 +9248,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:hover\:border-very-light:hover {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .md\:hover\:border-contrast:hover {
@@ -9258,7 +9288,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:focus\:border-very-light:focus {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .md\:focus\:border-contrast:focus {
@@ -11749,7 +11779,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:text-very-light {
-    color: #173953;
+    color: #10314a;
   }
 
   .md\:text-contrast {
@@ -11789,7 +11819,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:hover\:text-very-light:hover {
-    color: #173953;
+    color: #10314a;
   }
 
   .md\:hover\:text-contrast:hover {
@@ -11829,7 +11859,7 @@ select:-webkit-autofill:focus {
   }
 
   .md\:focus\:text-very-light:focus {
-    color: #173953;
+    color: #10314a;
   }
 
   .md\:focus\:text-contrast:focus {
@@ -12304,7 +12334,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:bg-very-light {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .lg\:bg-contrast {
@@ -12344,7 +12374,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:hover\:bg-very-light:hover {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .lg\:hover\:bg-contrast:hover {
@@ -12384,7 +12414,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:focus\:bg-very-light:focus {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .lg\:focus\:bg-contrast:focus {
@@ -12488,7 +12518,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:border-very-light {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .lg\:border-contrast {
@@ -12528,7 +12558,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:hover\:border-very-light:hover {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .lg\:hover\:border-contrast:hover {
@@ -12568,7 +12598,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:focus\:border-very-light:focus {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .lg\:focus\:border-contrast:focus {
@@ -15059,7 +15089,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:text-very-light {
-    color: #173953;
+    color: #10314a;
   }
 
   .lg\:text-contrast {
@@ -15099,7 +15129,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:hover\:text-very-light:hover {
-    color: #173953;
+    color: #10314a;
   }
 
   .lg\:hover\:text-contrast:hover {
@@ -15139,7 +15169,7 @@ select:-webkit-autofill:focus {
   }
 
   .lg\:focus\:text-very-light:focus {
-    color: #173953;
+    color: #10314a;
   }
 
   .lg\:focus\:text-contrast:focus {
@@ -15614,7 +15644,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:bg-very-light {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .xl\:bg-contrast {
@@ -15654,7 +15684,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:hover\:bg-very-light:hover {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .xl\:hover\:bg-contrast:hover {
@@ -15694,7 +15724,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:focus\:bg-very-light:focus {
-    background-color: #173953;
+    background-color: #10314a;
   }
 
   .xl\:focus\:bg-contrast:focus {
@@ -15798,7 +15828,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:border-very-light {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .xl\:border-contrast {
@@ -15838,7 +15868,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:hover\:border-very-light:hover {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .xl\:hover\:border-contrast:hover {
@@ -15878,7 +15908,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:focus\:border-very-light:focus {
-    border-color: #173953;
+    border-color: #10314a;
   }
 
   .xl\:focus\:border-contrast:focus {
@@ -18369,7 +18399,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:text-very-light {
-    color: #173953;
+    color: #10314a;
   }
 
   .xl\:text-contrast {
@@ -18409,7 +18439,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:hover\:text-very-light:hover {
-    color: #173953;
+    color: #10314a;
   }
 
   .xl\:hover\:text-contrast:hover {
@@ -18449,7 +18479,7 @@ select:-webkit-autofill:focus {
   }
 
   .xl\:focus\:text-very-light:focus {
-    color: #173953;
+    color: #10314a;
   }
 
   .xl\:focus\:text-contrast:focus {

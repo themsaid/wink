@@ -1,7 +1,15 @@
 @import "light";
 
+#alert {
+  background: rgba(17, 59, 92, 0.83);
+}
+
 .modal-mask{
   background: rgba(17, 59, 92, 0.83);
+}
+
+.ql-editor.ql-blank::before{
+  color: config('colors.light');
 }
 
 .ql-bubble .ql-editor pre.ql-syntax {
@@ -125,3 +133,4 @@
 .ql-bubble .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
   stroke: config('colors.lighter');
 }
+

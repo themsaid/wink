@@ -97,27 +97,3 @@
         </div>
     </div>
 </template>
-
-<style>
-    #alert {
-        position: absolute;
-        z-index: 99999;
-        width: 100%;
-        height: 100%;
-        background: #000000ba;
-    }
-
-    #alert svg {
-        display: block;
-        margin: 0 auto;
-        width: 4rem;
-        height: 4rem;
-    }
-
-    #alert .dialog {
-        background: #fff;
-        width: 400px;
-        margin: 40px auto;
-        padding: 20px;
-    }
-</style>

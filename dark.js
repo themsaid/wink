@@ -6,7 +6,7 @@ let colors = {
   'text-color': '#c1d4ea',
   'light': '#9baecd',
   'lighter': '#24567b',
-  'very-light': '#173953',
+  'very-light': '#10314a',
   'contrast': '#011627',
 
   'green': '#3ea265',
