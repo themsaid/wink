@@ -10,18 +10,21 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Style sheets-->
-    <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
 
     <!-- Icon-->
     <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
 
     <!-- Highlight JS sheets -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+
+    <!-- Style sheets-->
+    {{--<link href='{{mix('dark.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>--}}
+    {{--<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/sunburst.min.css">--}}
+    <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
 </head>
 
-<body class="text-black mb-20">
+<body class="text-text-color mb-20">
 
 <div id="wink" v-cloak>
     <alert :message="alert.message"

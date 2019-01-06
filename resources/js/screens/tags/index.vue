@@ -77,7 +77,7 @@
                 <div v-for="entry in entries" :key="entry.id" class="border-t border-very-light flex items-center">
                     <div class="py-4" :title="entry.title">
                         <h2 class="text-xl font-semibold">
-                            <router-link :to="{name:'tag-edit', params:{id: entry.id}}" class="no-underline text-black">
+                            <router-link :to="{name:'tag-edit', params:{id: entry.id}}" class="no-underline text-text-color">
                                 {{truncate(entry.name, 80)}}
                             </router-link>
                         </h2>

@@ -3,17 +3,17 @@ let defaultConfig = require('tailwindcss/defaultConfig')();
 let colors = {
   'transparent': 'transparent',
 
-  'text-color': '#22292f',
-  'light': '#9ba3aa',
-  'lighter': '#cacfd4',
-  'very-light': '#e9ecef',
-  'contrast': '#ffffff',
+  'text-color': '#c1d4ea',
+  'light': '#9baecd',
+  'lighter': '#24567b',
+  'very-light': '#173953',
+  'contrast': '#011627',
 
   'green': '#3ea265',
   'red': '#ef5753',
 
-  'primary': '#4040c8',
-  'primary-dark': '#28287f',
+  'primary': '#D3B081',
+  'primary-dark': '#D3B081',
 };
 
 module.exports = {

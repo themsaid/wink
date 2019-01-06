@@ -16,7 +16,7 @@
     <!-- Icon-->
     <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
 </head>
-<body class="text-black mb-20">
+<body class="text-text-color mb-20">
 <div class="container mt-20">
     <div class="xl:w-1/2 mx-auto">
 

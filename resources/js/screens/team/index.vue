@@ -77,7 +77,7 @@
                 <div v-for="entry in entries" :key="entry.id" class="border-t border-very-light flex items-center py-5">
                     <div :title="entry.name">
                         <h2 class="text-xl font-semibold mb-3">
-                            <router-link :to="{name:'team-edit', params:{id: entry.id}}" class="no-underline text-black">
+                            <router-link :to="{name:'team-edit', params:{id: entry.id}}" class="no-underline text-text-color">
                                 {{truncate(entry.name, 68)}}
                             </router-link>
                         </h2>

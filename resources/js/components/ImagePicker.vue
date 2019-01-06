@@ -133,11 +133,11 @@
         <div class="mb-0">
             Please <label :for="'imageUpload'+_uid" class="cursor-pointer underline">upload</label> an image
             <span v-if="Wink.unsplash_key">or</span>
-            <a v-if="Wink.unsplash_key" href="#" @click.prevent="openUnsplashModal" class="text-black">search Unsplash</a>
+            <a v-if="Wink.unsplash_key" href="#" @click.prevent="openUnsplashModal" class="text-text-color">search Unsplash</a>
         </div>
 
         <fullscreen-modal v-if="unsplashModalShown">
-            <div class="bg-white z-50 fixed pin overflow-y-scroll">
+            <div class="bg-contrast z-50 fixed pin overflow-y-scroll">
                 <div class="container py-20">
                     <div class="flex items-center">
                         <h2 class="mr-auto">Search Unsplash</h2>

@@ -14,20 +14,20 @@ const router = new VueRouter({
     base: '/' + Wink.path,
 });
 
-Vue.component('page-header', require('./components/PageHeader'));
-Vue.component('preloader', require('./partials/Preloader'));
+Vue.component('page-header', require('./components/PageHeader').default);
+Vue.component('preloader', require('./partials/Preloader').default);
 
-Vue.component('alert', require('./components/Alert'));
-Vue.component('dropdown', require('./components/DropDown'));
-Vue.component('modal', require('./components/Modal'));
-Vue.component('fullscreen-modal', require('./components/FullscreenModal'));
-Vue.component('notification', require('./components/Notification'));
-Vue.component('mini-editor', require('./components/MiniEditor'));
-Vue.component('editor', require('./components/Editor'));
-Vue.component('form-errors', require('./components/FormErrors'));
-Vue.component('image-picker', require('./components/ImagePicker'));
-Vue.component('date-time-picker', require('./components/DateTimePicker'));
-Vue.component('multiselect', require('./components/MultiSelect'));
+Vue.component('alert', require('./components/Alert').default);
+Vue.component('dropdown', require('./components/DropDown').default);
+Vue.component('modal', require('./components/Modal').default);
+Vue.component('fullscreen-modal', require('./components/FullscreenModal').default);
+Vue.component('notification', require('./components/Notification').default);
+Vue.component('mini-editor', require('./components/MiniEditor').default);
+Vue.component('editor', require('./components/Editor').default);
+Vue.component('form-errors', require('./components/FormErrors').default);
+Vue.component('image-picker', require('./components/ImagePicker').default);
+Vue.component('date-time-picker', require('./components/DateTimePicker').default);
+Vue.component('multiselect', require('./components/MultiSelect').default);
 Vue.directive('loading', require('./components/loadingButton'));
 Vue.directive('click-outside', require('./components/clickOutside'));
 

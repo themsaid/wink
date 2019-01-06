@@ -15,7 +15,7 @@
             <div class="flex items-center py-2">
                 <div class="flex items-center mr-auto">
                     <h3 class="mr-5 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
-                        <router-link to="/" class="no-underline text-black">
+                        <router-link to="/" class="no-underline text-text-color">
                             <span class="text-light">W</span>ink.
                         </router-link>
                     </h3>
@@ -32,24 +32,24 @@
                         </button>
 
                         <div slot="content" class="dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2">
-                            <router-link :to="{name:'team-edit', params:{id: Wink.author.id}}" class="no-underline text-black font-sans hover:text-primary w-full block py-2 px-4 border-b border-very-light">
+                            <router-link :to="{name:'team-edit', params:{id: Wink.author.id}}" class="no-underline text-text-color font-sans hover:text-primary w-full block py-2 px-4 border-b border-very-light">
                                 Profile
                             </router-link>
-                            <router-link to="/posts" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            <router-link to="/posts" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Posts
                             </router-link>
-                            <router-link to="/pages" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            <router-link to="/pages" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Pages
                             </router-link>
 
-                            <router-link to="/tags" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            <router-link to="/tags" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Tags
                             </router-link>
 
-                            <router-link to="/team" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                            <router-link to="/team" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Team
                             </router-link>
-                            <a href="/wink/logout" class="no-underline text-black hover:text-primary w-full block py-2 px-4 border-t border-very-light">
+                            <a href="/wink/logout" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4 border-t border-very-light">
                                 Log out
                             </a>
                         </div>

@@ -5,17 +5,17 @@ export default [
     {
         path: '/posts',
         name: 'posts',
-        component: require('./screens/posts/index')
+        component: require('./screens/posts/index').default
     },
     {
         path: '/posts/new',
         name: 'post-new',
-        component: require('./screens/posts/edit')
+        component: require('./screens/posts/edit').default
     },
     {
         path: '/posts/:id',
         name: 'post-edit',
-        component: require('./screens/posts/edit')
+        component: require('./screens/posts/edit').default
     },
 
 
@@ -23,19 +23,19 @@ export default [
     {
         path: '/tags',
         name: 'tags',
-        component: require('./screens/tags/index')
+        component: require('./screens/tags/index').default
     },
 
     {
         path: '/tags/new',
         name: 'tag-new',
-        component: require('./screens/tags/edit')
+        component: require('./screens/tags/edit').default
     },
 
     {
         path: '/tags/:id',
         name: 'tag-edit',
-        component: require('./screens/tags/edit')
+        component: require('./screens/tags/edit').default
     },
 
 
@@ -43,19 +43,19 @@ export default [
     {
         path: '/team',
         name: 'team',
-        component: require('./screens/team/index')
+        component: require('./screens/team/index').default
     },
 
     {
         path: '/team/new',
         name: 'team-new',
-        component: require('./screens/team/edit')
+        component: require('./screens/team/edit').default
     },
 
     {
         path: '/team/:id',
         name: 'team-edit',
-        component: require('./screens/team/edit')
+        component: require('./screens/team/edit').default
     },
 
 
@@ -63,17 +63,17 @@ export default [
     {
         path: '/pages',
         name: 'pages',
-        component: require('./screens/pages/index')
+        component: require('./screens/pages/index').default
     },
     {
         path: '/pages/new',
         name: 'page-new',
-        component: require('./screens/pages/edit')
+        component: require('./screens/pages/edit').default
     },
     {
         path: '/pages/:id',
         name: 'page-edit',
-        component: require('./screens/pages/edit')
+        component: require('./screens/pages/edit').default
     },
 
 
@@ -81,6 +81,6 @@ export default [
     {
         path: '*',
         name: 'catch-all',
-        component: require('./screens/404'),
+        component: require('./screens/404').default,
     },
 ];

@@ -7,16 +7,20 @@
 @import "multiselect";
 @import "modal";
 
+body{
+    @apply bg-contrast;
+}
+
 .btn-primary{
     @apply border border-primary text-primary p-2 rounded no-underline;
 }
 
 .btn-primary:hover{
-    @apply bg-primary text-white;
+    @apply bg-primary text-contrast;
 }
 
 .btn-primary[disabled]{
-    @apply text-light bg-white border-light cursor-wait;
+    @apply text-light bg-contrast border-light cursor-wait;
 }
 
 .btn-primary:focus{
@@ -28,11 +32,11 @@
 }
 
 .btn-light:hover{
-    @apply bg-light text-white;
+    @apply bg-light text-contrast;
 }
 
 .btn-light[disabled]{
-    @apply text-light bg-white border-light cursor-wait;
+    @apply text-light bg-contrast border-light cursor-wait;
 }
 
 .btn-light:focus{
@@ -52,11 +56,19 @@
 }
 
 .input{
-    @apply mt-3 w-full bg-white p-0 appearance-none;
+    @apply mt-3 w-full bg-contrast p-0 appearance-none text-text-color;
 }
 
 .input:focus{
     @apply outline-none;
+}
+
+textarea{
+    @apply bg-contrast text-text-color;
+}
+
+select{
+    @apply bg-very-light text-text-color;
 }
 
 [contenteditable]:focus{
@@ -64,7 +76,7 @@
 }
 
 .dropdown-content{
-    @apply bg-white border border-lighter rounded absolute z-50 whitespace-no-wrap shadow;
+    @apply bg-contrast border border-lighter rounded absolute z-50 whitespace-no-wrap shadow;
 }
 
 @tailwind utilities;
@@ -79,6 +91,6 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     border: none;
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    -webkit-box-shadow: 0 0 0px 1000px config('colors.contrast') inset;
     transition: background-color 5000s ease-in-out 0s;
 }

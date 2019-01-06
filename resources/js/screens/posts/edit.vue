@@ -345,13 +345,13 @@
                     </button>
 
                     <div slot="content" class="dropdown-content pin-r min-w-dropdown mt-1 text-sm py-2">
-                        <a href="#" @click.prevent="settingsModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                        <a href="#" @click.prevent="settingsModal" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                             General Settings
                         </a>
-                        <a href="#" @click.prevent="featuredImageModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                        <a href="#" @click.prevent="featuredImageModal" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                             Featured Image
                         </a>
-                        <a href="#" @click.prevent="seoModal" class="no-underline text-black hover:text-primary w-full block py-2 px-4">
+                        <a href="#" @click.prevent="seoModal" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                             SEO & Social
                         </a>
                         <a href="#" @click.prevent="deletePost" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>

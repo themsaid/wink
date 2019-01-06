@@ -210,9 +210,9 @@
 <template>
     <div style="position: relative">
         <div id="sidebar-controls">
-            <button id="show-controls" class="rounded-full w-8 h-8 border border-light text-light hover:bg-light hover:text-white text-center" @click="showSideControls">+</button>
+            <button id="show-controls" class="rounded-full w-8 h-8 border border-light text-light hover:bg-light hover:text-contrast text-center" @click="showSideControls">+</button>
 
-            <div class="controls hidden pl-4 bg-white">
+            <div class="controls hidden pl-4 bg-contrast">
                 <button @click="openImageUploader()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-3">
                         <path d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11 9l-3-3-6 6h16l-5-5-2 2zm4-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>

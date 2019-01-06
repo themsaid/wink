@@ -115,7 +115,7 @@
                 <preloader v-if="facebookImageUploading"></preloader>
 
                 <div v-if="!facebookImageUploading">
-                    <div class="w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white" v-if="!form.opengraph_image">
+                    <div class="w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-contrast" v-if="!form.opengraph_image">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8">
                             <path d="M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                         </svg>
@@ -164,7 +164,7 @@
                 <preloader v-if="twitterImageUploading"></preloader>
 
                 <div v-if="!twitterImageUploading">
-                    <div class="w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-white" v-if="!form.twitter_image">
+                    <div class="w-16 h-16 rounded-full bg-light flex items-center justify-center text-4xl text-contrast" v-if="!form.twitter_image">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8">
                             <path d="M0 6c0-1.1.9-2 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm10 10a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                         </svg>
