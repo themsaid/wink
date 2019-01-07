@@ -19,6 +19,8 @@
 
                 seoModalShown: false,
 
+                theme: 'light',
+
                 form: {
                     errors: [],
                     working: false,
@@ -39,6 +41,7 @@
                         twitter_title: '',
                         twitter_description: '',
                         twitter_image: '',
+                        theme: 'light',
                     }
                 }
             };
@@ -102,7 +105,10 @@
                             twitter_title: response.data.entry.meta.twitter_title || '',
                             twitter_description: response.data.entry.meta.twitter_description || '',
                             twitter_image: response.data.entry.meta.twitter_image || '',
+                            theme: response.data.entry.meta.theme || 'light',
                         };
+
+                        this.theme = response.data.entry.meta.theme || 'light';
                     }
 
                     this.ready = true;
@@ -128,6 +134,10 @@
                         this.id = this.form.id;
 
                         this.$router.push({name: 'team-edit', params: {id: this.form.id}})
+                    }
+
+                    if(this.Wink.author.id == this.entry.id && this.theme != this.form.meta.theme){
+                        location.reload();
                     }
                 }).catch(error => {
                     this.form.errors = error.response.data.errors;
@@ -244,6 +254,18 @@
                            id="slug">
 
                     <form-errors :errors="form.errors.slug"></form-errors>
+                </div>
+
+                <div class="input-group">
+                    <label for="theme" class="input-label">Theme</label>
+                    <select class="input"
+                            v-model="form.meta.theme"
+                            id="theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+
+                    <form-errors :errors="form.errors['meta.theme']"></form-errors>
                 </div>
 
                 <div class="input-group">

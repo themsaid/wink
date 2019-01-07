@@ -17,10 +17,13 @@
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
 
     <!-- Style sheets-->
-    {{--<link href='{{mix('dark.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>--}}
-    {{--<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/sunburst.min.css">--}}
-    <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
+    @if(@auth('wink')->user()->meta['theme'] == 'dark')
+        <link href='{{mix('dark.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/sunburst.min.css">
+    @else
+        <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
+    @endif
 </head>
 
 <body class="text-text-color mb-20">
