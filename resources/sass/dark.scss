@@ -13,10 +13,13 @@
 }
 
 .ql-bubble .ql-editor pre.ql-syntax {
-  background: rgb(0, 8, 15);
-  color: #fff;
   overflow-x: auto;
   padding: 0.5em;
+}
+
+.ql-bubble .ql-editor code{
+  background: #154269;
+  color: #fff;
 }
 
 .ql-bubble .ql-tooltip {

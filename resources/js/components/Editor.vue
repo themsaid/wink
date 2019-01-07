@@ -59,7 +59,7 @@
                     modules: {
                         syntax: true,
                         toolbar: [
-                            ['bold', 'italic', 'underline', 'strike'],
+                            ['bold', 'italic', 'underline', 'strike', 'code'],
                             [{'header': '2'}, {'header': '3'}],
                             [{'list': 'ordered'}, {'list': 'bullet'}, 'link'],
                             ['blockquote', 'code-block'],
