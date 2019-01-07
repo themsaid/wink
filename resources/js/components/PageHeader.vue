@@ -49,7 +49,7 @@
                             <router-link to="/team" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Team
                             </router-link>
-                            <a href="/wink/logout" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4 border-t border-very-light">
+                            <a href="/logout" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4 border-t border-very-light">
                                 Log out
                             </a>
                         </div>
