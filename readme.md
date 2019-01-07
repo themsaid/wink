@@ -55,6 +55,9 @@ php artisan vendor:publish --tag=wink-assets --force
 Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
 
 ```php
+
+use Wink\WinkPost;
+
 public function index()
 {
     $posts = WinkPost::with('tags')
