@@ -55,6 +55,7 @@ class WinkPost extends AbstractWinkModel
      */
     protected $casts = [
         'meta' => 'array',
+        'published' => 'boolean',
     ];
 
     /**
