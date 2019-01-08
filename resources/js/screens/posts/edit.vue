@@ -431,16 +431,18 @@
                 Make sure your post has a friendly title and slug.
             </div>
 
-            <div class="input-group pt-0 mb-10">
-                <label class="input-label">Publish Date (M/D/Y H:M)</label>
+            <div class="input-group pt-0">
+                <label class="input-label">Publish Date (M/D/Y H:M) UTC</label>
                 <date-time-picker v-model="form.publish_date"></date-time-picker>
                 <form-errors :errors="errors.publish_date"></form-errors>
             </div>
 
-            <button class="btn-sm btn-primary" @click="publishPost" v-if="!form.published" v-loading="status">Publish this post</button>
-            <button class="btn-sm btn-primary" @click="publishPost" v-if="form.published" v-loading="status">Update Post</button>
-            <button class="btn-sm btn-light" @click="unpublishPost" v-if="form.published" v-loading="status">Convert to draft</button>
-            <button class="btn-sm btn-light" @click="publishingModalShown = false">Cancel</button>
+            <div class="mt-10">
+                <button class="btn-sm btn-primary" @click="publishPost" v-if="!form.published" v-loading="status">Publish this post</button>
+                <button class="btn-sm btn-primary" @click="publishPost" v-if="form.published" v-loading="status">Update Post</button>
+                <button class="btn-sm ml-1 btn-light" @click="unpublishPost" v-if="form.published" v-loading="status">Convert to draft</button>
+                <button class="btn-sm ml-1 btn-light" @click="publishingModalShown = false">Cancel</button>
+            </div>
         </modal>
 
         <!-- SEO & Social Modal -->

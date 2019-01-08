@@ -70,7 +70,7 @@
             <span class="px-1">/</span>
             <select class="input px-2"
                     v-model="dateComponents.year">
-                <option v-for="value in Array.from({length: 5}, (_, i) => i + (new Date()).getFullYear())" :value="value">{{value}}</option>
+                <option v-for="value in Array.from({length: 15}, (_, i) => i + (new Date()).getFullYear() - 10)" :value="value">{{value}}</option>
             </select>
             <span class="pl-5"> </span>
             <select class="input px-2"

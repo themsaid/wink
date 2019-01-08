@@ -116,5 +116,5 @@ select:-webkit-autofill:focus{
     -webkit-text-fill-color: config('colors.text-color');
     -webkit-box-shadow: 0 0 0px 1000px config('colors.contrast') inset;
     transition: background-color 5000s ease-in-out 0s;
-    color: red;
+    color: config('colors.text-color');
 }

@@ -1,5 +1,4 @@
 <script type="text/ecmascript-6">
-    import moment from 'moment';
     import loadsEntries from '../loadsEntries';
     import FiltersDropdown from '../../partials/FilterDropdown.vue';
 
@@ -68,14 +67,6 @@
              */
             formatTags(tags) {
                 return _.chain(tags).map('name').join(', ').value();
-            },
-
-
-            /**
-             * Determine if the given date is in the future.
-             */
-            dateInTheFuture(date) {
-                return moment().diff(moment(date + ' Z'), 'minutes') < 0;
             },
 
 

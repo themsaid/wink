@@ -96,6 +96,8 @@ Here's the plan for what's coming:
 - [x] Optimize CSS. Move to Tailwind?
 - [x] Add text search inside listings.
 - [x] Filter posts by status, scheduling, tags, and authors
+- [x] Dark mode.
+- [ ] Enhance publishing date picker. (Make it use browser time & show text feedback)
 - [ ] Create an initial theme that people can use right away. @themsaid
 - [ ] Optimize image uploads and allow cropping.
 - [ ] Adding image galleries to posts and pages. @themsaid
@@ -109,7 +111,6 @@ And here are some ideas I'm still not sure about:
 - [ ] Localization
 - [ ] Multi-lingual content
 - [ ] Attach metadata to posts and pages.
-- [ ] Dark mode.
 
 
 ## Contributing

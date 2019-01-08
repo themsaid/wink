@@ -13,6 +13,14 @@ export default {
 
     methods: {
         /**
+         * Determine if the given date is in the future.
+         */
+        dateInTheFuture(date) {
+            return moment().diff(moment(date + ' Z'), 'minutes') < 0;
+        },
+
+
+        /**
          * Show the time ago format for the given time.
          */
         timeAgo(time) {
