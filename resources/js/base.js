@@ -83,7 +83,7 @@ export default {
                             break;
 
                         case 401:
-                            window.location.href = '/wink/logout';
+                            window.location.href = '/' + Wink.path + '/logout';
                             break;
                     }
 
