@@ -13,8 +13,9 @@
 }
 
 .ql-bubble .ql-editor pre.ql-syntax {
-  overflow-x: auto;
-  padding: 0.5em;
+  background: #000d18;
+  color: #fff;
+  border: solid 2px rgba(0, 0, 0, 0.05);
 }
 
 .ql-bubble .ql-editor code{
