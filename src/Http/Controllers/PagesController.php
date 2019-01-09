@@ -12,7 +12,7 @@ class PagesController
     /**
      * Return pages.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class PagesController
     /**
      * Return a single page.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -49,7 +49,7 @@ class PagesController
     /**
      * Store a single page.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -80,8 +80,8 @@ class PagesController
     /**
      * Delete a single page.
      *
-     * @param  string $id
-     * @return null
+     * @param  string  $id
+     * @return void
      */
     public function delete($id)
     {

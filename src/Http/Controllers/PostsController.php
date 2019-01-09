@@ -13,7 +13,7 @@ class PostsController
     /**
      * Return posts.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -38,7 +38,7 @@ class PostsController
     /**
      * Return a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -59,7 +59,7 @@ class PostsController
     /**
      * Store a single post.
      *
-     * @param  string $id
+     * @param  string  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
@@ -102,7 +102,7 @@ class PostsController
     /**
      * Tags incoming from the request.
      *
-     * @param  array $incomingTags
+     * @param  array  $incomingTags
      * @return array
      */
     private function collectTags($incomingTags)
@@ -127,8 +127,8 @@ class PostsController
     /**
      * Return a single post.
      *
-     * @param  string $id
-     * @return null
+     * @param  string  $id
+     * @return void
      */
     public function delete($id)
     {

@@ -48,6 +48,7 @@ class ForgotPasswordController extends Controller
     /**
      * Show the new password to the user.
      *
+     * @param  string  $token
      * @return \Illuminate\Http\Response
      */
     public function showNewPassword($token)
