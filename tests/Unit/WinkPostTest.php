@@ -17,7 +17,9 @@ class WinkPostTest extends TestCase
         $this->assertSame('uuid', $winkPost->id);
 
         $this->expectException(QueryException::class);
-        factory(WinkPost::class)->create(['id' => 'uuid']);
+        factory(WinkPost::class)->create([
+            'id' => 'uuid',
+        ]);
     }
 
     public function test_it_has_title()
@@ -37,7 +39,9 @@ class WinkPostTest extends TestCase
         $this->assertSame('custom-slug', $winkPost->slug);
 
         $this->expectException(QueryException::class);
-        factory(WinkPost::class)->create(['slug' => 'custom-slug']);
+        factory(WinkPost::class)->create([
+            'slug' => 'custom-slug',
+        ]);
     }
 
     public function test_it_has_excerpt()
