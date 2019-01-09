@@ -130,6 +130,7 @@
             fillForm(data) {
                 this.form.id = data.id;
                 this.form.publish_date = data.publish_date;
+                this.form.slug = 'draft-' + this.form.id;
 
                 if (this.id != 'new') {
                     this.form.title = data.title;
@@ -300,11 +301,10 @@
              * Save the post.
              */
             save() {
+                if (this.status) return;
+
                 this.errors = [];
                 this.status = 'Saving...';
-
-                this.form.slug = this.form.slug || 'draft-' + this.form.id;
-                this.form.title = this.form.title || 'Draft';
 
                 this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
