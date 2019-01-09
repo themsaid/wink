@@ -4,31 +4,27 @@ namespace Wink\Tests;
 
 use Wink\WinkAuthor;
 use Wink\WinkServiceProvider;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use DatabaseTransactions;
 
-    /**
-     * @return void
-     */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
         $this->withFactories(__DIR__.'/Factories');
-        
+
         $this->artisan('migrate');
     }
 
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     * @return array
-     */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders(Application $app)
     {
-        return [WinkServiceProvider::class];
+        return [
+            WinkServiceProvider::class,
+        ];
     }
 
     /**
@@ -42,24 +38,18 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         $app['config']->set('database.default', 'wink');
         $app['config']->set('database.connections.wink', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
-    /**
-     * @param $user
-     * @return $this
-     */
     protected function signIn($user = null)
     {
-        if(! $user) {
-            $user = factory(WinkAuthor::class)->create();
-        }
-        
+        $user = $user ?: factory(WinkAuthor::class)->create();
+
         $this->actingAs($user, 'wink');
-        
+
         return $user;
     }
 }
