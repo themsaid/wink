@@ -12,7 +12,7 @@ class TagsController
     /**
      * Return posts.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -83,7 +83,7 @@ class TagsController
      * Return a single tag.
      *
      * @param  string  $id
-     * @return null
+     * @return void
      */
     public function delete($id)
     {

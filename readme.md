@@ -10,19 +10,19 @@ Wink runs on any Laravel application, it uses a separate database connection and
 
 To install Wink, require it via Composer:
 
-```
+```sh
 composer require writingink/wink
 ```
 
 Once Composer is done, run the following command:
 
-```
+```sh
 php artisan wink:install
 ```
 
 Check `config/wink.php` and **configure the database connection** wink is going to be using. Then instead of running `php artisan migrate`, run:
 
-```
+```sh
 php artisan wink:migrate
 ```
 
@@ -40,13 +40,13 @@ Head to `yourproject.test/wink` and use the provided email and password to log i
 
 Add this command in your deployment script so that wink runs new migrations if any:
 
-```
+```sh
 php artisan wink:migrate
 ```
 
 You may also want to run this command to re-publish the assets:
 
-```
+```sh
 php artisan vendor:publish --tag=wink-assets --force
 ```
 
