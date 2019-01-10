@@ -108,7 +108,7 @@ class WinkPost extends AbstractWinkModel
      */
     public function scopeLive($query)
     {
-        return $query->published()->where('publish_date', "<=", now());
+        return $query->published()->where('publish_date', '<=', now());
     }
 
     /**
@@ -119,7 +119,7 @@ class WinkPost extends AbstractWinkModel
      */
     public function scopeScheduled($query)
     {
-        return $query->where('publish_date', ">", now());
+        return $query->where('publish_date', '>', now());
     }
 
     /**
@@ -131,7 +131,7 @@ class WinkPost extends AbstractWinkModel
      */
     public function scopeBeforePublishDate($query, $date)
     {
-        return $query->where('publish_date', "<=", $date);
+        return $query->where('publish_date', '<=', $date);
     }
 
     /**
@@ -143,6 +143,6 @@ class WinkPost extends AbstractWinkModel
      */
     public function scopeAfterPublishDate($query, $date)
     {
-        return $query->where('publish_date', ">", $date);
+        return $query->where('publish_date', '>', $date);
     }
 }

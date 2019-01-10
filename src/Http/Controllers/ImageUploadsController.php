@@ -15,7 +15,7 @@ class ImageUploadsController
     {
         $path = request()->image->store(config('wink.storage_path'), [
                 'disk' => config('wink.storage_disk'),
-                'visibility' => 'public'
+                'visibility' => 'public',
             ]
         );
 
