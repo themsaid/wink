@@ -33,6 +33,7 @@ class CreateTables extends Migration
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('title');
+            $table->integer('duration_minute');
             $table->text('excerpt');
             $table->text('body');
             $table->boolean('published')->default(false);

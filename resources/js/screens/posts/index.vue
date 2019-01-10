@@ -150,7 +150,7 @@
                 .
             </div>
 
-            <div v-if="ready && entries.length == 0 && isFiltered">
+            <div v-if="ready && entries.length === 0 && isFiltered">
                 No posts matched the given search.
             </div>
 
@@ -162,6 +162,8 @@
                                 {{truncate(entry.title, 68)}}
                             </router-link>
                         </h2>
+
+                        <span>{{ entry.duration }} min read</span>
 
                         <p class="mb-3">{{truncate(entry.body.replace(/(<([^>]+)>)/ig,""), 100)}}</p>
 

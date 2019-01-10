@@ -75,6 +75,7 @@ class PostsController
             'featured_image_caption' => request('featured_image_caption', ''),
             'publish_date' => request('publish_date', ''),
             'meta' => request('meta', (object) []),
+            'duration' => $this->guessDurationOfPost(request('body'))
         ];
 
         validator($data, [
@@ -135,5 +136,18 @@ class PostsController
         $entry = WinkPost::findOrFail($id);
 
         $entry->delete();
+    }
+
+    /**
+     * Get the estimated duration of the post
+     *
+     * @param $body
+     * @return float
+     */
+    public function guessDurationOfPost($body)
+    {
+        $words = str_word_count(strip_tags($body));
+
+        return floor($words / 200);
     }
 }
