@@ -81,9 +81,10 @@
 
 .ql-container hr {
   border: none;
-  color: #111;
+  color: config('colors.text-color');
   letter-spacing: 1em;
   text-align: center;
+  @apply mb-20;
 }
 
 .ql-container hr:before {
@@ -138,6 +139,7 @@
 }
 
 .ql-editor.ql-blank::before {
+  color: config('colors.light');
   left: 0;
   font-style: normal;
 }

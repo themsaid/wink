@@ -1,6 +1,12 @@
 {
+<<<<<<< HEAD
     "/app.js": "/app.js?id=fdfd3afa70eeeac74e81",
     "/light.css": "/light.css?id=bcb03dbf596bfa351064",
     "/dark.css": "/dark.css?id=c655f9129824b8d032db",
+=======
+    "/app.js": "/app.js?id=a1763873e1bd0b22663f",
+    "/light.css": "/light.css?id=00726a847dc6b2cb132a",
+    "/dark.css": "/dark.css?id=aa5f40a240d2b1df06e2",
+>>>>>>> upstream/master
     "/favicon.png": "/favicon.png?id=b0b34b4095fcdbb8942d"
 }

@@ -8,13 +8,14 @@
   background: rgba(17, 59, 92, 0.83);
 }
 
-.ql-editor.ql-blank::before{
+.ql-container hr {
   color: config('colors.light');
 }
 
 .ql-bubble .ql-editor pre.ql-syntax {
-  overflow-x: auto;
-  padding: 0.5em;
+  background: #000d18;
+  color: #fff;
+  border: solid 2px rgba(0, 0, 0, 0.05);
 }
 
 .ql-bubble .ql-editor code{

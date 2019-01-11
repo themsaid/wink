@@ -28,7 +28,7 @@
 
                 errors: [],
 
-                formWatcher: null,
+                postBodyWatcher: null,
 
                 form: {
                     id: '',
@@ -66,12 +66,12 @@
             },
 
             'form.published'(val) {
-                if (this.formWatcher) {
-                    this.formWatcher();
+                if (this.postBodyWatcher) {
+                    this.postBodyWatcher();
                 }
 
                 if (!val) {
-                    this.watchChangesAndSave();
+                    this.watchBodyChangesAndSave();
                 }
             },
 
@@ -130,6 +130,7 @@
             fillForm(data) {
                 this.form.id = data.id;
                 this.form.publish_date = data.publish_date;
+                this.form.slug = 'draft-' + this.form.id;
 
                 if (this.id != 'new') {
                     this.form.title = data.title;
@@ -155,7 +156,7 @@
                 }
 
                 if (!this.form.published) {
-                    this.watchChangesAndSave();
+                    this.watchBodyChangesAndSave();
                 }
             },
 
@@ -163,9 +164,9 @@
             /**
              * Watch changes and save the post.
              */
-            watchChangesAndSave() {
+            watchBodyChangesAndSave() {
                 setTimeout(() => {
-                    this.formWatcher = this.$watch('form', _.debounce(() => this.save(), 1000), {deep: true});
+                    this.postBodyWatcher = this.$watch('form.body', _.debounce(() => this.save(), 1000), {deep: true});
                 }, 1000);
             },
 
@@ -182,7 +183,7 @@
                     this.authors = response.data.data;
 
                     if (!this.form.author_id && this.authors) {
-                        this.form.author_id = _.first(this.authors).id;
+                        this.form.author_id = this.Wink.author.id;
                     }
                 });
             },
@@ -300,11 +301,14 @@
              * Save the post.
              */
             save() {
+                if (this.status) return;
+
                 this.errors = [];
                 this.status = 'Saving...';
 
-                this.form.slug = this.form.slug || 'draft-' + this.form.id;
-                this.form.title = this.form.title || 'Draft';
+                if (this.form.title != 'Draft' && (!this.form.slug || this.form.slug.startsWith('draft-'))) {
+                    this.form.slug = this.slugify(this.form.title);
+                }
 
                 this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
@@ -313,6 +317,8 @@
                         this.$router.push({name: 'post-edit', params: {id: this.form.id}})
                     }
                 }).catch(error => {
+                    this.status = '';
+                    
                     this.errors = error.response.data.errors;
 
                     this.settingsModalShown = true;
