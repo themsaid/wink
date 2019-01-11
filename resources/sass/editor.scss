@@ -139,6 +139,7 @@
 }
 
 .ql-editor.ql-blank::before {
+  color: config('colors.light');
   left: 0;
   font-style: normal;
 }

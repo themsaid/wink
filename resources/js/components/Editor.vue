@@ -68,7 +68,7 @@
                     },
                     theme: 'bubble',
                     scrollingContainer: 'html, body',
-                    placeholder: "Write to the world..."
+                    placeholder: "Starting writing now..."
                 });
             },
 

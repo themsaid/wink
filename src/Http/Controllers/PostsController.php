@@ -45,7 +45,7 @@ class PostsController
     {
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->toDateTimeString()]),
+                'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->format('Y-m-d H:i:00')]),
             ]);
         }
 
