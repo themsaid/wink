@@ -1,5 +1,5 @@
 {
-    "name": "writingink/wink",
+    "name": "writingink/wink/wink",
     "description": "Wink Publishing Framework.",
     "keywords": ["framework", "laravel", "blog"],
     "license": "MIT",

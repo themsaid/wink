@@ -2,22 +2,23 @@
 
     import SEOModal from './../../components/SEOModal';
 
+
+
     export default {
         components: {
-            'seo-modal': SEOModal,
+            'seo-modal': SEOModal
         },
 
         data() {
             return {
+                file: null,
                 entry: null,
                 ready: false,
-
                 id: this.$route.params.id || 'new',
-
                 uploadProgress: 0,
                 uploading: false,
-
                 seoModalShown: false,
+                croppieModalShown: false,
 
                 theme: 'light',
 
@@ -54,7 +55,9 @@
             document.title = "Author — Wink.";
 
             this.loadEntry();
+
         },
+
 
 
         watch: {
@@ -81,6 +84,7 @@
 
 
         methods: {
+
             loadEntry() {
                 this.ready = false;
 
@@ -159,26 +163,12 @@
 
 
             /**
-             * Upload the selected image.
+             * Load the selected image into Croppie.
              */
-            uploadSelectedImage(event) {
+            loadSelectedImage(event){
                 let file = event.target.files[0];
-                let formData = new FormData();
-
-                formData.append('image', file, file.name);
-
-                this.uploading = true;
-
-                this.http().post('/api/uploads', formData, {
-                    onUploadProgress: progressEvent => {
-                        this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                    }
-                }).then(response => {
-                    this.form.avatar = response.data.url;
-
-                    this.uploading = false;
-                }).catch(error => {
-                });
+                this.file = file;
+                this.croppieModal();
             },
 
             /**
@@ -195,6 +185,29 @@
                 this.seoModalShown = false;
                 this.form.meta = content;
             },
+
+            /**
+             * Open Croppie modal.
+             */
+            croppieModal() {
+                this.croppieModalShown = true;
+            },
+
+            /**
+             * Close the Croppie modal.
+             */
+            closeCroppieModal({avatar}) {
+                this.croppieModalShown = false;
+                this.form.avatar = avatar;
+            },
+
+
+            /**
+             * Close and Cancel the Croppie modal.
+             */
+            cancelCroppieModal() {
+                this.croppieModalShown = false;
+            }
 
         }
     }
@@ -301,16 +314,25 @@
                 <div class="flex items-center" v-if="!uploading">
                     <div class="w-16 h-16 rounded-full bg-cover" :style="{ backgroundImage: 'url(' + form.avatar + ')' }"></div>
 
-                    <input type="file" class="hidden" id="author_avatar" accept="image/*" v-on:change="uploadSelectedImage">
+                    <input type="file" class="hidden" id="author_avatar" accept="image/*" v-on:change="loadSelectedImage">
 
                     <label for="author_avatar" class="ml-5 cursor-pointer underline">Upload an avatar</label>
                 </div>
             </div>
         </div>
+        
 
         <!-- SEO & Social Modal -->
         <seo-modal v-if="seoModalShown"
                    :input="form.meta"
                    @close="closeSeoModal"></seo-modal>
+
+        <!-- Croppie Modal -->
+        <croppie-modal v-if="croppieModalShown"
+                   :file="file"
+                   @closeCroppie="closeCroppieModal"
+                   @cancelCroppie="cancelCroppieModal"></croppie-modal>
+
+
     </div>
 </template>

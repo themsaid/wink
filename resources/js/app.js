@@ -4,9 +4,12 @@ import {Bus} from './bus.js';
 import Routes from './routes';
 import VueRouter from 'vue-router';
 import VueTextareaAutosize from 'vue-textarea-autosize';
+import VueCroppie from 'vue-croppie';
+
 
 Vue.use(VueRouter);
 Vue.use(VueTextareaAutosize);
+Vue.use(VueCroppie);
 
 const router = new VueRouter({
     routes: Routes,
@@ -26,6 +29,7 @@ Vue.component('mini-editor', require('./components/MiniEditor').default);
 Vue.component('editor', require('./components/Editor').default);
 Vue.component('form-errors', require('./components/FormErrors').default);
 Vue.component('image-picker', require('./components/ImagePicker').default);
+Vue.component('croppie-modal', require('./components/CroppieModal').default);
 Vue.component('date-time-picker', require('./components/DateTimePicker').default);
 Vue.component('multiselect', require('./components/MultiSelect').default);
 Vue.directive('loading', require('./components/loadingButton'));
