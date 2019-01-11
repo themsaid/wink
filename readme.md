@@ -28,6 +28,13 @@ php artisan wink:migrate
 
 Head to `yourproject.test/wink` and use the provided email and password to log in.
 
+Before creating a blog post, make sure you have your image directory set up correctly. The directory is set in the `config/wink.php` and defaults to
+`public/wink/images`. If you are installing Wink in a fresh Laravel install, make sure you link your public directory to the storage directory [https://laravel.com/docs/5.7/filesystem#configuration](https://laravel.com/docs/5.7/filesystem#configuration) using this command:
+
+```sh
+php artisan storage:link
+```
+
 (optional) Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the access key and update `config/services.php`:
 
 ```php
