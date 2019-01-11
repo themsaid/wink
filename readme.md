@@ -97,7 +97,7 @@ Here's the plan for what's coming:
 - [x] Add text search inside listings.
 - [x] Filter posts by status, scheduling, tags, and authors
 - [x] Dark mode.
-- [ ] Enhance publishing date picker. (Make it use browser time & show text feedback)
+- [ ] Enhance publishing date picker.
 - [ ] Create an initial theme that people can use right away. @themsaid
 - [ ] Optimize image uploads and allow cropping.
 - [ ] Adding image galleries to posts and pages. @themsaid
@@ -106,7 +106,6 @@ Here's the plan for what's coming:
 And here are some ideas I'm still not sure about:
 
 - [ ] Email Subscription & auto send emails on new content.
-- [ ] Built-in comments system.
 - [ ] Configure roles (Contributor / Admin)
 - [ ] Localization
 - [ ] Multi-lingual content
