@@ -1,3 +1,12 @@
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Updates](#updates)
+- [Themes](#themes)
+- [Road map](#road-map)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Introduction
 
 Wink's only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
