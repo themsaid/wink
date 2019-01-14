@@ -144,7 +144,7 @@
             closeCroppieModal({avatar}) {
                 this.croppieModalShown = false;
                 this.imageUrl = avatar;
-                this.$emit('changed', {url: avatar});
+                this.$emit('changed', {url: avatar, caption: ''});
             },
 
             /**

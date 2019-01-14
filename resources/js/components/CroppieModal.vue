@@ -10,7 +10,8 @@
                 image: null,
                 cropped: null,
                 uploadProgress: 0,
-                uploading: false
+                uploading: false,
+                size: 'original'
             }
         },
 
@@ -41,7 +42,7 @@
             },
 
             /**
-             * This method emits a cancel event.
+             * This method emits a cancelCroppie event.
              */
             cancelCroppie() {
                 this.$emit('cancelCroppie');
@@ -55,13 +56,19 @@
                 // and set the result to this.cropped which is being
                 // used to display the result above.
                 let options = {
+                    type: 'canvas',
                     format: 'png',
-                    quality: 1
+                    quality: 1,
+                    size: this.size
                 }
                 this.$refs.croppieRef.result(options, (output) => {
                     this.cropped = output;
                     this.uploadSelectedImage(output);
                 });
+            },
+
+            update(val) {
+                console.log(val);
             },
 
 
@@ -85,6 +92,27 @@
             },
 
             /**
+             * Upload the orginal image.
+             */
+            uploadOriginalImage(){
+                let file = this.image;
+                let formData = new FormData();
+                formData.append('image', file, file.name);
+                this.$emit('uploading');
+                this.uploading = true;
+                this.http().post('/api/uploads', formData, {
+                    onUploadProgress: progressEvent => {
+                        this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    }
+                }).then(response => {
+                    this.avatar = response.data.url;
+                    this.uploading = false;
+                    this.closeCroppie();
+                }).catch(error => {
+                });
+            },
+
+            /**
              * Upload the selected image.
              */
             uploadSelectedImage(base64) {
@@ -96,6 +124,7 @@
                         let file = new File([blob], "filename.jpeg");
                         formData.append('image', file, file.name);
                         this.uploading = true;
+                        console.log(file);
                         this.http().post('/api/uploads', formData, {
                             onUploadProgress: progressEvent => {
                                 this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -120,13 +149,15 @@
                     :enableOrientation="true"
                     :viewport ="viewport"
                     :boundary="boundary"
-                    :enableResize="true">
+                    :enableResize="true"
+                    @update="update">
             </vue-croppie>
             </div>
 
         <div class="mt-10">
             <button class="btn-sm ml-1 btn-light" @click="cancelCroppie()">Cancel</button>
             <button class="btn-sm btn-primary float-right" @click="crop()">Crop Image</button>
+            <button class="btn-sm btn-primary float-right" style="margin-right: 10px;" @click="uploadOriginalImage()">Keep Original</button>
         </div>
     </modal>
 </template>
