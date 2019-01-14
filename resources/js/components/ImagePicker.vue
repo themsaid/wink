@@ -12,10 +12,10 @@
 
                 selectedUnsplashImage: null,
 
-                unsplashModalOpen: false,
+                unsplashModalShown: false,
                 unsplashSearchTerm: '',
                 unsplashPage: 1,
-                searchingUnsplash: false,
+                searchingUnsplash: true,
                 unsplashImages: [],
             }
         },
@@ -89,7 +89,7 @@
              */
             openUnsplashModal() {
                 this.unsplashSearchTerm = 'sunny';
-                this.unsplashModalOpen = true;
+                this.unsplashModalShown = true;
 
                 this.$nextTick(() => {
                     this.$refs.unsplashSearch.focus();
@@ -115,7 +115,7 @@
              */
             closeUnsplashModal() {
                 this.unsplashSearchTerm = '';
-                this.unsplashModalOpen = false;
+                this.unsplashModalShown = false;
                 this.selectedUnsplashImage = null;
             }
         }
@@ -132,7 +132,7 @@
             <a v-if="Wink.unsplash_key" href="#" @click.prevent="openUnsplashModal" class="text-text-color">search Unsplash</a>
         </div>
 
-        <fullscreen-modal v-if="unsplashModalOpen">
+        <fullscreen-modal v-if="unsplashModalShown">
             <div class="bg-contrast z-50 fixed pin overflow-y-scroll">
                 <div class="container py-20">
                     <div class="flex items-center">
@@ -156,8 +156,10 @@
                                  :class="{'border-4': selectedUnsplashImage && selectedUnsplashImage.id == image.id}" :style="{ backgroundImage: 'url(' + image.urls.thumb + ')' }"></div>
                         </div>
 
-                        <div class="w-1/4 p-1 flex items-center" v-if="unsplashImages.length == 19">
-                            <button class="text-primary hover:underline" @click="getImagesFromUnsplash(unsplashPage + 1)">More...</button>
+                        <div class="w-1/4 p-1" v-if="unsplashImages.length == 19">
+                            <div class="bg-primary text-center flex items-center justify-center h-full">
+                                <button class="text-contrast hover:underline" @click="getImagesFromUnsplash(unsplashPage + 1)">More >></button>
+                            </div>
                         </div>
                     </div>
 
