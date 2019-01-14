@@ -43,7 +43,7 @@ class LoginController
      */
     public function redirectPath()
     {
-        return '/wink';
+        return '/'.config('wink.path');;
     }
 
     /**
