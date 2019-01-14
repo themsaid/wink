@@ -10,9 +10,7 @@
                 file: null,
                 imageUrl: '',
                 uploadProgress: 100,
-
                 selectedUnsplashImage: null,
-
                 unsplashSearchTerm: '',
                 unsplashPage: 1,
                 searchingUnsplash: false,
@@ -202,6 +200,8 @@
         </fullscreen-modal>
         <croppie-modal v-if="croppieModalShown"
                        :file="file"
+                       :viewport ="{ width: 600, height: 400 }"
+                       :boundary="{ width: 600, height: 400 }"
                        @closeCroppie="closeCroppieModal"
                        @cancelCroppie="cancelCroppieModal"></croppie-modal>
     </div>

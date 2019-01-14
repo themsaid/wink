@@ -320,7 +320,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <!-- SEO & Social Modal -->
         <seo-modal v-if="seoModalShown"
@@ -330,6 +330,8 @@
         <!-- Croppie Modal -->
         <croppie-modal v-if="croppieModalShown"
                    :file="file"
+                   :viewport ="{ width: 200, height: 200 }"
+                   :boundary="{ width: 200, height: 200 }"
                    @closeCroppie="closeCroppieModal"
                    @cancelCroppie="cancelCroppieModal"></croppie-modal>
 

@@ -2,19 +2,13 @@
     import _ from 'lodash';
 
     export default {
-        props: ['file'],
+        props: ['file','viewport', 'boundary'],
 
 
         data() {
             return {
                 image: null,
                 cropped: null,
-                images: [
-                    'http://i.imgur.com/fHNtPXX.jpg',
-                    'http://i.imgur.com/ecMUngU.jpg',
-                    'http://i.imgur.com/7oO6zrh.jpg',
-                    'http://i.imgur.com/miVkBH2.jpg'
-                ],
                 uploadProgress: 0,
                 uploading: false
             }
@@ -30,11 +24,15 @@
 
 
         methods: {
+            /**
+             * This method will close() the modal.
+             */
             close() {
                 this.$emit('cancelCroppie');
             },
             /**
-             * This method closes croppie.
+             * This method closes croppie and sends the
+             * cropped image back in the event
              */
             closeCroppie() {
                 this.$emit('closeCroppie', {
@@ -57,7 +55,8 @@
                 // and set the result to this.cropped which is being
                 // used to display the result above.
                 let options = {
-                    format: 'jpeg'
+                    format: 'png',
+                    quality: 1
                 }
                 this.$refs.croppieRef.result(options, (output) => {
                     this.cropped = output;
@@ -115,11 +114,15 @@
 
 <template>
     <modal @close="close">
-        <div style="height: 300px;">
+        <div :style="{'height':viewport}">
             <vue-croppie
                     ref="croppieRef"
-                    :enableOrientation="true"></vue-croppie>
-        </div>
+                    :enableOrientation="true"
+                    :viewport ="viewport"
+                    :boundary="boundary"
+                    :enableResize="true">
+            </vue-croppie>
+            </div>
 
         <div class="mt-10">
             <button class="btn-sm ml-1 btn-light" @click="cancelCroppie()">Cancel</button>
