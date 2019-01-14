@@ -13,7 +13,7 @@
     <div class="border-b border-very-light mb-10">
         <div class="container">
             <div class="flex items-center py-2">
-                <div class="flex items-center mr-auto">
+                <div class="flex items-center mr-auto h-8">
                     <h3 class="mr-5 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
                         <router-link to="/" class="no-underline text-text-color">
                             <span class="text-light">W</span>ink.

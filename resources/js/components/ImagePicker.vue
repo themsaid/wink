@@ -12,6 +12,7 @@
 
                 selectedUnsplashImage: null,
 
+                unsplashModalOpen: false,
                 unsplashSearchTerm: '',
                 unsplashPage: 1,
                 searchingUnsplash: false,
@@ -30,13 +31,6 @@
                 this.debouncer(() => {
                     this.getImagesFromUnsplash();
                 });
-            }
-        },
-
-
-        computed: {
-            unsplashModalShown() {
-                return this.unsplashSearchTerm.length;
             }
         },
 
@@ -95,6 +89,7 @@
              */
             openUnsplashModal() {
                 this.unsplashSearchTerm = 'sunny';
+                this.unsplashModalOpen = true;
 
                 this.$nextTick(() => {
                     this.$refs.unsplashSearch.focus();
@@ -120,6 +115,7 @@
              */
             closeUnsplashModal() {
                 this.unsplashSearchTerm = '';
+                this.unsplashModalOpen = false;
                 this.selectedUnsplashImage = null;
             }
         }
@@ -136,7 +132,7 @@
             <a v-if="Wink.unsplash_key" href="#" @click.prevent="openUnsplashModal" class="text-text-color">search Unsplash</a>
         </div>
 
-        <fullscreen-modal v-if="unsplashModalShown">
+        <fullscreen-modal v-if="unsplashModalOpen">
             <div class="bg-contrast z-50 fixed pin overflow-y-scroll">
                 <div class="container py-20">
                     <div class="flex items-center">
@@ -163,6 +159,10 @@
                         <div class="w-1/4 p-1 flex items-center" v-if="unsplashImages.length == 19">
                             <button class="text-primary hover:underline" @click="getImagesFromUnsplash(unsplashPage + 1)">More...</button>
                         </div>
+                    </div>
+
+                    <div v-if="!searchingUnsplash && !unsplashImages.length">
+                        <h4 class="text-center">We couldn't find any matches.</h4>
                     </div>
                 </div>
             </div>
