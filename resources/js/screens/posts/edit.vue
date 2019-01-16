@@ -65,6 +65,12 @@
                 });
             },
 
+
+            'form.featured_image'() {
+                this.save();
+            },
+            
+
             'form.published'(val) {
                 if (this.postBodyWatcher) {
                     this.postBodyWatcher();
@@ -318,7 +324,7 @@
                     }
                 }).catch(error => {
                     this.status = '';
-                    
+
                     this.errors = error.response.data.errors;
 
                     this.settingsModalShown = true;
