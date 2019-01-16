@@ -16,7 +16,6 @@ class WinkServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
-        $this->registerMigrations();
         $this->registerAuthGuard();
         $this->registerPublishing();
 
@@ -54,18 +53,6 @@ class WinkServiceProvider extends ServiceProvider
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
             });
-    }
-
-    /**
-     * Register the package's migrations.
-     *
-     * @return void
-     */
-    private function registerMigrations()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->loadMigrationsFrom(__DIR__.'/Migrations');
-        }
     }
 
     /**
