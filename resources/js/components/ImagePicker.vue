@@ -7,9 +7,9 @@
 
         data() {
             return {
+                file: null,
                 imageUrl: '',
                 uploadProgress: 100,
-
                 selectedUnsplashImage: null,
 
                 unsplashModalShown: false,
@@ -17,6 +17,7 @@
                 unsplashPage: 1,
                 searchingUnsplash: true,
                 unsplashImages: [],
+                croppieModalShown: false,
             }
         },
 
@@ -60,6 +61,14 @@
                 });
             },
 
+
+            /**
+             * Load the selected image into Croppie.
+             */
+            loadSelectedImage(event){
+                this.file = event.target.files[0];
+                this.croppieModal();
+            },
 
             /**
              * Upload the selected image.
@@ -117,6 +126,29 @@
                 this.unsplashSearchTerm = '';
                 this.unsplashModalShown = false;
                 this.selectedUnsplashImage = null;
+            },
+
+            /**
+             * Open Croppie modal.
+             */
+            croppieModal() {
+                this.croppieModalShown = true;
+            },
+
+            /**
+             * Close the Croppie modal.
+             */
+            closeCroppieModal({avatar}) {
+                this.croppieModalShown = false;
+                this.imageUrl = avatar;
+                this.$emit('changed', {url: avatar, caption: ''});
+            },
+
+            /**
+             * Close and Cancel the Croppie modal.
+             */
+            cancelCroppieModal() {
+                this.croppieModalShown = false;
             }
         }
     }
@@ -124,7 +156,7 @@
 
 <template>
     <div>
-        <input type="file" class="hidden" :id="'imageUpload'+_uid" accept="image/*" v-on:change="uploadSelectedImage">
+        <input type="file" class="hidden" :id="'imageUpload'+_uid" accept="image/*" v-on:change="loadSelectedImage">
 
         <div class="mb-0">
             Please <label :for="'imageUpload'+_uid" class="cursor-pointer underline">upload</label> an image
@@ -169,5 +201,11 @@
                 </div>
             </div>
         </fullscreen-modal>
+        <croppie-modal v-if="croppieModalShown"
+                       :file="file"
+                       :viewport ="{ width: 600, height: 400 }"
+                       :boundary="{ width: 600, height: 400 }"
+                       @closeCroppie="closeCroppieModal"
+                       @cancelCroppie="cancelCroppieModal"></croppie-modal>
     </div>
 </template>
