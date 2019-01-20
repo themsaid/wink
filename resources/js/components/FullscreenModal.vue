@@ -20,6 +20,6 @@
 
 <template>
     <transition name="modal">
-        <slot/>
+            <slot/>
     </transition>
 </template>
