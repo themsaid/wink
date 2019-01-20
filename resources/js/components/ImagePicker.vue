@@ -1,6 +1,5 @@
 <script type="text/ecmascript-6">
     import axios from 'axios';
-    import _ from 'lodash';
 
     export default {
         props: [],
@@ -10,14 +9,15 @@
                 file: null,
                 imageUrl: '',
                 uploadProgress: 100,
-                selectedUnsplashImage: null,
 
+                selectedUnsplashImage: null,
                 unsplashModalShown: false,
                 unsplashSearchTerm: '',
                 unsplashPage: 1,
                 searchingUnsplash: true,
                 unsplashImages: [],
-                croppieModalShown: false,
+
+                cropperModalShown: false,
             }
         },
 
@@ -63,35 +63,13 @@
 
 
             /**
-             * Load the selected image into Croppie.
+             * Load the selected image into the Cropper.
              */
             loadSelectedImage(event){
                 this.file = event.target.files[0];
-                this.croppieModal();
+
+                this.showCropperModal();
             },
-
-            /**
-             * Upload the selected image.
-             */
-            uploadSelectedImage(event) {
-                let file = event.target.files[0];
-                let formData = new FormData();
-
-                formData.append('image', file, file.name);
-
-                this.$emit('uploading');
-
-                this.http().post('/api/uploads', formData, {
-                    onUploadProgress: progressEvent => {
-                        this.$emit('progressing', {progress: Math.round((progressEvent.loaded * 100) / progressEvent.total)});
-                    }
-                }).then(response => {
-                    this.$emit('changed', {url: response.data.url});
-                }).catch(error => {
-                    console.log(error);
-                });
-            },
-
 
             /**
              * Open unsplash modal.
@@ -128,27 +106,30 @@
                 this.selectedUnsplashImage = null;
             },
 
-            /**
-             * Open Croppie modal.
-             */
-            croppieModal() {
-                this.croppieModalShown = true;
-            },
 
             /**
-             * Close the Croppie modal.
+             * Open the cropper modal.
              */
-            closeCroppieModal({avatar}) {
-                this.croppieModalShown = false;
-                this.imageUrl = avatar;
-                this.$emit('changed', {url: avatar, caption: ''});
+            showCropperModal() {
+                this.cropperModalShown = true;
             },
 
+
             /**
-             * Close and Cancel the Croppie modal.
+             * Close the cropper modal.
              */
-            cancelCroppieModal() {
-                this.croppieModalShown = false;
+            closeCropperModal({image}) {
+                this.cropperModalShown = false;
+                this.imageUrl = image;
+                this.$emit('changed', {url: image, caption: ''});
+            },
+
+
+            /**
+             * Close and Cancel the cropper modal.
+             */
+            cancelCropperModal() {
+                this.cropperModalShown = false;
             }
         }
     }
@@ -201,11 +182,12 @@
                 </div>
             </div>
         </fullscreen-modal>
-        <croppie-modal v-if="croppieModalShown"
-                       :file="file"
+
+        <cropper-modal v-if="cropperModalShown"
+                       :image="file"
                        :viewport ="{ width: 600, height: 400 }"
                        :boundary="{ width: 600, height: 400 }"
-                       @closeCroppie="closeCroppieModal"
-                       @cancelCroppie="cancelCroppieModal"></croppie-modal>
+                       @close="closeCropperModal"
+                       @cancel="cancelCropperModal"></cropper-modal>
     </div>
 </template>

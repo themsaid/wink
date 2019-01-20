@@ -1,14 +1,12 @@
 <script type="text/ecmascript-6">
-    import _ from 'lodash';
 
     export default {
-        props: ['file','viewport', 'boundary'],
+        props: ['image', 'viewport', 'boundary'],
 
 
         data() {
             return {
-                image: null,
-                cropped: null,
+                finalImage: null,
                 uploadProgress: 0,
                 uploading: false,
                 size: 'original'
@@ -17,68 +15,48 @@
 
 
         mounted() {
-
-            this.image = this.file;
-            this.readFile(this.file);
-
+            this.readImage(this.image);
         },
 
 
         methods: {
             /**
-             * This method will close() the modal.
+             * Close after cropping.
              */
-            close() {
-                this.$emit('cancelCroppie');
-            },
-            /**
-             * This method closes croppie and sends the
-             * cropped image back in the event
-             */
-            closeCroppie() {
-                this.$emit('closeCroppie', {
-                    avatar: this.avatar
+            saveCroppedImageAndClose() {
+                this.$emit('close', {
+                    image: this.finalImage
                 });
             },
 
-            /**
-             * This method emits a cancelCroppie event.
-             */
-            cancelCroppie() {
-                this.$emit('cancelCroppie');
-            },
 
             /**
-             * This method is used to crop the image
+             * Cancel cropping.
+             */
+            cancel() {
+                this.$emit('cancel');
+            },
+
+
+            /**
+             * Crop the image.
              */
             crop() {
-                // Here we are getting the result via callback function
-                // and set the result to this.cropped which is being
-                // used to display the result above.
-                let options = {
+                this.$refs.croppieRef.result({
                     type: 'canvas',
                     format: 'png',
                     quality: 1,
                     size: this.size
-                }
-                this.$refs.croppieRef.result(options, (output) => {
-                    this.cropped = output;
+                }, (output) => {
                     this.uploadSelectedImage(output);
                 });
             },
 
-            update(val) {
-                console.log(val);
-            },
-
 
             /**
-             * Read File with FileReader Class. So that croppie
-             * can be binded to the file.
+             * Read the given image file.
              */
-
-            readFile(file) {
-
+            readImage(image) {
                 let reader = new FileReader();
 
                 reader.onload = (e) => {
@@ -87,30 +65,37 @@
                         zoom: 0
                     });
                 }
-                reader.readAsDataURL(file);
-
+                reader.readAsDataURL(image);
             },
 
             /**
              * Upload the orginal image.
              */
-            uploadOriginalImage(){
+            uploadOriginalImage() {
                 let file = this.image;
                 let formData = new FormData();
+
                 formData.append('image', file, file.name);
+
                 this.$emit('uploading');
+
                 this.uploading = true;
+
                 this.http().post('/api/uploads', formData, {
                     onUploadProgress: progressEvent => {
                         this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     }
                 }).then(response => {
-                    this.avatar = response.data.url;
+                    this.finalImage = response.data.url;
+
                     this.uploading = false;
-                    this.closeCroppie();
+
+                    this.saveCroppedImageAndClose();
                 }).catch(error => {
+                    console.log(error);
                 });
             },
+
 
             /**
              * Upload the selected image.
@@ -122,18 +107,23 @@
                     .then(res => res.blob())
                     .then(blob => {
                         let file = new File([blob], "filename.jpeg");
+
                         formData.append('image', file, file.name);
+
                         this.uploading = true;
-                        console.log(file);
+
                         this.http().post('/api/uploads', formData, {
                             onUploadProgress: progressEvent => {
                                 this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                             }
                         }).then(response => {
-                            this.avatar = response.data.url;
+                            this.finalImage = response.data.url;
+
                             this.uploading = false;
-                            this.closeCroppie();
+
+                            this.saveCroppedImageAndClose();
                         }).catch(error => {
+                            //
                         });
                     });
             }
@@ -142,22 +132,21 @@
 </script>
 
 <template>
-    <modal @close="close">
+    <modal @close="cancel">
         <div :style="{'height':viewport}">
             <vue-croppie
                     ref="croppieRef"
                     :enableOrientation="true"
-                    :viewport ="viewport"
+                    :viewport="viewport"
                     :boundary="boundary"
-                    :enableResize="true"
-                    @update="update">
+                    :enableResize="true">
             </vue-croppie>
-            </div>
+        </div>
 
-        <div class="mt-10">
-            <button class="btn-sm ml-1 btn-light" @click="cancelCroppie()">Cancel</button>
-            <button class="btn-sm btn-primary float-right" @click="crop()">Crop Image</button>
-            <button class="btn-sm btn-primary float-right" style="margin-right: 10px;" @click="uploadOriginalImage()">Keep Original</button>
+        <div class="mt-10 flex align-center">
+            <button class="btn-sm ml-1 btn-light mr-auto" @click="cancel()">Cancel</button>
+            <button class="btn-sm btn-primary mr-2" @click="crop()">Crop Image</button>
+            <button class="btn-sm btn-primary" @click="uploadOriginalImage()">User Original</button>
         </div>
     </modal>
 </template>

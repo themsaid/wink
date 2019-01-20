@@ -29,7 +29,7 @@ Vue.component('mini-editor', require('./components/MiniEditor').default);
 Vue.component('editor', require('./components/Editor').default);
 Vue.component('form-errors', require('./components/FormErrors').default);
 Vue.component('image-picker', require('./components/ImagePicker').default);
-Vue.component('croppie-modal', require('./components/CroppieModal').default);
+Vue.component('cropper-modal', require('./components/CropperModal').default);
 Vue.component('date-time-picker', require('./components/DateTimePicker').default);
 Vue.component('multiselect', require('./components/MultiSelect').default);
 Vue.directive('loading', require('./components/loadingButton'));
