@@ -146,7 +146,7 @@
         <div class="mt-10 flex align-center">
             <button class="btn-sm ml-1 btn-light mr-auto" @click="cancel()">Cancel</button>
             <button class="btn-sm btn-primary mr-2" @click="crop()">Crop Image</button>
-            <button class="btn-sm btn-primary" @click="uploadOriginalImage()">User Original</button>
+            <button class="btn-sm btn-primary" @click="uploadOriginalImage()">Use Original</button>
         </div>
     </modal>
 </template>
