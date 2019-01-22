@@ -182,11 +182,11 @@
              */
             loadResources() {
                 this.http().get('/api/tags').then(response => {
-                    this.tags = response.data.data;
+                    this.tags = response.data;
                 });
 
                 this.http().get('/api/team').then(response => {
-                    this.authors = response.data.data;
+                    this.authors = response.data;
 
                     if (!this.form.author_id && this.authors) {
                         this.form.author_id = this.Wink.author.id;
