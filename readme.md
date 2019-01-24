@@ -1,50 +1,49 @@
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Updates](#updates)
-- [Themes](#themes)
-- [Road map](#road-map)
-- [Contributing](#contributing)
-- [License](#license)
+- [介绍](#introduction)
+- [安装](#installation)
+- [更新](#updates)
+- [主题](#themes)
+- [路径](#road-map)
+- [贡献](#contributing)
+- [许可](#license)
 
-## Introduction
+## 介绍
 
-Wink's only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
+Wink 的唯一任务就是帮助你用一种风格去写作和展示你的文章。 Wink 是建立在世界上最牛逼的 PHP 框架之上的 [Laravel](https://laravel.com) 一个项目，它使每个人都可以轻松地在任何云平台上安装和维护。
 
 <img src="https://themsaid.com/storage/wink/images/PaKOXK0bck5IrbVohbC6zQGxZr4CG31enOUt5n80.png">
 
-## Installation
+## 安装
 
-Wink runs on any Laravel application, it uses a separate database connection and authentication system so that you don't have to modify any of your project code.
+Wink 可以在任何 Laravel 程序上运行，它使用了一个隔离的数据库链接和验证系统，所以你完全没必要去修改任何现有的项目代码。 
 
-To install Wink, require it via Composer:
+使用 Composer 来安装 Wink ：
 
 ```sh
 composer require writingink/wink
 ```
 
-Once Composer is done, run the following command:
+一旦 composer 安装完成后，运行下面的命令： 
 
 ```sh
 php artisan wink:install
 ```
 
-Check `config/wink.php` and **configure the database connection** wink is going to be using. Then instead of running `php artisan migrate`, run:
+查看你的 `config/wink.php` 文件，wink 将使用 **configure the database connection** 。然后你用下面的命令替代 `php artisan migrate` ，运行：
 
 ```sh
 php artisan wink:migrate
 ```
 
-Head to `yourproject.test/wink` and use the provided email and password to log in.
+进入 `yourproject.test/wink` 后台，并且使用提供的邮箱和密码登录。
 
-Before creating a blog post, make sure you have your image directory set up correctly. The directory is set in the `config/wink.php` and defaults to
-`public/wink/images`. If you are installing Wink in a fresh Laravel install, make sure you link your public directory to the storage directory [https://laravel.com/docs/5.7/filesystem#configuration](https://laravel.com/docs/5.7/filesystem#configuration) using this command:
+在创建博客文章之前，确保你你的 image 目录设置正确。目录在 `config/wink.php` 文件中进行设置，默认是 `public/wink/images`。如果你是用最新的 Laravel 安装 Wink ，请确保你的 public 目录链接到了相应的存储空间。[https://laravel.com/docs/5.7/filesystem#configuration](https://laravel.com/docs/5.7/filesystem#configuration) 使用下面的命令：
 
 ```sh
 php artisan storage:link
 ```
 
-(optional) Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the access key and update `config/services.php`:
+(可选) 访问 https://unsplash.com/oauth/applications 创建一个新的 unsplash app 。获取访问密钥并且更新 `config/services.php` 文件：
 
 ```php
 'unsplash' => [
@@ -52,23 +51,23 @@ php artisan storage:link
 ],
 ```
 
-## Updates
+## 更新
 
-Add this command in your deployment script so that wink runs new migrations if any:
+添加下面的命令到你的部署脚本中去，这样 wink 就能运行新的数据库迁移了：
 
 ```sh
 php artisan wink:migrate
 ```
 
-You may also want to run this command to re-publish the assets:
+你也可以使用下面的命令来重新发布这些设置：
 
 ```sh
 php artisan vendor:publish --tag=wink-assets --force
 ```
 
-## Themes
+## 主题
 
-Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
+Wink 附带了一个易于使用的管理后台。当然，我们也给你的借口提供了一个完全的控制权限，让你可以随心所欲的展示你存储的内容。下面是一个从博客主页获取所有文章列表的例子：
 
 ```php
 
@@ -87,7 +86,7 @@ public function index()
 }
 ```
 
-You can configure your routes in any way you want:
+你可以随意配置你的路由表：
 
 ```php
 Route::get('/', 'BlogController@index');
@@ -96,42 +95,42 @@ Route::get('/blog', 'BlogController@index');
 // OR
 Route::domain('blog.mywebsite.com')->get('/', 'BlogController@index');
 
-// And for showing a post
+// 显示单独的文章
 Route::get('/{tag}/{slug}', 'BlogController@post');
 // OR
 Route::get('/{year}/{month}/{slug}', 'BlogController@post');
 ```
 
-## Road map
+## 路径
 
-Wink is still under heavy development, I decided to ship it in this early stage so you can help me make it better, however I'm already using it to run multiple websites including my personal blog.
+Wink 目前仍然在持续开发中，我决定在这个早期阶段发布，这样你就可以帮我改进它，不过我已经用它来运行多个网站了，包括我的个人博客。
 
-Here's the plan for what's coming:
+这就是接下来将要进行的一些开发：
 
-- [x] Customize Twitter/Facebook cards and SEO metadata.
-- [x] Optimize CSS. Move to Tailwind?
-- [x] Add text search inside listings.
-- [x] Filter posts by status, scheduling, tags, and authors
-- [x] Dark mode.
-- [ ] Enhance publishing date picker.
-- [ ] Create an initial theme that people can use right away. @themsaid
-- [ ] Optimize image uploads and allow cropping.
-- [ ] Adding image galleries to posts and pages. @themsaid
-- [ ] Add tests.
+- [x] 定制 Twitter/Facebook 卡片和 SEO metadata 。
+- [x] 优化 CSS. 迁移到 Tailwind ？
+- [x] 在 lists 中增加文本搜索。
+- [x] 通过状态、计划、标签和作者过滤
+- [x] 深色模式。
+- [ ] 强化发布日期选择器。
+- [ ] 创建一个人们可以立即使用的初始化主题。 @themsaid
+- [ ] 优化图片上传并且支持裁剪图片。 
+- [ ] 给文章和页面添加图像画廊。 @themsaid
+- [ ] 增加 tests.
 
-And here are some ideas I'm still not sure about:
+下面是一些我不太确定需不需要的想法：
 
-- [ ] Email Subscription & auto send emails on new content.
-- [ ] Configure roles (Contributor / Admin)
-- [ ] Localization
-- [ ] Multi-lingual content
-- [ ] Attach metadata to posts and pages.
+- [ ] Email 订阅 & 自动发送有关新内容的邮件
+- [ ] 角色设置 (Contributor / Admin)
+- [ ] 本地化
+- [ ] 多语言内容
+- [ ] 将 metadata 添加到文章和页面。
 
 
-## Contributing
+## 贡献
 
-Check our [contribution guide](CONTRIBUTING.md).
+Check our [共享手册](CONTRIBUTING.md).
 
-## License
+## 许可
 
-Wink is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Wink 是一个开源软件，项目许可基于 [MIT license](https://opensource.org/licenses/MIT) 。
