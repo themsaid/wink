@@ -71,7 +71,7 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function posts()
     {
-        return $this->hasMany(WinkPost::class, 'author_id');
+        return $this->hasMany(config('wink.models.post'), 'author_id');
     }
 
     /**

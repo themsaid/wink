@@ -64,7 +64,7 @@ class WinkServiceProvider extends ServiceProvider
     {
         $this->app['config']->set('auth.providers.wink_authors', [
             'driver' => 'eloquent',
-            'model' => WinkAuthor::class,
+            'model' => $this->app['config']->get('wink.models.author'),
         ]);
 
         $this->app['config']->set('auth.guards.wink', [

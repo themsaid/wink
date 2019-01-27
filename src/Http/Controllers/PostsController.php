@@ -2,8 +2,6 @@
 
 namespace Wink\Http\Controllers;
 
-use Wink\WinkTag;
-use Wink\WinkPost;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Wink\Http\Resources\PostsResource;
@@ -17,7 +15,9 @@ class PostsController
      */
     public function index()
     {
-        $entries = WinkPost::when(request()->has('search'), function ($q) {
+        $postModel = config('wink.models.post');
+
+        $entries = $postModel::when(request()->has('search'), function ($q) {
             $q->where('title', 'LIKE', '%'.request('search').'%');
         })->when(request('status'), function ($q, $value) {
             $q->$value();
@@ -43,13 +43,15 @@ class PostsController
      */
     public function show($id = null)
     {
+        $postModel = config('wink.models.post');
+
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->format('Y-m-d H:i:00')]),
+                'entry' => $postModel::make(['id' => Str::uuid(), 'publish_date' => now()->format('Y-m-d H:i:00')]),
             ]);
         }
 
-        $entry = WinkPost::with('tags')->findOrFail($id);
+        $entry = $postModel::with('tags')->findOrFail($id);
 
         return response()->json([
             'entry' => $entry,
@@ -64,6 +66,8 @@ class PostsController
      */
     public function store($id)
     {
+        $postModel = config('wink.models.post');
+
         $data = [
             'title' => request('title'),
             'excerpt' => request('excerpt', ''),
@@ -84,7 +88,7 @@ class PostsController
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_posts', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id !== 'new' ? WinkPost::findOrFail($id) : new WinkPost(['id' => request('id')]);
+        $entry = $id !== 'new' ? $postModel::findOrFail($id) : new $postModel(['id' => request('id')]);
 
         $entry->fill($data);
 
@@ -107,13 +111,15 @@ class PostsController
      */
     private function collectTags($incomingTags)
     {
-        $allTags = WinkTag::all();
+        $tagModel = config('wink.models.tag');
+
+        $allTags = $tagModel::all();
 
         return collect($incomingTags)->map(function ($incomingTag) use ($allTags) {
             $tag = $allTags->where('slug', Str::slug($incomingTag['name']))->first();
 
             if (! $tag) {
-                $tag = WinkTag::create([
+                $tag = $tagModel::create([
                     'id' => $id = Str::uuid(),
                     'name' => $incomingTag['name'],
                     'slug' => Str::slug($incomingTag['name']),
@@ -132,7 +138,9 @@ class PostsController
      */
     public function delete($id)
     {
-        $entry = WinkPost::findOrFail($id);
+        $postModel = config('wink.models.post');
+
+        $entry = $postModel::findOrFail($id);
 
         $entry->delete();
     }

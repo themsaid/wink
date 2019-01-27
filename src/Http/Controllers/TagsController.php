@@ -2,7 +2,6 @@
 
 namespace Wink\Http\Controllers;
 
-use Wink\WinkTag;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Wink\Http\Resources\TagsResource;
@@ -16,7 +15,9 @@ class TagsController
      */
     public function index()
     {
-        $entries = WinkTag::when(request()->has('search'), function ($q) {
+        $tagModel = config('wink.models.tag');
+
+        $entries = $tagModel::when(request()->has('search'), function ($q) {
             $q->where('name', 'LIKE', '%'.request('search').'%');
         })
             ->orderBy('created_at', 'DESC')
@@ -34,15 +35,17 @@ class TagsController
      */
     public function show($id = null)
     {
+        $tagModel = config('wink.models.tag');
+
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkTag::make([
+                'entry' => $tagModel::make([
                     'id' => Str::uuid(),
                 ]),
             ]);
         }
 
-        $entry = WinkTag::findOrFail($id);
+        $entry = $tagModel::findOrFail($id);
 
         return response()->json([
             'entry' => $entry,
@@ -57,6 +60,8 @@ class TagsController
      */
     public function store($id)
     {
+        $tagModel = config('wink.models.tag');
+
         $data = [
             'name' => request('name'),
             'slug' => request('slug'),
@@ -68,7 +73,7 @@ class TagsController
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_tags', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id !== 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);
+        $entry = $id !== 'new' ? $tagModel::findOrFail($id) : new $tagModel(['id' => request('id')]);
 
         $entry->fill($data);
 
@@ -87,7 +92,9 @@ class TagsController
      */
     public function delete($id)
     {
-        $entry = WinkTag::findOrFail($id);
+        $tagModel = config('wink.models.tag');
+
+        $entry = $tagModel::findOrFail($id);
 
         $entry->delete();
     }

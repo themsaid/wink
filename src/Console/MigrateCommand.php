@@ -2,7 +2,6 @@
 
 namespace Wink\Console;
 
-use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -31,9 +30,11 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
+        $authorModel = config('wink.models.author');
+
         $shouldCreateNewAuthor =
             ! Schema::connection(config('wink.database_connection'))->hasTable('wink_authors') ||
-            ! WinkAuthor::count();
+            ! $authorModel::count();
 
         $this->call('migrate', [
             '--database' => config('wink.database_connection'),
@@ -41,7 +42,7 @@ class MigrateCommand extends Command
         ]);
 
         if ($shouldCreateNewAuthor) {
-            WinkAuthor::create([
+            $authorModel::create([
                 'id' => (string) Str::uuid(),
                 'name' => 'Regina Phalange',
                 'slug' => 'regina-phalange',

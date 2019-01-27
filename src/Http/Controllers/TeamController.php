@@ -2,7 +2,6 @@
 
 namespace Wink\Http\Controllers;
 
-use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +16,9 @@ class TeamController
      */
     public function index()
     {
-        $entries = WinkAuthor::when(request()->has('search'), function ($q) {
+        $authorModel = config('wink.models.author');
+
+        $entries = $authorModel::when(request()->has('search'), function ($q) {
             $q->where('name', 'LIKE', '%'.request('search').'%');
         })
             ->orderBy('created_at', 'DESC')
@@ -35,15 +36,17 @@ class TeamController
      */
     public function show($id = null)
     {
+        $authorModel = config('wink.models.author');
+
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkAuthor::make([
+                'entry' => $authorModel::make([
                     'id' => Str::uuid(),
                 ]),
             ]);
         }
 
-        $entry = WinkAuthor::findOrFail($id);
+        $entry = $authorModel::findOrFail($id);
 
         return response()->json([
             'entry' => $entry,
@@ -58,6 +61,8 @@ class TeamController
      */
     public function store($id)
     {
+        $authorModel = config('wink.models.author');
+
         $data = [
             'name' => request('name'),
             'slug' => request('slug'),
@@ -74,7 +79,7 @@ class TeamController
             'email' => 'required|email|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'email')->ignore(request('id')),
         ])->validate();
 
-        $entry = $id !== 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
+        $entry = $id !== 'new' ? $authorModel::findOrFail($id) : new $authorModel(['id' => request('id')]);
 
         if (request('password')) {
             $entry->password = Hash::make(request('password'));
@@ -103,7 +108,9 @@ class TeamController
      */
     public function delete($id)
     {
-        $entry = WinkAuthor::findOrFail($id);
+        $authorModel = config('wink.models.author');
+
+        $entry = $authorModel::findOrFail($id);
 
         if ($entry->posts()->count()) {
             return response()->json(['message' => 'Please remove the author\'s posts first.'], 402);

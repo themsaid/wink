@@ -3,7 +3,6 @@
 namespace Wink\Http\Controllers;
 
 use Throwable;
-use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Wink\Mail\ResetPasswordEmail;
 use Illuminate\Routing\Controller;
@@ -28,11 +27,13 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetLinkEmail()
     {
+        $authorModel = config('wink.models.author');
+
         validator(request()->all(), [
             'email' => 'required|email',
         ])->validate();
 
-        if ($author = WinkAuthor::whereEmail(request('email'))->first()) {
+        if ($author = $authorModel::whereEmail(request('email'))->first()) {
             cache(['password.reset.'.$author->id => $token = Str::random()],
                 now()->addMinutes(30)
             );
@@ -53,12 +54,14 @@ class ForgotPasswordController extends Controller
      */
     public function showNewPassword($token)
     {
+        $authorModel = config('wink.models.author');
+
         try {
             $token = decrypt($token);
 
             [$authorId, $token] = explode('|', $token);
 
-            $author = WinkAuthor::findOrFail($authorId);
+            $author = $authorModel::findOrFail($authorId);
         } catch (Throwable $e) {
             return redirect()->route('wink.password.forgot')->with('invalidResetToken', true);
         }

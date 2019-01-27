@@ -17,6 +17,28 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Wink Models
+    |--------------------------------------------------------------------------
+    |
+    | Feel free to extend the base models and replace this with your own
+    | models classes.
+    |
+    */
+
+    'models' => [
+
+        'author' => \Wink\WinkAuthor::class,
+
+        'page' => \Wink\WinkPage::class,
+
+        'post' => \Wink\WinkPost::class,
+
+        'tag' => \Wink\WinkTag::class,
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Wink Uploads Disk
     |--------------------------------------------------------------------------
     |

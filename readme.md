@@ -102,6 +102,44 @@ Route::get('/{tag}/{slug}', 'BlogController@post');
 Route::get('/{year}/{month}/{slug}', 'BlogController@post');
 ```
 
+## Extending
+
+Wink allows you to extend the models with your own models, so you can apply extra changes to them.
+
+For example, you can make the model searchable with Laravel Scout:
+
+```php
+namespace App;
+
+use Wink\WinkPost;
+use Laravel\Scout\Searchable;
+
+class Post extends WinkPost
+{
+    use Searchable;
+
+    public function shouldBeSearchable()
+    {
+        return $this->published && $this->published_date->isPast();
+    }
+}
+```
+
+Make sure you open up `config/wink.php` and inside `models` you set up your own model:
+
+```php
+return [
+    ...
+
+    'models' => [
+
+        'post' => \App\Post::class,
+
+    ],
+    ...
+];
+```
+
 ## Road map
 
 Wink is still under heavy development, I decided to ship it in this early stage so you can help me make it better, however I'm already using it to run multiple websites including my personal blog.

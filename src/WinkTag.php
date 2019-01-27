@@ -55,7 +55,7 @@ class WinkTag extends AbstractWinkModel
      */
     public function posts()
     {
-        return $this->belongsToMany(WinkPost::class, 'wink_posts_tags', 'tag_id', 'post_id');
+        return $this->belongsToMany(config('wink.models.post'), 'wink_posts_tags', 'tag_id', 'post_id');
     }
 
     /**
