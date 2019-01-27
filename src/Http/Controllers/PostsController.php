@@ -115,7 +115,7 @@ class PostsController
 
         $allTags = $tagModel::all();
 
-        return collect($incomingTags)->map(function ($incomingTag) use ($allTags) {
+        return collect($incomingTags)->map(function ($incomingTag) use ($allTags, $tagModel) {
             $tag = $allTags->where('slug', Str::slug($incomingTag['name']))->first();
 
             if (! $tag) {
