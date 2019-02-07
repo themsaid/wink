@@ -1,4 +1,4 @@
-<script type="text/ecmascript-6">
+<script type="text/ecmascript">
     import _ from 'lodash';
     import moment from 'moment';
 
