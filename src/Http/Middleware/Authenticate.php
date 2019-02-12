@@ -3,6 +3,7 @@
 namespace Wink\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
@@ -35,7 +36,7 @@ class Authenticate
      *
      * @throws \Illuminate\Auth\AuthenticationException
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if ($this->auth->guard('wink')->check()) {
             $this->auth->shouldUse('wink');
