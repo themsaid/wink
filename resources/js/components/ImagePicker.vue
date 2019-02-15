@@ -1,4 +1,4 @@
-<script type="text/ecmascript-6">
+<script type="text/ecmascript">
     import axios from 'axios';
 
     export default {

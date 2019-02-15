@@ -1,4 +1,4 @@
-<script type="text/ecmascript-6">
+<script type="text/ecmascript">
     import SEOModal from './../../components/SEOModal';
 
     export default {
