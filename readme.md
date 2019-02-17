@@ -44,11 +44,11 @@ Before creating a blog post, make sure you have your image directory set up corr
 php artisan storage:link
 ```
 
-(optional) Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the access key and update `config/services.php`:
+(optional) Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the 'Access Key' and add it to your `.env` file as `UNSPLASH_ACCESS_KEY`. Lastly, add unsplash to your `config/services.php` file:
 
 ```php
 'unsplash' => [
-    'key' => 'UNSPLASH_ACCESS_KEY',
+    'key' => env('UNSPLASH_ACCESS_KEY'),
 ],
 ```
 
