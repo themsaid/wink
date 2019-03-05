@@ -329,11 +329,11 @@
 
         <!-- Croppie Modal -->
         <cropper-modal v-if="croppieModalShown"
-                       :image="file"
-                       :viewport ="{ width: 200, height: 200 }"
-                       :boundary="{ width: 200, height: 200 }"
-                       @close="closeCroppieModal"
-                       @cancel="cancelCroppieModal"></cropper-modal>
+                    :image="file"
+                    :viewport ="{ width: 200, height: 200 }"
+                    :boundary="{ width: 200, height: 200 }"
+                    @close="closeCroppieModal"
+                    @cancel="cancelCroppieModal"></cropper-modal>
 
 
     </div>
