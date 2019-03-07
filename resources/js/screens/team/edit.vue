@@ -140,7 +140,7 @@
                         this.$router.push({name: 'team-edit', params: {id: this.form.id}})
                     }
 
-                    if(this.Wink.author.id == this.entry.id && this.theme != this.form.meta.theme){
+                    if(this.Wink.author.id == this.entry.id && (this.theme != this.form.meta.theme || this.avatar != this.form.avatar)) {
                         location.reload();
                     }
                 }).catch(error => {
@@ -196,9 +196,9 @@
             /**
              * Close the Croppie modal.
              */
-            closeCroppieModal({avatar}) {
+            closeCroppieModal({image}) {
                 this.croppieModalShown = false;
-                this.form.avatar = avatar;
+                this.form.avatar = image;
             },
 
 
@@ -328,12 +328,12 @@
                    @close="closeSeoModal"></seo-modal>
 
         <!-- Croppie Modal -->
-        <croppie-modal v-if="croppieModalShown"
-                   :file="file"
-                   :viewport ="{ width: 200, height: 200 }"
-                   :boundary="{ width: 200, height: 200 }"
-                   @closeCroppie="closeCroppieModal"
-                   @cancelCroppie="cancelCroppieModal"></croppie-modal>
+        <cropper-modal v-if="croppieModalShown"
+                    :image="file"
+                    :viewport ="{ width: 200, height: 200 }"
+                    :boundary="{ width: 200, height: 200 }"
+                    @close="closeCroppieModal"
+                    @cancel="cancelCroppieModal"></cropper-modal>
 
 
     </div>
