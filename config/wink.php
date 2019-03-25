@@ -41,4 +41,18 @@ return [
     */
 
     'path' => env('WINK_PATH', 'wink'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Wink Middleware Group
+    |--------------------------------------------------------------------------
+    |
+    | This is the middleware group that wink use.
+    | By default is the web group a correct one.
+    | It need at least the next middlewares
+    | - StartSession
+    | - ShareErrorsFromSession
+    |
+    */
+    'middleware_group' => env('WINK_MIDDLEWARE_GROUP', 'web'),
 ];
