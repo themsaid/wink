@@ -140,7 +140,7 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
     }
 
     /**
-     * Get the authors's avatar.
+     * Get the author's avatar.
      *
      * @param  string  $value
      * @return string
