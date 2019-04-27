@@ -81,7 +81,7 @@ class PostsController
             'publish_date' => 'required|date',
             'author_id' => 'required',
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_posts', 'slug')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_posts', 'slug')->ignore(WinkPost::find(request('id'))),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkPost::findOrFail($id) : new WinkPost(['id' => request('id')]);
