@@ -29,7 +29,7 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail()
     {
         validator(request()->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email|exists:'.config('wink.database_connection').'.wink_authors',
         ])->validate();
 
         if ($author = WinkAuthor::whereEmail(request('email'))->first()) {
