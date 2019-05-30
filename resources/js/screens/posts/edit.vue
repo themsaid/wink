@@ -397,13 +397,13 @@
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
                         placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full focus:outline-none mb-0"
+                        class="text-4xl font-semibold w-full focus:outline-none mb-0"
                         v-model="form.title"
                 ></textarea-autosize>
 
                  <textarea-autosize
                         placeholder="Type a subtitle (optional)..."
-                        class="text-3xl font-medium w-full focus:outline-none mb-2 opacity-50 "
+                        class="text-3xl font-medium w-full focus:outline-none mb-6 opacity-50 "
                         v-model="form.subtitle"
                 ></textarea-autosize>
 
