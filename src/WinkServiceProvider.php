@@ -33,7 +33,7 @@ class WinkServiceProvider extends ServiceProvider
     {
         $path = config('wink.path');
         $middlewareGroup = config('wink.middleware_group');
-        $middlewareGroups = is_array($middlewareGroup) ? $middlewareGroup[] = Authenticate::class : [$middlewareGroup, Authenticate::class];
+        $middlewareGroups = is_array($middlewareGroup) ? array_merge($middlewareGroup, [Authenticate::class]) : [$middlewareGroup, Authenticate::class];
 
         Route::namespace('Wink\Http\Controllers')
             ->middleware($middlewareGroup)
