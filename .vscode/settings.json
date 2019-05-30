@@ -1,0 +1,7 @@
+{
+    "prettier.tabWidth": 4,
+    "vetur.format.options.tabSize": 4,
+    "json-to-js.indentationSize": 4,
+    "editor.formatOnSave": false,
+    "php-cs-fixer.onsave": false,
+}

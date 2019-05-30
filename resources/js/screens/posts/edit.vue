@@ -33,6 +33,7 @@
                 form: {
                     id: '',
                     title: 'Draft',
+                    subtitle: 'Subtitle (optional)',
                     slug: '',
                     excerpt: '',
                     tags: [],
@@ -91,6 +92,7 @@
          */
         mounted() {
             document.title = "Edit Post — Wink.";
+            document.subtitle = document.title;
 
             this.loadResources();
 
@@ -140,6 +142,7 @@
 
                 if (this.id != 'new') {
                     this.form.title = data.title;
+                    this.form.subtitle = data.subtitle;
                     this.form.slug = data.slug;
                     this.form.excerpt = data.excerpt;
                     this.form.body = data.body;
@@ -394,8 +397,14 @@
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
                         placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full focus:outline-none mb-10"
+                        class="text-3xl font-semibold w-full focus:outline-none mb-2"
                         v-model="form.title"
+                ></textarea-autosize>
+
+                 <textarea-autosize
+                        placeholder="Type something here..."
+                        class="text-3xl font-semibold w-full focus:outline-none mb-6"
+                        v-model="form.subtitle"
                 ></textarea-autosize>
 
                 <editor :post-id="id" v-model="form.body"></editor>
