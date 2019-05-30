@@ -66,6 +66,7 @@ class PostsController
     {
         $data = [
             'title' => request('title'),
+            'subtitle' => request('subtitle'),
             'excerpt' => request('excerpt', ''),
             'slug' => request('slug'),
             'body' => request('body', ''),
