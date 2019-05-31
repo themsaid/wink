@@ -62,6 +62,7 @@ class TeamController
             'name' => request('name'),
             'slug' => request('slug'),
             'email' => request('email'),
+            'twitter_handle' => request( 'author_twitter_handle'),
             'bio' => request('bio'),
             'avatar' => request('avatar'),
             'meta' => request('meta', (object) []),
@@ -72,6 +73,8 @@ class TeamController
             'name' => 'required',
             'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'slug')->ignore(request('id')),
             'email' => 'required|email|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'email')->ignore(request('id')),
+            'twitter_handle' => 'twitter_handle|nullable',
+            
         ])->validate();
 
         $entry = $id !== 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
