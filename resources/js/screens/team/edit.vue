@@ -29,7 +29,6 @@
                     name: '',
                     slug: '',
                     email: '',
-                    author_twitter_handle: '',
                     bio: 'I am who I\'m meant to be, this is me.',
                     avatar: '',
                     password: '',
@@ -98,7 +97,6 @@
                         this.form.name = response.data.entry.name;
                         this.form.slug = response.data.entry.slug;
                         this.form.email = response.data.entry.email;
-                        this.form.author_twitter_handle = response.data.entry.twitter_handle;
                         this.form.bio = response.data.entry.bio;
                         this.form.avatar = response.data.entry.avatar;
                         this.form.meta = {
@@ -294,16 +292,6 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="author_twitter_handle" class="input-label">Twitter Handle</label>
-                    @<input type="text" class="input"
-                           v-model="form.author_twitter_handle"
-                           placeholder="your-twitter-handle"
-                           id="author_twitter_handle">
-
-                    <form-errors :errors="form.errors.twitter_handle"></form-errors>
-                </div>
-
-                <div class="input-group">
                     <label for="password" class="input-label">Password</label>
                     <input type="password" class="input"
                            v-model="form.password"
@@ -347,6 +335,6 @@
                     @close="closeCroppieModal"
                     @cancel="cancelCroppieModal"></cropper-modal>
 
-                    
+
     </div>
 </template>

@@ -23,10 +23,6 @@ class WinkServiceProvider extends ServiceProvider
         $this->loadViewsFrom(
             __DIR__.'/../resources/views', 'wink'
         );
-
-        Validator::extend('twitter_handle', function ($attribute, $value) {
-            return preg_match('/^([a-z0-9_]{1,15})$/i', $value);
-        }, 'Invalid :attribute. Max. 15 chars.');
     }
 
     /**
