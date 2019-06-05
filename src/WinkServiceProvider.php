@@ -111,7 +111,7 @@ class WinkServiceProvider extends ServiceProvider
             Console\MigrateCommand::class,
         ]);
     }
-    
+
     /**
      * Return the subdomain if configured.
      *
@@ -120,9 +120,9 @@ class WinkServiceProvider extends ServiceProvider
     protected function subdomain($subdomain)
     {
         if (is_null(config('wink.subdomain'))) {
-            return null;
+            return;
         }
-        
+
         return vsprintf('%s.%s', [
             config('wink.subdomain'),
             parse_url(config('app.url'), PHP_URL_HOST)
