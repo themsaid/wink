@@ -110,7 +110,7 @@ class PostsController
         $allTags = WinkTag::all();
 
         return collect($incomingTags)->map(function ($incomingTag) use ($allTags) {
-            $tag = $allTags->where('slug', Str::slug($incomingTag['name']))->first();
+            $tag = $allTags->where('id', $incomingTag['id'])->first();
 
             if (! $tag) {
                 $tag = WinkTag::create([
