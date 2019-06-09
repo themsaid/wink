@@ -14,6 +14,8 @@ class TagsResource extends JsonResource
      */
     public function toArray($request)
     {
+        self::$wrap = 'data';
+
         return parent::toArray($request);
     }
 }
