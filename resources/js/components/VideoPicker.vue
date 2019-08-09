@@ -1,6 +1,4 @@
 <script type="text/ecmascript">
-    import axios from 'axios';
-
     export default {
         props: [],
 
@@ -12,16 +10,8 @@
                 uploading: false,
 
                 video: null,
-
-                cropperModalShown: false,
             }
         },
-
-
-        mounted() {
-
-        },
-
 
         methods: {
 
@@ -35,27 +25,11 @@
 
 
             /**
-             * Open the cropper modal.
-             */
-            showCropperModal() {
-                this.cropperModalShown = true;
-            },
-
-
-            /**
-             * Close the cropper modal.
+             * Finish the upload process.
              */
             uploadFinished({video}) {
                 this.videoUrl = video;
                 this.$emit('changed', { url: video });
-            },
-
-
-            /**
-             * Close and Cancel the cropper modal.
-             */
-            cancelCropperModal() {
-                this.cropperModalShown = false;
             },
 
             uploadVideoFile() {
