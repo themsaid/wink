@@ -30,6 +30,8 @@ return [
 
     'storage_path' => env('WINK_STORAGE_PATH', 'public/wink/images'),
 
+    'video_storage_path' => env('WINK_VIDEO_STORAGE_PATH', 'public/wink/videos'),
+
     /*
     |--------------------------------------------------------------------------
     | Wink Path

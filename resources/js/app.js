@@ -6,7 +6,6 @@ import VueRouter from 'vue-router';
 import VueTextareaAutosize from 'vue-textarea-autosize';
 import VueCroppie from 'vue-croppie';
 
-
 Vue.use(VueRouter);
 Vue.use(VueTextareaAutosize);
 Vue.use(VueCroppie);
@@ -29,6 +28,7 @@ Vue.component('mini-editor', require('./components/MiniEditor').default);
 Vue.component('editor', require('./components/Editor').default);
 Vue.component('form-errors', require('./components/FormErrors').default);
 Vue.component('image-picker', require('./components/ImagePicker').default);
+Vue.component('video-picker', require('./components/VideoPicker').default);
 Vue.component('cropper-modal', require('./components/CropperModal').default);
 Vue.component('date-time-picker', require('./components/DateTimePicker').default);
 Vue.component('multiselect', require('./components/MultiSelect').default);

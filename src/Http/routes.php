@@ -18,8 +18,9 @@ Route::get('/api/team/{id?}', 'TeamController@show')->name('team.show');
 Route::post('/api/team/{id}', 'TeamController@store')->name('team.store');
 Route::delete('/api/team/{id}', 'TeamController@delete')->name('team.delete');
 
-// Blog Image Uploads
+// Blog Uploads...
 Route::post('/api/uploads', 'ImageUploadsController@upload')->name('images.store');
+Route::post('/api/uploads/video', 'VideoUploadsController@upload')->name('videos.store');
 
 // Blog Pages...
 Route::get('/api/pages', 'PagesController@index')->name('pages.index');

@@ -2,8 +2,10 @@
     import _ from 'lodash';
     import Quill from 'quill';
     import ImageUploader from './editorComponents/ImageUploader.vue';
+    import VideoUploader from './editorComponents/VideoUploader.vue';
     import HTMLEmbedder from './editorComponents/HTMLEmbedder.vue';
     import ImageBlot from './editorComponents/ImageBlot.js';
+    import VideoBlot from './editorComponents/VideoBlot.js';
     import DividerBlot from './editorComponents/DividerBlot.js';
     import HTMLBlot from './editorComponents/HTMLBlot.js';
     import Parchment from 'parchment';
@@ -11,7 +13,8 @@
     export default {
         components: {
             'image-uploader': ImageUploader,
-            'html-embedder': HTMLEmbedder
+            'video-uploader': VideoUploader,
+            'html-embedder': HTMLEmbedder,
         },
 
         props: {
@@ -49,6 +52,7 @@
              */
             createEditor(){
                 Quill.register(ImageBlot, true);
+                Quill.register(VideoBlot, true);
                 Quill.register(DividerBlot, true);
                 Quill.register(HTMLBlot, true);
 
@@ -98,6 +102,14 @@
                         values.existingBlot = blot;
 
                         this.openImageUploader(values);
+                    }
+
+                    if (blot instanceof VideoBlot) {
+                        var values = blot.value(blot.domNode)['video'];
+
+                        values.existingBlot = blot;
+
+                        this.openVideoUploader(values);
                     }
                 });
             },
@@ -156,6 +168,10 @@
                 this.$emit('openingImageUploader', data);
             },
 
+            openVideoUploader(data = null) {
+                this.$emit('openingVideoUploader', data);
+            },
+
 
             /**
              * Add a new captioned image to the content.
@@ -174,6 +190,22 @@
                 let range = this.editor.getSelection(true);
 
                 this.editor.insertEmbed(range.index, 'captioned-image', values, Quill.sources.USER);
+
+                this.editor.setSelection(range.index + 1, Quill.sources.SILENT);
+            },
+
+            applyVideo({url, existingBlot}){
+                let values = {
+                    url: url,
+                };
+
+                if (existingBlot) {
+                    return existingBlot.replaceWith('video', values);
+                }
+
+                let range = this.editor.getSelection(true);
+
+                this.editor.insertEmbed(range.index, 'video', values, Quill.sources.USER);
 
                 this.editor.setSelection(range.index + 1, Quill.sources.SILENT);
             },
@@ -218,6 +250,12 @@
                         <path d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11 9l-3-3-6 6h16l-5-5-2 2zm4-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                     </svg>
                 </button>
+                <button @click="openVideoUploader()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-3">
+                        <path d="M15.6 8.3V4.4c0-.7-.4-1.1-1.1-1.1H1.1C.4 3.3 0 3.8 0 4.4v11.1c0 .7.4 1.1 1.1 1.1h13.3c.7 0 1.1-.4 1.1-1.1v-3.9l4.4 4.4V3.9l-4.3 4.4z"/>
+                    </svg>
+                </button>
+
                 <button @click="$emit('openingHTMLEmbedder')">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-3">
                         <path d="M.7 9.3l4.8-4.8 1.4 1.42L2.84 10l4.07 4.07-1.41 1.42L0 10l.7-.7zm18.6 1.4l.7-.7-5.49-5.49-1.4 1.42L17.16 10l-4.07 4.07 1.41 1.42 4.78-4.78z"/>
@@ -234,6 +272,7 @@
         <div ref="editor"></div>
 
         <image-uploader post-id="postId" @updated="applyImage"></image-uploader>
+        <video-uploader post-id="postId" @updated="applyVideo"></video-uploader>
         <html-embedder post-id="postId" @adding="addHTML"></html-embedder>
     </div>
 </template>
