@@ -163,5 +163,4 @@ class WinkPost extends AbstractWinkModel
 
         return sprintf('%d %s %s', $minutes, Str::plural('min', $minutes), 'read');
     }
-    
 }
