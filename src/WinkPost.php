@@ -2,6 +2,8 @@
 
 namespace Wink;
 
+use Illuminate\Support\Str;
+
 class WinkPost extends AbstractWinkModel
 {
     /**
@@ -145,4 +147,21 @@ class WinkPost extends AbstractWinkModel
     {
         return $query->where('publish_date', '>', $date);
     }
+
+    /**
+     * Get the human-friendly estimated reading time of a post.
+     *
+     * @return string
+     */
+    public function getReadTimeAttribute()
+    {
+        // count words
+        $words = str_word_count(strip_tags($this->body));
+
+        // Divide by the average number of words per minute
+        $minutes = ceil($words / 250);
+
+        return sprintf('%d %s %s', $minutes, Str::plural('min', $minutes), 'read');
+    }
+    
 }
