@@ -48,6 +48,10 @@
              * Create an instance of the editor.
              */
             createEditor(){
+                let CodeBlockBlot = Quill.import('formats/code-block');
+                CodeBlockBlot.className = 'hljs';
+
+                Quill.register(CodeBlockBlot, true);
                 Quill.register(ImageBlot, true);
                 Quill.register(DividerBlot, true);
                 Quill.register(HTMLBlot, true);

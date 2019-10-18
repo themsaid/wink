@@ -12,10 +12,12 @@
   color: config('colors.light');
 }
 
-.ql-bubble .ql-editor pre.ql-syntax {
-  background: #000d18;
-  color: #fff;
-  border: solid 2px rgba(0, 0, 0, 0.05);
+.ql-bubble .ql-editor pre {
+  &.ql-syntax, &.hljs {
+    background: #000d18;
+    color: #fff;
+    border: solid 2px rgba(0, 0, 0, 0.05);
+  }
 }
 
 .ql-bubble .ql-editor code{
@@ -137,4 +139,3 @@
 .ql-bubble .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
   stroke: config('colors.lighter');
 }
-
