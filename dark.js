@@ -3,6 +3,7 @@ let defaultConfig = require('tailwindcss/defaultConfig')();
 let colors = {
   'transparent': 'transparent',
 
+  'black-shade': 'rgba(0, 0, 0, .5)',
   'text-color': '#c1d4ea',
   'light': '#9baecd',
   'lighter': '#24567b',
