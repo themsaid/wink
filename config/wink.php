@@ -47,12 +47,13 @@ return [
     | Wink Middleware Group
     |--------------------------------------------------------------------------
     |
-    | This is the middleware group that wink use.
-    | By default is the web group a correct one.
-    | It need at least the next middlewares
+    | This is the middleware group that Wink uses, by default Wink uses
+    | the web middleware group. You can use your own group as long
+    | as the following middlewares are included.
     | - StartSession
     | - ShareErrorsFromSession
     |
     */
+
     'middleware_group' => env('WINK_MIDDLEWARE_GROUP', 'web'),
 ];

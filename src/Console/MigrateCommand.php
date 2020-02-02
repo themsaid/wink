@@ -15,7 +15,7 @@ class MigrateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'wink:migrate';
+    protected $signature = 'wink:migrate {email?} {password?}';
 
     /**
      * The console command description.
@@ -41,19 +41,23 @@ class MigrateCommand extends Command
         ]);
 
         if ($shouldCreateNewAuthor) {
+
+            $email = !$this->argument('email') ? 'admin@mail.com' : $this->argument('email');
+            $password =  !$this->argument('password') ? Str::random() : $this->argument('password');
+
             WinkAuthor::create([
                 'id' => (string) Str::uuid(),
                 'name' => 'Regina Phalange',
                 'slug' => 'regina-phalange',
                 'bio' => 'This is me.',
-                'email' => 'admin@mail.com',
-                'password' => Hash::make($password = Str::random()),
+                'email' => $email,
+                'password' => Hash::make($password),
             ]);
 
             $this->line('');
             $this->line('');
             $this->line('Wink is ready for use. Enjoy!');
-            $this->line('You may log in using <info>admin@mail.com</info> and password: <info>'.$password.'</info>');
+            $this->line('You may log in using <info>'.$email.'</info> and password: <info>'.$password.'</info>');
         }
     }
 }
