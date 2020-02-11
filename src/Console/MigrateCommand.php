@@ -15,7 +15,8 @@ class MigrateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'wink:migrate {email?} {password?}';
+    protected $signature = 'wink:migrate {email?} {password?}
+                {--force : Force the operation to run when in production}';
 
     /**
      * The console command description.
@@ -38,6 +39,7 @@ class MigrateCommand extends Command
         $this->call('migrate', [
             '--database' => config('wink.database_connection'),
             '--path' => 'vendor/writingink/wink/src/Migrations',
+            '--force' => $this->option('force') ?? true,
         ]);
 
         if ($shouldCreateNewAuthor) {
