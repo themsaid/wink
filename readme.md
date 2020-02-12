@@ -103,6 +103,52 @@ public function index()
 }
 ```
 
+for a single post matching a route using the posts slug as identifier like:
+
+```php
+Route::get('/post/{slug}', 'BlogController@showPost');
+```
+
+you could use a controller function like this:
+
+```php
+public function showPost($slug) {
+    $post = WinkPost::where('slug', $slug)->with('tags')->firstOrFail();
+
+    return view('blog.article', [
+        'post' => $post
+    ]);
+}
+```
+
+Looking for Pages? It's really simple:
+
+```php
+
+use Wink\WinkPage;
+
+public function index()
+{
+    $pages = WinkPage::all();
+
+    return view('blog.index', [
+        'pages' => $pages
+    ]);
+}
+```
+
+If you want to build up a menu with all pages you could now do something like this in your templates:
+
+```php
+<ul class="menu">
+@foreach($pages as $page)
+<li class="menu-item">
+    <a href="/page/{{ $page->slug }}">{{ $page->title }}</a>
+</li>
+@endforeach
+</ul>
+```
+
 You can configure your routes in any way you want:
 
 ```php
