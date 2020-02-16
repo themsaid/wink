@@ -11,10 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Style sheets-->
-    <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
+    <link href='{{asset(mix('light.css', 'vendor/wink'))}}' rel='stylesheet' type='text/css'>
 
     <!-- Icon-->
-    <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
+    <link rel="icon" type="image/png" href="{{asset('/vendor/wink/favicon.png')}}"/>
 </head>
 <body class="text-text-color mb-20">
 <div class="container mt-20">
