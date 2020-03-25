@@ -35,6 +35,8 @@ Check `config/wink.php` and **configure the database connection** wink is going 
 php artisan wink:migrate
 ```
 
+If you are running Laravel 7, you must install the `laravel/ui` package in order for the authentication system to function properly. Use `composer require laravel/ui "^2.0"`.
+
 Head to `yourproject.test/wink` and use the provided email and password to log in.
 
 Before creating a blog post, make sure you have your image directory set up correctly. The directory is set in the `config/wink.php` and defaults to
