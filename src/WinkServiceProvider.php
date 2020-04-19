@@ -106,6 +106,7 @@ class WinkServiceProvider extends ServiceProvider
         $this->commands([
             Console\InstallCommand::class,
             Console\MigrateCommand::class,
+            Console\CreateWinkAdminCommand::class
         ]);
     }
 }
