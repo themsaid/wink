@@ -5,7 +5,6 @@ namespace Wink\Console;
 use Wink\WinkAuthor;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class MigrateCommand extends Command
@@ -45,7 +44,7 @@ class MigrateCommand extends Command
             $email = !$this->argument('email') ? 'admin@mail.com' : $this->argument('email');
             $password =  !$this->argument('password') ? Str::random() : $this->argument('password');
 
-            $this->call('wink:admin', [ 'name' => 'Regina Phalange', 'email' => $email, 'password' => $password ]);
+            $this->call('wink:admin', ['name' => 'Regina Phalange', 'email' => $email, 'password' => $password]);
         }
     }
 }
