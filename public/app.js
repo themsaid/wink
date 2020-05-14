@@ -6202,6 +6202,36 @@ function isnan (val) {
 
 /***/ }),
 
+/***/ "./node_modules/croppie/croppie.css":
+/*!******************************************!*\
+  !*** ./node_modules/croppie/croppie.css ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../css-loader??ref--7-1!../postcss-loader/src??ref--7-2!./croppie.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/croppie/croppie.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/croppie/croppie.js":
 /*!*****************************************!*\
   !*** ./node_modules/croppie/croppie.js ***!
@@ -7834,6 +7864,25 @@ function isnan (val) {
 }));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../timers-browserify/main.js */ "./node_modules/timers-browserify/main.js").setImmediate))
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/croppie/croppie.css":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/postcss-loader/src??ref--7-2!./node_modules/croppie/croppie.css ***!
+  \**************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".croppie-container {\n    width: 100%;\n    height: 100%;\n}\n\n.croppie-container .cr-image {\n    z-index: -1;\n    position: absolute;\n    top: 0;\n    left: 0;\n    transform-origin: 0 0;\n    max-height: none;\n    max-width: none;\n}\n\n.croppie-container .cr-boundary {\n    position: relative;\n    overflow: hidden;\n    margin: 0 auto;\n    z-index: 1;\n    width: 100%;\n    height: 100%;\n}\n\n.croppie-container .cr-viewport,\n.croppie-container .cr-resizer {\n    position: absolute;\n    border: 2px solid #fff;\n    margin: auto;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);\n    z-index: 0;\n}\n\n.croppie-container .cr-resizer {\n  z-index: 2;\n  box-shadow: none;\n  pointer-events: none;\n}\n\n.croppie-container .cr-resizer-vertical,\n.croppie-container .cr-resizer-horisontal {\n  position: absolute;\n  pointer-events: all;\n}\n\n.croppie-container .cr-resizer-vertical::after,\n.croppie-container .cr-resizer-horisontal::after {\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    border: 1px solid black;\n    background: #fff;\n    width: 10px;\n    height: 10px;\n    content: '';\n}\n\n.croppie-container .cr-resizer-vertical {\n  bottom: -5px;\n  cursor: row-resize;\n  width: 100%;\n  height: 10px;\n}\n\n.croppie-container .cr-resizer-vertical::after {\n    left: 50%;\n    margin-left: -5px;\n}\n\n.croppie-container .cr-resizer-horisontal {\n  right: -5px;\n  cursor: col-resize;\n  width: 10px;\n  height: 100%;\n}\n\n.croppie-container .cr-resizer-horisontal::after {\n    top: 50%;\n    margin-top: -5px;\n}\n\n.croppie-container .cr-original-image {\n    display: none;\n}\n\n.croppie-container .cr-vp-circle {\n    border-radius: 50%;\n}\n\n.croppie-container .cr-overlay {\n    z-index: 1;\n    position: absolute;\n    cursor: move;\n    touch-action: none;\n}\n\n.croppie-container .cr-slider-wrap {\n    width: 75%;\n    margin: 15px auto;\n    text-align: center;\n}\n\n.croppie-result {\n    position: relative;\n    overflow: hidden;\n}\n\n.croppie-result img {\n    position: absolute;\n}\n\n.croppie-container .cr-image,\n.croppie-container .cr-overlay,\n.croppie-container .cr-viewport {\n    -webkit-transform: translateZ(0);\n    -moz-transform: translateZ(0);\n    -ms-transform: translateZ(0);\n    transform: translateZ(0);\n}\n\n/*************************************/\n/***** STYLING RANGE INPUT ***********/\n/*************************************/\n/*http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html */\n/*************************************/\n\n.cr-slider {\n    -webkit-appearance: none;\n/*removes default webkit styles*/\n\t/*border: 1px solid white; *//*fix for FF unable to apply focus style bug */\n    width: 300px;\n/*required for proper track sizing in FF*/\n    max-width: 100%;\n    padding-top: 8px;\n    padding-bottom: 8px;\n    background-color: transparent;\n}\n\n.cr-slider::-webkit-slider-runnable-track {\n    width: 100%;\n    height: 3px;\n    background: rgba(0, 0, 0, 0.5);\n    border: 0;\n    border-radius: 3px;\n}\n\n.cr-slider::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: none;\n    height: 16px;\n    width: 16px;\n    border-radius: 50%;\n    background: #ddd;\n    margin-top: -6px;\n}\n\n.cr-slider:focus {\n    outline: none;\n}\n/*\n.cr-slider:focus::-webkit-slider-runnable-track {\nbackground: #ccc;\n}\n*/\n\n.cr-slider::-moz-range-track {\n    width: 100%;\n    height: 3px;\n    background: rgba(0, 0, 0, 0.5);\n    border: 0;\n    border-radius: 3px;\n}\n\n.cr-slider::-moz-range-thumb {\n    border: none;\n    height: 16px;\n    width: 16px;\n    border-radius: 50%;\n    background: #ddd;\n    margin-top: -6px;\n}\n\n/*hide the outline behind the border*/\n.cr-slider:-moz-focusring {\n    outline: 1px solid white;\n    outline-offset: -1px;\n}\n\n.cr-slider::-ms-track {\n    width: 100%;\n    height: 5px;\n    background: transparent;\n/*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */\n\tborder-color: transparent;/*leave room for the larger thumb to overflow with a transparent border */\n\tborder-width: 6px 0;\n\tcolor: transparent;/*remove default tick marks*/\n}\n.cr-slider::-ms-fill-lower {\n\tbackground: rgba(0, 0, 0, 0.5);\n\tborder-radius: 10px;\n}\n.cr-slider::-ms-fill-upper {\n\tbackground: rgba(0, 0, 0, 0.5);\n\tborder-radius: 10px;\n}\n.cr-slider::-ms-thumb {\n\tborder: none;\n\theight: 16px;\n\twidth: 16px;\n\tborder-radius: 50%;\n\tbackground: #ddd;\n\tmargin-top:1px;\n}\n.cr-slider:focus::-ms-fill-lower {\n\tbackground: rgba(0, 0, 0, 0.5);\n}\n.cr-slider:focus::-ms-fill-upper {\n\tbackground: rgba(0, 0, 0, 0.5);\n}\n/*******************************************/\n\n/***********************************/\n/* Rotation Tools */\n/***********************************/\n.cr-rotate-controls {\n\tposition: absolute;\n\tbottom: 5px;\n\tleft: 5px;\n\tz-index: 1;\n}\n.cr-rotate-controls button {\n\tborder: 0;\n\tbackground: none;\n}\n.cr-rotate-controls i:before {\n\tdisplay: inline-block;\n\tfont-style: normal;\n\tfont-weight: 900;\n\tfont-size: 22px;\n}\n.cr-rotate-l i:before {\n\tcontent: '\\21BA';\n}\n.cr-rotate-r i:before {\n\tcontent: '\\21BB';\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -63667,6 +63716,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_textarea_autosize__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-textarea-autosize */ "./node_modules/vue-textarea-autosize/index.js");
 /* harmony import */ var vue_croppie__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-croppie */ "./node_modules/vue-croppie/dist/vue-croppie.es.js");
+/* harmony import */ var croppie_croppie_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! croppie/croppie.css */ "./node_modules/croppie/croppie.css");
+/* harmony import */ var croppie_croppie_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(croppie_croppie_css__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -65678,8 +65730,8 @@ module.exports = {
 
       this.http().get(this.baseURL + '?wink=wink' + (this.searchQuery ? '&search=' + this.searchQuery : '') + (this.filters && this.filters.status ? '&status=' + this.filters.status : '') + (this.filters && this.filters.author_id ? '&author_id=' + this.filters.author_id : '') + (this.filters && this.filters.tag_id ? '&tag_id=' + this.filters.tag_id : '')).then(function (response) {
         _this.entries = response.data.data;
-        _this.hasMoreEntries = !!response.data.next_page_url;
-        _this.nextPageUrl = response.data.next_page_url;
+        _this.hasMoreEntries = !!response.data.links.next;
+        _this.nextPageUrl = response.data.links.next;
         _this.ready = true;
       });
     },
@@ -65696,8 +65748,8 @@ module.exports = {
 
         (_this2$entries = _this2.entries).push.apply(_this2$entries, _toConsumableArray(response.data.data));
 
-        _this2.hasMoreEntries = !!response.data.next_page_url;
-        _this2.nextPageUrl = response.data.next_page_url;
+        _this2.hasMoreEntries = !!response.data.links.next;
+        _this2.nextPageUrl = response.data.links.next;
         _this2.loadingMoreEntries = false;
       });
     },

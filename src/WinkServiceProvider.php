@@ -117,7 +117,7 @@ class WinkServiceProvider extends ServiceProvider
      *
      * return string|null
      */
-    protected function subdomain($subdomain)
+    protected function subdomain()
     {
         if (is_null(config('wink.subdomain'))) {
             return;
