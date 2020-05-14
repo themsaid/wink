@@ -15,7 +15,8 @@ class MigrateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'wink:migrate {email?} {password?}';
+    protected $signature = 'wink:migrate {email?} {password?}
+                {--force : Force the operation to run when in production}';
 
     /**
      * The console command description.
@@ -38,12 +39,13 @@ class MigrateCommand extends Command
         $this->call('migrate', [
             '--database' => config('wink.database_connection'),
             '--path' => 'vendor/writingink/wink/src/Migrations',
+            '--force' => $this->option('force') ?? true,
         ]);
 
         if ($shouldCreateNewAuthor) {
 
-            $email = !$this->argument('email') ? 'admin@mail.com' : $this->argument('email');
-            $password =  !$this->argument('password') ? Str::random() : $this->argument('password');
+            $email = ! $this->argument('email') ? 'admin@mail.com' : $this->argument('email');
+            $password = ! $this->argument('password') ? Str::random() : $this->argument('password');
 
             WinkAuthor::create([
                 'id' => (string) Str::uuid(),
