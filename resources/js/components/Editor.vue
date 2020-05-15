@@ -6,6 +6,7 @@
     import ImageBlot from './editorComponents/ImageBlot.js';
     import DividerBlot from './editorComponents/DividerBlot.js';
     import HTMLBlot from './editorComponents/HTMLBlot.js';
+    import PlainClipboard from './editorComponents/Clipboard.js';
     import Parchment from 'parchment';
 
     export default {
@@ -48,11 +49,14 @@
              * Create an instance of the editor.
              */
             createEditor(){
+                let icons;
+
                 Quill.register(ImageBlot, true);
                 Quill.register(DividerBlot, true);
                 Quill.register(HTMLBlot, true);
+                Quill.register('modules/clipboard', PlainClipboard, true)
 
-                const icons = Quill.import('ui/icons');
+                icons = Quill.import('ui/icons');
                 icons.header[3] = require('!html-loader!quill/assets/icons/header-3.svg');
 
                 return new Quill(this.$refs.editor, {
