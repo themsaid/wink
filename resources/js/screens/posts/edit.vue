@@ -1,9 +1,11 @@
 <script type="text/ecmascript">
     import FeaturedImageUploader from './FeaturedImageUploader';
     import SEOModal from './../../components/SEOModal';
+    import MarkdownEditor from './../../components/MarkdownEditor';
 
     export default {
         components: {
+            MarkdownEditor,
             'featured-image-uploader': FeaturedImageUploader,
             'seo-modal': SEOModal,
         },
@@ -41,6 +43,7 @@
                     featured_image_caption: '',
                     body: '',
                     published: false,
+                    markdown: null,
                     publish_date: '',
                     meta: {
                         meta_description: '',
@@ -64,7 +67,6 @@
                     this.form.slug = this.slugify(val);
                 });
             },
-
 
             'form.featured_image'() {
                 this.save();
@@ -144,6 +146,7 @@
                     this.form.excerpt = data.excerpt;
                     this.form.body = data.body;
                     this.form.published = data.published;
+                    this.form.markdown = data.markdown;
                     this.form.tags = data.tags || '';
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
@@ -393,12 +396,20 @@
 
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
-                        placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full focus:outline-none mb-10"
-                        v-model="form.title"
+                    placeholder="Type something here..."
+                    class="text-3xl font-semibold w-full focus:outline-none mb-10"
+                    v-model="form.title"
                 ></textarea-autosize>
 
-                <editor :post-id="id" v-model="form.body"></editor>
+                <div v-if="form.markdown == null">
+                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5" @click="form.markdown = false">I want a rich text editor</button>
+                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5" @click="form.markdown = true">I will write markdown</button>
+                </div>
+                <editor v-if="form.markdown == false" :post-id="id" v-model="form.body"></editor>
+                <markdown-editor
+                    v-model="form.body"
+                    v-if="form.markdown == true">
+                </markdown-editor>
             </div>
         </div>
 

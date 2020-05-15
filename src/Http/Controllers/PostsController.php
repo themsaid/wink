@@ -45,7 +45,11 @@ class PostsController
     {
         if ($id === 'new') {
             return response()->json([
-                'entry' => WinkPost::make(['id' => Str::uuid(), 'publish_date' => now()->format('Y-m-d H:i:00')]),
+                'entry' => WinkPost::make([
+                    'id' => Str::uuid(),
+                    'publish_date' => now()->format('Y-m-d H:i:00'),
+                    'markdown' => null
+                ]),
             ]);
         }
 
@@ -70,6 +74,7 @@ class PostsController
             'slug' => request('slug'),
             'body' => request('body', ''),
             'published' => request('published'),
+            'markdown' => request('markdown'),
             'author_id' => request('author_id'),
             'featured_image' => request('featured_image'),
             'featured_image_caption' => request('featured_image_caption', ''),

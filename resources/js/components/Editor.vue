@@ -42,6 +42,19 @@
             this.handleClicksInsideEditor();
 
             this.initSideControls();
+
+            // This can be used to auto focus the editor and show the sidebar controls
+            // we need to detect if the editor is empty and should be autofocused
+            //     this.editor.focus();
+            //
+            //     let sidebarControls = document.getElementById('sidebar-controls');
+            //
+            //     sidebarControls.classList.remove('active');
+            //
+            //     sidebarControls.style.display = 'block';
+            //
+            //     sidebarControls.style.left = -50 + 'px';
+            //     sidebarControls.style.top = -2 + 'px';
         },
 
         methods: {
