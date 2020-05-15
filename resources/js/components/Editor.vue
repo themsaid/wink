@@ -6,7 +6,8 @@
     import ImageBlot from './editorComponents/ImageBlot.js';
     import DividerBlot from './editorComponents/DividerBlot.js';
     import HTMLBlot from './editorComponents/HTMLBlot.js';
-    import PlainClipboard from './editorComponents/Clipboard.js';
+    import WinkClipboard from './editorComponents/Clipboard.js';
+    import WinkLink from './editorComponents/WinkLink.js';
     import Parchment from 'parchment';
 
     export default {
@@ -67,7 +68,8 @@
                 Quill.register(ImageBlot, true);
                 Quill.register(DividerBlot, true);
                 Quill.register(HTMLBlot, true);
-                Quill.register('modules/clipboard', PlainClipboard, true)
+                Quill.register(WinkLink, true);
+                Quill.register('modules/clipboard', WinkClipboard, true)
 
                 icons = Quill.import('ui/icons');
                 icons.header[3] = require('!html-loader!quill/assets/icons/header-3.svg');
