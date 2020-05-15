@@ -67571,7 +67571,6 @@ function (_Clipboard) {
       delta = new Delta().retain(range.index).delete(range.length);
 
       if (html) {
-        console.log(dompurify__WEBPACK_IMPORTED_MODULE_1___default.a.sanitize(html, this.getAllowed()));
         delta = delta.concat(this.convert(dompurify__WEBPACK_IMPORTED_MODULE_1___default.a.sanitize(html, this.getAllowed())));
       } else {
         delta = delta.insert(text);

@@ -21,7 +21,6 @@ class PlainClipboard extends Clipboard {
         delta = new Delta().retain(range.index).delete(range.length);
 
         if (html) {
-            console.log(DOMPurify.sanitize(html, this.getAllowed()));
             delta = delta.concat(this.convert(
                 DOMPurify.sanitize(html, this.getAllowed())
             ));
