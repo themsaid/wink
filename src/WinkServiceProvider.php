@@ -3,8 +3,8 @@
 namespace Wink;
 
 use Illuminate\Support\Facades\Route;
-use Wink\Http\Middleware\Authenticate;
 use Illuminate\Support\ServiceProvider;
+use Wink\Http\Middleware\Authenticate;
 
 class WinkServiceProvider extends ServiceProvider
 {
@@ -125,7 +125,7 @@ class WinkServiceProvider extends ServiceProvider
 
         return vsprintf('%s.%s', [
             config('wink.subdomain'),
-            parse_url(config('app.url'), PHP_URL_HOST)
+            parse_url(config('app.url'), PHP_URL_HOST),
         ]);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Wink\Console;
 
-use Wink\WinkAuthor;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
+use Wink\WinkAuthor;
 
 class MigrateCommand extends Command
 {
@@ -43,7 +43,6 @@ class MigrateCommand extends Command
         ]);
 
         if ($shouldCreateNewAuthor) {
-
             $email = ! $this->argument('email') ? 'admin@mail.com' : $this->argument('email');
             $password = ! $this->argument('password') ? Str::random() : $this->argument('password');
 

@@ -2,11 +2,11 @@
 
 namespace Wink\Http\Controllers;
 
-use Wink\WinkTag;
-use Wink\WinkPost;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Wink\Http\Resources\PostsResource;
+use Wink\WinkPost;
+use Wink\WinkTag;
 
 class PostsController
 {
@@ -48,7 +48,7 @@ class PostsController
                 'entry' => WinkPost::make([
                     'id' => Str::uuid(),
                     'publish_date' => now()->format('Y-m-d H:i:00'),
-                    'markdown' => null
+                    'markdown' => null,
                 ]),
             ]);
         }
