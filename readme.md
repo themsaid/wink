@@ -166,32 +166,6 @@ Route::get('/{tag}/{slug}', 'BlogController@post');
 Route::get('/{year}/{month}/{slug}', 'BlogController@post');
 ```
 
-## Road map
-
-Wink is still under heavy development, I decided to ship it in this early stage so you can help me make it better, however I'm already using it to run multiple websites including my personal blog.
-
-Here's the plan for what's coming:
-
-- [x] Customize Twitter/Facebook cards and SEO metadata.
-- [x] Optimize CSS. Move to Tailwind?
-- [x] Add text search inside listings.
-- [x] Filter posts by status, scheduling, tags, and authors
-- [x] Dark mode.
-- [ ] Enhance publishing date picker.
-- [ ] Create an initial theme that people can use right away. @themsaid
-- [ ] Optimize image uploads and allow cropping.
-- [ ] Adding image galleries to posts and pages. @themsaid
-- [ ] Add tests.
-
-And here are some ideas I'm still not sure about:
-
-- [ ] Email Subscription & auto send emails on new content.
-- [ ] Configure roles (Contributor / Admin)
-- [ ] Localization
-- [ ] Multi-lingual content
-- [ ] Attach metadata to posts and pages.
-
-
 ## Contributing
 
 Check our [contribution guide](CONTRIBUTING.md).
