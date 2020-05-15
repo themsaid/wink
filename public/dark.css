@@ -1891,6 +1891,26 @@ table {
   display: inline-block;
 }
 
+.inline_html {
+  position: relative;
+}
+
+.inline_html:hover {
+  box-shadow: 0 0 0 3px #d3b081;
+}
+
+.inline_html:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  cursor: default;
+}
+
 .embedded_image {
   margin-bottom: 33px !important;
   cursor: default;

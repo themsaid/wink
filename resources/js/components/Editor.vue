@@ -26,7 +26,7 @@
             }
         },
 
-        data(){
+        data() {
             return {
                 editor: null,
                 editorBody: this.body
@@ -48,7 +48,7 @@
             /**
              * Create an instance of the editor.
              */
-            createEditor(){
+            createEditor() {
                 let icons;
 
                 Quill.register(ImageBlot, true);
@@ -80,7 +80,7 @@
             /**
              * Handle the editor value.
              */
-            handleEditorValue(){
+            handleEditorValue() {
                 this.editor.root.innerHTML = this.value;
 
                 this.editor.on('text-change', () => {
@@ -92,7 +92,7 @@
             /**
              * Handle click events inside the editor.
              */
-            handleClicksInsideEditor(){
+            handleClicksInsideEditor() {
                 this.editor.root.addEventListener('click', (ev) => {
                     let blot = Parchment.find(ev.target, true);
 
@@ -103,6 +103,14 @@
 
                         this.openImageUploader(values);
                     }
+
+                    if (blot instanceof HTMLBlot) {
+                        var values = blot.value(blot.domNode)['html'];
+
+                        values.existingBlot = blot;
+
+                        this.openingHTMLEmbedder(values);
+                    }
                 });
             },
 
@@ -110,7 +118,7 @@
             /**
              * Init the side controls.
              */
-            initSideControls(){
+            initSideControls() {
                 let Block = Quill.import('blots/block');
 
                 this.editor.on(Quill.events.EDITOR_CHANGE, (eventType, range) => {
@@ -149,14 +157,18 @@
             /**
              * Show the side controls.
              */
-            showSideControls(){
+            showSideControls() {
                 document.getElementById('sidebar-controls').classList.toggle('active');
 
                 this.editor.focus();
             },
 
 
-            openImageUploader(data = null){
+            openingHTMLEmbedder(data = null) {
+                this.$emit('openingHTMLEmbedder', data);
+            },
+
+            openImageUploader(data = null) {
                 this.$emit('openingImageUploader', data);
             },
 
@@ -164,7 +176,7 @@
             /**
              * Add a new captioned image to the content.
              */
-            applyImage({url, caption, existingBlot, layout}){
+            applyImage({url, caption, existingBlot, layout}) {
                 let values = {
                     url: url,
                     caption: caption,
@@ -186,7 +198,7 @@
             /**
              * Add a divider to the content.
              */
-            addDivider(){
+            addDivider() {
                 let range = this.editor.getSelection(true);
 
                 this.editor.insertText(range.index, '\n', Quill.sources.USER);
@@ -198,12 +210,18 @@
             /**
              * Add a new HTML blot to the content.
              */
-            addHTML({content}){
+            applyHTML({content, existingBlot}) {
+                let values = {
+                    content: content,
+                };
+
                 let range = this.editor.getSelection(true);
 
-                this.editor.insertEmbed(range.index, 'html', {
-                    content: content,
-                }, Quill.sources.USER);
+                if (existingBlot) {
+                    return existingBlot.replaceWith('html', values);
+                }
+
+                this.editor.insertEmbed(range.index, 'html', values, Quill.sources.USER);
 
                 this.editor.setSelection(range.index + 1, Quill.sources.SILENT);
             },
@@ -222,7 +240,7 @@
                         <path d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11 9l-3-3-6 6h16l-5-5-2 2zm4-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                     </svg>
                 </button>
-                <button @click="$emit('openingHTMLEmbedder')">
+                <button @click="openingHTMLEmbedder()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-3">
                         <path d="M.7 9.3l4.8-4.8 1.4 1.42L2.84 10l4.07 4.07-1.41 1.42L0 10l.7-.7zm18.6 1.4l.7-.7-5.49-5.49-1.4 1.42L17.16 10l-4.07 4.07 1.41 1.42 4.78-4.78z"/>
                     </svg>
@@ -238,6 +256,6 @@
         <div ref="editor"></div>
 
         <image-uploader post-id="postId" @updated="applyImage"></image-uploader>
-        <html-embedder post-id="postId" @adding="addHTML"></html-embedder>
+        <html-embedder post-id="postId" @adding="applyHTML"></html-embedder>
     </div>
 </template>

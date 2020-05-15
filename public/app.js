@@ -2307,6 +2307,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           _this2.openImageUploader(values);
         }
+
+        if (blot instanceof _editorComponents_HTMLBlot_js__WEBPACK_IMPORTED_MODULE_6__["default"]) {
+          var values = blot.value(blot.domNode)['html'];
+          values.existingBlot = blot;
+
+          _this2.openingHTMLEmbedder(values);
+        }
       });
     },
 
@@ -2353,6 +2360,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       document.getElementById('sidebar-controls').classList.toggle('active');
       this.editor.focus();
     },
+    openingHTMLEmbedder: function openingHTMLEmbedder() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      this.$emit('openingHTMLEmbedder', data);
+    },
     openImageUploader: function openImageUploader() {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       this.$emit('openingImageUploader', data);
@@ -2394,12 +2405,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     /**
      * Add a new HTML blot to the content.
      */
-    addHTML: function addHTML(_ref2) {
-      var content = _ref2.content;
-      var range = this.editor.getSelection(true);
-      this.editor.insertEmbed(range.index, 'html', {
+    applyHTML: function applyHTML(_ref2) {
+      var content = _ref2.content,
+          existingBlot = _ref2.existingBlot;
+      var values = {
         content: content
-      }, quill__WEBPACK_IMPORTED_MODULE_1___default.a.sources.USER);
+      };
+      var range = this.editor.getSelection(true);
+
+      if (existingBlot) {
+        return existingBlot.replaceWith('html', values);
+      }
+
+      this.editor.insertEmbed(range.index, 'html', values, quill__WEBPACK_IMPORTED_MODULE_1___default.a.sources.USER);
       this.editor.setSelection(range.index + 1, quill__WEBPACK_IMPORTED_MODULE_1___default.a.sources.SILENT);
     }
   }
@@ -3032,6 +3050,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['postId'],
   data: function data() {
     return {
+      existingBlot: null,
       content: '',
       modalShown: false
     };
@@ -3040,6 +3059,11 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$parent.$on('openingHTMLEmbedder', function (data) {
+      if (data) {
+        _this.content = data.content;
+        _this.existingBlot = data.existingBlot;
+      }
+
       _this.modalShown = true;
 
       _this.$nextTick(function () {
@@ -3053,13 +3077,15 @@ __webpack_require__.r(__webpack_exports__);
      */
     close: function close() {
       this.modalShown = false;
-    },
-    addHTML: function addHTML() {
-      this.close();
-      this.$emit('adding', {
-        content: this.content
-      });
       this.content = '';
+      this.existingBlot = null;
+    },
+    applyHTML: function applyHTML() {
+      this.$emit('adding', {
+        content: this.content,
+        existingBlot: this.existingBlot
+      });
+      this.close();
     }
   }
 });
@@ -6513,7 +6539,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47675,7 +47701,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.$emit("openingHTMLEmbedder")
+                  _vm.openingHTMLEmbedder()
                 }
               }
             },
@@ -47733,7 +47759,7 @@ var render = function() {
       _vm._v(" "),
       _c("html-embedder", {
         attrs: { "post-id": "postId" },
-        on: { adding: _vm.addHTML }
+        on: { adding: _vm.applyHTML }
       })
     ],
     1
@@ -48922,9 +48948,9 @@ var render = function() {
           "button",
           {
             staticClass: "btn-sm btn-primary mt-10",
-            on: { click: _vm.addHTML }
+            on: { click: _vm.applyHTML }
           },
-          [_vm._v("Add HTML")]
+          [_vm._v("Apply")]
         ),
         _vm._v(" "),
         _c(
