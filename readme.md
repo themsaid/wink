@@ -3,15 +3,12 @@
 - [Installation](#installation)
 - [Updates](#updates)
 - [Themes](#themes)
-- [Road map](#road-map)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
 
 Wink's only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
-
-<img src="https://themsaid.com/storage/wink/images/PaKOXK0bck5IrbVohbC6zQGxZr4CG31enOUt5n80.png">
 
 ## Installation
 
@@ -34,8 +31,6 @@ Check `config/wink.php` and **configure the database connection** wink is going 
 ```sh
 php artisan wink:migrate
 ```
-
-If you are running Laravel 7, you must install the `laravel/ui` package in order for the authentication system to function properly. Use `composer require laravel/ui "^2.0"`.
 
 Head to `yourproject.test/wink` and use the provided email and password to log in.
 
