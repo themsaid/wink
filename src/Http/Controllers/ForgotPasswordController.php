@@ -2,12 +2,12 @@
 
 namespace Wink\Http\Controllers;
 
-use Throwable;
-use Wink\WinkAuthor;
-use Illuminate\Support\Str;
-use Wink\Mail\ResetPasswordEmail;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Throwable;
+use Wink\Mail\ResetPasswordEmail;
+use Wink\WinkAuthor;
 
 class ForgotPasswordController extends Controller
 {

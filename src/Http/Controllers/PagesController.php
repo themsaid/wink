@@ -2,10 +2,10 @@
 
 namespace Wink\Http\Controllers;
 
-use Wink\WinkPage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Wink\Http\Resources\PagesResource;
+use Wink\WinkPage;
 
 class PagesController
 {
