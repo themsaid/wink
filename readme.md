@@ -12,7 +12,7 @@ Wink is a package for your [Laravel](https://laravel.com) application. It adds a
 
 You can add photos, code blocks, featured images, social media & SEO attributes, embedded HTML (YouTube Videos, Embedded Podcasts Episodes, Tweets, ...), and markdown!
 
-Wink is used to manage the [official Laravel blog](https://blog.laravel.com), [Diving Laravel](https://divinglaravel.com), and many more.  
+Wink is used to manage the [Official Laravel blog](https://blog.laravel.com), [Diving Laravel](https://divinglaravel.com), and many more.  
 
 ## Installation
 
