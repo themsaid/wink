@@ -8,11 +8,15 @@
 
 ## Introduction
 
-Wink's only job is to help you write and present your content with style. Wink is built on top of the world's finest PHP framework [Laravel](https://laravel.com), making it easy for everyone to install and maintain on any cloud platform.
+Wink is a package for your [Laravel](https://laravel.com) application. It adds a nice UI where you can manage a publication of any size. You can manage posts, pages, tags, and authors.
+
+You can add photos, code blocks, featured images, social media & SEO attributes, embedded HTML (YouTube Videos, Embedded Podcasts Episodes, Tweets, ...), and markdown!
+
+Wink is used to but the [official Laravel blog](https://blog.laravel.com), [Diving Laravel](https://divinglaravel.com), and many more.  
 
 ## Installation
 
-Wink runs on any Laravel application, it uses a separate database connection and authentication system so that you don't have to modify any of your project code.
+Wink uses a separate database connection and authentication system so that you don't have to modify any of your project code.
 
 To install Wink, require it via Composer:
 
@@ -81,7 +85,7 @@ php artisan vendor:publish --tag=wink-assets --force
 
 ## Themes
 
-Wink is shipped with an admin panel that's simple to use. However, we give you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of your posts for a blog home screen:
+Wink gives you full control of how you present the stored content in your interface. Here's an example of how you'd get a list of posts for a blog home screen:
 
 ```php
 
@@ -96,40 +100,6 @@ public function index()
 
     return view('blog.index', [
         'posts' => $posts
-    ]);
-}
-```
-
-for a single post matching a route using the posts slug as identifier like:
-
-```php
-Route::get('/post/{slug}', 'BlogController@showPost');
-```
-
-you could use a controller function like this:
-
-```php
-public function showPost($slug) {
-    $post = WinkPost::where('slug', $slug)->with('tags')->firstOrFail();
-
-    return view('blog.article', [
-        'post' => $post
-    ]);
-}
-```
-
-Looking for Pages? It's really simple:
-
-```php
-
-use Wink\WinkPage;
-
-public function index()
-{
-    $pages = WinkPage::all();
-
-    return view('blog.index', [
-        'pages' => $pages
     ]);
 }
 ```
