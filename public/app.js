@@ -2200,10 +2200,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _editorComponents_ImageUploader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editorComponents/ImageUploader.vue */ "./resources/js/components/editorComponents/ImageUploader.vue");
 /* harmony import */ var _editorComponents_HTMLEmbedder_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editorComponents/HTMLEmbedder.vue */ "./resources/js/components/editorComponents/HTMLEmbedder.vue");
-/* harmony import */ var _editorComponents_ImageBlot_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editorComponents/ImageBlot.js */ "./resources/js/components/editorComponents/ImageBlot.js");
-/* harmony import */ var _editorComponents_DividerBlot_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editorComponents/DividerBlot.js */ "./resources/js/components/editorComponents/DividerBlot.js");
+/* harmony import */ var _editorComponents_WinkImageBlot_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editorComponents/WinkImageBlot.js */ "./resources/js/components/editorComponents/WinkImageBlot.js");
+/* harmony import */ var _editorComponents_WinkDividerBlot_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editorComponents/WinkDividerBlot.js */ "./resources/js/components/editorComponents/WinkDividerBlot.js");
 /* harmony import */ var _editorComponents_HTMLBlot_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editorComponents/HTMLBlot.js */ "./resources/js/components/editorComponents/HTMLBlot.js");
-/* harmony import */ var _editorComponents_Clipboard_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editorComponents/Clipboard.js */ "./resources/js/components/editorComponents/Clipboard.js");
+/* harmony import */ var _editorComponents_WinkClipboard_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editorComponents/WinkClipboard.js */ "./resources/js/components/editorComponents/WinkClipboard.js");
 /* harmony import */ var _editorComponents_WinkLink_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editorComponents/WinkLink.js */ "./resources/js/components/editorComponents/WinkLink.js");
 /* harmony import */ var parchment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! parchment */ "./node_modules/parchment/dist/parchment.js");
 /* harmony import */ var parchment__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(parchment__WEBPACK_IMPORTED_MODULE_9__);
@@ -2268,11 +2268,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
      */
     createEditor: function createEditor() {
       var icons;
-      quill__WEBPACK_IMPORTED_MODULE_1___default.a.register(_editorComponents_ImageBlot_js__WEBPACK_IMPORTED_MODULE_4__["default"], true);
-      quill__WEBPACK_IMPORTED_MODULE_1___default.a.register(_editorComponents_DividerBlot_js__WEBPACK_IMPORTED_MODULE_5__["default"], true);
+      quill__WEBPACK_IMPORTED_MODULE_1___default.a.register(_editorComponents_WinkImageBlot_js__WEBPACK_IMPORTED_MODULE_4__["default"], true);
+      quill__WEBPACK_IMPORTED_MODULE_1___default.a.register(_editorComponents_WinkDividerBlot_js__WEBPACK_IMPORTED_MODULE_5__["default"], true);
       quill__WEBPACK_IMPORTED_MODULE_1___default.a.register(_editorComponents_HTMLBlot_js__WEBPACK_IMPORTED_MODULE_6__["default"], true);
       quill__WEBPACK_IMPORTED_MODULE_1___default.a.register(_editorComponents_WinkLink_js__WEBPACK_IMPORTED_MODULE_8__["default"], true);
-      quill__WEBPACK_IMPORTED_MODULE_1___default.a.register('modules/clipboard', _editorComponents_Clipboard_js__WEBPACK_IMPORTED_MODULE_7__["default"], true);
+      quill__WEBPACK_IMPORTED_MODULE_1___default.a.register('modules/clipboard', _editorComponents_WinkClipboard_js__WEBPACK_IMPORTED_MODULE_7__["default"], true);
       icons = quill__WEBPACK_IMPORTED_MODULE_1___default.a.import('ui/icons');
       icons.header[3] = __webpack_require__(/*! html-loader!quill/assets/icons/header-3.svg */ "./node_modules/html-loader/index.js!./node_modules/quill/assets/icons/header-3.svg");
       return new quill__WEBPACK_IMPORTED_MODULE_1___default.a(this.$refs.editor, {
@@ -2315,7 +2315,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this.editor.root.addEventListener('click', function (ev) {
         var blot = parchment__WEBPACK_IMPORTED_MODULE_9___default.a.find(ev.target, true);
 
-        if (blot instanceof _editorComponents_ImageBlot_js__WEBPACK_IMPORTED_MODULE_4__["default"]) {
+        if (blot instanceof _editorComponents_WinkImageBlot_js__WEBPACK_IMPORTED_MODULE_4__["default"]) {
           var values = blot.value(blot.domNode)['captioned-image'];
           values.existingBlot = blot;
 
@@ -3137,9 +3137,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    /**
-     * Close the modal.
-     */
     close: function close() {
       this.modalShown = false;
       this.content = '';
@@ -3199,9 +3196,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    /**
-     * Close the modal.
-     */
     close: function close() {
       this.modalShown = false;
       this.imagePickerKey = _.uniqueId();
@@ -3210,10 +3204,6 @@ __webpack_require__.r(__webpack_exports__);
       this.layout = 'default';
       this.caption = '';
     },
-
-    /**
-     * Update the selected image.
-     */
     updateImage: function updateImage(_ref) {
       var url = _ref.url,
           caption = _ref.caption;
@@ -3221,10 +3211,6 @@ __webpack_require__.r(__webpack_exports__);
       this.caption = caption;
       this.uploading = false;
     },
-
-    /**
-     * Add the image to the editor.
-     */
     applyImage: function applyImage() {
       if (!this.imageUrl) {
         return this.alertError('Please select an image.');
@@ -3238,10 +3224,6 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.close();
     },
-
-    /**
-     * Update the upload progress.
-     */
     updateProgress: function updateProgress(_ref2) {
       var progress = _ref2.progress;
       this.uploadProgress = progress;
@@ -6609,7 +6591,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -6628,7 +6610,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67748,141 +67730,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/components/editorComponents/Clipboard.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/editorComponents/Clipboard.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dompurify */ "./node_modules/dompurify/dist/purify.js");
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var Clipboard = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('modules/clipboard');
-var Delta = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('delta'); // Inspired by https://github.com/Artem-Schander/quill-paste-smart/blob/master/src/quill-paste-smart.js
-
-var PlainClipboard =
-/*#__PURE__*/
-function (_Clipboard) {
-  _inherits(PlainClipboard, _Clipboard);
-
-  function PlainClipboard() {
-    _classCallCheck(this, PlainClipboard);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(PlainClipboard).apply(this, arguments));
-  }
-
-  _createClass(PlainClipboard, [{
-    key: "onPaste",
-    value: function onPaste(e) {
-      var delta;
-      var text;
-      var html;
-      var range;
-      e.preventDefault();
-      range = this.quill.getSelection();
-      text = e.clipboardData.getData('text/plain');
-      html = e.clipboardData.getData('text/html');
-      delta = new Delta().retain(range.index).delete(range.length);
-
-      if (html) {
-        delta = delta.concat(this.convert(dompurify__WEBPACK_IMPORTED_MODULE_1___default.a.sanitize(html, this.getAllowed())));
-      } else {
-        delta = delta.insert(text);
-      }
-
-      this.quill.updateContents(delta, 'silent');
-      this.quill.setSelection(range.index + text.length, 0, 'silent');
-      this.quill.scrollIntoView();
-    }
-  }, {
-    key: "getAllowed",
-    value: function getAllowed() {
-      var tidy = {};
-      tidy.ALLOWED_TAGS = ['p', 'br', 'span', 'b', 'strong', 'i', 'u', 's', 'h2', 'h3', 'pre', 'ol', 'ul', 'li', 'a', 'img', 'blockquote'];
-      tidy.ALLOWED_ATTR = ['class', 'spellcheck', 'href', 'rel', 'src', 'title', 'alt'];
-      return tidy;
-    }
-  }]);
-
-  return PlainClipboard;
-}(Clipboard);
-
-/* harmony default export */ __webpack_exports__["default"] = (PlainClipboard);
-
-/***/ }),
-
-/***/ "./resources/js/components/editorComponents/DividerBlot.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js/components/editorComponents/DividerBlot.js ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-var BlockEmbed = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('blots/block/embed');
-
-var DividerBlot =
-/*#__PURE__*/
-function (_BlockEmbed) {
-  _inherits(DividerBlot, _BlockEmbed);
-
-  function DividerBlot() {
-    _classCallCheck(this, DividerBlot);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(DividerBlot).apply(this, arguments));
-  }
-
-  return DividerBlot;
-}(BlockEmbed);
-
-DividerBlot.blotName = 'divider';
-DividerBlot.tagName = 'hr';
-/* harmony default export */ __webpack_exports__["default"] = (DividerBlot);
-
-/***/ }),
-
 /***/ "./resources/js/components/editorComponents/HTMLBlot.js":
 /*!**************************************************************!*\
   !*** ./resources/js/components/editorComponents/HTMLBlot.js ***!
@@ -68045,95 +67892,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/editorComponents/ImageBlot.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/editorComponents/ImageBlot.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-var BlockEmbed = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('blots/block/embed');
-
-var ImageBlot =
-/*#__PURE__*/
-function (_BlockEmbed) {
-  _inherits(ImageBlot, _BlockEmbed);
-
-  function ImageBlot() {
-    _classCallCheck(this, ImageBlot);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ImageBlot).apply(this, arguments));
-  }
-
-  _createClass(ImageBlot, null, [{
-    key: "create",
-    value: function create(value) {
-      var node = _get(_getPrototypeOf(ImageBlot), "create", this).call(this);
-
-      node.setAttribute('contenteditable', false);
-      node.dataset.layout = value.layout;
-      var img = document.createElement('img');
-      img.setAttribute('alt', value.caption);
-      img.setAttribute('src', value.url);
-      node.appendChild(img);
-
-      if (value.caption) {
-        var caption = document.createElement('p');
-        caption.innerHTML = value.caption;
-        node.appendChild(caption);
-      }
-
-      return node;
-    }
-  }, {
-    key: "value",
-    value: function value(node) {
-      var img = node.querySelector('img');
-      return {
-        layout: node.dataset.layout,
-        caption: img.getAttribute('alt'),
-        url: img.getAttribute('src')
-      };
-    }
-  }]);
-
-  return ImageBlot;
-}(BlockEmbed);
-
-ImageBlot.tagName = 'div';
-ImageBlot.blotName = 'captioned-image';
-ImageBlot.className = 'embedded_image';
-/* harmony default export */ __webpack_exports__["default"] = (ImageBlot);
-
-/***/ }),
-
 /***/ "./resources/js/components/editorComponents/ImageUploader.vue":
 /*!********************************************************************!*\
   !*** ./resources/js/components/editorComponents/ImageUploader.vue ***!
@@ -68218,6 +67976,230 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_template_id_6435daa8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/editorComponents/WinkClipboard.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/editorComponents/WinkClipboard.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dompurify */ "./node_modules/dompurify/dist/purify.js");
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Clipboard = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('modules/clipboard');
+var Delta = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('delta'); // Inspired by https://github.com/Artem-Schander/quill-paste-smart/blob/master/src/quill-paste-smart.js
+
+var WinkClipboard =
+/*#__PURE__*/
+function (_Clipboard) {
+  _inherits(WinkClipboard, _Clipboard);
+
+  function WinkClipboard() {
+    _classCallCheck(this, WinkClipboard);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(WinkClipboard).apply(this, arguments));
+  }
+
+  _createClass(WinkClipboard, [{
+    key: "onPaste",
+    value: function onPaste(e) {
+      var delta;
+      var text;
+      var html;
+      var range;
+      e.preventDefault();
+      range = this.quill.getSelection();
+      text = e.clipboardData.getData('text/plain');
+      html = e.clipboardData.getData('text/html');
+      delta = new Delta().retain(range.index).delete(range.length);
+
+      if (html) {
+        delta = delta.concat(this.convert(dompurify__WEBPACK_IMPORTED_MODULE_1___default.a.sanitize(html, this.getAllowed())));
+      } else {
+        delta = delta.insert(text);
+      }
+
+      this.quill.updateContents(delta);
+      this.quill.setSelection(range.index + text.length, 0);
+      this.quill.scrollIntoView();
+    }
+  }, {
+    key: "getAllowed",
+    value: function getAllowed() {
+      var tidy = {};
+      tidy.ALLOWED_TAGS = ['p', 'br', 'span', 'b', 'strong', 'i', 'u', 's', 'h2', 'h3', 'pre', 'ol', 'ul', 'li', 'a', 'img', 'blockquote'];
+      tidy.ALLOWED_ATTR = ['class', 'spellcheck', 'href', 'rel', 'src', 'title', 'alt'];
+      return tidy;
+    }
+  }]);
+
+  return WinkClipboard;
+}(Clipboard);
+
+/* harmony default export */ __webpack_exports__["default"] = (WinkClipboard);
+
+/***/ }),
+
+/***/ "./resources/js/components/editorComponents/WinkDividerBlot.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/editorComponents/WinkDividerBlot.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+var BlockEmbed = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('blots/block/embed');
+
+var WinkDividerBlot =
+/*#__PURE__*/
+function (_BlockEmbed) {
+  _inherits(WinkDividerBlot, _BlockEmbed);
+
+  function WinkDividerBlot() {
+    _classCallCheck(this, WinkDividerBlot);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(WinkDividerBlot).apply(this, arguments));
+  }
+
+  return WinkDividerBlot;
+}(BlockEmbed);
+
+WinkDividerBlot.blotName = 'divider';
+WinkDividerBlot.tagName = 'hr';
+/* harmony default export */ __webpack_exports__["default"] = (WinkDividerBlot);
+
+/***/ }),
+
+/***/ "./resources/js/components/editorComponents/WinkImageBlot.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/editorComponents/WinkImageBlot.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+var BlockEmbed = quill__WEBPACK_IMPORTED_MODULE_0___default.a.import('blots/block/embed');
+
+var WinkImageBlot =
+/*#__PURE__*/
+function (_BlockEmbed) {
+  _inherits(WinkImageBlot, _BlockEmbed);
+
+  function WinkImageBlot() {
+    _classCallCheck(this, WinkImageBlot);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(WinkImageBlot).apply(this, arguments));
+  }
+
+  _createClass(WinkImageBlot, null, [{
+    key: "create",
+    value: function create(value) {
+      var node = _get(_getPrototypeOf(WinkImageBlot), "create", this).call(this);
+
+      var img = document.createElement('img');
+      node.setAttribute('contenteditable', false);
+      node.dataset.layout = value.layout;
+      img.setAttribute('alt', value.caption);
+      img.setAttribute('src', value.url);
+      node.appendChild(img);
+
+      if (value.caption) {
+        var caption = document.createElement('p');
+        caption.innerHTML = value.caption;
+        node.appendChild(caption);
+      }
+
+      return node;
+    }
+  }, {
+    key: "value",
+    value: function value(node) {
+      var img = node.querySelector('img');
+      return {
+        layout: node.dataset.layout,
+        caption: img.getAttribute('alt'),
+        url: img.getAttribute('src')
+      };
+    }
+  }]);
+
+  return WinkImageBlot;
+}(BlockEmbed);
+
+WinkImageBlot.tagName = 'div';
+WinkImageBlot.blotName = 'captioned-image';
+WinkImageBlot.className = 'embedded_image';
+/* harmony default export */ __webpack_exports__["default"] = (WinkImageBlot);
 
 /***/ }),
 

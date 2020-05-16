@@ -5,7 +5,7 @@ const Clipboard = Quill.import('modules/clipboard')
 const Delta = Quill.import('delta')
 
 // Inspired by https://github.com/Artem-Schander/quill-paste-smart/blob/master/src/quill-paste-smart.js
-class PlainClipboard extends Clipboard {
+class WinkClipboard extends Clipboard {
     onPaste(e) {
         let delta;
         let text;
@@ -28,8 +28,8 @@ class PlainClipboard extends Clipboard {
             delta = delta.insert(text);
         }
 
-        this.quill.updateContents(delta, 'silent')
-        this.quill.setSelection(range.index + text.length, 0, 'silent')
+        this.quill.updateContents(delta)
+        this.quill.setSelection(range.index + text.length, 0)
         this.quill.scrollIntoView()
     }
 
@@ -45,7 +45,9 @@ class PlainClipboard extends Clipboard {
             'h2', 'h3',
             'pre',
             'ol', 'ul', 'li',
-            'a', 'img', 'blockquote'
+            'a',
+            'img',
+            'blockquote'
 
         ];
 
@@ -58,4 +60,4 @@ class PlainClipboard extends Clipboard {
     }
 }
 
-export default PlainClipboard
+export default WinkClipboard

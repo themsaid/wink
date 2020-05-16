@@ -33,9 +33,6 @@
 
 
         methods: {
-            /**
-             * Close the modal.
-             */
             close() {
                 this.modalShown = false;
 
@@ -51,9 +48,6 @@
             },
 
 
-            /**
-             * Update the selected image.
-             */
             updateImage({url, caption}) {
                 this.imageUrl = url;
                 this.caption = caption;
@@ -62,9 +56,6 @@
             },
 
 
-            /**
-             * Add the image to the editor.
-             */
             applyImage() {
                 if (!this.imageUrl) {
                     return this.alertError('Please select an image.');
@@ -81,9 +72,6 @@
             },
 
 
-            /**
-             * Update the upload progress.
-             */
             updateProgress({progress}) {
                 this.uploadProgress = progress;
             }

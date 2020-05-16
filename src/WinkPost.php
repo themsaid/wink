@@ -3,6 +3,8 @@
 namespace Wink;
 
 use DateTimeInterface;
+use Illuminate\Support\HtmlString;
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 class WinkPost extends AbstractWinkModel
 {
@@ -82,9 +84,27 @@ class WinkPost extends AbstractWinkModel
     }
 
     /**
+     * Get the renderable post content.
+     *
+     * @return HtmlString
+     */
+    public function getContentAttribute()
+    {
+        if (! $this->markdown) {
+            return $this->body;
+        }
+
+        $converter = new GithubFlavoredMarkdownConverter([
+            'allow_unsafe_links' => false,
+        ]);
+
+        return new HtmlString($converter->convertToHtml($this->body));
+    }
+
+    /**
      * Scope a query to only include published posts.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublished($query)
@@ -95,7 +115,7 @@ class WinkPost extends AbstractWinkModel
     /**
      * Scope a query to only include drafts (unpublished posts).
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeDraft($query)
@@ -106,7 +126,7 @@ class WinkPost extends AbstractWinkModel
     /**
      * Scope a query to only include posts whose publish date is in the past (or now).
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeLive($query)
@@ -117,7 +137,7 @@ class WinkPost extends AbstractWinkModel
     /**
      * Scope a query to only include posts whose publish date is in the future.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeScheduled($query)
@@ -128,8 +148,8 @@ class WinkPost extends AbstractWinkModel
     /**
      * Scope a query to only include posts whose publish date is before a given date.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $date
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeBeforePublishDate($query, $date)
@@ -140,8 +160,8 @@ class WinkPost extends AbstractWinkModel
     /**
      * Scope a query to only include posts whose publish date is after a given date.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $date
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAfterPublishDate($query, $date)
@@ -152,7 +172,7 @@ class WinkPost extends AbstractWinkModel
     /**
      * Prepare a date for array / JSON serialization.
      *
-     * @param  \DateTimeInterface  $date
+     * @param \DateTimeInterface $date
      * @return string
      */
     protected function serializeDate(DateTimeInterface $date)

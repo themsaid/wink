@@ -27,9 +27,6 @@
 
 
         methods: {
-            /**
-             * Close the modal.
-             */
             close() {
                 this.modalShown = false;
 
