@@ -109,6 +109,12 @@
             });
         },
 
+        computed: {
+            postPreviewLink() {
+                return this.Wink.preview_path.replace('{postSlug}', this.form.slug);
+            }
+        },
+
 
         /**
          * Clean after the component is destroyed.
@@ -364,8 +370,17 @@
                 <button class="py-1 px-2 btn-primary text-sm mr-6" @click="publishingModal" v-if="!form.published">Publish</button>
                 <button class="py-1 px-2 btn-primary text-sm mr-6" @click="publishingModal" v-if="form.published">Update</button>
 
+                <a :href="postPreviewLink" class="block focus:outline-none text-light hover:text-primary mr-6"
+                   target="_blank"
+                   title="Preview Post"
+                   v-if="id != 'new'">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
+                        <path d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                    </svg>
+                </a>
+
                 <dropdown class="relative">
-                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
+                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8" title="Settings">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current mt-1">
                             <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
                         </svg>

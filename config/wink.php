@@ -64,4 +64,17 @@ return [
     */
 
     'middleware_group' => env('WINK_MIDDLEWARE_GROUP', 'web'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Wink Post Preview Path
+    |--------------------------------------------------------------------------
+    |
+    | Wink uses this path to display a preview link in the editor. While
+    | building the link tag, the {postSlug} placeholder will be replaced
+    | by the actual post slug.
+    |
+    */
+
+    'preview_path' => '/{postSlug}',
 ];
