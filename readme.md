@@ -1,12 +1,4 @@
-
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Updates](#updates)
-- [Themes](#themes)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
+<p align="center"><img src="https://themsaid.com/img/wink.jpg"></p>
 
 Wink is a package for your [Laravel](https://laravel.com) application. It adds a nice UI where you can manage a publication of any size. You can manage posts, pages, tags, and authors.
 
@@ -21,7 +13,7 @@ Wink uses a separate database connection and authentication system so that you d
 To install Wink, require it via Composer:
 
 ```sh
-composer require writingink/wink
+composer require themsaid/wink
 ```
 
 Once Composer is done, run the following command:
