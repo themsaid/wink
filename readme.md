@@ -63,6 +63,17 @@ php artisan wink:migrate
 php artisan vendor:publish --tag=wink-assets --force
 ```
 
+## Displaying your content
+
+Wink is faceless, it doesn't have any opinions on how you display your content in your frontend. You can use the wink models in your controllers to display the different resources:
+
+- `Wink\WinkPost`
+- `Wink\WinkPage`
+- `Wink\WinkAuthor`
+- `Wink\WinkTag`
+
+To display posts and pages content, use `$post->content` instead of `$post->body`. The content will always be in HTML format while the body might be HTML or raw markdown based on the post type.
+
 ## Contributing
 
 Check the [contribution guide](CONTRIBUTING.md).
