@@ -402,8 +402,12 @@
                 ></textarea-autosize>
 
                 <div v-if="form.markdown == null">
-                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5" @click="form.markdown = false">I want a rich text editor</button>
-                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5" @click="form.markdown = true">I will write markdown</button>
+                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5 rounded" @click="form.markdown = false">
+                        I want a rich text editor
+                    </button>
+                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5 rounded" @click="form.markdown = true">
+                        I will write markdown
+                    </button>
                 </div>
                 <editor v-if="form.markdown == false" :post-id="id" v-model="form.body"></editor>
                 <markdown-editor

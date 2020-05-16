@@ -43,16 +43,16 @@ return [
     'path' => env('WINK_PATH', 'wink'),
 
     /*
-    |--------------------------------------------------------------------------
-    | Wink Subdomain
-    |--------------------------------------------------------------------------
-    |
-    | This is the subdomain where Wink will be accessible from. Feel free to
-    | change this to anything you like.
-    |
-    */
+   |--------------------------------------------------------------------------
+   | Wink Domain
+   |--------------------------------------------------------------------------
+   |
+   | This is the subdomain where Wink will be accessible from. By default it
+   | will be accessible on the same domain as your app.
+   |
+   */
 
-    'subdomain' => env('WINK_SUBDOMAIN', null),
+    'domain' => env('WINK_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------

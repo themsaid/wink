@@ -32,13 +32,12 @@ class WinkServiceProvider extends ServiceProvider
     private function registerRoutes()
     {
         $path = config('wink.path');
-        $domain = $this->subdomain();
         $middlewareGroup = config('wink.middleware_group');
 
         Route::namespace('Wink\Http\Controllers')
             ->middleware($middlewareGroup)
             ->as('wink.')
-            ->domain($domain)
+            ->domain(config('wink.domain'))
             ->prefix($path)
             ->group(function () {
                 Route::get('/login', 'LoginController@showLoginForm')->name('auth.login');
@@ -52,7 +51,7 @@ class WinkServiceProvider extends ServiceProvider
         Route::namespace('Wink\Http\Controllers')
             ->middleware([$middlewareGroup, Authenticate::class])
             ->as('wink.')
-            ->domain($domain)
+            ->domain(config('wink.domain'))
             ->prefix($path)
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
@@ -109,23 +108,6 @@ class WinkServiceProvider extends ServiceProvider
         $this->commands([
             Console\InstallCommand::class,
             Console\MigrateCommand::class,
-        ]);
-    }
-
-    /**
-     * Return the subdomain if configured.
-     *
-     * return string|null
-     */
-    protected function subdomain()
-    {
-        if (is_null(config('wink.subdomain'))) {
-            return;
-        }
-
-        return vsprintf('%s.%s', [
-            config('wink.subdomain'),
-            parse_url(config('app.url'), PHP_URL_HOST),
         ]);
     }
 }
