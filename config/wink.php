@@ -32,6 +32,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Wink Domain
+    |--------------------------------------------------------------------------
+    |
+    | This is the subdomain where Wink will be accessible from. By default it
+    | will be accessible on the same domain as your app.
+    |
+    */
+
+    'domain' => env('WINK_DOMAIN'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Wink Path
     |--------------------------------------------------------------------------
     |
@@ -43,27 +55,11 @@ return [
     'path' => env('WINK_PATH', 'wink'),
 
     /*
-   |--------------------------------------------------------------------------
-   | Wink Domain
-   |--------------------------------------------------------------------------
-   |
-   | This is the subdomain where Wink will be accessible from. By default it
-   | will be accessible on the same domain as your app.
-   |
-   */
-
-    'domain' => env('WINK_DOMAIN'),
-
-    /*
     |--------------------------------------------------------------------------
     | Wink Middleware Group
     |--------------------------------------------------------------------------
     |
-    | This is the middleware group that Wink uses, by default Wink uses
-    | the web middleware group. You can use your own group as long
-    | as the following middlewares are included.
-    | - StartSession
-    | - ShareErrorsFromSession
+    | This is the middleware group that Wink uses.
     |
     */
 
