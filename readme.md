@@ -26,20 +26,6 @@ php artisan wink:migrate
 
 Head to `yourproject.test/wink` and use the provided email and password to log in.
 
-## Updates
-
-Add this command in your deployment script so that wink runs new migrations if any:
-
-```sh
-php artisan wink:migrate
-```
-
-You may also want to run this command to re-publish the assets:
-
-```sh
-php artisan vendor:publish --tag=wink-assets --force
-```
-
 ## Uploading to S3
 
 If you want to upload images to S3, update the `storage_disk` attribute in your `wink.php` configuration file to s3. Make sure your S3 disk is correctly configured in your `filesystems.php` configuration file.
@@ -66,6 +52,15 @@ Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab
 'unsplash' => [
     'key' => env('UNSPLASH_ACCESS_KEY'),
 ],
+```
+
+## Updates
+
+After each update, make sure you run these commands:
+
+```sh
+php artisan wink:migrate
+php artisan vendor:publish --tag=wink-assets --force
 ```
 
 ## Contributing
