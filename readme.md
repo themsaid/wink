@@ -40,9 +40,9 @@ You may also want to run this command to re-publish the assets:
 php artisan vendor:publish --tag=wink-assets --force
 ```
 
-# Uploading to S3
+## Uploading to S3
 
-If you want to upload images to S3, update the `storage_disk` attribute in your `wink.php` configuration file to s3. Make sure your S3 disk is correctly configured in your `flysystem.php` configuration file.
+If you want to upload images to S3, update the `storage_disk` attribute in your `wink.php` configuration file to s3. Make sure your S3 disk is correctly configured in your `filesystems.php` configuration file.
 
 ```php
 's3' => [
@@ -58,7 +58,7 @@ If you want to upload images to S3, update the `storage_disk` attribute in your 
 ],
 ```
 
-# Using Unsplash
+## Using Unsplash
 
 Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the 'Access Key' and add it to your `.env` file as `UNSPLASH_ACCESS_KEY`. Lastly, add unsplash to your `config/services.php` file:
 
@@ -70,7 +70,7 @@ Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab
 
 ## Contributing
 
-Check our [contribution guide](CONTRIBUTING.md).
+Check the [contribution guide](CONTRIBUTING.md).
 
 ## License
 
