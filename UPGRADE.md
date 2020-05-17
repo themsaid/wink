@@ -2,10 +2,11 @@
 
 ## Upgrading To 1.0 From 0.x
 
-To upgrade to version 1.0, you need to add a markdown field to your posts table
+To upgrade to version 1.0, you need to run the following commands
 
+```sh
+php artisan wink:migrate
+php artisan vendor:publish --tag=wink-assets --force
 ```
-Schema::table('wink_posts', function (Blueprint $table) {
-        $table->boolean('markdown')->default(false);
-});
-```
+
+In addition to this, make sure you render your posts and pages using `$post->content` and `$page->content` instead of `->body`.
