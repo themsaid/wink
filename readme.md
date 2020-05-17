@@ -1,10 +1,12 @@
 <p align="center"><img src="https://themsaid.com/img/wink.jpg?1"></p>
 
-Wink adds a nice UI where you can manage a publication of any size. You can manage posts, pages, tags, and authors.
+Wink adds a nice UI where you can manage a publication of any size with posts, pages, tags, and authors.
 
 You can add photos, code blocks, featured images, social media & SEO attributes, embedded HTML (YouTube Videos, Embedded Podcasts Episodes, Tweets, ...), and markdown!
 
-Wink is used to manage the [official Laravel blog](https://blog.laravel.com), [DivingLaravel.com](https://divinglaravel.com), and many more.  
+Wink is used to manage the [official Laravel blog](https://blog.laravel.com), [DivingLaravel.com](https://divinglaravel.com), and many more.
+
+Dark & Light modes available so everyone is happy 😁
 
 ## Installation
 
