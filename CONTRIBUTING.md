@@ -5,7 +5,7 @@ All contributions are welcomed. If it's your first time contributing to open sou
 ## Here are some points to consider:
 
 - Your PR must be making only a single change, if you want to suggest multiple features or fix multiple issues please open separate PRs.
-- If you have an idea that will require a lot of work, make sure you suggest it in a new [issue](https://github.com/writingink/wink/issues) first to make sure it's admired before investing time into it.
+- If you have an idea that will require a lot of work, make sure you suggest it in a new [issue](https://github.com/themsaid/wink/issues) first to make sure it's admired before investing time into it.
 - Keep your code clean. Clean means you're proud of how it turned out.
 
 ## How to contribute:
@@ -26,7 +26,7 @@ Add this to your composer to JSON
 And when you require wink, add it like:
 
 ```
-"writingink/wink": "*@dev"
+"themsaid/wink": "*@dev"
 ```
 
 Run `composer update` in your laravel project, then `php artisan wink:install`, and then `php artisan wink:migrate`. Now you have wink running in your laravel project using the files on your machine.
