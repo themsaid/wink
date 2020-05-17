@@ -48,6 +48,12 @@ class WinkTag extends AbstractWinkModel
         'meta' => 'array',
     ];
 
+    public function __construct()
+    {
+        //parent::__construct();
+        $this->setTable(config('wink.table_names.wink_tags', 'wink_tags'));
+    }
+
     /**
      * The posts that has the tag.
      *
@@ -55,7 +61,7 @@ class WinkTag extends AbstractWinkModel
      */
     public function posts()
     {
-        return $this->belongsToMany(WinkPost::class, 'wink_posts_tags', 'tag_id', 'post_id');
+        return $this->belongsToMany(WinkTag::class, config('wink.table_names.wink_posts_tags', 'wink_posts_tags'), 'tag_id', 'post_id');
     }
 
     /**

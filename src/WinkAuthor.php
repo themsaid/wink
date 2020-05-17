@@ -21,13 +21,6 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'wink_authors';
-
-    /**
      * The primary key for the model.
      *
      * @var string
@@ -63,6 +56,12 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
     protected $casts = [
         'meta' => 'array',
     ];
+
+    public function __construct()
+    {
+        //parent::__construct();
+        $this->setTable(config('wink.table_names.wink_authors', 'wink_authors'));
+    }
 
     /**
      * The posts.
@@ -111,7 +110,7 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function getRememberToken()
     {
-        if (! empty($this->getRememberTokenName())) {
+        if (!empty($this->getRememberTokenName())) {
             return (string) $this->{$this->getRememberTokenName()};
         }
     }
@@ -124,7 +123,7 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function setRememberToken($value)
     {
-        if (! empty($this->getRememberTokenName())) {
+        if (!empty($this->getRememberTokenName())) {
             $this->{$this->getRememberTokenName()} = $value;
         }
     }
@@ -147,6 +146,6 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
     }
 }

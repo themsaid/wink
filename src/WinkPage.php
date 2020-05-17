@@ -50,6 +50,12 @@ class WinkPage extends AbstractWinkModel
         'meta' => 'array',
     ];
 
+    public function __construct()
+    {
+        //parent::__construct();
+        $this->setTable(config('wink.table_names.wink_pages', 'wink_pages'));
+    }
+
     /**
      * Get the renderable page content.
      *

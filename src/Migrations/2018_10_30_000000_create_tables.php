@@ -13,7 +13,7 @@ class CreateTables extends Migration
      */
     public function up()
     {
-        Schema::create('wink_tags', function (Blueprint $table) {
+        Schema::create(config('wink.table_names.wink_tags', 'wink_tags'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('name');
@@ -22,14 +22,14 @@ class CreateTables extends Migration
             $table->index('created_at');
         });
 
-        Schema::create('wink_posts_tags', function (Blueprint $table) {
+        Schema::create(config('wink.table_names.wink_posts_tags', 'wink_posts_tags'), function (Blueprint $table) {
             $table->uuid('post_id');
             $table->uuid('tag_id');
 
             $table->unique(['post_id', 'tag_id']);
         });
 
-        Schema::create('wink_posts', function (Blueprint $table) {
+        Schema::create(config('wink.table_names.wink_posts', 'wink_posts'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('title');
@@ -43,7 +43,7 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('wink_authors', function (Blueprint $table) {
+        Schema::create(config('wink.table_names.wink_authors', 'wink_authors'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('name');
@@ -55,7 +55,7 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('wink_pages', function (Blueprint $table) {
+        Schema::create(config('wink.table_names.wink_pages', 'wink_pages'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('title');

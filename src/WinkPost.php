@@ -63,6 +63,12 @@ class WinkPost extends AbstractWinkModel
         'markdown' => 'boolean',
     ];
 
+    public function __construct()
+    {
+        //parent::__construct();
+        $this->setTable(config('wink.table_names.wink_posts', 'wink_posts'));
+    }
+
     /**
      * The tags the post belongs to.
      *
@@ -70,7 +76,7 @@ class WinkPost extends AbstractWinkModel
      */
     public function tags()
     {
-        return $this->belongsToMany(WinkTag::class, 'wink_posts_tags', 'post_id', 'tag_id');
+        return $this->belongsToMany(WinkTag::class, config('wink.table_names.wink_posts_tags', 'wink_posts_tags'), 'post_id', 'tag_id');
     }
 
     /**
@@ -90,7 +96,7 @@ class WinkPost extends AbstractWinkModel
      */
     public function getContentAttribute()
     {
-        if (! $this->markdown) {
+        if (!$this->markdown) {
             return $this->body;
         }
 
