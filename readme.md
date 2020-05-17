@@ -1,4 +1,4 @@
-<p align="center"><img src="https://themsaid.com/img/wink.jpg"></p>
+<p align="center"><img src="https://themsaid.com/img/wink.jpg?1"></p>
 
 Wink adds a nice UI where you can manage a publication of any size. You can manage posts, pages, tags, and authors.
 
