@@ -22,7 +22,7 @@ class TeamController
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
-            ->get();
+            ->paginate(30);
 
         return TeamResource::collection($entries);
     }
