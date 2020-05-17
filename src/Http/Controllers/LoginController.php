@@ -2,10 +2,10 @@
 
 namespace Wink\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController
 {
@@ -43,7 +43,7 @@ class LoginController
      */
     public function redirectPath()
     {
-        return '/'.config('wink.path');;
+        return '/'.config('wink.path');
     }
 
     /**
