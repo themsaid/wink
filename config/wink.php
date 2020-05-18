@@ -85,10 +85,4 @@ return [
         'wink_posts_tags' => 'wink_posts_tags',
         'wink_tags' => 'wink_tags',
     ],
-    'column_names' => [
-        'author_id' => 'author_id'
-    ],
-    'models' => [
-        'author' => 'Wink\WinkAuthor'
-    ]
 ];
