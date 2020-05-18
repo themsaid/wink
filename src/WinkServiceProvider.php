@@ -20,8 +20,10 @@ class WinkServiceProvider extends ServiceProvider
         $this->registerPublishing();
 
         $this->loadViewsFrom(
-            __DIR__.'/../resources/views', 'wink'
+            __DIR__ . '/../resources/views',
+            'wink'
         );
+        $this->loadMigrationsFrom(__DIR__ . '/../src/Migrations');
     }
 
     /**
@@ -53,7 +55,7 @@ class WinkServiceProvider extends ServiceProvider
             ->domain(config('wink.domain'))
             ->prefix(config('wink.path'))
             ->group(function () {
-                $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+                $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
             });
     }
 
@@ -84,12 +86,20 @@ class WinkServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../public' => public_path('vendor/wink'),
+                __DIR__ . '/../public' => public_path('vendor/wink'),
             ], 'wink-assets');
 
             $this->publishes([
-                __DIR__.'/../config/wink.php' => config_path('wink.php'),
+                __DIR__ . '/../config/wink.php' => config_path('wink.php'),
             ], 'wink-config');
+
+            $this->publishes([
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/wink'),
+            ], 'wink-views');
+
+            $this->publishes([
+                __DIR__ . '/../src/Migrations/' => database_path('migrations'),
+            ], 'wink-migrations');
         }
     }
 
@@ -101,7 +111,8 @@ class WinkServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/wink.php', 'wink'
+            __DIR__ . '/../config/wink.php',
+            'wink'
         );
 
         $this->commands([

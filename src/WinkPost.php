@@ -16,13 +16,6 @@ class WinkPost extends AbstractWinkModel
     protected $guarded = [];
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'wink_posts';
-
-    /**
      * The primary key for the model.
      *
      * @var string
@@ -63,9 +56,9 @@ class WinkPost extends AbstractWinkModel
         'markdown' => 'boolean',
     ];
 
-    public function __construct()
+    public function __construct($attributes = [])
     {
-        //parent::__construct();
+        parent::__construct($attributes);
         $this->setTable(config('wink.table_names.wink_posts', 'wink_posts'));
     }
 

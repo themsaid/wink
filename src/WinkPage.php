@@ -12,13 +12,6 @@ class WinkPage extends AbstractWinkModel
     protected $guarded = [];
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'wink_pages';
-
-    /**
      * The primary key for the model.
      *
      * @var string
@@ -50,9 +43,9 @@ class WinkPage extends AbstractWinkModel
         'meta' => 'array',
     ];
 
-    public function __construct()
+    public function __construct($attributes = [])
     {
-        //parent::__construct();
+        parent::__construct($attributes);
         $this->setTable(config('wink.table_names.wink_pages', 'wink_pages'));
     }
 

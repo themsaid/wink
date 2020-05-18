@@ -57,9 +57,9 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
         'meta' => 'array',
     ];
 
-    public function __construct()
+    public function __construct($attributes = [])
     {
-        //parent::__construct();
+        parent::__construct($attributes);
         $this->setTable(config('wink.table_names.wink_authors', 'wink_authors'));
     }
 
@@ -146,6 +146,6 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80&d=mp';
     }
 }

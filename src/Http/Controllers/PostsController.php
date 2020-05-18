@@ -18,7 +18,7 @@ class PostsController
     public function index()
     {
         $entries = WinkPost::when(request()->has('search'), function ($q) {
-            $q->where('title', 'LIKE', '%'.request('search').'%');
+            $q->where('title', 'LIKE', '%' . request('search') . '%');
         })->when(request('status'), function ($q, $value) {
             $q->$value();
         })->when(request('author_id'), function ($q, $value) {
@@ -86,7 +86,7 @@ class PostsController
             'publish_date' => 'required|date',
             'author_id' => 'required',
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_posts', 'slug')->ignore(request('id')),
+            'slug' => 'required|' . Rule::unique(config('wink.database_connection') . '.' . config('wink.table_names.wink_posts', 'wink_posts'), 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkPost::findOrFail($id) : new WinkPost(['id' => request('id')]);
@@ -117,7 +117,7 @@ class PostsController
         return collect($incomingTags)->map(function ($incomingTag) use ($allTags) {
             $tag = $allTags->where('id', $incomingTag['id'])->first();
 
-            if (! $tag) {
+            if (!$tag) {
                 $tag = WinkTag::create([
                     'id' => $id = Str::uuid(),
                     'name' => $incomingTag['name'],

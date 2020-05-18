@@ -17,7 +17,7 @@ class PagesController
     public function index()
     {
         $entries = WinkPage::when(request()->has('search'), function ($q) {
-            $q->where('title', 'LIKE', '%'.request('search').'%');
+            $q->where('title', 'LIKE', '%' . request('search') . '%');
         })
             ->orderBy('created_at', 'DESC')
             ->paginate(30);
@@ -63,7 +63,7 @@ class PagesController
 
         validator($data, [
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_pages', 'slug')->ignore(request('id')),
+            'slug' => 'required|' . Rule::unique(config('wink.database_connection') . '.' . config('wink.table_names.wink_pages', 'wink_pages'), 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkPage::findOrFail($id) : new WinkPage(['id' => request('id')]);

@@ -78,7 +78,7 @@ return [
 
     'preview_path' => '/{postSlug}',
 
-    'table_name' => [
+    'table_names' => [
         'wink_authors' => 'wink_authors',
         'wink_pages' => 'wink_pages',
         'wink_posts' => 'wink_posts',

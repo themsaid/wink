@@ -18,7 +18,7 @@ class TeamController
     public function index()
     {
         $entries = WinkAuthor::when(request()->has('search'), function ($q) {
-            $q->where('name', 'LIKE', '%'.request('search').'%');
+            $q->where('name', 'LIKE', '%' . request('search') . '%');
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
@@ -70,8 +70,8 @@ class TeamController
         validator($data, [
             'meta.theme' => 'in:dark,light',
             'name' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'slug')->ignore(request('id')),
-            'email' => 'required|email|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'email')->ignore(request('id')),
+            'slug' => 'required|' . Rule::unique(config('wink.database_connection') . '.' . config('wink.table_names.wink_authors', 'wink_authors'), 'slug')->ignore(request('id')),
+            'email' => 'required|email|' . Rule::unique(config('wink.database_connection') . '.' . config('wink.table_names.wink_authors', 'wink_authors'), 'email')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);

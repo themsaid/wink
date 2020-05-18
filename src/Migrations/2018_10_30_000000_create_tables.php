@@ -71,10 +71,10 @@ class CreateTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wink_tags');
-        Schema::dropIfExists('wink_posts_tags');
-        Schema::dropIfExists('wink_authors');
-        Schema::dropIfExists('wink_posts');
-        Schema::dropIfExists('wink_pages');
+        Schema::dropIfExists(config('wink.table_names.wink_tags', 'wink_tags'));
+        Schema::dropIfExists(config('wink.table_names.wink_posts_tags', 'wink_posts_tags'));
+        Schema::dropIfExists(config('wink.table_names.wink_authors', 'wink_authors'));
+        Schema::dropIfExists(config('wink.table_names.wink_posts', 'wink_posts'));
+        Schema::dropIfExists(config('wink.table_names.wink_pages', 'wink_pages'));
     }
 }

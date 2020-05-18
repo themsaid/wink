@@ -17,7 +17,7 @@ class TagsController
     public function index()
     {
         $entries = WinkTag::when(request()->has('search'), function ($q) {
-            $q->where('name', 'LIKE', '%'.request('search').'%');
+            $q->where('name', 'LIKE', '%' . request('search') . '%');
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
@@ -65,7 +65,7 @@ class TagsController
 
         validator($data, [
             'name' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_tags', 'slug')->ignore(request('id')),
+            'slug' => 'required|' . Rule::unique(config('wink.database_connection') . '.' . config('wink.table_names.wink_tags', 'wink_tags'), 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkTag::findOrFail($id) : new WinkTag(['id' => request('id')]);

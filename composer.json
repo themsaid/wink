@@ -1,7 +1,11 @@
 {
     "name": "themsaid/wink",
     "description": "Wink Publishing Framework.",
-    "keywords": ["framework", "laravel", "blog"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "blog"
+    ],
     "license": "MIT",
     "authors": [
         {
