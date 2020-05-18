@@ -21,7 +21,7 @@ class TagsController
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
-            ->get();
+            ->paginate(30);
 
         return TagsResource::collection($entries);
     }
