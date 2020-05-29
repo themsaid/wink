@@ -100,7 +100,7 @@ class PostsController
         );
 
         return response()->json([
-            'entry' => $entry,
+            'entry' => $entry->load('tags'),
         ]);
     }
 

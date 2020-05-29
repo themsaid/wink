@@ -340,6 +340,9 @@
                 this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
 
+                    // Refresh to updated tags
+                    this.form.tags = response.data.entry.tags;
+
                     if (this.id == 'new') {
                         this.$router.push({name: 'post-edit', params: {id: this.form.id}})
                     }
