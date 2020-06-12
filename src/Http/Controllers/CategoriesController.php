@@ -17,7 +17,7 @@ class CategoriesController
     public function index()
     {
         $entries = WinkCategory::when(request()->has('search'), function ($q) {
-            $q->where('name', 'LIKE', '%' . request('search') . '%');
+            $q->where('name', 'LIKE', '%'.request('search').'%');
         })
             ->orderBy('created_at', 'DESC')
             ->paginate(30);
@@ -58,12 +58,12 @@ class CategoriesController
     {
         $data = [
             'name' => request('name'),
-            'slug' => request('slug')
+            'slug' => request('slug'),
         ];
 
         validator($data, [
             'name' => 'required',
-            'slug' => 'required|' . Rule::unique(config('wink.database_connection') . '.wink_categories', 'slug')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_categories', 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkCategory::findOrFail($id) : new WinkCategory(['id' => request('id')]);

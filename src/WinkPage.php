@@ -59,4 +59,9 @@ class WinkPage extends AbstractWinkModel
     {
         return $this->body;
     }
+
+    public function categories()
+    {
+        return $this->morphToMany(WinkCategory::class, 'categoriable', 'wink_categoriables', 'categoriable_id', 'category_id');
+    }
 }
