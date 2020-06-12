@@ -2,10 +2,11 @@
 
 namespace Wink\Http\Controllers;
 
+use Wink\WinkPage;
+use Wink\WinkCategory;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Wink\Http\Resources\PagesResource;
-use Wink\WinkPage;
 
 class PagesController
 {
@@ -17,7 +18,7 @@ class PagesController
     public function index()
     {
         $entries = WinkPage::when(request()->has('search'), function ($q) {
-            $q->where('title', 'LIKE', '%'.request('search').'%');
+            $q->where('title', 'LIKE', '%' . request('search') . '%');
         })
             ->orderBy('created_at', 'DESC')
             ->paginate(30);
@@ -42,7 +43,7 @@ class PagesController
         $entry = WinkPage::findOrFail($id);
 
         return response()->json([
-            'entry' => $entry,
+            'entry' => $entry->load('categories'),
         ]);
     }
 
@@ -63,7 +64,7 @@ class PagesController
 
         validator($data, [
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_pages', 'slug')->ignore(request('id')),
+            'slug' => 'required|' . Rule::unique(config('wink.database_connection') . '.wink_pages', 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? WinkPage::findOrFail($id) : new WinkPage(['id' => request('id')]);
@@ -72,8 +73,12 @@ class PagesController
 
         $entry->save();
 
+        $entry->categories()->sync(
+            $this->collectCategories(request('categories'))
+        );
+
         return response()->json([
-            'entry' => $entry,
+            'entry' => $entry->load('categories'),
         ]);
     }
 
@@ -88,5 +93,30 @@ class PagesController
         $entry = WinkPage::findOrFail($id);
 
         $entry->delete();
+    }
+
+    /**
+     * Categories incoming from the request.
+     *
+     * @param  array  $incomingCategories
+     * @return array
+     */
+    private function collectCategories($incomingCategories)
+    {
+        $allCategories = WinkCategory::all();
+
+        return collect($incomingCategories)->map(function ($incomingCategories) use ($allCategories) {
+            $category = $allCategories->where('id', $incomingCategories['id'])->first();
+
+            if (!$category) {
+                $category = WinkCategory::create([
+                    'id' => $id = Str::uuid(),
+                    'name' => $incomingCategories['name'],
+                    'slug' => Str::slug($incomingCategories['name']),
+                ]);
+            }
+
+            return (string) $category->id;
+        })->toArray();
     }
 }

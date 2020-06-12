@@ -38,4 +38,23 @@ class WinkCategory extends AbstractWinkModel
      * @var bool
      */
     public $incrementing = false;
+
+    public function pages()
+    {
+        return $this->morphedByMany(WinkPage::class, 'categoriable', 'wink_categoriables', 'category_id', 'categoriable_id');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($item) {
+            $item->pages()->detach();
+        });
+    }
 }

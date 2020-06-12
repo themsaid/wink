@@ -2,6 +2,8 @@
 
 namespace Wink;
 
+use Wink\WinkCategory;
+
 class WinkPage extends AbstractWinkModel
 {
     /**
@@ -58,5 +60,10 @@ class WinkPage extends AbstractWinkModel
     public function getContentAttribute()
     {
         return $this->body;
+    }
+
+    public function categories()
+    {
+        return $this->morphToMany(WinkCategory::class, 'categoriable', 'wink_categoriables', 'categoriable_id', 'category_id');
     }
 }
