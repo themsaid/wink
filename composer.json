@@ -13,9 +13,6 @@
         "php": "^7.3||^7.4",
         "laravel/framework": "~7.0"
     },
-    "require-dev": {
-        "nunomaduro/larastan": "^0.3.8"
-    },
     "autoload": {
         "psr-4": {
             "Wink\\": "src/"
