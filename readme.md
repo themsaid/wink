@@ -46,6 +46,8 @@ If you want to upload images to S3, update the `storage_disk` attribute in your 
 ],
 ```
 
+Note: you're going to need to install the AWS-S3 Flysystem adapter, using `composer require league/flysystem-aws-s3-v3` for this to work.
+
 ## Using Unsplash
 
 Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab the 'Access Key' and add it to your `.env` file as `UNSPLASH_ACCESS_KEY`. Lastly, add unsplash to your `config/services.php` file:
