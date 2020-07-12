@@ -77,4 +77,21 @@ return [
     */
 
     'preview_path' => '/{postSlug}',
+
+    'editor' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | Default editor (for when you don't want options)
+        |--------------------------------------------------------------------------
+        |
+        | Wink usually allows either markdown or rich text editing. If you're
+        | setting up an environment where you only want one or the other
+        | you can specify that here. (options: null, 'markdown', 'rte')
+        |
+        */
+
+        'default' => null,
+
+    ],
 ];

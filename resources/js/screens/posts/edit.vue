@@ -43,7 +43,7 @@
                     featured_image_caption: '',
                     body: '',
                     published: false,
-                    markdown: null,
+                    markdown: ({null: null, 'markdown' : true, 'rich': false})[window.Wink.default_editor],
                     publish_date: '',
                     meta: {
                         meta_description: '',
