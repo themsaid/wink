@@ -14,7 +14,6 @@ export default {
             textarea: null,
             content: "",
             uploadProgress: 0,
-            uploading: false
         };
     },
 
