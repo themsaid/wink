@@ -14,6 +14,7 @@ export default {
             textarea: null,
             content: "",
             uploadProgress: 0,
+            uploading: false
         };
     },
 
@@ -37,7 +38,7 @@ export default {
                 this.textarea.style.height =
                     Math.min(this.textarea.scrollHeight, heightLimit) + "px";
 
-                this.textarea.oninput = function() {
+                this.textarea.oninput = () => {
                     this.textarea.style.height = "";
                     this.textarea.style.height =
                         Math.min(this.textarea.scrollHeight, heightLimit) +
@@ -76,7 +77,7 @@ export default {
 
             const placeholder = `![Uploading ${image.name}…]()`;
 
-            this.content = this.content.concat(placeholder);
+            this.insertAtCursor(placeholder);
 
             this.http()
                 .post("/api/uploads", formData, {
@@ -92,6 +93,13 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+
+        insertAtCursor(text) {
+            this.textarea.focus();
+
+            document.execCommand("insertText", false /*no UI*/, text);
+            this.content = this.textarea.value;
         },
         insertImage(placeholder, url) {
             this.content = this.content.replace(
