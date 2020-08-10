@@ -98,8 +98,24 @@ export default {
         insertAtCursor(text) {
             this.textarea.focus();
 
-            document.execCommand("insertText", false /*no UI*/, text);
-            this.content = this.textarea.value;
+            const isSuccessful = document.execCommand(
+                "insertText",
+                false,
+                text
+            );
+
+            // Firefox (non-standard method)
+            if (!isSuccessful && typeof input.setRangeText === "function") {
+                const start = input.selectionStart;
+                input.setRangeText(text);
+                // update cursor to be at the end of insertion
+                input.selectionStart = input.selectionEnd = start + text.length;
+
+                // Notify any possible listeners of the change
+                const e = document.createEvent("UIEvent");
+                e.initEvent("input", true, false);
+                input.dispatchEvent(e);
+            }
         },
         insertImage(placeholder, url) {
             this.content = this.content.replace(
