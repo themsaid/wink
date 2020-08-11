@@ -20,7 +20,7 @@ php artisan wink:install
 php artisan storage:link
 ```
 
-**Configure the database connection** wink is going to be using in `config/wink.php`. The run:
+**Configure the database connection** wink is going to be using in `config/wink.php`. Then run:
 
 ```sh
 php artisan wink:migrate

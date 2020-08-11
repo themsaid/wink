@@ -170,6 +170,20 @@ class WinkPost extends AbstractWinkModel
     }
 
     /**
+     * Scope a query to only include posts that have a specific tag (by slug).
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $slug
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTag($query, string $slug)
+    {
+        return $query->whereHas('tags', function ($query) use ($slug) {
+            $query->where('slug', $slug);
+        });
+    }
+
+    /**
      * Prepare a date for array / JSON serialization.
      *
      * @param \DateTimeInterface $date
