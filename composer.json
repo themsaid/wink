@@ -1,5 +1,5 @@
 {
-    "name": "writingink/wink",
+    "name": "themsaid/wink",
     "description": "Wink Publishing Framework.",
     "keywords": ["framework", "laravel", "blog"],
     "license": "MIT",
@@ -10,11 +10,8 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "laravel/framework": "~5.7|~6.0|~7.0"
-    },
-    "require-dev": {
-        "nunomaduro/larastan": "^0.3.8"
+        "php": "^7.3||^7.4",
+        "laravel/framework": "~7.0"
     },
     "autoload": {
         "psr-4": {
@@ -22,6 +19,9 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Wink\\WinkServiceProvider"

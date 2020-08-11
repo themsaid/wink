@@ -1,9 +1,11 @@
 <script type="text/ecmascript">
     import FeaturedImageUploader from './FeaturedImageUploader';
     import SEOModal from './../../components/SEOModal';
+    import MarkdownEditor from './../../components/MarkdownEditor';
 
     export default {
         components: {
+            MarkdownEditor,
             'featured-image-uploader': FeaturedImageUploader,
             'seo-modal': SEOModal,
         },
@@ -41,6 +43,7 @@
                     featured_image_caption: '',
                     body: '',
                     published: false,
+                    markdown: ({null: null, 'markdown' : true, 'rich': false})[window.Wink.default_editor],
                     publish_date: '',
                     meta: {
                         meta_description: '',
@@ -64,7 +67,6 @@
                     this.form.slug = this.slugify(val);
                 });
             },
-
 
             'form.featured_image'() {
                 this.save();
@@ -107,6 +109,12 @@
             });
         },
 
+        computed: {
+            postPreviewLink() {
+                return this.Wink.preview_path.replace('{postSlug}', this.form.slug);
+            }
+        },
+
 
         /**
          * Clean after the component is destroyed.
@@ -144,6 +152,7 @@
                     this.form.excerpt = data.excerpt;
                     this.form.body = data.body;
                     this.form.published = data.published;
+                    this.form.markdown = data.markdown;
                     this.form.tags = data.tags || '';
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
@@ -361,8 +370,17 @@
                 <button class="py-1 px-2 btn-primary text-sm mr-6" @click="publishingModal" v-if="!form.published">Publish</button>
                 <button class="py-1 px-2 btn-primary text-sm mr-6" @click="publishingModal" v-if="form.published">Update</button>
 
+                <a :href="postPreviewLink" class="block focus:outline-none text-light hover:text-primary mr-6"
+                   target="_blank"
+                   title="Preview Post"
+                   v-if="id != 'new'">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current">
+                        <path d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                    </svg>
+                </a>
+
                 <dropdown class="relative">
-                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8">
+                    <button slot="trigger" class="focus:outline-none text-light hover:text-primary h-8" title="Settings">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4 h-4 fill-current mt-1">
                             <path d="M17 16v4h-2v-4h-2v-3h6v3h-2zM1 9h6v3H1V9zm6-4h6v3H7V5zM3 0h2v8H3V0zm12 0h2v12h-2V0zM9 0h2v4H9V0zM3 12h2v8H3v-8zm6-4h2v12H9V8z"/>
                         </svg>
@@ -393,12 +411,24 @@
 
             <div class="lg:w-3/4 mx-auto" v-if="ready && entry">
                 <textarea-autosize
-                        placeholder="Type something here..."
-                        class="text-3xl font-semibold w-full focus:outline-none mb-10"
-                        v-model="form.title"
+                    placeholder="Type something here..."
+                    class="text-3xl font-semibold w-full focus:outline-none mb-10"
+                    v-model="form.title"
                 ></textarea-autosize>
 
-                <editor :post-id="id" v-model="form.body"></editor>
+                <div v-if="form.markdown == null">
+                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5 rounded" @click="form.markdown = false">
+                        I want a rich text editor
+                    </button>
+                    <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5 rounded" @click="form.markdown = true">
+                        I will write markdown
+                    </button>
+                </div>
+                <editor v-if="form.markdown == false" :post-id="id" v-model="form.body"></editor>
+                <markdown-editor
+                    v-model="form.body"
+                    v-if="form.markdown == true">
+                </markdown-editor>
             </div>
         </div>
 

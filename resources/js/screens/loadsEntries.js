@@ -27,9 +27,9 @@ module.exports = {
             ).then(response => {
                 this.entries = response.data.data;
 
-                this.hasMoreEntries = !!response.data.next_page_url;
+                this.hasMoreEntries = !!response.data.links.next;
 
-                this.nextPageUrl = response.data.next_page_url;
+                this.nextPageUrl = response.data.links.next;
 
                 this.ready = true;
             });
@@ -45,9 +45,9 @@ module.exports = {
             this.http().get(this.nextPageUrl).then(response => {
                 this.entries.push(...response.data.data);
 
-                this.hasMoreEntries = !!response.data.next_page_url;
+                this.hasMoreEntries = !!response.data.links.next;
 
-                this.nextPageUrl = response.data.next_page_url;
+                this.nextPageUrl = response.data.links.next;
 
                 this.loadingMoreEntries = false;
             });

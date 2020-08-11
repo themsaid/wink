@@ -5,6 +5,7 @@ import Routes from './routes';
 import VueRouter from 'vue-router';
 import VueTextareaAutosize from 'vue-textarea-autosize';
 import VueCroppie from 'vue-croppie';
+import 'croppie/croppie.css'
 
 
 Vue.use(VueRouter);

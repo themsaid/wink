@@ -2,14 +2,14 @@ import Quill from 'quill';
 
 let BlockEmbed = Quill.import('blots/block/embed');
 
-class ImageBlot extends BlockEmbed {
+class WinkImageBlot extends BlockEmbed {
     static create(value) {
         let node = super.create();
+        let img = document.createElement('img');
 
         node.setAttribute('contenteditable', false);
         node.dataset.layout = value.layout;
 
-        let img = document.createElement('img');
         img.setAttribute('alt', value.caption);
         img.setAttribute('src', value.url);
         node.appendChild(img);
@@ -34,8 +34,8 @@ class ImageBlot extends BlockEmbed {
     }
 }
 
-ImageBlot.tagName = 'div';
-ImageBlot.blotName = 'captioned-image';
-ImageBlot.className = 'embedded_image';
+WinkImageBlot.tagName = 'div';
+WinkImageBlot.blotName = 'captioned-image';
+WinkImageBlot.className = 'embedded_image';
 
-export default ImageBlot;
+export default WinkImageBlot;

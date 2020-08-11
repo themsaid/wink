@@ -49,4 +49,14 @@ class WinkPage extends AbstractWinkModel
         'body' => 'string',
         'meta' => 'array',
     ];
+
+    /**
+     * Get the renderable page content.
+     *
+     * @return HtmlString
+     */
+    public function getContentAttribute()
+    {
+        return $this->body;
+    }
 }

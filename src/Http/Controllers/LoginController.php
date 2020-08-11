@@ -6,11 +6,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController
 {
-    use AuthenticatesUsers, ValidatesRequests;
-
     /**
      * Show the application's login form.
      *
@@ -22,9 +21,33 @@ class LoginController
     }
 
     /**
+     * Attempt to log in.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login()
+    {
+        validator(request()->all(), [
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        if ($this->guard()->attempt(
+            request()->only('email', 'password'),
+            request()->filled('remember')
+        )) {
+            return redirect('/'.config('wink.path'));
+        }
+
+        throw ValidationException::withMessages([
+            'email' => ['Invalid email or password!'],
+        ]);
+    }
+
+    /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
@@ -34,16 +57,6 @@ class LoginController
         $request->session()->invalidate();
 
         return redirect()->route('wink.auth.login')->with('loggedOut', true);
-    }
-
-    /**
-     * Get the post login redirect path.
-     *
-     * @return string
-     */
-    public function redirectPath()
-    {
-        return '/'.config('wink.path');
     }
 
     /**
