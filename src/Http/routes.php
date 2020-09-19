@@ -22,9 +22,9 @@ Route::delete('/api/tags/{id}', [TagsController::class, 'delete'])->name('tags.d
 
 // Blog Authors...
 Route::get('/api/team', [TeamController::class, 'index'])->name('team.index');
-Route::get('/api/team/{id?}', [TagsController::class, 'show'])->name('team.show');
-Route::post('/api/team/{id}', [TagsController::class, 'store'])->name('team.store');
-Route::delete('/api/team/{id}', [TagsController::class, 'delete'])->name('team.delete');
+Route::get('/api/team/{id?}', [TeamController::class, 'show'])->name('team.show');
+Route::post('/api/team/{id}', [TeamController::class, 'store'])->name('team.store');
+Route::delete('/api/team/{id}', [TeamController::class, 'delete'])->name('team.delete');
 
 // Blog Image Uploads
 Route::post('/api/uploads', [ImageUploadsController::class, 'upload'])->name('images.store');
