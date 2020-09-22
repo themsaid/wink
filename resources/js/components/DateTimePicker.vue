@@ -47,7 +47,7 @@
 
         methods: {
             buildComponents(val) {
-                let date = moment(val + ' Z').utc();
+                let date = moment(val).utc();
 
                 this.dateComponents = {month: date.format('MM'), day: date.format('DD'), year: date.format('YYYY'), hour: date.format('HH'), minute: date.format('mm')};
             }

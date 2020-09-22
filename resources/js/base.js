@@ -16,7 +16,7 @@ export default {
          * Determine if the given date is in the future.
          */
         dateInTheFuture(date) {
-            return moment().diff(moment(date + ' Z'), 'minutes') < 0;
+            return moment().diff(moment(date), 'minutes') < 0;
         },
 
 
@@ -24,7 +24,7 @@ export default {
          * Show the time ago format for the given time.
          */
         timeAgo(time) {
-            return moment(time + ' Z').utc().local().fromNow();
+            return moment.utc(time).local().fromNow();
         },
 
 
@@ -32,7 +32,7 @@ export default {
          * Show the time in local time.
          */
         localTime(time) {
-            return moment(time + ' Z').utc().local().format('MMMM Do YYYY, h:mm:ss A');
+            return moment.utc(time).local().format('MMMM Do YYYY, h:mm:ss A');
         },
 
 
