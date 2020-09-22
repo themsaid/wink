@@ -4,6 +4,8 @@ namespace Wink;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Wink\Http\Controllers\ForgotPasswordController;
+use Wink\Http\Controllers\LoginController;
 use Wink\Http\Middleware\Authenticate;
 
 class WinkServiceProvider extends ServiceProvider
@@ -33,22 +35,20 @@ class WinkServiceProvider extends ServiceProvider
     {
         $middlewareGroup = config('wink.middleware_group');
 
-        Route::namespace('Wink\Http\Controllers')
-            ->middleware($middlewareGroup)
+        Route::middleware($middlewareGroup)
             ->as('wink.')
             ->domain(config('wink.domain'))
             ->prefix(config('wink.path'))
             ->group(function () {
-                Route::get('/login', 'LoginController@showLoginForm')->name('auth.login');
-                Route::post('/login', 'LoginController@login')->name('auth.attempt');
+                Route::get('/login', [LoginController::class, 'showLoginForm'])->name('auth.login');
+                Route::post('/login', [LoginController::class, 'login'])->name('auth.attempt');
 
-                Route::get('/password/forgot', 'ForgotPasswordController@showResetRequestForm')->name('password.forgot');
-                Route::post('/password/forgot', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-                Route::get('/password/reset/{token}', 'ForgotPasswordController@showNewPassword')->name('password.reset');
+                Route::get('/password/forgot', [ForgotPasswordController::class, 'showResetRequestForm'])->name('password.forgot');
+                Route::post('/password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+                Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
             });
 
-        Route::namespace('Wink\Http\Controllers')
-            ->middleware([$middlewareGroup, Authenticate::class])
+        Route::middleware([$middlewareGroup, Authenticate::class])
             ->as('wink.')
             ->domain(config('wink.domain'))
             ->prefix(config('wink.path'))
