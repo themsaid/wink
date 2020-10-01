@@ -37,6 +37,14 @@
                 this.close();
             },
 
+            /**
+             *  Remove image
+             */
+            removeImage() {
+                this.imageUrl = null;
+                this.$emit('removed');
+            },
+
 
             /**
              * Close the modal.
@@ -76,7 +84,15 @@
         <preloader v-if="uploading"></preloader>
 
         <div v-if="imageUrl && !uploading">
-            <img :src="imageUrl" class="max-w-full">
+            <div class="relative">
+                <button @click="removeImage"
+                        class="btn-sm bg-red absolute pin-t pin-r border-black rounded mr-1 mt-1 h-6 w-8 bg-very-light">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <img :src="imageUrl" class="max-w-full">
+            </div>
 
             <div class="input-group">
                 <label class="input-label">Caption</label>

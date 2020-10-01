@@ -272,6 +272,15 @@
 
 
             /**
+             * Handle the change event of featured images.
+             */
+            featuredImageRemoved() {
+                this.form.featured_image = null;
+                this.form.featured_image_caption = null;
+            },
+
+
+            /**
              * Close the SEO modal.
              */
             closeSeoModal({content}) {
@@ -507,6 +516,7 @@
         <!-- Featured Image Modal -->
         <featured-image-uploader :post-id="this.form.id"
                                  @changed="featuredImageChanged"
+                                 @removed="featuredImageRemoved"
                                  :current-image-url="form.featured_image"
                                  :current-caption="form.featured_image_caption"></featured-image-uploader>
     </div>
