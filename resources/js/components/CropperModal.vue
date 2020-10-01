@@ -69,7 +69,7 @@
             },
 
             /**
-             * Upload the orginal image.
+             * Upload the original image.
              */
             uploadOriginalImage() {
                 let file = this.image;
