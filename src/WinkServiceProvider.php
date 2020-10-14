@@ -109,7 +109,7 @@ class WinkServiceProvider extends ServiceProvider
             Console\MigrateCommand::class,
         ]);
     }
-<<<<<<< HEAD
+
 
     /**
      * Return the subdomain if configured.
@@ -127,6 +127,4 @@ class WinkServiceProvider extends ServiceProvider
             parse_url(config('app.url'), PHP_URL_HOST),
         ]);
     }
-=======
->>>>>>> 1.x
 }
