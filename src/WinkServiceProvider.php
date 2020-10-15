@@ -110,7 +110,6 @@ class WinkServiceProvider extends ServiceProvider
         ]);
     }
 
-
     /**
      * Return the subdomain if configured.
      *
