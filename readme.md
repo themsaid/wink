@@ -1,4 +1,4 @@
-<p align="center"><img src="https://themsaid.com/img/wink.jpg?1"></p>
+<p align="center"><img src="/art/header.png?1" alt="wink logo"></p>
 
 Wink adds a nice UI where you can manage a publication of any size with posts, pages, tags, and authors.
 
@@ -60,7 +60,7 @@ Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab
 
 ## Updates
 
-After each update, make sure you run these commands:
+After each update, make sure you run thMohamed Saidese commands:
 
 ```sh
 php artisan wink:migrate
@@ -77,6 +77,13 @@ Wink is faceless, it doesn't have any opinions on how you display your content i
 - `Wink\WinkTag`
 
 To display posts and pages content, use `$post->content` instead of `$post->body`. The content will always be in HTML format while the body might be HTML or raw markdown based on the post type.
+
+## Credits
+
+- [Mohamed Said](https://github.com/themsaid)
+- [All contributors](https://github.com/themsaid/wink/contributors)
+
+Special thanks to [Caneco](https://twitter.com/caneco) for the logo ✨
 
 ## Contributing
 
