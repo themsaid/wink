@@ -60,7 +60,7 @@ Visit https://unsplash.com/oauth/applications to create a new unsplash app. Grab
 
 ## Updates
 
-After each update, make sure you run thMohamed Saidese commands:
+After each update, make sure you run these commands:
 
 ```sh
 php artisan wink:migrate
