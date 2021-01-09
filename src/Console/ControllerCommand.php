@@ -53,6 +53,7 @@ class ControllerCommand extends GeneratorCommand
     protected function getPath($name)
     {
         $name = str_replace($this->laravel->getNamespace(), '', $name);
+
         return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
     }
 
@@ -78,6 +79,7 @@ class ControllerCommand extends GeneratorCommand
     protected function buildClass($name)
     {
         $stub = $this->files->get($this->getStub());
+
         return $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
     }
 }
