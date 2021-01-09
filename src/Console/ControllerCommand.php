@@ -41,7 +41,7 @@ class ControllerCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/Stubs/BlogController.stub';
+        return __DIR__.'/Stubs/BlogController.stub';
     }
 
     /**
@@ -53,7 +53,7 @@ class ControllerCommand extends GeneratorCommand
     protected function getPath($name)
     {
         $name = str_replace($this->laravel->getNamespace(), '', $name);
-        return $this->laravel['path'] . '/' . str_replace('\\', '/', $name) . '.php';
+        return $this->laravel['path'].'/'.str_replace('\\', '/', $name) . '.php';
     }
 
     /**
@@ -65,7 +65,7 @@ class ControllerCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Http\Controllers';
+        return $rootNamespace.'\Http\Controllers';
     }
 
     /**
