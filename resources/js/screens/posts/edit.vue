@@ -505,7 +505,7 @@
             <div class="mb-10 text-red" v-if="form.title == 'Draft' || !form.slug || form.slug.startsWith('draft-')">
                 Make sure your post has a friendly title and slug.
             </div>
-
+cxcxxcxc
             <div class="input-group pt-0">
                 <label class="input-label">Publish Date (M/D/Y H:M) UTC</label>
                 <date-time-picker v-model="form.publish_date"></date-time-picker>
