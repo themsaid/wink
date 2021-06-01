@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLanguageToWinkPage extends Migration
+class AddLanguageToWinkPages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddLanguageToWinkPage extends Migration
      */
     public function up()
     {
-        Schema::table('wink_page', function (Blueprint $table) {
+        Schema::table('wink_pages', function (Blueprint $table) {
             $table->string('language')->default('en');
         });
     }
@@ -25,7 +25,7 @@ class AddLanguageToWinkPage extends Migration
      */
     public function down()
     {
-        Schema::table('wink_page', function (Blueprint $table) {
+        Schema::table('wink_pages', function (Blueprint $table) {
             //
         });
     }
