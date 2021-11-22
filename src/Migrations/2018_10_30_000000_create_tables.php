@@ -35,6 +35,7 @@ class CreateTables extends Migration
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
+            $table->integer('duration');
             $table->boolean('published')->default(false);
             $table->dateTime('publish_date')->default('2018-10-10 00:00:00');
             $table->string('featured_image')->nullable();
