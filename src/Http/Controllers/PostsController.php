@@ -73,6 +73,7 @@ class PostsController
             'excerpt' => request('excerpt', ''),
             'slug' => request('slug'),
             'body' => request('body', ''),
+            'duration' => $this->readingDuration(request('body', '')),
             'published' => request('published'),
             'markdown' => request('markdown'),
             'author_id' => request('author_id'),
@@ -140,5 +141,19 @@ class PostsController
         $entry = WinkPost::findOrFail($id);
 
         $entry->delete();
+    }
+
+    /**
+     * Return the time needed to read a post.
+     * 
+     * @param  string  $text
+     * @return int
+     */
+    public function readingDuration(...$text)
+    {
+        $totalWords = str_word_count(implode(' ', $text));
+        $minutesToRead = round($totalWords / 200); // 200 is the average number of words which the user can read per minute.
+
+        return (int) max(1, $minutesToRead); // It will return at minimum one minute.
     }
 }
