@@ -12,7 +12,6 @@ use Illuminate\Support\Collection;
  * @property CarbonInterface $updated_at
  * @property CarbonInterface $created_at
  * @property array<mixed>|null $meta
- *
  * @property-read Collection<WinkPost> $posts
  */
 class WinkTag extends AbstractWinkModel

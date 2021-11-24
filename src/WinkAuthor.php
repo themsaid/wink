@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Collection;
  * @property CarbonInterface $updated_at
  * @property CarbonInterface $created_at
  * @property array<mixed>|null $meta
- *
  * @property-read Collection<WinkPost> $posts
  */
 class WinkAuthor extends AbstractWinkModel implements Authenticatable
