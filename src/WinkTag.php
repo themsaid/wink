@@ -2,6 +2,19 @@
 
 namespace Wink;
 
+use Carbon\CarbonInterface;
+use Illuminate\Support\Collection;
+
+/**
+ * @property string $id
+ * @property string $slug
+ * @property string $name
+ * @property CarbonInterface $updated_at
+ * @property CarbonInterface $created_at
+ * @property array<mixed>|null $meta
+ *
+ * @property-read Collection<WinkPost> $posts
+ */
 class WinkTag extends AbstractWinkModel
 {
     /**
