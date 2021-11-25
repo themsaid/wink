@@ -145,7 +145,7 @@ class PostsController
 
     /**
      * Return the time needed to read a post.
-     * 
+     *
      * @param  string  $text
      * @return int
      */
