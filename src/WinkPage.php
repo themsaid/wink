@@ -2,6 +2,18 @@
 
 namespace Wink;
 
+use Carbon\CarbonInterface;
+
+/**
+ * @property string $id
+ * @property string $slug
+ * @property string $title
+ * @property-write string $body
+ * @property-read string $content
+ * @property CarbonInterface $updated_at
+ * @property CarbonInterface $created_at
+ * @property array<mixed>|null $meta
+ */
 class WinkPage extends AbstractWinkModel
 {
     /**
@@ -53,7 +65,7 @@ class WinkPage extends AbstractWinkModel
     /**
      * Get the renderable page content.
      *
-     * @return HtmlString
+     * @return string
      */
     public function getContentAttribute()
     {

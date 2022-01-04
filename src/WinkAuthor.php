@@ -2,8 +2,24 @@
 
 namespace Wink;
 
+use Carbon\CarbonInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * @property string $id
+ * @property string $slug
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $bio
+ * @property string $avatar
+ * @property string|null $remember_token
+ * @property CarbonInterface $updated_at
+ * @property CarbonInterface $created_at
+ * @property array<mixed>|null $meta
+ * @property-read Collection<WinkPost> $posts
+ */
 class WinkAuthor extends AbstractWinkModel implements Authenticatable
 {
     /**
