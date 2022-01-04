@@ -6,7 +6,6 @@ use Carbon\CarbonInterface;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\HtmlString;
-use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 /**
  * @property string $id
