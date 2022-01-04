@@ -115,11 +115,7 @@ class WinkPost extends AbstractWinkModel
             return $this->body;
         }
 
-        $converter = new GithubFlavoredMarkdownConverter([
-            'allow_unsafe_links' => false,
-        ]);
-
-        return new HtmlString($converter->convertToHtml($this->body));
+        return Wink::getMarkdownRenderer()($this->body);
     }
 
     /**

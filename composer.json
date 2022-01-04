@@ -32,5 +32,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "pestphp/pest": "^1.21"
+    },
+    "scripts": {
+        "test:unit": "vendor/bin/pest"
+    }
 }
