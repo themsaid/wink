@@ -78,6 +78,29 @@ Wink is faceless, it doesn't have any opinions on how you display your content i
 
 To display posts and pages content, use `$post->content` instead of `$post->body`. The content will always be in HTML format while the body might be HTML or raw markdown based on the post type.
 
+## Customising the Markdown parser
+
+By default, Wink will use a `GithubFlavoredMarkdownConverter` to parse Markdown. This will suffice for most cases. However, you may occasionally want to use your own parser. 
+To facilitate this, you may override the parser using the `Wink::parseMarkdownUsing` method. You should place this in the boot method of your `AppServiceProvider`, or 
+another relevant service provider.
+
+In the example below, we add the `TorchlightExtension` for better code block highlighting.
+
+```php
+public function boot()
+{
+    Wink\Wink::parseMarkdownUsing(function ($body) {
+        $converter = new GithubFlavoredMarkdownConverter([
+            'allow_unsafe_links' => false,
+        ]);
+
+        $converter->getEnvironment()->addExtension(new TorchlightExtension());
+
+        return new HtmlString($converter->convertToHtml($this->body));
+    });
+}
+```
+
 ## Credits
 
 - [Mohamed Said](https://github.com/themsaid)

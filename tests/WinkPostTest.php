@@ -11,7 +11,7 @@ it('can parse markdown', function () {
 });
 
 it('can configure the markdown parser', function () {
-    Wink::renderMarkdownUsing(function (string $body) {
+    Wink::parseMarkdownUsing(function (string $body) {
         return new HtmlString("<h1>{$body}</h1>");
     });
 

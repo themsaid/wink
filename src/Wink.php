@@ -32,16 +32,16 @@ class Wink
     }
 
     /**
-     * Provide a callback that is passed a markdown string and returns
+     * Provide a callback that is passed a Markdown string and returns
      * a HtmlString to be presented. Setting this callback will
-     * override the default markdown renderer.
+     * override the default Markdown parser.
      */
-    public static function renderMarkdownUsing(Closure $callback): void
+    public static function parseMarkdownUsing(Closure $callback): void
     {
         static::$markdownCallback = $callback;
     }
 
-    public static function getMarkdownRenderer(): Closure
+    public static function getMarkdownParser(): Closure
     {
         return static::$markdownCallback ?? function ($body) {
             $converter = new GithubFlavoredMarkdownConverter([

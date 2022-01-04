@@ -115,7 +115,7 @@ class WinkPost extends AbstractWinkModel
             return $this->body;
         }
 
-        return Wink::getMarkdownRenderer()($this->body);
+        return Wink::getMarkdownParser()($this->body);
     }
 
     /**
