@@ -36,7 +36,7 @@ class Wink
      * a HtmlString to be presented. Setting this callback will
      * override the default Markdown parser.
      */
-    public static function parseMarkdownUsing(Closure $callback): void
+    public static function parseMarkdownUsing(Closure|null $callback): void
     {
         static::$markdownCallback = $callback;
     }

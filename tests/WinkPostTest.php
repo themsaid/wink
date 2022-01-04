@@ -4,6 +4,11 @@ use Illuminate\Support\HtmlString;
 use Wink\Wink;
 use Wink\WinkPost;
 
+afterEach(function () {
+    // Reset markdown parsing back to the default
+    Wink::parseMarkdownUsing(null);
+});
+
 it('can parse markdown', function () {
     $post = new WinkPost(['body' => '# Hello World', 'markdown' => true]);
 
