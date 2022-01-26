@@ -28,7 +28,7 @@
         </div>
 
         <p class="mb-5 leading-normal">Copy your new password, use it for your
-            <a class="text-primary no-underline" href="{{route('wink.auth.login')}}">next login</a>, and then reset it.
+            <a class="text-primary no-underline" href="{{route(config('wink.authentication.login_route_name'))}}">next login</a>, and then reset it.
         </p>
 
         <span class="bg-lighter text-sm p-1">{{$password}}</span>

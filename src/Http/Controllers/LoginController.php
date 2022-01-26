@@ -54,7 +54,7 @@ class LoginController
 
         $request->session()->invalidate();
 
-        return redirect()->route('wink.auth.login')->with('loggedOut', true);
+        return redirect()->route(config('wink.authentication.login_route_name'))->with('loggedOut', true);
     }
 
     /**

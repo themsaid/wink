@@ -35,6 +35,30 @@ class WinkServiceProvider extends ServiceProvider
     {
         $middlewareGroup = config('wink.middleware_group');
 
+        $this->registerAuthenticationRoutesIfRequired($middlewareGroup);
+
+        Route::middleware([$middlewareGroup, Authenticate::class])
+            ->as('wink.')
+            ->domain(config('wink.domain'))
+            ->prefix(config('wink.path'))
+            ->group(function () {
+                $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+            });
+    }
+
+    /**
+     * Register the Authentication routes if required
+     *
+     * @param $middlewareGroup
+     *
+     * @return void
+     */
+    private function registerAuthenticationRoutesIfRequired($middlewareGroup)
+    {
+        if (! config('wink.authentication.routes_enabled')) {
+            return;
+        }
+
         Route::middleware($middlewareGroup)
             ->as('wink.')
             ->domain(config('wink.domain'))
@@ -46,14 +70,8 @@ class WinkServiceProvider extends ServiceProvider
                 Route::get('/password/forgot', [ForgotPasswordController::class, 'showResetRequestForm'])->name('password.forgot');
                 Route::post('/password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
                 Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
-            });
 
-        Route::middleware([$middlewareGroup, Authenticate::class])
-            ->as('wink.')
-            ->domain(config('wink.domain'))
-            ->prefix(config('wink.path'))
-            ->group(function () {
-                $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+                Route::middleware([Authenticate::class])->get('/logout', [LoginController::class, 'logout'])->name('logout');
             });
     }
 

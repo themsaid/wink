@@ -42,7 +42,7 @@ class Authenticate
             $this->auth->shouldUse('wink');
         } else {
             throw new AuthenticationException(
-                'Unauthenticated.', ['wink'], route('wink.auth.login')
+                'Unauthenticated.', ['wink'], route(config('wink.authentication.login_route_name'))
             );
         }
 

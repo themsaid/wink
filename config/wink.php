@@ -94,4 +94,33 @@ return [
         'default' => null,
 
     ],
+
+    'authentication' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Register Authentication Routes
+        |--------------------------------------------------------------------------
+        |
+        | Wink uses it's own table of users, allowing the system to run on an
+        | independent database to the main application. This can remove
+        | Wink authentication routes so your app handles that entirely.
+        |
+        */
+
+        'routes_enabled' => true,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Override route names for Wink
+        |--------------------------------------------------------------------------
+        |
+        | If not using Winks Authentication routes, override them with the ones
+        | that your application requires.
+        |
+        */
+
+        'login_route_name' => 'wink.auth.login',
+
+        'logout_route_name' => 'wink.logout',
+    ],
 ];
