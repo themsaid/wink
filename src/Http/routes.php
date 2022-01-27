@@ -1,7 +1,6 @@
 <?php
 
 use Wink\Http\Controllers\ImageUploadsController;
-use Wink\Http\Controllers\LoginController;
 use Wink\Http\Controllers\PagesController;
 use Wink\Http\Controllers\PostsController;
 use Wink\Http\Controllers\SPAViewController;

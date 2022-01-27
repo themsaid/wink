@@ -47,10 +47,9 @@ class WinkServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the Authentication routes if required
+     * Register the Authentication routes if required.
      *
      * @param $middlewareGroup
-     *
      * @return void
      */
     private function registerAuthenticationRoutesIfRequired($middlewareGroup)
