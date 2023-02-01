@@ -1,7 +1,11 @@
 {
     "name": "themsaid/wink",
     "description": "Wink Publishing Framework.",
-    "keywords": ["framework", "laravel", "blog"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "blog"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +15,7 @@
     ],
     "require": {
         "php": "^7.3||^7.4||^8.0",
-        "laravel/framework": "^7.0||^8.0||^9.0"
+        "laravel/framework": "^7.0||^8.0||^9.0|^10.0"
     },
     "autoload": {
         "psr-4": {
