@@ -65,15 +65,6 @@ class WinkPost extends AbstractWinkModel
     public $incrementing = false;
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    public $dates = [
-        'publish_date',
-    ];
-
-    /**
      * The attributes that should be casted.
      *
      * @var array
@@ -82,6 +73,7 @@ class WinkPost extends AbstractWinkModel
         'meta' => 'array',
         'published' => 'boolean',
         'markdown' => 'boolean',
+        'publish_date' => 'datetime',
     ];
 
     /**
