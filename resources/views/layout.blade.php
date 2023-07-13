@@ -14,15 +14,15 @@
     <link rel="icon" type="image/png" href="/vendor/wink/favicon.png"/>
 
     <!-- Highlight JS sheets -->
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
 
     <!-- Style sheets-->
     @if(@auth('wink')->user()->meta['theme'] == 'dark')
         <link href='{{mix('dark.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/sunburst.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/sunburst.min.css">
     @else
         <link href='{{mix('light.css', 'vendor/wink')}}' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
     @endif
 </head>
 
